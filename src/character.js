@@ -493,6 +493,7 @@ export class Character {
     this._time = 0;
     this._planted = false;
     this.stance = null; // (V6) { Left: {x, z, yaw}, Right } world: where the standing feet are stepped to instead
+    this.stanceStepTime = null; // ((V10) s per step into that stance (null: STEP_TIME))
     this._backS = new Smooth();
     this._stride = new Smooth(1);
     this._effort = new Smooth(); // how hard the body is going: ground speed over its pace (m/s)
@@ -1033,7 +1034,8 @@ export class Character {
       _home.y = groundAt(_home.x, _home.z) + ANKLE_HEIGHT; // (where it would stand: on the ground there)
       const homeYaw = want ? want.yaw : yaw + home.toe;
       if (foot.stepping) {
-        foot.u = Math.min(1, foot.u + dt / STEP_TIME);
+        // ((V10) the steps into a stance something else asked for (vehicles.js: the entry clip's first frame) at its own pace)
+        foot.u = Math.min(1, foot.u + dt / (foot.stanceStep && this.stance && this.stanceStepTime ? this.stanceStepTime : STEP_TIME));
         const e = ease(foot.u);
         foot.pos.lerpVectors(foot.from, _home, e);
         foot.yaw = foot.fromYaw + wrapAngle(homeYaw - foot.fromYaw) * e;

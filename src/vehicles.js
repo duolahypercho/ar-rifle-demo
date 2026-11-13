@@ -26,7 +26,7 @@ import * as THREE from 'three/webgpu';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { Frames, OLD_JOINTS, UE5_OF } from './rig.js';
 import { Seated, emptyHands, CAR_POINTS } from './seated.js';
-import { Smooth, damp, wrapAngle, PALM_LOCAL } from './character.js';
+import { Smooth, damp, wrapAngle, PALM_LOCAL, ANKLE_HEIGHT } from './character.js';
 import { HeliSeated } from './heli/seat.js';
 import { HeliCameras } from './heli/heli.js';
 import { groundAt } from './ground.js';
@@ -61,7 +61,8 @@ const LIFT_FADE = 15; // frames (30 fps), (V9) the clip onto the real ground and
  * clip's start (an entry: { start: true, to }) or its end (an exit: { start: false, from }); null if it has none.
  */
 function groundSpan(clip) {
-  const g = ((clip.note && clip.note.contacts) || []).filter((c) => c.part.startsWith('foot') && !c.node && c.kind === 'ground');
+  // ((V10) on the ground plane only: car-bail's feet are 'ground' contacts on the footwell's floor, 0.24 to 0.29 m up)
+  const g = ((clip.note && clip.note.contacts) || []).filter((c) => c.part.startsWith('foot') && !c.node && c.kind === 'ground' && Math.abs(c.at[1]) < 0.05);
   if (!g.length) return null;
   const from = Math.min(...g.map((c) => c.from));
   const to = Math.max(...g.map((c) => c.to));
@@ -490,7 +491,7 @@ export class Vehicles {
 
   /** (V10) Out of the vehicle in world space: flying out of it, falling, under a canopy, landing, or WASTED. */
   get out() {
-    return this.mode === 'air' || this.mode === 'land' || this.mode === 'wasted';
+    return this.mode === 'air' || this.mode === 'land' || this.mode === 'wasted' || this.mode === 'pickup';
   }
 
   /** (V10) A door that is not shut swings shut by itself after `delay` s (DOOR_CLOSE s), unless a clip drives it. */
@@ -748,6 +749,10 @@ export class Vehicles {
         const turn = Math.abs(wrapAngle(S.yaw - p.yaw));
         this._settle = { u: 0, x: p.pos.x, z: p.pos.z, vx: p.vel.x, vz: p.vel.z, yaw: p.yaw, time: THREE.MathUtils.clamp(Math.max(dist / 1.6, turn / 5, 0.3), 0.2, SETTLE_MAX) };
         this.character.stance = S.feet;
+        // ((V10, integration) quick steps into the clip's first-frame stance (0.2 s each; 0.12 s steps jolted the feet, 8 m/s
+        // of change in a frame for the EarthOnline body): the
+        // brisk settle left the feet 10 to 35 cm off it, and the fast entry clips move off their first frame at once)
+        this.character.stanceStepTime = 0.2;
         if (p.move && p._endMove) p._endMove();
         p.move = p._pending = null;
         input.jog = false;
@@ -773,16 +778,18 @@ export class Vehicles {
     const u2 = Math.min(1, u + du);
     const hx = (q) => THREE.MathUtils.lerp(st.x, S.x, q * q * (3 - 2 * q)) + q * (1 - q) * (1 - q) * st.time * st.vx;
     const hz = (q) => THREE.MathUtils.lerp(st.z, S.z, q * q * (3 - 2 * q)) + q * (1 - q) * (1 - q) * st.time * st.vz;
-    this.settleSpeed = u2 > u ? Math.hypot(hx(u2) - hx(u), hz(u2) - hz(u)) / ((u2 - u) * st.time) : 0;
+    // (to the legs only over the settle's first fifth: from there the speed they are told is 0 and they plant, so the
+    // quick steps into the stance can start)
+    this.settleSpeed = u2 > u ? (Math.hypot(hx(u2) - hx(u), hz(u2) - hz(u)) / ((u2 - u) * st.time)) * Math.max(0, 1 - u / 0.2) : 0;
     p.yaw = p.camYaw = wrapAngle(st.yaw + wrapAngle(S.yaw - st.yaw) * e);
     p._yaw.x = p.yaw;
     p._yaw.v = 0;
     const se = this.character.stanceError();
     const feet = !S.feet || (!se.stepping && se.error < 0.015);
     this.stats.walkEnd = { rootCm: +(Math.hypot(S.x - p.pos.x, S.z - p.pos.z) * 100).toFixed(2), yawDeg: +((wrapAngle(S.yaw - p.yaw) * 180) / Math.PI).toFixed(2), feetCm: +(se.error * 100).toFixed(2), t: +this.t.toFixed(2), settleS: +st.time.toFixed(2), waitS: +(st.wait || 0).toFixed(2) };
-    // ((V10) the feet get what is left of SETTLE_MAX to finish their steps; the clip's join carries what is left of them)
+    // ((V10) the feet get what is left of SETTLE_MAX, and up to 0.45 s more, to step onto the clip's first-frame places)
     if (st.u >= 1 && !feet) st.wait = (st.wait || 0) + dt;
-    return (st.u >= 1 && (feet || st.wait >= SETTLE_MAX - st.time)) || this.t > 9;
+    return (st.u >= 1 && (feet || st.wait >= SETTLE_MAX - st.time + 0.45)) || this.t > 9;
   }
 
   _placeholderDoor(t, entering) {
@@ -1160,7 +1167,7 @@ export class Vehicles {
 
   /** (V9) A contact's world point: a ground contact (on no node) follows the clip onto the real ground. */
   _groundAt(at, c, node, clip, t) {
-    if (c.node || c.kind !== 'ground') return at;
+    if (c.node || c.kind !== 'ground' || Math.abs(c.at[1]) >= 0.05) return at;
     const w = this._groundW(clip, t);
     if (w <= 0) return at;
     const plane = node.localToWorld(_v3.set(c.at[0], 0, c.at[2])).y;
@@ -1168,9 +1175,71 @@ export class Vehicles {
     return at;
   }
 
-  _pinContacts(clip, t) {
+  /**
+   * (V10) Where the feet stand at the end of the walk to the door (world): the ball's sole and the foot's turn, for each
+   * foot on the ground (one still in a step is left out). The entry clip's first ground contacts hold the feet there
+   * instead of at the clip's own first-frame points (the brisk settle leaves them 10 to 28 cm off): nothing slides at the
+   * hand-over, and each foot reaches the clip's own places with its first step.
+   */
+  keepFeet() {
+    return this._keepStartFeet();
+  }
+
+  _keepStartFeet() {
     const ch = this.character;
-    const veh = this.v;
+    ch.model.updateMatrixWorld(true);
+    const out = {};
+    for (const side of ['Left', 'Right']) {
+      const foot = ch.bones[side + 'Foot'];
+      const a = foot.getWorldPosition(new THREE.Vector3());
+      const toe = ch.bones[side + 'ToeBase'];
+      const ball = toe.getWorldPosition(new THREE.Vector3()).add(SOLE.fromArray(ch.table.foot.ballSole[0]).applyQuaternion(toe.getWorldQuaternion(_q)));
+      // (a foot still in its step is set down on the clip's point: across first, then down, as a step lands)
+      const air = a.y - groundAt(a.x, a.z) > ANKLE_HEIGHT + 0.025;
+      out[side] = { ball, quat: foot.getWorldQuaternion(new THREE.Quaternion()), air };
+    }
+    return out;
+  }
+
+  /** (V10) The clip's first contact of this foot, held from frame 0 on the ground, is kept where the walk left it. */
+  _startHeld(c, clip, side) {
+    if (this.mode !== 'entering' || !this._startFeet || !this._startFeet[side] || c.from > 0 || c.node || c.kind !== 'ground' || !c.part.startsWith('foot')) return null;
+    // (only the first contact of that foot)
+    const first = (clip.note.contacts || []).filter((x) => x.part === c.part).reduce((a, b) => (b.from < a.from ? b : a));
+    return first === c ? this._startFeet[side] : null;
+  }
+
+  /** (V10) The foot that was in the air at the walk's end, set down on its contact point: across in 0.2 s, down by 0.3 s. */
+  _landing(H, clipPt, t) {
+    const uh = ease(t / 0.2);
+    const uv = ease(t / 0.3);
+    const ball = new THREE.Vector3(THREE.MathUtils.lerp(H.ball.x, clipPt.x, uh), THREE.MathUtils.lerp(H.ball.y, clipPt.y, uv), THREE.MathUtils.lerp(H.ball.z, clipPt.z, uh));
+    return { ball, quat: uh < 1 ? H.quat : null, blend: uh };
+  }
+
+  /** (V10) A pinned leg: the ball of the foot (or the heel) to `at`, the foot turned as `quat`, the knee as the pose bends it. */
+  _legTo(side, at, quat, heel = false) {
+    const ch = this.character;
+    const A = ch.bones[side + 'UpLeg'].getWorldPosition(new THREE.Vector3());
+    const M = ch.bones[side + 'Leg'].getWorldPosition(new THREE.Vector3());
+    const E = ch.bones[side + 'Foot'].getWorldPosition(new THREE.Vector3());
+    const axis = E.clone().sub(A).normalize();
+    const pole = M.clone().sub(A);
+    pole.addScaledVector(axis, -pole.dot(axis));
+    if (pole.lengthSq() < 1e-6) pole.set(0, 1, -0.4).applyQuaternion(this.v.root.quaternion);
+    pole.normalize();
+    const toe = _v2.copy(ch.motion.rest.LeftToeBase).add(SOLE.fromArray(ch.table.foot.ballSole[0]));
+    const ankle = heel ? at.clone().add(new THREE.Vector3(0, 0.07, 0)) : at.clone().sub(toe.applyQuaternion(quat));
+    ch._leg(side, ankle, pole, quat.clone(), 0);
+  }
+
+  /**
+   * (V10) `frame`: a world-space clip's frame (exits.js: the body's own ground frame or a vehicle's frozen at release):
+   * contacts on no node are on it, on the real ground under each point; contacts on vehicle nodes are left out.
+   */
+  _pinContacts(clip, t, frame = null, override = null, startW = 1) {
+    const ch = this.character;
+    const veh = frame ? { nodes: {}, root: frame } : this.v;
     // (V3) per contact: the pin eases in and out over PIN_EASE frames at its ends (V2 switched it on and off in one
     // frame: the foot leaving its ground contact at car-enter f160 jumped 8 cm); the limb bends the way the clip
     // bends it (pole from the clip's own elbow / knee, V2 used a fixed one); the clip's fingers are kept (V2's
@@ -1181,15 +1250,28 @@ export class Vehicles {
     // V9's slow settle put the feet on the clip's first-frame places, the brisk one (0.4 s at most) leaves them up to 20 cm
     // off, and the right foot on the brake after a stop is 13 cm from car-exit's pedal contact: both were a jump in a frame)
     const J = this._join;
-    const ju = J && J.on && J.tag === 'toClip' ? ease(J.t / (J.T || JOIN)) : 1;
+    const ju = frame ? startW : J && J.on && J.tag === 'toClip' ? ease(J.t / (J.T || JOIN)) : 1;
+    // ((V10) a contact's point given by the caller (exits.js: the pack's top, feet kept where they stood), else the clip's)
+    const heldOf = (c, side) => (override ? override(c, side) : this._startHeld(c, clip, side));
+    const atOf = (c, node) => {
+      if (!frame) return this._groundAt(node.localToWorld(_v.fromArray(c.at)).clone(), c, node, clip, t);
+      const p = node.localToWorld(_v.set(c.at[0], 0, c.at[2])).clone();
+      p.y = groundAt(p.x, p.z) + c.at[1];
+      return p;
+    };
     for (const c of this.pack.contacts(clip, t)) {
+      if (frame && c.node) continue;
       const node = c.node ? veh.nodes[c.node] : veh.root;
       if (!node) continue;
-      const at = this._groundAt(node.localToWorld(_v.fromArray(c.at)).clone(), c, node, clip, t);
       const side = c.part.endsWith('_l') ? 'Left' : 'Right';
+      let held = heldOf(c, side);
+      if (held && held.air) held = this._landing(held, atOf(c, node), t);
+      else if (held && !override && held.ball.distanceTo(atOf(c, node)) > 0.06) held = null; // (too far to hold: the clip's)
+      const at = held ? held.ball.clone() : atOf(c, node);
       const easeIn = c.from <= 0 ? 1 : (f - c.from + 1) / PIN_EASE;
-      const easeOut = c.to >= last ? 1 : (c.to - f + 1) / PIN_EASE;
-      const w = ease(Math.min(easeIn, easeOut)) * (c.from <= 0 ? ju : 1);
+      // ((V10) a foot held where it stood stays down to its contact's last frame; it leaves from there (below))
+      const easeOut = c.to >= last || (held && !held.blend && held.blend !== 0) ? 1 : (c.to - f + 1) / PIN_EASE;
+      const w = ease(Math.min(easeIn, easeOut)) * (c.from <= 0 && !held ? ju : 1);
       const hand = c.part.startsWith('hand');
       const chain = hand ? [side + 'Arm', side + 'ForeArm', side + 'Hand'] : [side + 'UpLeg', side + 'Leg', side + 'Foot'];
       const keep = chain.map((n) => ch.bones[n].quaternion.clone());
@@ -1204,6 +1286,10 @@ export class Vehicles {
       if (pole.lengthSq() < 1e-6) pole.copy(hand ? _v2.set(side === 'Left' ? -1 : 1, -1, 0.3) : _v2.set(0, 1, -0.4)).applyQuaternion(veh.root.quaternion);
       pole.normalize();
       ch.bones[chain[2]].getWorldQuaternion(_q);
+      if (held && held.quat) {
+        if (held.blend !== undefined) _q.slerp(held.quat, 1 - held.blend);
+        else _q.copy(held.quat); // (a held foot keeps its own turn: a planted foot does not swivel)
+      }
       if (hand) ch._arm(side, at, _q.clone(), 1, pole);
       else {
         // the contact is the ball of the foot (or the heel): the ankle from it
@@ -1217,19 +1303,46 @@ export class Vehicles {
       if (w < 1) chain.forEach((n, i) => ch.bones[n].quaternion.copy(keep[i].clone().slerp(ch.bones[n].quaternion, w)));
       ch.model.updateMatrixWorld(true);
     }
+    // ((V10) a foot held where the walk left it, off the clip's own first point: from the end of that contact its step
+    // carries the difference, dying away by its next contact, so it lifts from where it stood and lands where the clip
+    // has it)
+    if (!frame && this.mode === 'entering' && this._startFeet) {
+      for (const side of ['Left', 'Right']) {
+        const H = this._startFeet[side];
+        if (!H || H.air) continue;
+        const part = side === 'Left' ? 'foot_l' : 'foot_r';
+        const list = (clip.note.contacts || []).filter((x) => x.part === part).sort((a, b) => a.from - b.from);
+        const first = list[0];
+        if (!first || first.from > 0 || first.node || first.kind !== 'ground' || f <= first.to) continue;
+        const next = list.find((x) => x.from > first.to);
+        const end = next ? next.from : first.to + 10;
+        if (f >= end) continue;
+        const u = ease((f - first.to) / Math.max(1, end - first.to));
+        const off = H.ball.clone().sub(atOf(first, veh.root));
+        if (off.length() > 0.06) continue;
+        const toe = ch.bones[side + 'ToeBase'];
+        const ball = toe.getWorldPosition(new THREE.Vector3()).add(SOLE.fromArray(ch.table.foot.ballSole[0]).applyQuaternion(toe.getWorldQuaternion(_q)));
+        this._legTo(side, ball.addScaledVector(off, 1 - u), ch.bones[side + 'Foot'].getWorldQuaternion(new THREE.Quaternion()));
+        ch.model.updateMatrixWorld(true);
+      }
+    }
     // (V3) how far each pinned part ended from its contact (cm): palms (the body's palm point) and the balls of
     // the feet (or heels); per clip the worst, for the review
     const err = (this.stats.contact = {});
     const worst = (this.stats.clipWorst = this.stats.clipWorst || {});
     const w = (worst[clip.name] = worst[clip.name] || {});
     for (const c of this.pack.contacts(clip, t)) {
+      if (frame && c.node) continue;
       const node = c.node ? veh.nodes[c.node] : veh.root;
       if (!node) continue;
       // (only while the pin is at full weight: in its ease frames the limb is meant to be between)
       if ((c.from > 0 && f - c.from + 1 < PIN_EASE) || (c.to < last && c.to - f + 1 < PIN_EASE)) continue;
-      if (c.from <= 0 && ju < 1) continue; // ((V10) nor while it comes in with the join)
-      const at = this._groundAt(node.localToWorld(_v.fromArray(c.at)), c, node, clip, t);
       const side = c.part.endsWith('_l') ? 'Left' : 'Right';
+      let held = heldOf(c, side);
+      if (held && held.air) held = this._landing(held, atOf(c, node), t);
+      else if (held && !override && held.ball.distanceTo(atOf(c, node)) > 0.06) held = null;
+      if (c.from <= 0 && ju < 1 && !held) continue; // ((V10) nor while it comes in with the join)
+      const at = held ? held.ball.clone() : atOf(c, node);
       let p;
       if (c.part.startsWith('hand')) {
         const hand = ch.bones[side + 'Hand'];
@@ -1268,6 +1381,9 @@ export class Vehicles {
       p._yaw.x = p.yaw;
       p._yaw.v = 0;
       p.move = p._pending = null;
+      // ((V10, integration) the on-foot camera's pivot where he stands (it was where he last walked: the camera eased from
+      // the vehicle's toward a place still swinging in from there, 6 m/s of change in a frame)
+      p._pivot.set(p.pos.x, p.pos.y + 1.5, p.pos.z);
       // (V6) the feet stay where the last frame has them (V5's snapToGround put them where the stance wants them: 9 m/s
       // in one frame); the pose itself is carried into the on-foot one by main.js's PoseInertia
       this.character.plantFeetAsPosed();
@@ -1302,8 +1418,10 @@ export class Vehicles {
     this._via = undefined;
     this.settleSpeed = null;
     this.character.stance = null;
+    this.character.stanceStepTime = null;
     this.mode = 'entering';
     this.t = 0;
+    this._startFeet = this._keepStartFeet();
     // ((V10) nothing of the last exit carried into this entry)
     this.exits.reset();
     this.stopping = false;

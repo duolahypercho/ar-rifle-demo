@@ -290,6 +290,7 @@ export class BodyCam {
     this.yaw = Math.atan2(-_v.x, -_v.z);
     this.fov = camera.fov;
     this.t = 0;
+    this._lastBodyVel = null;
   }
 
   /** o: { target (world), vel, yaw (the way to look along), back, up, stand 0..1 (the on-foot camera's place) } */
@@ -308,9 +309,16 @@ export class BodyCam {
     }
     const k = Math.min(30, 6 + this.t * 40);
     const c = 2 * Math.sqrt(k) * 0.95;
-    this.vel.x += ((want.x - this.pos.x) * k - (this.vel.x - o.vel.x) * c) * dt;
-    this.vel.y += ((want.y - this.pos.y) * k - (this.vel.y - o.vel.y) * c) * dt;
-    this.vel.z += ((want.z - this.pos.z) * k - (this.vel.z - o.vel.z) * c) * dt;
+    // ((V10, integration) the spring's pull capped at 60 m/s^2 beyond the body's own (a change of side or a far start
+    // swung it at up to 6 m/s in a frame)
+    _v2.set(((want.x - this.pos.x) * k - (this.vel.x - o.vel.x) * c) * dt, ((want.y - this.pos.y) * k - (this.vel.y - o.vel.y) * c) * dt, ((want.z - this.pos.z) * k - (this.vel.z - o.vel.z) * c) * dt);
+    // (and the body's own change of speed passed on at most 120 m/s^2: a landing stopped the body's 12 to 31 m/s in a
+    // frame, and the camera with it)
+    if (this._lastBodyVel) _v3.subVectors(o.vel, this._lastBodyVel).clampLength(0, 120 * dt);
+    else _v3.set(0, 0, 0);
+    _v2.sub(_v3).clampLength(0, 60 * dt).add(_v3);
+    this._lastBodyVel = (this._lastBodyVel || new THREE.Vector3()).copy(this._lastBodyVel ? this._lastBodyVel.add(_v3) : o.vel);
+    this.vel.add(_v2);
     this.pos.addScaledVector(this.vel, dt);
     if (dt <= 0) this.pos.copy(want);
     // (never inside a vehicle's body: out through the nearest face of its box)
@@ -451,6 +459,7 @@ export class Exits {
     if (kind === 'heli') v.heli.harnessHidden(false);
     v.closeDoor(kind, 0.25);
     if (kind === 'car') veh.abandoned = true;
+    else this.leverDown = true; // (main.js: the collective down now he is out)
     if (this.para) this.para.jumped = true;
     // (the follow camera from where the vehicle's chase camera is this frame (it is placed after this), looking where it
     // looks: taken up on the first frame out)
@@ -535,6 +544,10 @@ export class Exits {
         s.seq = 'fall';
       }
       if (s.seq === 'roll' && s.t >= this.ev(s.clip, 'ground', 0.3)) this._ground(null);
+      // ((V10, integration) the landing clip begins in the air, so its ground frame meets the ground: land-roll /
+      // land-hard start on fall frame 0 with the soles 0.14 m over their ground and put the feet down by events.ground
+      // (0.13 to 0.14 s); para-land starts on para-hang frame 0 and flares to its events.ground (0.25 s))
+      if (s.ballistic && !s.preLand && !(s.chute && s.chute.state === 'deploy') && s.seq !== 'jump') this._preLand();
     }
     if (s.chute) this._chute(dt);
     // ---- advance the clip ----
@@ -545,7 +558,7 @@ export class Exits {
     if (s.phase === 'wasted' && s.holdAt !== undefined) t = Math.min(t, s.holdAt);
     t = Math.min(t, s.clip.duration);
     v.pack.apply(ch.bones, s.clip, t, 1);
-    if (s.chute && s.chute.state === 'canopy' && !s.clip.note.standIn) this._steerPoses();
+    if (s.chute && s.chute.state === 'canopy' && !s.clip.note.standIn && s.clip.name === 'para-hang') this._steerPoses();
     // ---- the pose's cross-fade ----
     if (s.fade) {
       s.fade.t += dt;
@@ -560,6 +573,15 @@ export class Exits {
     if (s.phase === 'wasted' && s.lying) this._lieFlat();
     ch.root.updateMatrixWorld(true);
     ch.model.updateMatrixWorld(true);
+    // ((V10, integration) a ground clip's contacts (feet planted, a hand pushing off) on the real ground under them, in the
+    // clip's frame where it is now (sliding with it); a vehicle's frozen frame has none left after release)
+    if (!s.ballistic && !s.lying && !s.clip.note.standIn && !s.A.rel) {
+      const fr = (this._frameObj = this._frameObj || new THREE.Object3D());
+      fr.position.set(s.A.pos.x + s.F.pos.x - s.A.f0.x, ch.root.position.y, s.A.pos.z + s.F.pos.z - s.A.f0.z);
+      fr.quaternion.setFromAxisAngle(Y, s.A.yaw);
+      fr.updateMatrixWorld(true);
+      v._pinContacts(s.clip, t, fr, s.kind === 'pickup' ? (c, side) => this._pickupHeld(s, c, side) : null, s.fade ? ease(s.fade.t / s.fade.T) : 1);
+    }
     if (s.chute && s.clip.note.standIn && (s.chute.state === 'canopy' || s.chute.state === 'deploy')) this._handsOnToggles();
     ch.rig.apply();
     const b = ch.bones;
@@ -567,8 +589,20 @@ export class Exits {
     b.Head.getWorldPosition(ch.eye).add(_v.copy(ch._body.eyeLocal).applyQuaternion(_q));
     if (this.para) this.para.pose(dt, ch, s);
     // ---- what comes next ----
-    if (s.phase === 'air' && s.ballistic) this._contact();
-    if (s.phase === 'land' && s.freeT !== undefined && (s.t >= s.clip.duration || (s.t >= s.freeT && v.moveHeld && v.moveHeld()))) this._handOver();
+    if (s.phase === 'air' && s.ballistic) {
+      this._contact();
+      if (s.phase !== 'air') {
+        // ((V10, integration) a landing that begins this frame re-placed the body: drawn as it is now (the skin was
+        // posed before it, the root after: a frame's 23 m/s at the hands))
+        ch.root.updateMatrixWorld(true);
+        ch.model.updateMatrixWorld(true);
+        ch.rig.apply();
+        b.Head.getWorldQuaternion(_q);
+        b.Head.getWorldPosition(ch.eye).add(_v.copy(ch._body.eyeLocal).applyQuaternion(_q));
+      }
+    }
+    if (s.phase === 'land' && s.freeT !== undefined && (s.t >= s.clip.duration || (s.t >= s.freeT && ((v.moveHeld && v.moveHeld()) || s.kind === 'pickup')))) this._handOver();
+    if (s && s.kind === 'pickup' && this.s === s) this._carryPack(s);
     if (s.phase === 'wasted') {
       this.wastedT = s.time - s.wastedAt;
       if (this.wastedT >= WASTED_S) this._respawn();
@@ -588,7 +622,8 @@ export class Exits {
       // (the look point carried on with the vehicle from release to now: one frame)
       const F = this._camFrom;
       F.look.addScaledVector(F.vel, dt);
-      this.cam.start(camera, F.look, F.vel);
+      // (at the speed the vehicle's camera was moving (main.js keeps it): the chase camera can still be swinging)
+      this.cam.start(camera, F.look, this.camVel || F.vel);
       this._camFrom = null;
     }
     this.cam.place(dt, camera, this.camWant());
@@ -770,6 +805,48 @@ export class Exits {
     this._ground(kind);
   }
 
+  /** The landing coming: its clip, from the time to the ground (soles) at the vertical speed now (gravity, or the canopy). */
+  _predict() {
+    const s = this.s;
+    const ch = this.v.character;
+    let hs = Infinity;
+    for (const n of ['LeftFoot', 'RightFoot']) {
+      const f = ch.bones[n].getWorldPosition(_v);
+      hs = Math.min(hs, f.y - groundAt(f.x, f.z) - ANKLE_HEIGHT);
+    }
+    const vy = Math.max(0.05, -s.vel.y);
+    const canopy = s.chute && s.chute.state === 'canopy';
+    const tc = canopy ? hs / vy : (-vy + Math.sqrt(vy * vy + 2 * G * Math.max(0, hs))) / G;
+    const vi = canopy ? vy : vy + G * tc;
+    const kind = canopy && vi <= PARA_LAND ? 'para' : vi <= LAND_ROLL ? 'roll' : vi <= LAND_HARD ? 'hard' : 'wasted';
+    return { tc, vi, kind };
+  }
+
+  _landName(kind) {
+    return kind === 'para' ? 'para-land' : kind === 'roll' ? 'land-roll' : 'land-hard';
+  }
+
+  _preLand() {
+    const s = this.s;
+    const p = this._predict();
+    const clip = this.clip(this._landName(p.kind));
+    if (!clip || clip.note.standIn) return;
+    const tg = this.ev(clip, 'ground', 0);
+    if (p.tc > tg) return;
+    this._switchClip(clip, Math.max(0, tg - p.tc));
+    if (p.kind === 'para' || s.chute) s.fade.T = 0.2;
+    s.preLand = { kind: p.kind, clip, at: +p.tc.toFixed(3) };
+  }
+
+  /** The frame of a landing clip where the pelvis is lowest between its ground and free events (WASTED holds it). */
+  _lowest(clip) {
+    const g = Math.round(this.ev(clip, 'ground', 0) * FPS);
+    const e = Math.round(this.ev(clip, 'free', clip.duration) * FPS);
+    let best = g;
+    for (let f = g; f <= Math.min(e, clip.frames - 1); f++) if (clip.hips[f * 3 + 1] < clip.hips[best * 3 + 1]) best = f;
+    return best / FPS;
+  }
+
   /** On the ground: the landing clip from its events.ground, anchored here, the slide of the carried speed. */
   _ground(kind) {
     const s = this.s;
@@ -777,9 +854,11 @@ export class Exits {
     const ch = v.character;
     if (kind) {
       // (from a fall: the landing clip by the impact; a bail's roll is already playing)
-      const name = kind === 'para' ? 'para-land' : kind === 'roll' ? 'land-roll' : 'land-hard';
+      const name = this._landName(kind);
       const clip = this.clip(name);
-      const tg = this.ev(clip, 'ground', 0);
+      // (the clip already playing from before the ground goes on from where it is)
+      const same = s.preLand && s.clip === clip;
+      const tg = same ? Math.min(s.t, clip.duration) : this.ev(clip, 'ground', 0);
       const hv = new THREE.Vector3(s.vel.x, 0, s.vel.z);
       const facing = s.chute && s.chute.state === 'canopy' ? s.chute.yaw : s.heldYaw;
       const travelYaw = hv.lengthSq() > 4 ? Math.atan2(-hv.x, -hv.z) : null;
@@ -793,7 +872,7 @@ export class Exits {
         return f.y - groundAt(f.x, f.z) - ANKLE_HEIGHT;
       }));
       if (low < 0) hipsBefore.y -= low;
-      this._captureFade(xf);
+      if (!same) this._captureFade(xf);
       s.ballistic = false;
       s.rootOff = null;
       s.clip = clip;
@@ -810,16 +889,20 @@ export class Exits {
       s.A = { pos: new THREE.Vector3(s.c.x - (Math.cos(ay) * r.x + Math.sin(ay) * r.z), 0, s.c.z - (-Math.sin(ay) * r.x + Math.cos(ay) * r.z)), yaw: ay, f0: s.F.pos.clone(), t0: tg, yawOff: wrapAngle(facing - yaw), yawT: 0.25 };
       // the hips kept where they were for the frame (the root offset dies away over the cross-fade: the impact)
       v.pack.apply(ch.bones, clip, tg, 1);
-      this._applyFadeAt0();
+      if (!same) this._applyFadeAt0();
+      else if (s.fade) this._applyFadeNow();
       this._framed(0, tg);
       ch.root.updateMatrixWorld(true);
       const after = ch.bones.Hips.getWorldPosition(new THREE.Vector3());
       s.rootOff = { d: hipsBefore.sub(after), t: 0, T: xf };
+      // ((V10, integration) and on this frame too: it was placed without it, the hips popping up 15 cm for a frame)
+      ch.root.position.add(s.rootOff.d);
+      ch.root.updateMatrixWorld(true);
       if (kind === 'wasted') {
         s.phase = 'wasted';
         v.mode = 'wasted';
         s.wastedAt = s.time;
-        s.holdAt = this.ev(clip, 'down', clip.note.standIn ? 0.4 : Math.min(clip.duration, tg + 0.6));
+        s.holdAt = this.ev(clip, 'down', clip.note.standIn ? 0.4 : this._lowest(clip));
         s.lying = !!clip.note.standIn;
         s.F.vel.multiplyScalar(0.3);
         s.slide = { v0: s.F.vel.clone(), t: 0, T: 0.4 };
@@ -856,6 +939,15 @@ export class Exits {
     F.hips.copy(ch.bones.Hips.position);
     F.t = 0;
     F.T = T;
+  }
+
+  /** The cross-fade as it stands this frame (without moving its clock). */
+  _applyFadeNow() {
+    const s = this.s;
+    const ch = this.v.character;
+    const u = ease(s.fade.t / s.fade.T);
+    for (const [n, b] of Object.entries(ch.bones)) if (s.fade.q[n]) b.quaternion.copy(_q.copy(s.fade.q[n]).slerp(b.quaternion, u));
+    ch.bones.Hips.position.lerpVectors(s.fade.hips, _v.copy(ch.bones.Hips.position), u);
   }
 
   _applyFadeAt0() {
@@ -938,10 +1030,13 @@ export class Exits {
     const hang = P.clips['para-hang'];
     if (!hang) return;
     const ch = this.v.character;
-    const flare = Math.min(c.toggleL, c.toggleR);
+    // ((V10, integration) the arms move with the toggles (on springs in para.js: the hands start and stop smoothly)
+    const L = c.toggleL;
+    const R = c.toggleR;
+    const flare = Math.min(L, R);
     P.applyAdditive(ch.bones, P.clips['para-flare'], hang, flare);
-    P.applyAdditive(ch.bones, P.clips['para-steer-l'], hang, Math.max(0, c.toggleL - flare));
-    P.applyAdditive(ch.bones, P.clips['para-steer-r'], hang, Math.max(0, c.toggleR - flare));
+    P.applyAdditive(ch.bones, P.clips['para-steer-l'], hang, Math.max(0, L - flare));
+    P.applyAdditive(ch.bones, P.clips['para-steer-r'], hang, Math.max(0, R - flare));
   }
 
   /** Stand-in hang: the hands on the toggles (IK), which the toggles' lines pull down for steering and the flare. */
@@ -1033,6 +1128,90 @@ export class Exits {
     v.mode = 'foot';
     v.t = 0;
     if (this.onRespawn) this.onRespawn();
+  }
+
+  // ------------------------------------------------------------------ (V10, integration) the parachute's pickup
+  /**
+   * Walking into a crate's pack: para-pickup where the clip has it (standing 0.45 m from the pack, facing the crate's
+   * side nearest him), eased from the walk (0.3 s, the root and the turn too); the guns away until the draw after
+   * events.free. False if the pack has no para-pickup (the pack then goes on at once).
+   */
+  startPickup(c) {
+    const v = this.v;
+    const ch = v.character;
+    const p = v.player;
+    const clip = this.clip('para-pickup');
+    if (!clip || clip.note.standIn || v.mode !== 'foot') return false;
+    // (turned to face the pack, the hands to it where it lies)
+    const now = ch.root.getWorldPosition(new THREE.Vector3());
+    const n = new THREE.Vector3(now.x - c.x, 0, now.z - c.z).normalize();
+    // (0.45 m from the pack as the clip has it: the root eased there over 0.3 s (he triggers it 0.6 m from the pack's
+    // middle, so at most 15 cm), the feet held where they stand)
+    const spot = new THREE.Vector3(c.x, 0, c.z).addScaledVector(n, 0.45);
+    const facing = Math.atan2(n.x, n.z); // (looking along -n, at the pack)
+    const r = v.pack.root(clip, 0, {});
+    const ay = facing - (r.yaw - Math.PI);
+    const bodyYaw = _e.setFromQuaternion(ch.root.quaternion, 'YXZ').y;
+    const s = (this.s = {
+      kind: 'pickup',
+      clip,
+      t: 0,
+      seq: 'pickup',
+      phase: 'land',
+      ballistic: false,
+      F: { pos: spot.clone(), yaw: 0, vel: new THREE.Vector3() },
+      A: { pos: new THREE.Vector3(spot.x - (Math.cos(ay) * r.x + Math.sin(ay) * r.z), 0, spot.z - (-Math.sin(ay) * r.x + Math.cos(ay) * r.z)), yaw: ay, f0: spot.clone(), t0: 0, yawOff: wrapAngle(bodyYaw - facing), yawT: 0.3 },
+      rootOff: { d: new THREE.Vector3(now.x - spot.x, 0, now.z - spot.z), t: 0, T: 0.3 },
+      feet: v.keepFeet(),
+      fade: null,
+      time: 0,
+      freeT: this.ev(clip, 'free', clip.duration),
+      grabT: this.ev(clip, 'grab', clip.duration * 0.3),
+      onBackT: this.ev(clip, 'onBack', clip.duration * 0.7),
+      crate: c,
+      startPos: now.clone(),
+      dist: 0,
+      log: [],
+    });
+    this._captureFade(0.3);
+    if (this.para) this.para.fitFor(ch);
+    v.mode = 'pickup';
+    v.t = 0;
+    this.stats.last = { kind: 'pickup', path: v.stats.paths['para-pickup'], fromCm: +(now.distanceTo(new THREE.Vector3(spot.x, now.y, spot.z)) * 100).toFixed(1) };
+    return true;
+  }
+
+  /** para-pickup's contacts: the feet kept where they stood when it began; the hands on the pack's top where it lies. */
+  _pickupHeld(s, c, side) {
+    if (c.part.startsWith('foot')) return s.feet[side] && c.from <= 0 ? s.feet[side] : null;
+    if (c.kind !== 'push' || !s.crate) return null;
+    // (the pack's top, either side of its middle across his facing)
+    const pk = s.crate.pack;
+    const top = pk.position.clone();
+    top.y += 0.075;
+    const yaw = s.A.yaw;
+    const lat = c.at[0];
+    top.x += Math.cos(yaw) * lat;
+    top.z += -Math.sin(yaw) * lat;
+    return { ball: top };
+  }
+
+  /** The pack between grab and onBack goes with the right palm; at onBack it is on the back. */
+  _carryPack(s) {
+    const para = this.para;
+    if (!para) return;
+    const ch = this.v.character;
+    if (!s.grabbed && s.t >= s.grabT) {
+      s.grabbed = true;
+      para.carryStart(s.crate, ch);
+    }
+    if (s.grabbed && !s.onBack) {
+      if (s.t >= s.onBackT) {
+        s.onBack = true;
+        para.carryUpdate(ch);
+        para.putOn(ch);
+      } else para.carryUpdate(ch);
+    }
   }
 
   /** Called when a vehicle is got into again: nothing of the last exit left over. */

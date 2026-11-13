@@ -33,7 +33,6 @@ const ease = (x) => {
   const t = THREE.MathUtils.clamp(x, 0, 1);
   return t * t * (3 - 2 * t);
 };
-const toward = (x, to, step) => x + THREE.MathUtils.clamp(to - x, -step, step);
 
 /** A box with its edges rounded (the vertices pushed onto a superellipsoid): the pack. */
 function roundedBox(w, h, d, r = 0.035) {
@@ -200,7 +199,9 @@ export class Parachute {
   /** A low crate with a pack on it and a soft marker round it (yaw: which way the crate faces). */
   addCrate(x, z, yaw = 0) {
     const g = groundAt(x, z);
-    const crate = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.42, 0.6), this.mats.wood);
+    // ((V10, integration) a low eight-sided crate 0.5 m across: para-pickup stands the body 0.45 m from the pack facing it,
+    // from whichever side he walks in (the toes 0.33 m from its middle, clear of its 0.25 m)
+    const crate = new THREE.Mesh(new THREE.CylinderGeometry(0.25, 0.25, 0.42, 8), this.mats.wood);
     crate.position.set(x, g + 0.21, z);
     crate.rotation.y = yaw;
     crate.castShadow = crate.receiveShadow = true;
@@ -213,9 +214,50 @@ export class Parachute {
     marker.position.set(x, g, z);
     marker.renderOrder = 3;
     this.scene.add(marker);
-    const c = { x, z, yaw, crate, pack, marker, has: true, t: 0 };
+    const c = { x, z, yaw, crate, pack, marker, has: true, t: 0, home: { pos: pack.position.clone(), quat: pack.quaternion.clone() } };
     this.crates.push(c);
     return c;
+  }
+
+  // ---------------------------------------------------------------- (V10, integration) the pickup clip
+  /** events.grab: the crate's pack goes with the right palm from here (its place kept in the hand's frame). */
+  carryStart(c, ch) {
+    const hand = ch.bones.RightHand;
+    hand.updateWorldMatrix(true, false);
+    c.pack.updateMatrixWorld(true);
+    this.carrying = { c, rel: new THREE.Matrix4().copy(hand.matrixWorld).invert().multiply(c.pack.matrixWorld) };
+  }
+
+  /** Each frame between grab and onBack: the pack where the right hand has it. */
+  carryUpdate(ch) {
+    const C = this.carrying;
+    if (!C) return;
+    const hand = ch.bones.RightHand;
+    hand.updateWorldMatrix(true, false);
+    _m.multiplyMatrices(hand.matrixWorld, C.rel);
+    _m.decompose(C.c.pack.position, C.c.pack.quaternion, _v);
+    C.c.pack.updateMatrixWorld(true);
+  }
+
+  /** events.onBack: it is worn; the worn pack takes over from where the hand left it, eased onto its place (0.15 s). */
+  putOn(ch) {
+    const C = this.carrying;
+    this.carrying = null;
+    this.worn = true;
+    this.jumped = false;
+    if (!this.packLocal || this.packLocal.body !== ch._body) this._fitPack(ch);
+    if (C) {
+      this.backBlend = { pos: C.c.pack.position.clone(), quat: C.c.pack.quaternion.clone(), t: 0 };
+      C.c.pack.visible = false;
+      C.c.pack.position.copy(C.c.home.pos);
+      C.c.pack.quaternion.copy(C.c.home.quat);
+    }
+    this.events.push('pickup');
+  }
+
+  /** The pickup starts: the place on the back fitted on the body standing as it is now (before it bends). */
+  fitFor(ch) {
+    this._fitPack(ch);
   }
 
   /**
@@ -227,15 +269,21 @@ export class Parachute {
     for (const c of this.crates) {
       if (!c.has) {
         c.t += dt;
-        if (c.t >= REFILL) {
+        if (c.t >= REFILL && !(this.carrying && this.carrying.c === c)) {
           c.has = true;
+          c.pack.position.copy(c.home.pos);
+          c.pack.quaternion.copy(c.home.quat);
           c.pack.visible = c.marker.visible = true;
         }
       }
-      if (onFoot && !this.worn && c.has && Math.hypot(player.pos.x - c.x, player.pos.z - c.z) < 0.95) {
+      if (onFoot && !this.worn && c.has && Math.hypot(player.pos.x - c.x, player.pos.z - c.z) < 0.6) {
         c.has = false;
         c.t = 0;
-        c.pack.visible = c.marker.visible = false;
+        c.marker.visible = false;
+        // ((V10, integration) para-pickup when the body's pack has it (exits.js: the pack goes with the right palm from
+        // its events.grab to events.onBack); else on at once
+        if (this.onPickup && this.onPickup(c)) continue;
+        c.pack.visible = false;
         this.worn = true;
         this.jumped = false;
         this.packLocal = null;
@@ -247,7 +295,7 @@ export class Parachute {
     const show = this.worn && showBack;
     if (this.worn && (!this.packLocal || this.packLocal.body !== ch._body)) this._fitPack(ch);
     this.back.visible = show;
-    if (show) this._placeBack(ch);
+    if (show) this._placeBack(ch, dt);
     if (!this.worn) this.packShift.set(0, 0, 0);
     this._collapse(dt);
   }
@@ -266,12 +314,20 @@ export class Parachute {
     this.packShift.copy(back).multiplyScalar(0.13).applyQuaternion(inv);
   }
 
-  _placeBack(ch) {
+  _placeBack(ch, dt = 0) {
     const b = ch.bones;
     const cp = b.Spine2.getWorldPosition(_v);
     const cq = b.Spine2.getWorldQuaternion(_q);
     this.back.position.copy(this.packLocal.pos).applyQuaternion(cq).add(cp);
     this.back.quaternion.copy(cq).multiply(this.packLocal.quat);
+    const B = this.backBlend;
+    if (B) {
+      B.t += dt;
+      const u = ease(B.t / 0.15);
+      this.back.position.lerpVectors(B.pos, _v2.copy(this.back.position), u);
+      this.back.quaternion.slerpQuaternions(B.quat, _q2.copy(this.back.quaternion), u);
+      if (u >= 1) this.backBlend = null;
+    }
   }
 
   /** The pack's gone (WASTED). */
@@ -288,6 +344,7 @@ export class Parachute {
     c.bank = 0;
     c.yawRate = 0;
     c.toggleL = c.toggleR = 0;
+    c.toggleLv = c.toggleRv = 0;
     c.flareE = 1;
     this.collapse = null;
     this.events.push('deploy');
@@ -305,8 +362,15 @@ export class Parachute {
    * the bank it needs; speed and sink by the input; the body's velocity eased onto it (0.7 s along, 0.5 s down).
    */
   fly(dt, c, vel, keys) {
-    c.toggleL = toward(c.toggleL, keys.left || keys.flare ? 1 : 0, 4 * dt);
-    c.toggleR = toward(c.toggleR, keys.right || keys.flare ? 1 : 0, 4 * dt);
+    // ((V10, integration) each toggle on a critically damped spring (about 0.35 s from up to down): a pull that reverses
+    // half way (letting a turn go into the flare) turns the hand round smoothly; at a constant rate it reversed in a frame)
+    const W = 12;
+    for (const [k, want] of [['L', keys.left || keys.flare ? 1 : 0], ['R', keys.right || keys.flare ? 1 : 0]]) {
+      const x = c['toggle' + k];
+      const vk = 'toggle' + k + 'v';
+      c[vk] = (c[vk] || 0) + (W * W * (want - x) - 2 * W * (c[vk] || 0)) * dt;
+      c['toggle' + k] = THREE.MathUtils.clamp(x + c[vk] * dt, 0, 1);
+    }
     const turn = c.toggleR - c.toggleL; // + right
     const both = Math.min(c.toggleL, c.toggleR);
     if (both > 0.5) c.flareE = Math.max(0, c.flareE - dt / 1.5);
@@ -350,8 +414,10 @@ export class Parachute {
     }
     if (!flying) return;
     const b = ch.bones;
-    const L = b.LeftArm.getWorldPosition(new THREE.Vector3());
-    const R = b.RightArm.getWorldPosition(new THREE.Vector3());
+    // ((V10, integration) the risers meet the harness at the clavicles (the clip pass's note): 60 % out along them)
+    const clav = (side) => (b[side + 'Shoulder'] ? b[side + 'Shoulder'].getWorldPosition(new THREE.Vector3()).lerp(b[side + 'Arm'].getWorldPosition(new THREE.Vector3()), 0.6) : b[side + 'Arm'].getWorldPosition(new THREE.Vector3()));
+    const L = clav('Left');
+    const R = clav('Right');
     const harness = L.clone().add(R).multiplyScalar(0.5);
     // the canopy's frame: heading and bank, trimmed nose-down a little, above the harness and a little ahead
     let k = 1;

@@ -1880,3 +1880,12 @@ Contract extensions decided for this round (both sides must follow them):
   "Preparing shaders… (slow only on the first visit)" during the warm-up (commit ae041ad). Seen once:
   a page loaded while GitHub Pages was switching deployments got a 503 for supercar.glb and showed
   "Could not start the demo"; a reload a minute later worked (the loader does not retry).
+
+- Main session's check of the integration (2026-11-13, about 17:00): films `a3check/v11_bail_80.jpg` (the door
+  shoved open, the dive, the ground, a roll, the slide, rising, standing, the gun drawn; the car coasting on) and
+  `v11_pickup_300.jpg` (crouch to the crate, the pack on the right palm, swung over the shoulder onto the back, the
+  guns back and drawn) read right. `R.traced('bail', {kmh: 80})` at 2268 x 1350, step-driven with the app's window
+  out of view (rAF at 1 a second, so the game's own loop could not be measured): median 12.7, p95 16.9, worst
+  32.4 ms, 4 frames over 22 (the hidden page's CPU reads high: V10 measured 6.6 / 14.2 / 26.9 on the same path);
+  no pipeline built in play. Node tests 8 / 4 pass; the build is clean; no home path and no other game's name in
+  any changed file. Not measured: the new paths in the game's own loop with the window in view.

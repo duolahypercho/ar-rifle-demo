@@ -74,8 +74,9 @@ function presses(kind, st, t) {
     st.pressed = true;
     D.carInput = null;
     D.heliInput = null;
+    D.fly.lever = D.heli.state.controls.collective;
     const r = V.toggle();
-    if (r === 'jump' || r === 'out') D.fly.lever = 0;
+    if (r === 'out') D.fly.lever = 0;
     st.toggle = r;
   }
   if (kind === 'para' && !st.pulled && X.s && X.canPull && X.height < 150) {
@@ -145,8 +146,9 @@ export async function path(kind = 'bail', { kmh = 80, height = 60, maxS = 45 } =
         pressed = true;
         D.carInput = null;
         D.heliInput = null;
+        D.fly.lever = D.heli.state.controls.collective;
         const r = V.toggle();
-        if (r === 'jump' || r === 'out') D.fly.lever = 0;
+        if (r === 'out') D.fly.lever = 0;
         res.toggle = r;
         res.pressAt = r2(t);
       }

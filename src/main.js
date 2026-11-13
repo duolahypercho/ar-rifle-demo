@@ -241,6 +241,8 @@ async function main() {
   const padCrate = para.addCrate(HELIPAD.x + padOut.x * (HELIPAD.r + 1.6), HELIPAD.z + padOut.y * (HELIPAD.r + 1.6), Math.atan2(padOut.x, padOut.y));
   para.addCrate(-35.5, -83.2, 0);
   vehicles.exits.para = para;
+  // ((V10, integration) walking into a crate's pack plays para-pickup (with the gun ready: not mid-reload or swap)
+  para.onPickup = (c) => weapon.state === 'ready' && !swap && !stow && vehicles.exits.startPickup(c);
   // (WASTED: on foot again at the helipad's edge, by its crate, facing the pad)
   vehicles.exits.respawnAt = () => ({ x: padCrate.x + padOut.x * 1.8, z: padCrate.z + padOut.y * 1.8, yaw: Math.atan2(padOut.x, padOut.y) });
   // (V6) the pose carried across each hand-over between what poses the body (inertia.js)
@@ -510,7 +512,9 @@ async function main() {
         // way the collective goes down. V5-V9 shut the engine down first and got out once the rotor had stopped)
         if (down) {
           const r = vehicles.toggle();
-          if (r === 'out' || r === 'jump') fly.lever = 0;
+          // ((V10, integration) a jump leaves the collective where the pilot held it until he is out of the door (it went
+          // down at once: from a 3 m hover the helicopter was on the ground by the time he left it); then down)
+          if (r === 'out') fly.lever = 0;
         }
         break;
       case 'KeyG':
@@ -1404,6 +1408,10 @@ async function main() {
   let doorsLast = { car: 0, heli: 0 };
   const stepOut = (dt) => {
     const X = vehicles.exits;
+    if (X.leverDown) {
+      fly.lever = 0;
+      X.leverDown = false;
+    }
     car.update(dt, camera);
     world.update(dt, car);
     heliControls(dt, false);
@@ -1417,8 +1425,16 @@ async function main() {
     character.setFirstPerson(false);
     car.inCockpit = false;
     // the follow camera (none on the frame he stands up: the on-foot camera takes over from the next)
+    // ((V10, integration) picking up a parachute pack: the on-foot camera stays as it was (the look still turns it))
+    if (vehicles.mode === 'pickup') {
+      player.camYaw -= input.lookX * 0.0023;
+      player.camPitch = THREE.MathUtils.clamp(player.camPitch - input.lookY * 0.0023, -1.2, 1.0);
+      player.placeCamera(dt, camera, character.eye, character.eye, character.life);
+    } else if (X.busy) {
+      X.camVel = _ear.vel;
+      X.placeCamera(dt, camera);
+    }
     input.lookX = input.lookY = 0;
-    if (X.busy) X.placeCamera(dt, camera);
     if (debugView) {
       const { az = 0, el = 0.15, dist = 7, y = 1.0, fov = 46 } = debugView;
       const c = _v.copy(character.root.position);
@@ -1459,7 +1475,7 @@ async function main() {
     stepGame(dt);
     // ((V10) the parachute packs: picked up on foot, worn on the back (not in a cabin), refilled; the HUD for it)
     const vm = vehicles.mode;
-    para.update(dt, character, player, { onFoot: vm === 'foot' || vm === 'drawing', showBack: !(vm === 'entering' || vm === 'seated' || vm === 'leaving' || vm === 'bailing') });
+    para.update(dt, character, player, { onFoot: vm === 'foot', showBack: !(vm === 'entering' || vm === 'seated' || vm === 'leaving' || vm === 'bailing') });
     paraHud(dt);
     terrain.update(dt, camera, { heli, car });
     terrain.drift(dt);

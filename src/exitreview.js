@@ -58,7 +58,8 @@ export function makeExitReview(demo, sheet) {
     const out = { parts: {}, camera: {} };
     const impacts = [];
     for (let i = 1; i < rec.length; i++) if ((rec[i].phase === 'land' || rec[i].phase === 'wasted') && rec[i - 1].phase !== rec[i].phase) impacts.push(i);
-    const nearImpact = (i) => impacts.some((j) => i >= j && i <= j + 3);
+    // ((V10, integration) the impact's own frames: the contact frame and the 2 after it)
+    const nearImpact = (i) => impacts.some((j) => i >= j && i <= j + 2);
     for (const part of [...Object.keys(PARTS), 'root']) {
       let best = { dv: 0, i: 0 };
       let bestAll = { dv: 0, i: 0 };
@@ -87,6 +88,27 @@ export function makeExitReview(demo, sheet) {
     }
     out.camera = { maxStepCm: r2(cs.d * 100), stepAt: rec[cs.i] ? `${rec[cs.i].mode} @${rec[cs.i].t.toFixed(2)}` : '-', maxDv: r2(cv.dv), dvAt: rec[cv.i] ? `${rec[cv.i].mode} @${rec[cv.i].t.toFixed(2)}` : '-' };
     out.impactFrames = impacts.length;
+    // per hand-over (a change of mode, phase or clip): the worst change of velocity in a frame at a hand, foot, head or
+    // pelvis from 3 frames before it to 8 after (the impact's frames left out)
+    const marks = [];
+    for (let i = 1; i < rec.length; i++) {
+      const a = rec[i - 1];
+      const b = rec[i];
+      if (a.mode !== b.mode || a.phase !== b.phase || a.clip !== b.clip) marks.push({ i, name: `${a.clip || a.mode}>${b.clip || b.mode}` });
+    }
+    out.handovers = marks.map(({ i, name }) => {
+      let worst = { dv: 0, part: null };
+      for (let k = Math.max(2, i - 3); k <= Math.min(rec.length - 1, i + 8); k++) {
+        if (nearImpact(k)) continue;
+        for (const part of Object.keys(PARTS)) {
+          const a = rec[k][part].clone().sub(rec[k - 1][part]);
+          const b = rec[k - 1][part].clone().sub(rec[k - 2][part]);
+          const dv = a.sub(b).length() * FPS;
+          if (dv > worst.dv) worst = { dv, part, at: k - i };
+        }
+      }
+      return `${name} @${rec[i].t.toFixed(2)}: ${worst.part} ${worst.dv.toFixed(2)} (${worst.at >= 0 ? '+' : ''}${worst.at})`;
+    });
     return out;
   }
 
@@ -97,6 +119,12 @@ export function makeExitReview(demo, sheet) {
   function getIn(kind, { from = 4.5, controls = false } = {}) {
     const V = v();
     const veh = kind === 'heli' ? demo.heli : demo.car;
+    // (a helicopter left a wreck by the last run: back on the helipad, as the game's own wreck watch does it)
+    if (kind === 'heli' && new THREE.Vector3(0, 1, 0).applyQuaternion(veh.root.quaternion).y < 0.7) {
+      veh.place(HELIPAD.x, HELIPAD.z, 0);
+      if (veh.damage) veh.damage.repair();
+      step(10);
+    }
     const p = demo.player;
     const R = veh.root;
     const e = V.entryPoint(new THREE.Vector3(), kind);
@@ -163,6 +191,9 @@ export function makeExitReview(demo, sheet) {
     demo.input.forward = false;
     out.walkedM = r2(p.pos.distanceTo(was));
     step(30);
+    // (walking into a crate's pack picks it up (WASTED stands him by the helipad's crate): that played out first)
+    for (let i = 0; i < 400 && V.mode !== 'foot'; i++) step();
+    if (V.stats.paths['para-pickup'] && demo.para.worn) out.pickedUpOnTheWay = true;
     const ammo = demo.weapon.ammo;
     demo.input.fireKey = true;
     step(45);
@@ -174,6 +205,13 @@ export function makeExitReview(demo, sheet) {
     let k = 0;
     const still = () => (kind === 'heli' ? veh.speed < 0.5 && veh.state.contact.onGround : Math.abs(veh.dyn.speed) < 1);
     for (; k < 60 * 150 && !still(); k++) step();
+    // (a helicopter come down on its side is put back on the helipad 5 s later, the player 25 m or more away)
+    const upright = () => new THREE.Vector3(0, 1, 0).applyQuaternion(veh.root.quaternion).y > 0.7;
+    if (kind === 'heli' && !upright()) {
+      if (p.pos.distanceTo(veh.root.position) < 26) out.wreckNear = true;
+      for (let i = 0; i < 60 * 8 && !upright(); i++) step();
+      out.wreckReturned = upright();
+    }
     out.vehicleRestS = r2(k / FPS);
     out.vehicleAt = veh.root.position.toArray().map((x) => r2(x));
     if (kind === 'heli') out.heli = { damaged: veh.damaged, upright: r2(new THREE.Vector3(0, 1, 0).applyQuaternion(veh.root.quaternion).y), engine: veh.state.engine.state, rotor: r2(veh.state.rotor.percent) };
@@ -383,8 +421,8 @@ export function makeExitReview(demo, sheet) {
     const res = { height, packWorn: demo.para.worn };
     res.entry = getIn('heli', { from: 4.5 });
     res.hover = heliUp(height, { x, z });
+    demo.fly.lever = demo.heli.state.controls.collective; // (the pilot's lever where the collective is)
     res.toggle = V.toggle();
-    if (res.toggle === 'jump') demo.fly.lever = 0;
     // (the witness out on the jumping side, 10 m off, level with the body as it falls, the helicopter behind it)
     const side = new THREE.Vector3(1, 0, 0.35).applyQuaternion(demo.heli.root.quaternion).setY(0).normalize();
     const witness = () => {
@@ -463,13 +501,15 @@ export function makeExitReview(demo, sheet) {
   }
 
   /** Walks into the nearest crate's pack (from 4 m) until it is worn. */
-  function pickUp() {
+  function pickUp({ film = false, crate = null } = {}) {
     const para = demo.para;
     const p = demo.player;
-    const c = para.crates.reduce((a, b) => (Math.hypot(b.x - p.pos.x, b.z - p.pos.z) < Math.hypot(a.x - p.pos.x, a.z - p.pos.z) ? b : a));
+    const V = v();
+    const c = crate !== null ? para.crates[crate] : para.crates.reduce((a, b) => (Math.hypot(b.x - p.pos.x, b.z - p.pos.z) < Math.hypot(a.x - p.pos.x, a.z - p.pos.z) ? b : a));
     if (!c.has) c.t = 1e9; // (the review does not wait 30 s for a refill)
     step(2);
     const dir = new THREE.Vector2(1, 0.4).normalize();
+    p.move = p._pending = null;
     p.pos.set(c.x + dir.x * 4, 0, c.z + dir.y * 4);
     p.pos.y = groundAt(p.pos.x, p.pos.z);
     p.vel.set(0, 0, 0);
@@ -479,14 +519,24 @@ export function makeExitReview(demo, sheet) {
     demo.character.snapToGround();
     step(20);
     demo.input.forward = true;
+    // ((V10, integration) para-pickup when the pack has it: walked into, played, the draw after; film from the side)
+    const shots = [];
+    const side = () => sheet.cam([c.x - dir.y * 3.2, groundAt(c.x, c.z) + 1.5, c.z + dir.x * 3.2], [c.x + dir.x * 0.4, groundAt(c.x, c.z) + 0.8, c.z + dir.y * 0.4], 46);
+    const R = recorder();
+    const marks = [0.0, 0.2, 0.34, 0.5, 0.7, 0.94, 1.1, 1.25];
     let k = 0;
-    for (; k < 600 && !para.worn; k++) {
-      p.camYaw = Math.atan2(-(c.x - p.pos.x), -(c.z - p.pos.z));
+    for (; k < 900 && (V.mode !== 'foot' || !para.worn); k++) {
+      if (V.mode === 'foot' && !para.worn) p.camYaw = Math.atan2(-(c.x - p.pos.x), -(c.z - p.pos.z));
+      else demo.input.forward = false;
       step();
+      R.frame();
+      const s = X().s;
+      if (film && s && s.kind === 'pickup' && shots.length < marks.length && s.t >= marks[shots.length]) shots.push(grab(`pickup ${s.t.toFixed(2)} s${s.grabbed ? ' carried' : ''}${s.onBack ? ' on back' : ''}`, side));
+      if (film && V.mode === 'drawing' && shots.length < 11 && R.rec.length % 25 === 0) shots.push(grab(`draw ${V.t.toFixed(2)} s`, side));
     }
     demo.input.forward = false;
-    step(40);
-    return { worn: para.worn, walkS: r2(k / FPS), crate: [r2(c.x), r2(c.z)] };
+    step(20);
+    return { worn: para.worn, s: r2(k / FPS), crate: [r2(c.x), r2(c.z)], path: V.stats.paths['para-pickup'], last: { ...X().stats.last }, contact: V.stats.clipWorst && V.stats.clipWorst['para-pickup'], motion: analyse(R.rec), shots };
   }
 
   /**
@@ -498,14 +548,17 @@ export function makeExitReview(demo, sheet) {
     const V = v();
     if (V.mode !== 'foot') throw new Error('start on foot');
     const res = { height, open, at };
-    res.pickup = pickUp();
+    const pk = pickUp({ film });
+    if (film && pk.shots.length) await shoot(`${tag}pickup_${height}`, pk.shots);
+    delete pk.shots;
+    res.pickup = pk;
     res.entry = getIn('heli', { from: 4.5 });
     // where: grass west of the helipad, or tarmac on the apron north of the yard (headed so the canopy flies over it)
     const spot = Array.isArray(at) ? at : at === 'tarmac' ? [-20, -40] : [-150, 170];
     const heading = at === 'tarmac' ? 0 : Math.PI / 2;
     res.hover = heliUp(height, { x: spot[0], z: spot[1], heading, hold: 1.5 });
+    demo.fly.lever = demo.heli.state.controls.collective; // (the pilot's lever where the collective is)
     res.toggle = V.toggle();
-    if (res.toggle === 'jump') demo.fly.lever = 0;
     const x = X();
     let opened = null;
     let flared = false;

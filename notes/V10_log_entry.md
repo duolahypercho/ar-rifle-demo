@@ -244,3 +244,130 @@
        3.3 (V9: 2.4 to 3.3), grip 0 / 0 everywhere); frozen % moves by a few points between runs of the same code
        (burst 7 then 1, aimOnOff 3 then 0). No on-foot code path changed. `node --test test/dynamics.test.js
        test/hands.test.js`: 12 pass. `vite build` clean.
+
+- 2026-11-13, pass V10, INTEGRATION (after A4's last ships, 15:25 to 15:29: both packs 30 clips; HEAD b4608af). Measured
+  step-driven at 60 Hz, 1512 x 900 (canvas 2268 x 1350). The browser pane stayed hidden (show_pane answered "showing",
+  the tab still reported hidden and the page got 0 to 1 animation frames a second), so the game's own loop could not be
+  run: frame time is step-driven again (item 5).
+
+  1. EVERY PATH ON THE REAL CLIPS; para-pickup wired.
+     - `demo.vehicles.stats.paths` after every run below (Tripo and EarthOnline civilian-m-01, `showBody(1)`): every name
+       'clip', no stand-in (stop-exit, bails at 40 / 80 / 150 km/h, helicopter ground exit, jumps from 3 / 8 / 60 m,
+       parachute from 60 and 300 m with the pickup).
+     - Conventions taken from the packs' `athleticClips` / `parachuteClips` notes: bail-roll's frame is the car's at
+       release, moved to the body (the code anchors any clip's root track at the body, so it needed nothing); fall and
+       para-hang have their root fixed and the pelvis 1.10 m over it (the falling body is hung off its hips anyway);
+       land-roll / land-hard start on fall frame 0 with the soles 0.14 m up and para-land on para-hang frame 0: the
+       landing clip is now started in the air (`_preLand`) so its `events.ground` meets the ground (predicted from the
+       soles' height and the vertical speed, with gravity, or the canopy's sink). Ground clips' contacts (feet, a hand
+       pushing off) are held on the real ground, in the clip's own frame sliding with it (`_pinContacts(clip, t, frame)`).
+       car-bail's 'ground' contacts are on the footwell's floor (0.24 to 0.29 m up): V9's lift onto the real ground now
+       takes only contacts on the ground plane. Risers meet the harness at the clavicles. WASTED holds land-hard at its
+       lowest pelvis frame between ground and free. para-steer-l / -r / para-flare are added over para-hang by the toggles.
+     - para-pickup: walking within 0.6 m of a crate's pack (on foot, the gun ready) plays it: the body is anchored 0.45 m
+       from the pack, facing it (the root eased up to 15 cm there over 0.3 s), the feet held where they stood, both hands
+       to the pack's top at the clip's push frames; from `events.grab` the pack goes with the right palm (its transform in
+       the hand's frame kept), at `events.onBack` it is worn (eased onto its place on the back over 0.15 s); the guns are
+       away during it and drawn after; control returns at `events.free`. The crate is now a low eight-sided crate 0.5 m
+       across (the clip stands the toes 0.33 m from the pack's middle). Pictures `v11_pickup_60.jpg`, `v11_eo_pickup_60.jpg`:
+       the bend, both hands on the pack, the swing over the right shoulder, the pack on the back, the draw. Feet contacts
+       0.6 to 1.3 cm (Tripo / EarthOnline), hand-overs into and out of it 0.8 to 2.6 m/s.
+
+  2. THE ENTRY'S FOOT GLIDE (fixed).
+     - Cause: the settle (0.4 s) left the feet 10 to 35 cm from the entry clip's first-frame places, and the legs were
+       told the settle's speed, so they never planted for the stance steps. Now the legs are told that speed for the
+       settle's first fifth only, the stance steps into the clip's first-frame places take 0.2 s each
+       (`character.stanceStepTime`, set only by the walk to a door; 0.12 s steps jolted the EarthOnline body's left foot,
+       8.1 m/s of change in a frame), and the feet get up to 0.45 s more than the settle to arrive. A foot that is nevertheless within 6 cm of its first contact is held where it stands (and its
+       first step carries the difference); a foot still in the air is set down across first, then down.
+     - Numbers (`chainReview`, from 3.2 m, final code): walk end feet 0 cm off the clip's first frame in all four runs;
+       | body, vehicle | settle + wait (s) | walking>entering, worst change (m/s) | contacts from the first frame on (cm) |
+       |---|---|---|---|
+       | Tripo, car | 0.36 + 0 | 0.99 | car-enter 0.58 (a later contact), car-exit 0.66 |
+       | Tripo, helicopter | 0.30 + 0.07 | 2.25 | heli-enter 0.09, heli-exit 0 |
+       | EarthOnline, car | 0.30 + 0.47 | 1.11 | car-enter 0.87, car-exit 0 |
+       | EarthOnline, helicopter | 0.30 + 0.07 | 2.08 | heli-enter 0, heli-exit 0.04 |
+       Nothing over 4 m/s in any of the four chains outside A4's clips (inside them at most 4.4, their own). From 4.5 m
+       (the bail / jump / para runs, with the 0.12 s steps of that moment): feet 0 to 1.4 cm off.
+       The planted-foot slide the chain reads right after the hand-over (car right foot 2.3 cm a frame, helicopter left
+       foot 8 cm) is the clips' own first steps: car-enter moves foot_r 14 cm between frames 1 and 5 and heli-enter foot_l
+       47 cm between frames 1 and 9, lifted 4 to 5 cm (sampled from the pack); the chain counts a foot within 1.5 cm of its
+       standing height as planted.
+     - Not met: the settle is 0.3 s, but with the feet's steps the walk's end takes up to 0.77 s when both feet have to
+       move (EarthOnline's car: the 0.4 s line); clean feet were put first; car-exit's right foot lands 2 frames before the clip ends (3.96 m/s at leaving>drawing in
+       the chain: the clip's own landing, inside its last 12 frames).
+
+  3. HAND-OVERS WITH THE NEW CLIPS (worst change of velocity in one 60 Hz frame at a hand, foot, head or pelvis, from 3
+     frames before to 8 after, the impact's own frame and 2 after left out; Tripo / EarthOnline):
+     | hand-over | Tripo | EarthOnline |
+     |---|---|---|
+     | walking>entering (car / helicopter, chain) | 0.99 / 2.25 | 1.11 / 2.08 |
+     | leaving>drawing (car / helicopter, chain) | 3.96 (car-exit's own last step) / 1.07 | 3.63 / 0.75 |
+     | stop: car-enter>car-exit at the stop | 0.76 | 1.29 |
+     | car-bail release (world from here) | 3.55 (foot R, +1) | 4.20 (foot R, +2) |
+     | car-bail>bail-roll | 1.99 | 2.02 |
+     | bail-roll ground | 2.73 | 2.93 |
+     | heli-jump release | 2.39 | 2.47 |
+     | heli-jump>fall (A4's 0.3 m hand, 0.2 s blend) | 0.47 | 0.46 |
+     | fall>land-roll (3 m) / fall>land-hard (8 m) / WASTED (60 m) | 2.53 / 3.60 / 2.44 | 2.71 / 3.71 / 2.49 |
+     | fall>para-deploy / deploy>hang / hang>para-land | 1.85 / 0.46 / 2.91 | 1.81 / 0.45 / 3.63 |
+     | landings and the pickup > the draw | 0.22 to 0.75 | 0.63 to 0.75 |
+     Inside clips the worst are the clips' own: car-bail's left hand 5.99 (Tripo) / 4.69 (EarthOnline) shoving the door,
+     heli-jump's feet 3.3 / 4.7, para-deploy's head 4.57 (the jerk). Over 4 at a hand-over: only EarthOnline's car-bail
+     release, 4.20 at the right foot 2 frames after it (Tripo 3.55); not traced to clip or game.
+     Fixed on the way: the helicopter's collective went down at T, so from a 3 m hover it had landed before he left the
+     door (release 0.84 m up, impact 1.1 m/s): it now stays until release; the landing frame re-placed the body after
+     the skin was posed (one frame of 23 m/s at hands and feet, and the hips 15 cm up for a frame on a canopy landing);
+     the steer and flare poses followed toggles that ran at a constant rate, and letting a turn go into the flare
+     reversed the hand in a frame (7.5 m/s): the toggles are on critically damped springs now (0.83 m/s after); the
+     follow camera stopped dead with the body at an impact (7 to 30 m/s of camera change: now its pull and the body's
+     change are capped at 60 and 120 m/s^2: 2.0 to 3.0) and started at the vehicle camera's frozen speed (now at its own
+     speed); the on-foot camera's pivot was left where he last walked (6.3 m/s at the exit's camera ease: 0.9 now).
+     The empty car and helicopter: after the stop the car stays (ignition off); after bails it coasted 42 / 86 / 168 m in
+     the run's 4 s and came to rest; the helicopter came down on its skids from 3, 8 and 60 m (60 m: undamaged this time,
+     its collective held until release) and from 300 m crashed and was put back on the helipad.
+
+  4. FILMS (scratchpad `a3check/`, 4 x 3 sheets from the game's camera plus a witness view, `v11_*` Tripo, `v11_eo_*`
+     EarthOnline): `bail_20` (the stop and car-exit), `bail_40`, `bail_80`, `bail_150`, `heli_ground_exit`, `jump_3`,
+     `jump_8`, `jump_60`, `para_60_tarmac`, `para_300_grass`, `pickup_60`; close-ups `v11_closeup_carbail_footwell.jpg` and
+     `v11_closeup_helijump_glass.jpg`. Seen:
+     - car: the brake lights and the stop, car-exit with the door rising and closing by itself; the bail: the door shoved
+       up, the leap out of the doorway, the shoulder roll onto the back, a crouch, up, the draw; the car running on.
+     - helicopter: the ground exit with the rotor disc turning, two steps out, the door shutting behind; the jumps: out of
+       the door, the fall, land-roll (3 m), land-hard's deep crouch (8 m), WASTED's crumple under the fade (60 m), standing
+       by the helipad's crate; the parachute: free fall with the pack, the pull, the canopy opening, flight, a banked turn,
+       the flare, the run-out and the canopy settling on the ground ahead.
+     - Nothing through the car, the door, the glass or the ground at the film's scale, no hand off what it holds (the
+       toggles in the hands, the pack in the right hand until it is on the back), no pop. The witness views are 8 to 10 m
+       off: small details (a few cm) cannot be judged from them.
+     - A4's two open pairs: car-bail's left foot in the footwell's floor (frames 0.13 to 0.28 s) is behind the closed door
+       and the sill: not visible from outside, nor from the chase camera (the close-up: the door is still shut, then the
+       leg appears in the doorway above the floor). heli-jump's right fingers at the door's glass (0.27 to 0.30 s): from
+       outside the glass the hand is behind it, pushing it open; I could not see fingers through it at 38 deg from 1.5 m.
+       Neither shows in play.
+     - Seen and not changed: on the respawn frame the body is drawn in its last (dead) pose at the crate for one frame,
+       under the dark fade; the canopy settling passes near the camera in one tile.
+
+  5. FRAME TIME (step-driven: one frame = step + render + GPU done; the pane hidden; fresh page loads; 2268 x 1350):
+     | path | frames | median / p95 / worst ms | over 22 | render pipelines / shader programs built |
+     |---|---|---|---|---|
+     | car in and out by T from 4 m | 660 | 6.3 / 11.4 / 18.8 | 0 | 0 / 0 |
+     | bail at 80 km/h | 360 | 6.6 / 14.2 / 26.9 | 2 (a seated and an 'air' frame, 15 ms of step each) | 0 / 0 |
+     | para-pickup | 360 | 5.9 / 11.3 / 15.3 | 0 | 0 / 0 |
+     | parachute from 300 m | 2040 | 3.7 / 7.4 / 11.9 | 0 | 0 / 0 |
+     The warm-up covers the new clips (data, no shaders) and every new material: 0 pipelines built in play. The game's
+     own loop at 1512 x 900 with the pane shown was NOT measured.
+
+  6. Also: `demo.review()` on foot within its spread (idle 0.6, walk 1.9, jog 2.1, swap 2.5, reload 1.1, crouchIdle 0.1,
+     rampUp20 3.2, stairsUp 2.6 sink 1.0, sprint 4.2 (3.6 to 3.8 before), burst frozen 14 % this run (0 to 7 in earlier
+     runs of the same on-foot code), grip 0 / 0); `node --test` 12 pass; `vite build` clean. The after-check of every path
+     passed (walk, fire, back in, out again) for both bodies; it now waits out a pack picked up on the way (WASTED stands
+     him by the crate) and a wreck's return. Re-entering the helicopter where it came down by itself after the 3 m and 8 m
+     jumps (off the pad, on uneven ground) reads heli-enter's left foot 4.8 to 11.6 cm and heli-exit's 15 to 18 cm off
+     their ground contacts: not chased.
+  Files changed in the integration: `src/vehicles.js` (the feet into the entry, contacts in a world frame, the lift on the
+  ground plane only, the camera pivot at exit), `src/exits.js` (pre-landing, ground contacts, WASTED hold, the pickup, the
+  camera's caps and start, the landing frame), `src/para.js` (the pickup carry, the crate, the toggles' springs, risers at
+  the clavicles), `src/main.js` (the pickup's wiring and camera, the collective until release, the camera's start speed),
+  `src/character.js` (`stanceStepTime`), `src/exitreview.js` (per-hand-over report, the pickup film, the after-check),
+  `tools/v10_real.js`, `README.md`. Not touched: `src/audio.js`, the voice lines, blender/, the packs.
