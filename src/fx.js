@@ -88,7 +88,12 @@ export class Effects {
     // (the light stands 40 cm out from the muzzle, not 15: inverse-square, at 15 cm the barrel's own
     // steel took about 40 times the sun and went white for a frame; pass 11)
     this.flashLight = new THREE.PointLight(0xffb060, 0, 7, 2);
-    this.flashLight.position.z = -0.4;
+    // (2026-11-13) the light lives in the scene and follows the muzzle (_followFlash), not under the gun: hiding a gun
+    // (getting into a vehicle) took the light out of the scene's light list, and a change in that list rebuilds every
+    // material's shaders, 0.7 to 1 s of work at each hide and show (the freeze on getting into the car)
+    this._flashAt = new THREE.Vector3(0, 0, -0.4);
+    this.muzzle = null;
+    scene.add(this.flashLight);
     this.flashTime = 0;
 
     // ---- pools ----
@@ -152,10 +157,20 @@ export class Effects {
 
   /** Parents the flash to the rifle's muzzle_point empty. */
   attachFlash(muzzleNode) {
-    muzzleNode.add(this.flashGroup, this.flashLight);
+    muzzleNode.add(this.flashGroup);
+    this.muzzle = muzzleNode;
+    this._followFlash();
+  }
+
+  /** The flash light onto the muzzle (40 cm out along its bore), where it would be as the muzzle's child. */
+  _followFlash() {
+    if (!this.muzzle) return;
+    this.muzzle.updateWorldMatrix(true, false);
+    this.flashLight.position.copy(this._flashAt).applyMatrix4(this.muzzle.matrixWorld);
   }
 
   flash() {
+    this._followFlash();
     this.flashTime = 0.05;
     this.flashGroup.visible = true;
     this.flashGroup.rotation.z = Math.random() * Math.PI;
@@ -315,6 +330,7 @@ export class Effects {
 
   update(dt, camera) {
     // muzzle flash
+    this._followFlash();
     if (this.flashTime > 0) {
       this.flashTime -= dt;
       if (this.flashTime <= 0) this.flashGroup.visible = false;

@@ -1387,7 +1387,9 @@ async function main() {
     }
     if (vmode === 'foot') handsFree = false;
     // (both guns out of sight on the way to the door, and while a reload or swap finishes before it)
-    if (gunsAway() && (vehicles.mode === 'walking' || (vehicles.mode === 'stowing' && handsFree))) rifle.pivot.visible = shotgun.pivot.visible = false;
+    // ((2026-11-13) and on the frame the walk ends: arrived() has set 'entering' before this line, and the guns showed for
+    // that one frame)
+    if (gunsAway() && (vehicles.mode === 'walking' || vehicles.mode === 'entering' || (vehicles.mode === 'stowing' && handsFree))) rifle.pivot.visible = shotgun.pivot.visible = false;
     // ---- controls ----
     input.tap = Math.max(0, input.tap - dt);
     input.fire = input.fireKey || input.fireMouse || input.fireButton || input.tap > 0;
