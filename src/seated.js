@@ -117,8 +117,11 @@ export class Seated {
       // palm on the tube's driver-outer side
       const palmLocal = G ? _v.copy(_a).addScaledVector(col, -lift) : _v.copy(_a).addScaledVector(n, -(CAR_POINTS.tube + 0.012)).addScaledVector(col, -lift);
       wheel.localToWorld(h.palm.copy(palmLocal));
-      // basis: left hand thumb (+X) towards 12; right hand thumb (-X) towards 12
-      const X = side === 'Left' ? tUp : tUp.negate();
+      // basis: the hand's X along tUp, the rim's counter-clockwise tangent, for both hands. ((2026-11-13) tUp points to
+      // 12 at 9 o'clock and to 6 at 3 o'clock, so it is already the mirror of the left hand's X at the right hand's
+      // place (the canonical hand frames are mirror images, PALM_LOCAL has no X). V2-V8 negated it for the right
+      // hand, which turned that hand half a turn about its palm normal: its fingers pointed back at the driver)
+      const X = tUp;
       const Yv = _y.crossVectors(n, X);
       X.applyQuaternion(wq);
       Yv.applyQuaternion(wq);
