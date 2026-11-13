@@ -78,9 +78,10 @@ def key_clip(scn, skel, name, frames):
             put('FK-' + joint, 'rotation_quaternion', q)
         put('FK-pelvis', 'location', f['hips'] - skel.rest['pelvis'])
         for side, s in (('Left', 'L'), ('Right', 'R')):
-            ground, yaw, pitch = f['feet'][side]
+            ground, yaw, pitch = f['feet'][side][:3]
             rest = bones['foot_ctrl.' + s].matrix_local
-            posed = Matrix.Translation(g2b(ground)) @ (rot_b(Quaternion((0, 1, 0), yaw)) @ rest.to_quaternion()).to_matrix().to_4x4()
+            whole = f['feet'][side][3] if len(f['feet'][side]) > 3 else Quaternion((0, 1, 0), yaw)  # (vehicle pass A4: a foot turned whole)
+            posed = Matrix.Translation(g2b(ground)) @ (rot_b(whole) @ rest.to_quaternion()).to_matrix().to_4x4()
             basis = rest.inverted() @ posed
             put('foot_ctrl.' + s, 'location', basis.to_translation())
             put('foot_ctrl.' + s, 'rotation_quaternion', basis.to_quaternion())

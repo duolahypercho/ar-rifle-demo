@@ -90,6 +90,8 @@
    }
   }
  },
+ "athleticClips": "Pass A4. car-bail (car frame) and heli-jump (helicopter frame) are like the entry / exit clips (the vehicle root's frame, root [x, z, yaw] on its ground plane, door per frame, contacts) and start exactly on car-drive frame 0 / heli-fly frame 0; events.release is the frame the body is clear of the vehicle: from there the game carries the body in world space with the vehicle's velocity. Their last frame is airborne (pelvis 0.90 m over the car's ground plane / 1.27 m over the helicopter's), root yaw = the body's facing. bail-roll, fall, land-roll, land-hard are ground clips: the clip's own frame, ground y = 0, the travel along -Z, root [x, z, yaw] from where the body starts. bail-roll frame 0 = car-bail's last frame re-rooted (same pose about the root, root (0, 0, car-bail's last root yaw)): its frame is the car's at the release, moved to the body (-Z = the car's forward, the travel at speed); its pelvis starts 0.90 m over its ground, the right shoulder meets it at events.ground; scale the root's x / z travel to the speed. fall is a loop with its root fixed at (0, 0, pi), the pelvis 1.10 m over the root, facing the root's yaw; car-bail's and heli-jump's last poses are near its frame 0 (one arm lower at their ends, by about 0.3 m: a 0.2 s blend). land-roll / land-hard start exactly on fall frame 0 (pelvis 1.10 m over their ground, the soles 0.14 m over it), the feet down at events.ground; free = standing, movement may take over.",
+ "parachuteClips": "Pass A4. Ground-frame clips like the athletic ones (forward -Z, ground y = 0, root [x, z, yaw]). The toggles are at the palms (the hands' palm points, every frame), the risers meet the harness at clavicle_l / clavicle_r. para-hang: a 2 s loop, root fixed at (0, 0, pi), the pelvis 1.10 m over the root (as fall), hands up at the toggles. para-steer-l / -r / para-flare: one-pose clips equal to para-hang frame 0 except the pulled arm(s) (left / right / both hands down at the hips): add them over para-hang per bone (delta = pose * para-hang frame 0 ^-1) weighted by how far the toggle is pulled. para-deploy: from fall frame 0 exactly to para-hang frame 0 (1.4 mm at a hand); events.pull = the handle out of its pocket at the right hip, events.open = the opening jerk. para-land: from para-hang frame 0 exactly; the flare (hands to the hips), feet first at events.ground, three steps, standing at events.free, 2.0 m along -Z. para-pickup: standing to standing (pelvis 0.895 m, hands by the thighs), the pack on a crate 0.45 m ahead, its top 0.55 m up; events.grab = both hands on it; from grab to events.onBack the pack goes with the right palm, after it on spine_05; arms stay in front of / above the shoulders (clear of a 12 cm pack on the back), the right hand over the right shoulder in the swing.",
  "vehicleFitNote": "Fixed adjustments of the vehicle for this body family (a driver / pilot setting the seat, the wheel, the pedals): translate = an offset in the node's PARENT frame (here the vehicle root), added to its rest translation; the clips (root, contacts, poses) are authored with them applied: the game must apply the same offsets to the real model (a helper point moves with its seat).",
  "clips": {
   "car-drive": {
@@ -9293,6 +9295,4548 @@
     "balanceFramesOver3cm": "53-75, 78-100",
     "plantSlideMmPerFrame": "6.41 at 25",
     "joinErr": "0.000 mm (None) / 0.000 deg (None)"
+   }
+  },
+  "car-bail": {
+   "duration": 0.8333333333333334,
+   "loop": false,
+   "frames": 26,
+   "cycles": 1,
+   "speed": 0.0,
+   "direction": 0.0,
+   "dir": [
+    0,
+    0
+   ],
+   "contact": {
+    "Left": [
+     [
+      0.0,
+      1.0
+     ]
+    ],
+    "Right": [
+     [
+      0.0,
+      1.0
+     ]
+    ]
+   },
+   "leftStrike": null,
+   "root": [
+    [
+     -0.37,
+     -0.14,
+     3.141593
+    ],
+    [
+     -0.37499,
+     -0.13878,
+     3.155865
+    ],
+    [
+     -0.38254,
+     -0.13737,
+     3.175982
+    ],
+    [
+     -0.39307,
+     -0.13553,
+     3.202985
+    ],
+    [
+     -0.40696,
+     -0.13297,
+     3.237754
+    ],
+    [
+     -0.4246,
+     -0.1294,
+     3.280914
+    ],
+    [
+     -0.44634,
+     -0.12451,
+     3.33274
+    ],
+    [
+     -0.47249,
+     -0.11801,
+     3.393097
+    ],
+    [
+     -0.50333,
+     -0.10959,
+     3.461401
+    ],
+    [
+     -0.5391,
+     -0.09901,
+     3.536609
+    ],
+    [
+     -0.58,
+     -0.08607,
+     3.617243
+    ],
+    [
+     -0.62618,
+     -0.07067,
+     3.701437
+    ],
+    [
+     -0.67773,
+     -0.05281,
+     3.78705
+    ],
+    [
+     -0.73463,
+     -0.03267,
+     3.871798
+    ],
+    [
+     -0.7967,
+     -0.01056,
+     3.953417
+    ],
+    [
+     -0.86348,
+     0.01303,
+     4.029815
+    ],
+    [
+     -0.93412,
+     0.03745,
+     4.099226
+    ],
+    [
+     -1.00733,
+     0.06196,
+     4.160369
+    ],
+    [
+     -1.08141,
+     0.08576,
+     4.21251
+    ],
+    [
+     -1.15427,
+     0.10811,
+     4.255486
+    ],
+    [
+     -1.22367,
+     0.12836,
+     4.289662
+    ],
+    [
+     -1.28746,
+     0.14606,
+     4.315832
+    ],
+    [
+     -1.34386,
+     0.16097,
+     4.335078
+    ],
+    [
+     -1.39164,
+     0.17309,
+     4.348616
+    ],
+    [
+     -1.4303,
+     0.18263,
+     4.357664
+    ],
+    [
+     -1.46,
+     0.19,
+     4.363323
+    ]
+   ],
+   "vehicle": "car",
+   "events": {
+    "doorOpenStart": 0.1372,
+    "doorOpenEnd": 0.361,
+    "release": 0.6979,
+    "handsOff": 0.0435,
+    "unseated": 0.361
+   },
+   "door": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.105,
+    0.363,
+    0.5912,
+    0.739,
+    0.8733,
+    0.97,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "contacts": [
+    {
+     "part": "foot_l",
+     "from": 0,
+     "to": 2,
+     "node": null,
+     "at": [
+      -0.48,
+      0.235,
+      -1.085
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "foot_r",
+     "from": 0,
+     "to": 7,
+     "node": null,
+     "at": [
+      -0.275,
+      0.29,
+      -1.05
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "hand_l",
+     "from": 0,
+     "to": 0,
+     "node": "steering_wheel",
+     "at": [
+      -0.194,
+      0.036,
+      0.0
+     ],
+     "kind": "push"
+    },
+    {
+     "part": "hand_r",
+     "from": 0,
+     "to": 2,
+     "node": "steering_wheel",
+     "at": [
+      0.194,
+      0.036,
+      0.0
+     ],
+     "kind": "push"
+    },
+    {
+     "part": "hand_l",
+     "from": 5,
+     "to": 5,
+     "node": "door_L",
+     "at": [
+      0.1511,
+      -0.1991,
+      0.82
+     ],
+     "kind": "push"
+    }
+   ],
+   "review": {
+    "slide": "4.448 / 4.663",
+    "kneeMin": 51.2,
+    "gapCm": "16.1 / 14.8",
+    "seam": "-",
+    "clearCm": "3.1 / 14.2",
+    "headY": "0.841..1.477",
+    "hipsY": "0.370..0.902",
+    "hipsVsIdle": "-",
+    "feetCm": "88 / 81",
+    "elbowDeg": "44..118 / 40..61",
+    "elbowOutCm": "-6..22 / 10..17",
+    "wristDeg": "flex -32 dev -30 / flex -33 dev -21",
+    "snap30": "hand_l 6.4 / hand_r 1.2 / foot_l 3.5 / foot_r 3.2 / head 1.1",
+    "snapMax": 6.43,
+    "vehiclePairs": {
+     "foot_r/interior": 173,
+     "ball_r/interior": 69,
+     "foot_l/interior": 335,
+     "ball_l/interior": 553,
+     "foot_l/body_shell": 53,
+     "upperarm_r/seat_driver": 776,
+     "upperarm_l/seat_driver": 689,
+     "head/seat_driver": 1641,
+     "neck_01/seat_driver": 465,
+     "index_02_l/steering_wheel": 27,
+     "middle_02_l/steering_wheel": 41,
+     "middle_03_l/steering_wheel": 12,
+     "thumb_03_l/steering_wheel": 11,
+     "thumb_02_l/steering_wheel": 3,
+     "ring_02_l/steering_wheel": 32,
+     "ring_03_l/steering_wheel": 14,
+     "pinky_03_l/steering_wheel": 13,
+     "pinky_01_l/steering_wheel": 5,
+     "index_03_l/steering_wheel": 4,
+     "middle_01_l/steering_wheel": 5,
+     "ring_01_l/steering_wheel": 2,
+     "pinky_02_l/steering_wheel": 3,
+     "thumb_03_r/steering_wheel": 92,
+     "middle_01_r/steering_wheel": 7,
+     "middle_03_r/steering_wheel": 70,
+     "middle_02_r/steering_wheel": 13,
+     "index_02_r/steering_wheel": 70,
+     "index_03_r/steering_wheel": 39,
+     "ring_02_r/steering_wheel": 8,
+     "ring_03_r/steering_wheel": 47,
+     "pinky_03_r/steering_wheel": 13,
+     "pinky_01_r/steering_wheel": 5,
+     "pinky_02_r/steering_wheel": 4,
+     "thigh_l/interior": 29,
+     "calf_l/interior": 120,
+     "index_01_r/steering_wheel": 37,
+     "thigh_r/interior": 112,
+     "calf_r/interior": 76,
+     "lowerarm_l/door_L": 165,
+     "thumb_02_r/steering_wheel": 11,
+     "hand_r/steering_wheel": 11,
+     "ball_l/body_shell": 45,
+     "hand_l/door_L": 2,
+     "head/body_shell": 83,
+     "thigh_r/steering_wheel": 191,
+     "head/interior": 26,
+     "head/door_L": 215,
+     "upperarm_r/door_L": 67
+    },
+    "framesWithPairs": 17,
+    "seatPairs": {
+     "thigh_r/seat_driver": 766,
+     "pelvis/seat_driver": 303,
+     "thigh_l/seat_driver": 1151,
+     "clavicle_l/seat_driver": 1435,
+     "clavicle_r/seat_driver": 1212,
+     "spine_03/seat_driver": 1041,
+     "spine_05/seat_driver": 229
+    },
+    "contactPairs": 661,
+    "seatSinkCm": "cushion 2.6 / back 4.9 / bolster or harness 5.0",
+    "backGapCm": "0.0..inf",
+    "controlClearCm": "-1.3",
+    "headClearCm": "-3.0 at frame 15 (door_L), head top y 1.688",
+    "contactCm": "foot_l None 0-2 0.01; foot_r None 0-7 0.01; hand_l steering_wheel 0-0 0.0; hand_r steering_wheel 0-2 0.0; hand_l door_L 5-5 0.01",
+    "contactMaxCm": 0.01,
+    "hardPairs": {
+     "foot_l/interior": "3.4 cm at 6 (8 frames)",
+     "head/door_L": "3.0 cm at 15 (3 frames)",
+     "ball_l/interior": "2.6 cm at 7 (8 frames)",
+     "calf_l/interior": "2.3 cm at 6 (5 frames)",
+     "thigh_r/interior": "2.1 cm at 6 (8 frames)",
+     "calf_r/interior": "2.1 cm at 6 (8 frames)",
+     "foot_l/body_shell": "1.7 cm at 4 (6 frames)",
+     "thigh_l/interior": "1.6 cm at 6 (4 frames)",
+     "ball_l/body_shell": "1.6 cm at 5 (2 frames)",
+     "head/interior": "1.6 cm at 9 (1 frames)",
+     "lowerarm_l/door_L": "1.5 cm at 6 (4 frames)",
+     "thumb_03_r/steering_wheel": "1.4 cm at 6 (5 frames)",
+     "pinky_03_r/steering_wheel": "1.4 cm at 3 (1 frames)",
+     "pinky_01_r/steering_wheel": "1.4 cm at 3 (1 frames)",
+     "middle_02_l/steering_wheel": "1.3 cm at 1 (1 frames)",
+     "middle_03_l/steering_wheel": "1.3 cm at 1 (1 frames)",
+     "ring_02_l/steering_wheel": "1.3 cm at 1 (1 frames)",
+     "ring_03_l/steering_wheel": "1.3 cm at 1 (1 frames)",
+     "thigh_r/steering_wheel": "1.2 cm at 11 (3 frames)",
+     "hand_l/door_L": "1.0 cm at 7 (2 frames)",
+     "foot_r/interior": "1.0 cm at 9 (10 frames)",
+     "ball_r/interior": "1.0 cm at 9 (10 frames)",
+     "middle_01_r/steering_wheel": "0.9 cm at 3 (1 frames)",
+     "middle_03_r/steering_wheel": "0.9 cm at 3 (2 frames)",
+     "middle_02_r/steering_wheel": "0.9 cm at 3 (1 frames)",
+     "index_02_r/steering_wheel": "0.9 cm at 3 (4 frames)",
+     "ring_02_r/steering_wheel": "0.9 cm at 3 (1 frames)",
+     "thumb_02_r/steering_wheel": "0.9 cm at 6 (2 frames)",
+     "index_02_l/steering_wheel": "0.8 cm at 1 (1 frames)",
+     "head/body_shell": "0.8 cm at 8 (2 frames)",
+     "pinky_02_r/steering_wheel": "0.8 cm at 3 (1 frames)",
+     "ring_03_r/steering_wheel": "0.8 cm at 3 (1 frames)",
+     "ring_01_l/steering_wheel": "0.7 cm at 1 (1 frames)",
+     "index_01_r/steering_wheel": "0.7 cm at 5 (3 frames)",
+     "middle_01_l/steering_wheel": "0.7 cm at 1 (1 frames)",
+     "index_03_r/steering_wheel": "0.6 cm at 3 (3 frames)",
+     "upperarm_r/door_L": "0.6 cm at 17 (2 frames)",
+     "pinky_03_l/steering_wheel": "0.6 cm at 1 (1 frames)",
+     "pinky_01_l/steering_wheel": "0.6 cm at 1 (1 frames)",
+     "pinky_02_l/steering_wheel": "0.6 cm at 1 (1 frames)",
+     "thumb_03_l/steering_wheel": "0.5 cm at 1 (1 frames)",
+     "thumb_02_l/steering_wheel": "0.5 cm at 1 (1 frames)",
+     "hand_r/steering_wheel": "0.5 cm at 6 (2 frames)",
+     "index_03_l/steering_wheel": "0.1 cm at 1 (1 frames)"
+    },
+    "softPairs": {
+     "spine_05/seat_driver": "4.2 cm at 9 (12 frames)",
+     "clavicle_l/seat_driver": "3.6 cm at 9 (12 frames)",
+     "upperarm_r/seat_driver": "3.5 cm at 4 (8 frames)",
+     "spine_03/seat_driver": "3.5 cm at 1 (12 frames)",
+     "neck_01/seat_driver": "3.4 cm at 9 (10 frames)",
+     "upperarm_l/seat_driver": "3.4 cm at 5 (7 frames)",
+     "clavicle_r/seat_driver": "3.1 cm at 3 (11 frames)",
+     "head/seat_driver": "2.7 cm at 5 (8 frames)",
+     "thigh_l/seat_driver": "2.1 cm at 3 (9 frames)",
+     "thigh_r/seat_driver": "2.0 cm at 1 (8 frames)",
+     "pelvis/seat_driver": "1.9 cm at 10 (12 frames)"
+    },
+    "hardMaxCm": 3.36,
+    "softMaxCm": 4.2,
+    "headByCm": {
+     "interior": "-1.6 at 9",
+     "body_shell": "-0.8 at 8",
+     "door_L": "-3.0 at 15"
+    },
+    "joinErr": "0.000 mm (None) / 0.000 deg (None)",
+    "groundUnderCm": {},
+    "groundUnderMaxCm": 0.0,
+    "rollUnderMaxCm": 0.0,
+    "rollUnderAt": "None (None)",
+    "wristWorst": "Left flex -32 (f0) dev -30 (f7) / Right flex -33 (f2) dev -21 (f2)",
+    "wristPast": [],
+    "twistStepDeg": 16.8,
+    "twistAt": "9 (Left)",
+    "elbowMinDeg": 40.2,
+    "elbowAt": 8,
+    "kneeMinDeg": 51.2,
+    "kneeAt": 4,
+    "duration": 0.8333333333333334
+   }
+  },
+  "bail-roll": {
+   "duration": 2.066666666666667,
+   "loop": false,
+   "frames": 63,
+   "cycles": 1,
+   "speed": 0.0,
+   "direction": 0.0,
+   "dir": [
+    0,
+    0
+   ],
+   "contact": {
+    "Left": [
+     [
+      0.0,
+      1.0
+     ]
+    ],
+    "Right": [
+     [
+      0.0,
+      1.0
+     ]
+    ]
+   },
+   "leftStrike": null,
+   "root": [
+    [
+     0.0,
+     0.0,
+     4.363323
+    ],
+    [
+     0.0,
+     -0.01042,
+     4.353215
+    ],
+    [
+     0.0,
+     -0.03729,
+     4.326917
+    ],
+    [
+     0.0,
+     -0.07543,
+     4.289209
+    ],
+    [
+     0.0,
+     -0.12108,
+     4.243563
+    ],
+    [
+     0.0,
+     -0.17205,
+     4.191934
+    ],
+    [
+     0.0,
+     -0.22644,
+     4.136037
+    ],
+    [
+     0.0,
+     -0.2828,
+     4.077127
+    ],
+    [
+     0.0,
+     -0.33946,
+     4.016717
+    ],
+    [
+     0.0,
+     -0.39545,
+     3.955598
+    ],
+    [
+     0.0,
+     -0.45153,
+     3.892532
+    ],
+    [
+     0.0,
+     -0.50654,
+     3.828201
+    ],
+    [
+     0.0,
+     -0.55938,
+     3.763076
+    ],
+    [
+     0.0,
+     -0.6146,
+     3.698627
+    ],
+    [
+     0.0,
+     -0.67594,
+     3.637413
+    ],
+    [
+     0.0,
+     -0.74235,
+     3.585186
+    ],
+    [
+     0.0,
+     -0.81213,
+     3.542672
+    ],
+    [
+     0.0,
+     -0.88368,
+     3.50287
+    ],
+    [
+     0.0,
+     -0.95603,
+     3.465815
+    ],
+    [
+     0.0,
+     -1.02865,
+     3.43144
+    ],
+    [
+     0.0,
+     -1.10094,
+     3.399654
+    ],
+    [
+     0.0,
+     -1.17199,
+     3.370493
+    ],
+    [
+     0.0,
+     -1.24056,
+     3.344051
+    ],
+    [
+     0.0,
+     -1.3055,
+     3.320343
+    ],
+    [
+     0.0,
+     -1.36649,
+     3.299102
+    ],
+    [
+     0.0,
+     -1.42378,
+     3.279914
+    ],
+    [
+     0.0,
+     -1.47799,
+     3.262308
+    ],
+    [
+     0.0,
+     -1.52975,
+     3.245887
+    ],
+    [
+     0.0,
+     -1.57904,
+     3.230482
+    ],
+    [
+     0.0,
+     -1.62725,
+     3.215502
+    ],
+    [
+     0.0,
+     -1.67468,
+     3.200695
+    ],
+    [
+     0.0,
+     -1.72138,
+     3.185846
+    ],
+    [
+     0.0,
+     -1.76732,
+     3.171007
+    ],
+    [
+     0.0,
+     -1.81424,
+     3.158433
+    ],
+    [
+     0.0,
+     -1.8619,
+     3.148797
+    ],
+    [
+     0.0,
+     -1.90938,
+     3.141975
+    ],
+    [
+     0.0,
+     -1.95608,
+     3.137641
+    ],
+    [
+     0.0,
+     -2.00165,
+     3.135381
+    ],
+    [
+     0.0,
+     -2.04584,
+     3.134767
+    ],
+    [
+     0.0,
+     -2.08838,
+     3.135369
+    ],
+    [
+     0.0,
+     -2.12902,
+     3.136756
+    ],
+    [
+     0.0,
+     -2.16754,
+     3.138498
+    ],
+    [
+     0.0,
+     -2.20365,
+     3.140161
+    ],
+    [
+     0.0,
+     -2.23712,
+     3.141317
+    ],
+    [
+     0.0,
+     -2.26771,
+     3.141593
+    ],
+    [
+     0.0,
+     -2.29515,
+     3.141593
+    ],
+    [
+     0.0,
+     -2.3192,
+     3.141593
+    ],
+    [
+     0.0,
+     -2.33962,
+     3.141593
+    ],
+    [
+     0.0,
+     -2.35615,
+     3.141593
+    ],
+    [
+     0.0,
+     -2.36854,
+     3.141593
+    ],
+    [
+     0.0,
+     -2.37654,
+     3.141593
+    ],
+    [
+     0.0,
+     -2.37991,
+     3.141593
+    ],
+    [
+     0.0,
+     -2.38,
+     3.141593
+    ],
+    [
+     0.0,
+     -2.38,
+     3.141593
+    ],
+    [
+     0.0,
+     -2.38,
+     3.141593
+    ],
+    [
+     0.0,
+     -2.38,
+     3.141593
+    ],
+    [
+     0.0,
+     -2.38,
+     3.141593
+    ],
+    [
+     0.0,
+     -2.38,
+     3.141593
+    ],
+    [
+     0.0,
+     -2.38,
+     3.141593
+    ],
+    [
+     0.0,
+     -2.38,
+     3.141593
+    ],
+    [
+     0.0,
+     -2.38,
+     3.141593
+    ],
+    [
+     0.0,
+     -2.38,
+     3.141593
+    ],
+    [
+     0.0,
+     -2.38,
+     3.141593
+    ]
+   ],
+   "vehicle": "ground",
+   "events": {
+    "ground": 0.3941,
+    "free": 1.9565
+   },
+   "door": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "contacts": [
+    {
+     "part": "foot_r",
+     "from": 30,
+     "to": 44,
+     "node": null,
+     "at": [
+      0.134,
+      0.0,
+      -1.8941
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "foot_l",
+     "from": 31,
+     "to": 40,
+     "node": null,
+     "at": [
+      -0.124,
+      0.0,
+      -1.8141
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "foot_l",
+     "from": 48,
+     "to": 62,
+     "node": null,
+     "at": [
+      -0.12,
+      0.0,
+      -2.5342
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "foot_r",
+     "from": 51,
+     "to": 62,
+     "node": null,
+     "at": [
+      0.134,
+      0.0,
+      -2.4341
+     ],
+     "kind": "ground",
+     "point": "ball"
+    }
+   ],
+   "review": {
+    "slide": "0.112 / 1.604",
+    "kneeMin": 37.2,
+    "gapCm": "22.0 / 26.6",
+    "seam": "-",
+    "clearCm": "1.2 / 0.9",
+    "headY": "0.150..1.502",
+    "hipsY": "0.106..0.900",
+    "hipsVsIdle": "-",
+    "feetCm": "59 / 27",
+    "elbowDeg": "27..110 / 29..116",
+    "elbowOutCm": "8..23 / 9..25",
+    "wristDeg": "flex +3 dev +3 / flex +2 dev +2",
+    "snap30": "hand_l 2.1 / hand_r 2.7 / foot_l 2.2 / foot_r 2.4 / head 2.0",
+    "snapMax": 2.66,
+    "vehiclePairs": 0,
+    "framesWithPairs": 0,
+    "seatPairs": 0,
+    "contactPairs": 0,
+    "seatSinkCm": "cushion 0.0 / back 0.0 / bolster or harness 0.0",
+    "backGapCm": "0.0..0.0",
+    "controlClearCm": "inf",
+    "headClearCm": "inf at frame 0 (None), head top y 1.714",
+    "contactCm": "foot_r None 30-44 0.01; foot_l None 31-40 0.01; foot_l None 48-62 0.01; foot_r None 51-62 0.01",
+    "contactMaxCm": 0.0,
+    "groundUnderCm": {
+     "head": "1.9 at 15",
+     "clavicle_l": "0.7 at 20",
+     "pelvis": "0.7 at 25",
+     "thigh_l": "0.3 at 26",
+     "foot_l": "0.2 at 29",
+     "ball_l": "0.2 at 29",
+     "foot_r": "0.1 at 31",
+     "spine_03": "0.1 at 23"
+    },
+    "groundUnderMaxCm": 1.89,
+    "rollUnderMaxCm": 1.89,
+    "rollUnderAt": "15 (head)",
+    "wristWorst": "Left flex +3 (f18) dev +3 (f0) / Right flex +2 (f18) dev +2 (f16)",
+    "wristPast": [],
+    "twistStepDeg": 19.2,
+    "twistAt": "16 (Left)",
+    "elbowMinDeg": 26.5,
+    "elbowAt": 53,
+    "kneeMinDeg": 37.2,
+    "kneeAt": 53,
+    "join car-bail end": "2.5 mm (middle_03_l) / 1.8 deg (middle_01_l)",
+    "joinMm car-bail end": 2.51,
+    "joinDeg car-bail end": 1.79,
+    "duration": 2.066666666666667
+   }
+  },
+  "heli-jump": {
+   "duration": 1.2333333333333334,
+   "loop": false,
+   "frames": 38,
+   "cycles": 1,
+   "speed": 0.0,
+   "direction": 0.0,
+   "dir": [
+    0,
+    0
+   ],
+   "contact": {
+    "Left": [
+     [
+      0.0,
+      1.0
+     ]
+    ],
+    "Right": [
+     [
+      0.0,
+      1.0
+     ]
+    ]
+   },
+   "leftStrike": null,
+   "root": [
+    [
+     0.42,
+     -1.335,
+     3.141593
+    ],
+    [
+     0.42268,
+     -1.33349,
+     3.129916
+    ],
+    [
+     0.42644,
+     -1.33139,
+     3.113815
+    ],
+    [
+     0.43144,
+     -1.32882,
+     3.092607
+    ],
+    [
+     0.4378,
+     -1.32599,
+     3.065751
+    ],
+    [
+     0.44559,
+     -1.3232,
+     3.032889
+    ],
+    [
+     0.45484,
+     -1.32083,
+     2.993867
+    ],
+    [
+     0.46555,
+     -1.31931,
+     2.948756
+    ],
+    [
+     0.47767,
+     -1.31903,
+     2.897871
+    ],
+    [
+     0.4911,
+     -1.32031,
+     2.841783
+    ],
+    [
+     0.50574,
+     -1.32333,
+     2.781317
+    ],
+    [
+     0.52147,
+     -1.32809,
+     2.717525
+    ],
+    [
+     0.5382,
+     -1.33439,
+     2.651607
+    ],
+    [
+     0.55588,
+     -1.34189,
+     2.584803
+    ],
+    [
+     0.5746,
+     -1.35011,
+     2.518262
+    ],
+    [
+     0.59456,
+     -1.35852,
+     2.452946
+    ],
+    [
+     0.61614,
+     -1.36664,
+     2.389569
+    ],
+    [
+     0.63988,
+     -1.374,
+     2.328581
+    ],
+    [
+     0.66652,
+     -1.38026,
+     2.27026
+    ],
+    [
+     0.6969,
+     -1.38513,
+     2.214834
+    ],
+    [
+     0.73196,
+     -1.38844,
+     2.162603
+    ],
+    [
+     0.77258,
+     -1.39007,
+     2.114027
+    ],
+    [
+     0.81949,
+     -1.38998,
+     2.069717
+    ],
+    [
+     0.87308,
+     -1.38817,
+     2.030376
+    ],
+    [
+     0.93326,
+     -1.38472,
+     1.996662
+    ],
+    [
+     0.99932,
+     -1.3798,
+     1.969036
+    ],
+    [
+     1.06993,
+     -1.37367,
+     1.947623
+    ],
+    [
+     1.14314,
+     -1.36666,
+     1.932153
+    ],
+    [
+     1.21658,
+     -1.35918,
+     1.921979
+    ],
+    [
+     1.2877,
+     -1.35166,
+     1.916161
+    ],
+    [
+     1.3541,
+     -1.34449,
+     1.913613
+    ],
+    [
+     1.41374,
+     -1.33802,
+     1.913257
+    ],
+    [
+     1.46526,
+     -1.33248,
+     1.914146
+    ],
+    [
+     1.508,
+     -1.32801,
+     1.915558
+    ],
+    [
+     1.542,
+     -1.32461,
+     1.917013
+    ],
+    [
+     1.56793,
+     -1.32223,
+     1.918256
+    ],
+    [
+     1.58684,
+     -1.32074,
+     1.919199
+    ],
+    [
+     1.6,
+     -1.32,
+     1.919862
+    ]
+   ],
+   "vehicle": "heli",
+   "events": {
+    "handsOff": 0.0316,
+    "doorOpenStart": 0.2159,
+    "doorOpenEnd": 0.66,
+    "unseated": 0.7268,
+    "release": 1.0305
+   },
+   "door": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0119,
+    0.0983,
+    0.2378,
+    0.3622,
+    0.4702,
+    0.5838,
+    0.6869,
+    0.7717,
+    0.8394,
+    0.8928,
+    0.9351,
+    0.9696,
+    0.993,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "contacts": [
+    {
+     "part": "foot_l",
+     "from": 0,
+     "to": 5,
+     "node": "pedal_L",
+     "at": [
+      0.0,
+      0.128,
+      0.0
+     ],
+     "kind": "step",
+     "point": "ball"
+    },
+    {
+     "part": "foot_r",
+     "from": 0,
+     "to": 4,
+     "node": "pedal_R",
+     "at": [
+      0.005,
+      0.128,
+      0.0
+     ],
+     "kind": "step",
+     "point": "ball"
+    },
+    {
+     "part": "hand_l",
+     "from": 0,
+     "to": 0,
+     "node": "collective",
+     "at": [
+      -0.0249,
+      0.2341,
+      -0.4547
+     ],
+     "kind": "push"
+    },
+    {
+     "part": "hand_r",
+     "from": 0,
+     "to": 0,
+     "node": "cyclic",
+     "at": [
+      0.0332,
+      0.5946,
+      0.1018
+     ],
+     "kind": "push"
+    },
+    {
+     "part": "hand_r",
+     "from": 8,
+     "to": 9,
+     "node": "cockpit_door_R",
+     "at": [
+      0.0572,
+      0.4884,
+      0.8716
+     ],
+     "kind": "push"
+    },
+    {
+     "part": "foot_r",
+     "from": 18,
+     "to": 25,
+     "node": null,
+     "at": [
+      0.8673,
+      0.83,
+      -1.4391
+     ],
+     "kind": "ground",
+     "point": "ball"
+    }
+   ],
+   "review": {
+    "slide": "0.000 / 0.000",
+    "kneeMin": 67.7,
+    "gapCm": "20.5 / 30.7",
+    "seam": "-",
+    "clearCm": "41.4 / 53.4",
+    "headY": "1.842..1.928",
+    "hipsY": "1.270..1.382",
+    "hipsVsIdle": "-",
+    "feetCm": "89 / 55",
+    "elbowDeg": "20..83 / 27..98",
+    "elbowOutCm": "15..19 / -1..23",
+    "wristDeg": "flex -17 dev +20 / flex +31 dev +31",
+    "snap30": "hand_l 1.3 / hand_r 2.1 / foot_l 2.6 / foot_r 2.9 / head 0.8",
+    "snapMax": 2.89,
+    "vehiclePairs": {
+     "calf_r/pilot_seat": 812,
+     "calf_l/pilot_seat": 427,
+     "ring_02_l/collective": 78,
+     "pinky_03_l/collective": 14,
+     "ring_03_l/collective": 43,
+     "pinky_02_l/collective": 7,
+     "pinky_01_l/collective": 15,
+     "thumb_01_l/collective": 3,
+     "middle_03_l/collective": 33,
+     "middle_02_l/collective": 87,
+     "thumb_03_l/collective": 14,
+     "index_03_l/collective": 9,
+     "index_02_l/collective": 17,
+     "thumb_02_l/collective": 12,
+     "middle_01_l/collective": 30,
+     "ring_01_l/collective": 19,
+     "index_01_l/collective": 27,
+     "ring_03_r/cyclic": 27,
+     "thumb_03_r/cyclic": 13,
+     "ring_02_r/cyclic": 21,
+     "thumb_02_r/cyclic": 19,
+     "middle_03_r/cyclic": 21,
+     "middle_02_r/cyclic": 17,
+     "middle_01_r/cyclic": 3,
+     "thumb_01_r/cyclic": 14,
+     "index_03_r/cyclic": 35,
+     "index_02_r/cyclic": 14,
+     "lowerarm_r/pilot_seat": 15,
+     "upperarm_r/pilot_seat": 81,
+     "ball_r/pedal_R": 294,
+     "ball_l/pedal_L": 337,
+     "hand_r/cockpit_door_R_glass": 80,
+     "ring_01_r/cockpit_door_R_glass": 36,
+     "middle_01_r/cockpit_door_R_glass": 26,
+     "ring_02_r/cockpit_door_R_glass": 22,
+     "middle_02_r/cockpit_door_R_glass": 14,
+     "middle_03_r/cockpit_door_R_glass": 28,
+     "index_03_r/cockpit_door_R_glass": 12,
+     "pinky_02_r/cockpit_door_R_glass": 9,
+     "pinky_01_r/cockpit_door_R_glass": 26,
+     "thumb_02_r/cockpit_door_R_glass": 33,
+     "thumb_03_r/cockpit_door_R_glass": 25,
+     "index_01_r/cockpit_door_R_glass": 32,
+     "index_02_r/cockpit_door_R_glass": 11,
+     "thigh_l/cyclic": 321,
+     "foot_l/pedal_L": 137,
+     "ring_03_r/cockpit_door_R_glass": 6,
+     "pinky_03_r/cockpit_door_R_glass": 11,
+     "foot_r/pilot_seat": 1
+    },
+    "framesWithPairs": 14,
+    "seatPairs": {
+     "thigh_r/pilot_seat": 5979,
+     "pelvis/pilot_seat": 3189,
+     "thigh_l/pilot_seat": 5064,
+     "spine_03/pilot_seat": 1854,
+     "spine_01/pilot_seat": 788,
+     "spine_05/pilot_seat": 22,
+     "clavicle_r/pilot_seat": 18
+    },
+    "contactPairs": 1047,
+    "seatSinkCm": "cushion 2.2 / back 7.7 / bolster or harness 8.0",
+    "backGapCm": "0.0..inf",
+    "controlClearCm": "-1.6",
+    "headClearCm": "3.7 at frame 8 (interior), head top y 2.137",
+    "contactCm": "foot_l pedal_L 0-5 0.01; foot_r pedal_R 0-4 0.01; hand_l collective 0-0 0.01; hand_r cyclic 0-0 0.0; hand_r cockpit_door_R 8-9 0.0; foot_r None 18-25 0.01",
+    "contactMaxCm": 0.01,
+    "hardPairs": {
+     "index_03_r/cockpit_door_R_glass": "3.2 cm at 10 (2 frames)",
+     "index_02_r/cockpit_door_R_glass": "3.2 cm at 10 (3 frames)",
+     "hand_r/cockpit_door_R_glass": "2.6 cm at 7 (4 frames)",
+     "thumb_02_r/cockpit_door_R_glass": "2.3 cm at 7 (3 frames)",
+     "ring_01_r/cockpit_door_R_glass": "2.2 cm at 7 (4 frames)",
+     "ring_02_r/cockpit_door_R_glass": "2.1 cm at 10 (2 frames)",
+     "ring_02_l/collective": "2.0 cm at 1 (6 frames)",
+     "thigh_l/cyclic": "2.0 cm at 10 (5 frames)",
+     "middle_02_l/collective": "1.9 cm at 2 (5 frames)",
+     "pinky_02_r/cockpit_door_R_glass": "1.9 cm at 10 (4 frames)",
+     "pinky_01_r/cockpit_door_R_glass": "1.9 cm at 10 (5 frames)",
+     "pinky_03_r/cockpit_door_R_glass": "1.9 cm at 10 (1 frames)",
+     "index_01_r/cockpit_door_R_glass": "1.9 cm at 8 (3 frames)",
+     "middle_03_r/cockpit_door_R_glass": "1.9 cm at 6 (2 frames)",
+     "middle_03_l/collective": "1.9 cm at 1 (4 frames)",
+     "middle_02_r/cockpit_door_R_glass": "1.8 cm at 10 (2 frames)",
+     "ring_03_l/collective": "1.7 cm at 1 (4 frames)",
+     "ring_03_r/cyclic": "1.6 cm at 1 (1 frames)",
+     "middle_03_r/cyclic": "1.6 cm at 1 (1 frames)",
+     "middle_01_r/cockpit_door_R_glass": "1.5 cm at 7 (4 frames)",
+     "thumb_03_r/cockpit_door_R_glass": "1.4 cm at 8 (3 frames)",
+     "ring_02_r/cyclic": "1.3 cm at 1 (1 frames)",
+     "middle_01_l/collective": "1.3 cm at 1 (2 frames)",
+     "ring_01_l/collective": "1.3 cm at 1 (2 frames)",
+     "pinky_03_l/collective": "1.2 cm at 1 (1 frames)",
+     "pinky_02_l/collective": "1.2 cm at 1 (1 frames)",
+     "pinky_01_l/collective": "1.2 cm at 1 (1 frames)",
+     "middle_02_r/cyclic": "0.8 cm at 1 (1 frames)",
+     "index_03_r/cyclic": "0.8 cm at 1 (2 frames)",
+     "ball_l/pedal_L": "0.8 cm at 9 (5 frames)",
+     "ball_r/pedal_R": "0.8 cm at 6 (4 frames)",
+     "ring_03_r/cockpit_door_R_glass": "0.7 cm at 10 (1 frames)",
+     "thumb_03_l/collective": "0.7 cm at 1 (1 frames)",
+     "index_02_r/cyclic": "0.7 cm at 2 (2 frames)",
+     "middle_01_r/cyclic": "0.7 cm at 1 (1 frames)",
+     "index_03_l/collective": "0.6 cm at 1 (2 frames)",
+     "index_01_l/collective": "0.6 cm at 1 (2 frames)",
+     "thumb_02_l/collective": "0.6 cm at 1 (1 frames)",
+     "index_02_l/collective": "0.6 cm at 1 (2 frames)",
+     "foot_l/pedal_L": "0.6 cm at 9 (2 frames)",
+     "thumb_02_r/cyclic": "0.4 cm at 1 (1 frames)",
+     "thumb_01_r/cyclic": "0.4 cm at 1 (1 frames)",
+     "thumb_03_r/cyclic": "0.3 cm at 1 (1 frames)",
+     "thumb_01_l/collective": "0.1 cm at 1 (1 frames)"
+    },
+    "softPairs": {
+     "thigh_r/pilot_seat": "7.0 cm at 8 (18 frames)",
+     "pelvis/pilot_seat": "6.8 cm at 7 (18 frames)",
+     "spine_01/pilot_seat": "4.8 cm at 9 (16 frames)",
+     "spine_03/pilot_seat": "4.4 cm at 4 (14 frames)",
+     "thigh_l/pilot_seat": "4.3 cm at 6 (11 frames)",
+     "spine_05/pilot_seat": "3.6 cm at 9 (5 frames)",
+     "calf_r/pilot_seat": "2.9 cm at 10 (13 frames)",
+     "calf_l/pilot_seat": "2.8 cm at 8 (10 frames)",
+     "lowerarm_r/pilot_seat": "2.3 cm at 4 (1 frames)",
+     "upperarm_r/pilot_seat": "2.3 cm at 4 (2 frames)",
+     "clavicle_r/pilot_seat": "2.2 cm at 9 (3 frames)",
+     "foot_r/pilot_seat": "0.5 cm at 11 (1 frames)"
+    },
+    "hardMaxCm": 3.24,
+    "softMaxCm": 7.02,
+    "headByCm": {
+     "interior": "3.7 at 8",
+     "cockpit_door_R": "5.2 at 7",
+     "fuselage": "4.9 at 9"
+    },
+    "joinErr": "0.499 mm (hand_r) / 0.306 deg (hand_r)",
+    "groundUnderCm": {},
+    "groundUnderMaxCm": 0.0,
+    "rollUnderMaxCm": 0.0,
+    "rollUnderAt": "None (None)",
+    "wristWorst": "Left flex -17 (f4) dev +20 (f0) / Right flex +31 (f7) dev +31 (f7)",
+    "wristPast": [],
+    "twistStepDeg": 35.7,
+    "twistAt": "6 (Right)",
+    "elbowMinDeg": 20.4,
+    "elbowAt": 0,
+    "kneeMinDeg": 67.7,
+    "kneeAt": 36,
+    "duration": 1.2333333333333334
+   }
+  },
+  "fall": {
+   "duration": 1.0,
+   "loop": true,
+   "frames": 30,
+   "cycles": 1,
+   "speed": 0.0,
+   "direction": 0.0,
+   "dir": [
+    0,
+    0
+   ],
+   "contact": {
+    "Left": [
+     [
+      0.0,
+      1.0
+     ]
+    ],
+    "Right": [
+     [
+      0.0,
+      1.0
+     ]
+    ]
+   },
+   "leftStrike": null,
+   "root": [
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ]
+   ],
+   "vehicle": "ground",
+   "events": {},
+   "door": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "contacts": [],
+   "review": {
+    "slide": "0.000 / 0.000",
+    "kneeMin": 52.4,
+    "gapCm": "27.1 / 30.8",
+    "seam": "0.88 / 0.91",
+    "clearCm": "17.9 / 29.5",
+    "headY": "1.665..1.695",
+    "hipsY": "1.085..1.115",
+    "hipsVsIdle": "-",
+    "feetCm": "38 / 28",
+    "elbowDeg": "89..110 / 52..92",
+    "elbowOutCm": "14..23 / 22..26",
+    "wristDeg": "flex +2 dev +3 / flex +2 dev +3",
+    "snap30": "hand_l 0.2 / hand_r 0.2 / foot_l 0.2 / foot_r 0.2 / head 0.1",
+    "snapMax": 0.22,
+    "vehiclePairs": 0,
+    "framesWithPairs": 0,
+    "seatPairs": 0,
+    "contactPairs": 0,
+    "seatSinkCm": "cushion 0.0 / back 0.0 / bolster or harness 0.0",
+    "backGapCm": "0.0..0.0",
+    "controlClearCm": "inf",
+    "headClearCm": "inf at frame 0 (None), head top y 1.905",
+    "contactCm": "",
+    "contactMaxCm": 0.0,
+    "groundUnderCm": {},
+    "groundUnderMaxCm": 0.0,
+    "rollUnderMaxCm": 0.0,
+    "rollUnderAt": "None (None)",
+    "wristWorst": "Left flex +2 (f10) dev +3 (f0) / Right flex +2 (f24) dev +3 (f0)",
+    "wristPast": [],
+    "twistStepDeg": 0.8,
+    "twistAt": "5 (Left)",
+    "elbowMinDeg": 52.0,
+    "elbowAt": 12,
+    "kneeMinDeg": 52.4,
+    "kneeAt": 22,
+    "join heli-jump end (0.2 s blend)": "306.6 mm (ring_03_l) / 42.6 deg (middle_03_l)",
+    "joinMm heli-jump end (0.2 s blend)": 306.59,
+    "joinDeg heli-jump end (0.2 s blend)": 42.56,
+    "join car-bail end (0.2 s blend)": "335.5 mm (ring_03_r) / 47.7 deg (ring_metacarpal_r)",
+    "joinMm car-bail end (0.2 s blend)": 335.55,
+    "joinDeg car-bail end (0.2 s blend)": 47.66,
+    "duration": 1.0
+   }
+  },
+  "land-roll": {
+   "duration": 1.7,
+   "loop": false,
+   "frames": 52,
+   "cycles": 1,
+   "speed": 0.0,
+   "direction": 0.0,
+   "dir": [
+    0,
+    0
+   ],
+   "contact": {
+    "Left": [
+     [
+      0.0,
+      1.0
+     ]
+    ],
+    "Right": [
+     [
+      0.0,
+      1.0
+     ]
+    ]
+   },
+   "leftStrike": null,
+   "root": [
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.00109,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.00468,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.01098,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.01994,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.03139,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.04496,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.06111,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.08138,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.10685,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.13877,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.17755,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.22031,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.26552,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.31177,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.35808,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.40361,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.44964,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.49635,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.54314,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.59294,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.64509,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.69936,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.75485,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.81046,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.86519,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.91801,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.96823,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.0157,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.06061,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.10353,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.14502,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.18602,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.22652,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.26642,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.30514,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.34178,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.37381,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.39746,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.41357,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.42323,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.42753,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.42758,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.42447,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.41931,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.41319,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.40722,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.40249,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.4001,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.4,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.4,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.4,
+     3.141593
+    ]
+   ],
+   "vehicle": "ground",
+   "events": {
+    "ground": 0.1402,
+    "free": 1.6579
+   },
+   "door": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "contacts": [
+    {
+     "part": "foot_l",
+     "from": 5,
+     "to": 14,
+     "node": null,
+     "at": [
+      -0.148,
+      0.0,
+      -0.1939
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "foot_r",
+     "from": 5,
+     "to": 14,
+     "node": null,
+     "at": [
+      0.138,
+      0.0,
+      -0.0539
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "hand_l",
+     "from": 12,
+     "to": 13,
+     "node": null,
+     "at": [
+      -0.1879,
+      0.0777,
+      -0.6588
+     ],
+     "kind": "push"
+    },
+    {
+     "part": "hand_r",
+     "from": 12,
+     "to": 13,
+     "node": null,
+     "at": [
+      0.1879,
+      0.0777,
+      -0.6588
+     ],
+     "kind": "push"
+    },
+    {
+     "part": "foot_r",
+     "from": 32,
+     "to": 51,
+     "node": null,
+     "at": [
+      0.134,
+      0.0,
+      -1.4741
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "foot_l",
+     "from": 33,
+     "to": 51,
+     "node": null,
+     "at": [
+      -0.124,
+      0.0,
+      -1.4141
+     ],
+     "kind": "ground",
+     "point": "ball"
+    }
+   ],
+   "review": {
+    "slide": "0.102 / 1.756",
+    "kneeMin": 10.6,
+    "gapCm": "22.0 / 24.8",
+    "seam": "-",
+    "clearCm": "0.8 / 2.5",
+    "headY": "0.132..1.672",
+    "hipsY": "0.104..1.100",
+    "hipsVsIdle": "-",
+    "feetCm": "36 / 27",
+    "elbowDeg": "27..142 / 29..142",
+    "elbowOutCm": "8..26 / 8..26",
+    "wristDeg": "flex -60 dev -43 / flex -60 dev -44",
+    "snap30": "hand_l 2.5 / hand_r 2.5 / foot_l 3.5 / foot_r 3.9 / head 1.3",
+    "snapMax": 3.88,
+    "vehiclePairs": 0,
+    "framesWithPairs": 0,
+    "seatPairs": 0,
+    "contactPairs": 0,
+    "seatSinkCm": "cushion 0.0 / back 0.0 / bolster or harness 0.0",
+    "backGapCm": "0.0..0.0",
+    "controlClearCm": "inf",
+    "headClearCm": "inf at frame 0 (None), head top y 1.884",
+    "contactCm": "foot_l None 5-14 0.01; foot_r None 5-14 0.01; hand_l None 12-13 0.0; hand_r None 12-13 0.0; foot_r None 32-51 0.01; foot_l None 33-51 0.01",
+    "contactMaxCm": 0.0,
+    "groundUnderCm": {
+     "head": "2.5 at 18",
+     "middle_03_r": "2.4 at 15",
+     "middle_03_l": "2.2 at 15",
+     "ring_03_l": "2.2 at 15",
+     "ring_03_r": "2.1 at 15",
+     "spine_05": "1.4 at 24",
+     "pelvis": "1.3 at 28",
+     "index_03_r": "1.2 at 14"
+    },
+    "groundUnderMaxCm": 2.55,
+    "rollUnderMaxCm": 2.55,
+    "rollUnderAt": "18 (head)",
+    "wristWorst": "Left flex -60 (f11) dev -43 (f12) / Right flex -60 (f11) dev -44 (f12)",
+    "wristPast": [],
+    "twistStepDeg": 38.3,
+    "twistAt": "16 (Left)",
+    "elbowMinDeg": 26.5,
+    "elbowAt": 50,
+    "kneeMinDeg": 10.6,
+    "kneeAt": 3,
+    "join fall frame 0": "5.1 mm (calf_r) / 1.0 deg (calf_r)",
+    "joinMm fall frame 0": 5.13,
+    "joinDeg fall frame 0": 1.05,
+    "duration": 1.7
+   }
+  },
+  "land-hard": {
+   "duration": 2.5,
+   "loop": false,
+   "frames": 76,
+   "cycles": 1,
+   "speed": 0.0,
+   "direction": 0.0,
+   "dir": [
+    0,
+    0
+   ],
+   "contact": {
+    "Left": [
+     [
+      0.0,
+      1.0
+     ]
+    ],
+    "Right": [
+     [
+      0.0,
+      1.0
+     ]
+    ]
+   },
+   "leftStrike": null,
+   "root": [
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ]
+   ],
+   "vehicle": "ground",
+   "events": {
+    "ground": 0.1333,
+    "free": 2.35
+   },
+   "door": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "contacts": [
+    {
+     "part": "foot_l",
+     "from": 4,
+     "to": 75,
+     "node": null,
+     "at": [
+      -0.1519,
+      0.0,
+      -0.1736
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "foot_r",
+     "from": 4,
+     "to": 75,
+     "node": null,
+     "at": [
+      0.1419,
+      0.0,
+      -0.0336
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "hand_r",
+     "from": 17,
+     "to": 37,
+     "node": null,
+     "at": [
+      0.3838,
+      0.0713,
+      0.2541
+     ],
+     "kind": "push"
+    }
+   ],
+   "review": {
+    "slide": "0.011 / 1.081",
+    "kneeMin": 15.2,
+    "gapCm": "30.4 / 25.3",
+    "seam": "-",
+    "clearCm": "1.9 / 3.3",
+    "headY": "0.728..1.672",
+    "hipsY": "0.152..1.100",
+    "hipsVsIdle": "-",
+    "feetCm": "36 / 27",
+    "elbowDeg": "27..132 / 24..102",
+    "elbowOutCm": "8..24 / 8..23",
+    "wristDeg": "flex +1 dev +3 / flex -55 dev -10",
+    "snap30": "hand_l 2.5 / hand_r 2.2 / foot_l 2.7 / foot_r 3.9 / head 2.4",
+    "snapMax": 3.91,
+    "vehiclePairs": 0,
+    "framesWithPairs": 0,
+    "seatPairs": 0,
+    "contactPairs": 0,
+    "seatSinkCm": "cushion 0.0 / back 0.0 / bolster or harness 0.0",
+    "backGapCm": "0.0..0.0",
+    "controlClearCm": "inf",
+    "headClearCm": "inf at frame 0 (None), head top y 1.884",
+    "contactCm": "foot_l None 4-75 0.01; foot_r None 4-75 0.01; hand_r None 17-37 0.01",
+    "contactMaxCm": 0.01,
+    "groundUnderCm": {
+     "middle_03_r": "1.6 at 47",
+     "ring_03_r": "0.7 at 44",
+     "calf_l": "0.3 at 20",
+     "index_03_r": "0.2 at 17",
+     "foot_r": "0.2 at 13"
+    },
+    "groundUnderMaxCm": 1.64,
+    "rollUnderMaxCm": 1.64,
+    "rollUnderAt": "47 (middle_03_r)",
+    "wristWorst": "Left flex +1 (f1) dev +3 (f0) / Right flex -55 (f39) dev -10 (f38)",
+    "wristPast": [],
+    "twistStepDeg": 17.1,
+    "twistAt": "12 (Right)",
+    "elbowMinDeg": 24.3,
+    "elbowAt": 50,
+    "kneeMinDeg": 15.2,
+    "kneeAt": 3,
+    "join fall frame 0": "0.0 mm (None) / 0.0 deg (None)",
+    "joinMm fall frame 0": 0.0,
+    "joinDeg fall frame 0": 0.0,
+    "duration": 2.5
+   }
+  },
+  "para-pickup": {
+   "duration": 1.3,
+   "loop": false,
+   "frames": 40,
+   "cycles": 1,
+   "speed": 0.0,
+   "direction": 0.0,
+   "dir": [
+    0,
+    0
+   ],
+   "contact": {
+    "Left": [
+     [
+      0.0,
+      1.0
+     ]
+    ],
+    "Right": [
+     [
+      0.0,
+      1.0
+     ]
+    ]
+   },
+   "leftStrike": null,
+   "root": [
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ]
+   ],
+   "vehicle": "ground",
+   "events": {
+    "grab": 0.34,
+    "onBack": 0.9353,
+    "free": 1.2486
+   },
+   "door": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "contacts": [
+    {
+     "part": "foot_l",
+     "from": 0,
+     "to": 39,
+     "node": null,
+     "at": [
+      -0.114,
+      0.0,
+      -0.1141
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "foot_r",
+     "from": 0,
+     "to": 39,
+     "node": null,
+     "at": [
+      0.114,
+      0.0,
+      -0.0941
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "hand_l",
+     "from": 11,
+     "to": 12,
+     "node": null,
+     "at": [
+      -0.11,
+      0.55,
+      -0.45
+     ],
+     "kind": "push"
+    },
+    {
+     "part": "hand_r",
+     "from": 11,
+     "to": 12,
+     "node": null,
+     "at": [
+      0.11,
+      0.55,
+      -0.45
+     ],
+     "kind": "push"
+    }
+   ],
+   "review": {
+    "slide": "0.000 / 0.000",
+    "kneeMin": 36.2,
+    "gapCm": "22.1 / 22.9",
+    "seam": "-",
+    "clearCm": "-",
+    "headY": "1.001..1.506",
+    "hipsY": "0.647..0.900",
+    "hipsVsIdle": "-",
+    "feetCm": "22 / 22",
+    "elbowDeg": "21..144 / 21..154",
+    "elbowOutCm": "4..19 / 2..27",
+    "wristDeg": "flex -47 dev -13 / flex -41 dev -14",
+    "snap30": "hand_l 2.6 / hand_r 3.1 / foot_l 0.0 / foot_r 0.0 / head 1.4",
+    "snapMax": 3.08,
+    "vehiclePairs": 0,
+    "framesWithPairs": 0,
+    "seatPairs": 0,
+    "contactPairs": 0,
+    "seatSinkCm": "cushion 0.0 / back 0.0 / bolster or harness 0.0",
+    "backGapCm": "0.0..0.0",
+    "controlClearCm": "inf",
+    "headClearCm": "inf at frame 0 (None), head top y 1.718",
+    "contactCm": "foot_l None 0-39 0.01; foot_r None 0-39 0.01; hand_l None 11-12 0.0; hand_r None 11-12 0.0",
+    "contactMaxCm": 0.0,
+    "groundUnderCm": {
+     "foot_r": "0.1 at 8"
+    },
+    "groundUnderMaxCm": 0.1,
+    "rollUnderMaxCm": 0.0,
+    "rollUnderAt": "None (None)",
+    "wristWorst": "Left flex -47 (f14) dev -13 (f10) / Right flex -41 (f13) dev -14 (f10)",
+    "wristPast": [],
+    "twistStepDeg": 38.3,
+    "twistAt": "19 (Right)",
+    "elbowMinDeg": 21.4,
+    "elbowAt": 3,
+    "kneeMinDeg": 36.2,
+    "kneeAt": 28,
+    "duration": 1.3
+   }
+  },
+  "para-deploy": {
+   "duration": 1.2,
+   "loop": false,
+   "frames": 37,
+   "cycles": 1,
+   "speed": 0.0,
+   "direction": 0.0,
+   "dir": [
+    0,
+    0
+   ],
+   "contact": {
+    "Left": [
+     [
+      0.0,
+      1.0
+     ]
+    ],
+    "Right": [
+     [
+      0.0,
+      1.0
+     ]
+    ]
+   },
+   "leftStrike": null,
+   "root": [
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ]
+   ],
+   "vehicle": "ground",
+   "events": {
+    "pull": 0.34,
+    "open": 0.55
+   },
+   "door": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "contacts": [],
+   "review": {
+    "slide": "0.000 / 0.000",
+    "kneeMin": 57.5,
+    "gapCm": "22.4 / 24.2",
+    "seam": "-",
+    "clearCm": "22.8 / 30.8",
+    "headY": "1.621..1.720",
+    "hipsY": "1.040..1.113",
+    "hipsVsIdle": "-",
+    "feetCm": "36 / 27",
+    "elbowDeg": "80..118 / 66..120",
+    "elbowOutCm": "21..27 / 10..27",
+    "wristDeg": "flex +2 dev +3 / flex +2 dev -3",
+    "snap30": "hand_l 1.5 / hand_r 2.1 / foot_l 1.8 / foot_r 1.4 / head 2.7",
+    "snapMax": 2.69,
+    "vehiclePairs": 0,
+    "framesWithPairs": 0,
+    "seatPairs": 0,
+    "contactPairs": 0,
+    "seatSinkCm": "cushion 0.0 / back 0.0 / bolster or harness 0.0",
+    "backGapCm": "0.0..0.0",
+    "controlClearCm": "inf",
+    "headClearCm": "inf at frame 0 (None), head top y 1.978",
+    "contactCm": "",
+    "contactMaxCm": 0.0,
+    "groundUnderCm": {},
+    "groundUnderMaxCm": 0.0,
+    "rollUnderMaxCm": 0.0,
+    "rollUnderAt": "None (None)",
+    "wristWorst": "Left flex +2 (f11) dev +3 (f0) / Right flex +2 (f3) dev -3 (f13)",
+    "wristPast": [],
+    "twistStepDeg": 21.8,
+    "twistAt": "10 (Right)",
+    "elbowMinDeg": 65.6,
+    "elbowAt": 7,
+    "kneeMinDeg": 57.5,
+    "kneeAt": 29,
+    "join fall frame 0": "0.0 mm (None) / 0.0 deg (None)",
+    "joinMm fall frame 0": 0.0,
+    "joinDeg fall frame 0": 0.0,
+    "join para-hang frame 0": "1.4 mm (hand_l) / 1.1 deg (hand_l)",
+    "joinMm para-hang frame 0": 1.39,
+    "joinDeg para-hang frame 0": 1.12,
+    "duration": 1.2
+   }
+  },
+  "para-hang": {
+   "duration": 2.0,
+   "loop": true,
+   "frames": 60,
+   "cycles": 1,
+   "speed": 0.0,
+   "direction": 0.0,
+   "dir": [
+    0,
+    0
+   ],
+   "contact": {
+    "Left": [
+     [
+      0.0,
+      1.0
+     ]
+    ],
+    "Right": [
+     [
+      0.0,
+      1.0
+     ]
+    ]
+   },
+   "leftStrike": null,
+   "root": [
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     0.0,
+     3.141593
+    ]
+   ],
+   "vehicle": "ground",
+   "events": {},
+   "door": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "contacts": [],
+   "review": {
+    "slide": "0.000 / 0.000",
+    "kneeMin": 56.1,
+    "gapCm": "22.0 / 24.2",
+    "seam": "0.85 / 2.19",
+    "clearCm": "22.8 / 28.5",
+    "headY": "1.694..1.709",
+    "hipsY": "1.092..1.104",
+    "hipsVsIdle": "-",
+    "feetCm": "24 / 22",
+    "elbowDeg": "78..85 / 78..85",
+    "elbowOutCm": "20..21 / 20..22",
+    "wristDeg": "flex -1 dev +1 / flex -1 dev +1",
+    "snap30": "hand_l 0.0 / hand_r 0.0 / foot_l 0.0 / foot_r 0.0 / head 0.0",
+    "snapMax": 0.03,
+    "vehiclePairs": 0,
+    "framesWithPairs": 0,
+    "seatPairs": 0,
+    "contactPairs": 0,
+    "seatSinkCm": "cushion 0.0 / back 0.0 / bolster or harness 0.0",
+    "backGapCm": "0.0..0.0",
+    "controlClearCm": "inf",
+    "headClearCm": "inf at frame 0 (None), head top y 1.999",
+    "contactCm": "",
+    "contactMaxCm": 0.0,
+    "groundUnderCm": {},
+    "groundUnderMaxCm": 0.0,
+    "rollUnderMaxCm": 0.0,
+    "rollUnderAt": "None (None)",
+    "wristWorst": "Left flex -1 (f51) dev +1 (f0) / Right flex -1 (f21) dev +1 (f0)",
+    "wristPast": [],
+    "twistStepDeg": 0.2,
+    "twistAt": "1 (Left)",
+    "elbowMinDeg": 77.6,
+    "elbowAt": 18,
+    "kneeMinDeg": 56.1,
+    "kneeAt": 41,
+    "duration": 2.0
+   }
+  },
+  "para-steer-l": {
+   "duration": 0.0,
+   "loop": false,
+   "frames": 1,
+   "cycles": 1,
+   "speed": 0.0,
+   "direction": 0.0,
+   "dir": [
+    0,
+    0
+   ],
+   "contact": {
+    "Left": [
+     [
+      0.0,
+      1.0
+     ]
+    ],
+    "Right": [
+     [
+      0.0,
+      1.0
+     ]
+    ]
+   },
+   "leftStrike": null,
+   "root": [
+    [
+     0.0,
+     0.0,
+     3.141593
+    ]
+   ],
+   "vehicle": "ground",
+   "events": {},
+   "door": [
+    0.0
+   ],
+   "contacts": [],
+   "review": {
+    "slide": "0.000 / 0.000",
+    "kneeMin": 57.5,
+    "gapCm": "22.4 / 24.2",
+    "seam": "-",
+    "clearCm": "24.7 / 30.8",
+    "headY": "1.704..1.704",
+    "hipsY": "1.100..1.100",
+    "hipsVsIdle": "-",
+    "feetCm": "22 / 22",
+    "elbowDeg": "77..77 / 82..82",
+    "elbowOutCm": "20..20 / 21..21",
+    "wristDeg": "flex +2 dev -0 / flex -1 dev +1",
+    "snap30": "hand_l 0.0 / hand_r 0.0 / foot_l 0.0 / foot_r 0.0 / head 0.0",
+    "snapMax": 0.0,
+    "vehiclePairs": 0,
+    "framesWithPairs": 0,
+    "seatPairs": 0,
+    "contactPairs": 0,
+    "seatSinkCm": "cushion 0.0 / back 0.0 / bolster or harness 0.0",
+    "backGapCm": "0.0..0.0",
+    "controlClearCm": "inf",
+    "headClearCm": "inf at frame 0 (None), head top y 1.979",
+    "contactCm": "",
+    "contactMaxCm": 0.0,
+    "groundUnderCm": {},
+    "groundUnderMaxCm": 0.0,
+    "rollUnderMaxCm": 0.0,
+    "rollUnderAt": "None (None)",
+    "wristWorst": "Left flex +2 (f0) dev -0 (f0) / Right flex -1 (f0) dev +1 (f0)",
+    "wristPast": [],
+    "twistStepDeg": 0.0,
+    "twistAt": "None (None)",
+    "elbowMinDeg": 77.0,
+    "elbowAt": 0,
+    "kneeMinDeg": 57.5,
+    "kneeAt": 0,
+    "join para-hang frame 0 but arm l": "0.0 mm (None) / 0.0 deg (None)",
+    "joinMm para-hang frame 0 but arm l": 0.0,
+    "joinDeg para-hang frame 0 but arm l": 0.0,
+    "duration": 0.0
+   }
+  },
+  "para-steer-r": {
+   "duration": 0.0,
+   "loop": false,
+   "frames": 1,
+   "cycles": 1,
+   "speed": 0.0,
+   "direction": 0.0,
+   "dir": [
+    0,
+    0
+   ],
+   "contact": {
+    "Left": [
+     [
+      0.0,
+      1.0
+     ]
+    ],
+    "Right": [
+     [
+      0.0,
+      1.0
+     ]
+    ]
+   },
+   "leftStrike": null,
+   "root": [
+    [
+     0.0,
+     0.0,
+     3.141593
+    ]
+   ],
+   "vehicle": "ground",
+   "events": {},
+   "door": [
+    0.0
+   ],
+   "contacts": [],
+   "review": {
+    "slide": "0.000 / 0.000",
+    "kneeMin": 57.5,
+    "gapCm": "22.4 / 24.2",
+    "seam": "-",
+    "clearCm": "24.7 / 30.8",
+    "headY": "1.704..1.704",
+    "hipsY": "1.100..1.100",
+    "hipsVsIdle": "-",
+    "feetCm": "22 / 22",
+    "elbowDeg": "81..81 / 78..78",
+    "elbowOutCm": "21..21 / 20..20",
+    "wristDeg": "flex -1 dev +1 / flex +2 dev -0",
+    "snap30": "hand_l 0.0 / hand_r 0.0 / foot_l 0.0 / foot_r 0.0 / head 0.0",
+    "snapMax": 0.0,
+    "vehiclePairs": 0,
+    "framesWithPairs": 0,
+    "seatPairs": 0,
+    "contactPairs": 0,
+    "seatSinkCm": "cushion 0.0 / back 0.0 / bolster or harness 0.0",
+    "backGapCm": "0.0..0.0",
+    "controlClearCm": "inf",
+    "headClearCm": "inf at frame 0 (None), head top y 1.978",
+    "contactCm": "",
+    "contactMaxCm": 0.0,
+    "groundUnderCm": {},
+    "groundUnderMaxCm": 0.0,
+    "rollUnderMaxCm": 0.0,
+    "rollUnderAt": "None (None)",
+    "wristWorst": "Left flex -1 (f0) dev +1 (f0) / Right flex +2 (f0) dev -0 (f0)",
+    "wristPast": [],
+    "twistStepDeg": 0.0,
+    "twistAt": "None (None)",
+    "elbowMinDeg": 77.8,
+    "elbowAt": 0,
+    "kneeMinDeg": 57.5,
+    "kneeAt": 0,
+    "join para-hang frame 0 but arm r": "0.0 mm (None) / 0.0 deg (None)",
+    "joinMm para-hang frame 0 but arm r": 0.0,
+    "joinDeg para-hang frame 0 but arm r": 0.0,
+    "duration": 0.0
+   }
+  },
+  "para-flare": {
+   "duration": 0.0,
+   "loop": false,
+   "frames": 1,
+   "cycles": 1,
+   "speed": 0.0,
+   "direction": 0.0,
+   "dir": [
+    0,
+    0
+   ],
+   "contact": {
+    "Left": [
+     [
+      0.0,
+      1.0
+     ]
+    ],
+    "Right": [
+     [
+      0.0,
+      1.0
+     ]
+    ]
+   },
+   "leftStrike": null,
+   "root": [
+    [
+     0.0,
+     0.0,
+     3.141593
+    ]
+   ],
+   "vehicle": "ground",
+   "events": {},
+   "door": [
+    0.0
+   ],
+   "contacts": [],
+   "review": {
+    "slide": "0.000 / 0.000",
+    "kneeMin": 57.5,
+    "gapCm": "22.4 / 24.2",
+    "seam": "-",
+    "clearCm": "24.7 / 30.8",
+    "headY": "1.704..1.704",
+    "hipsY": "1.100..1.100",
+    "hipsVsIdle": "-",
+    "feetCm": "22 / 22",
+    "elbowDeg": "77..77 / 78..78",
+    "elbowOutCm": "20..20 / 20..20",
+    "wristDeg": "flex +2 dev -0 / flex +2 dev -0",
+    "snap30": "hand_l 0.0 / hand_r 0.0 / foot_l 0.0 / foot_r 0.0 / head 0.0",
+    "snapMax": 0.0,
+    "vehiclePairs": 0,
+    "framesWithPairs": 0,
+    "seatPairs": 0,
+    "contactPairs": 0,
+    "seatSinkCm": "cushion 0.0 / back 0.0 / bolster or harness 0.0",
+    "backGapCm": "0.0..0.0",
+    "controlClearCm": "inf",
+    "headClearCm": "inf at frame 0 (None), head top y 1.918",
+    "contactCm": "",
+    "contactMaxCm": 0.0,
+    "groundUnderCm": {},
+    "groundUnderMaxCm": 0.0,
+    "rollUnderMaxCm": 0.0,
+    "rollUnderAt": "None (None)",
+    "wristWorst": "Left flex +2 (f0) dev -0 (f0) / Right flex +2 (f0) dev -0 (f0)",
+    "wristPast": [],
+    "twistStepDeg": 0.0,
+    "twistAt": "None (None)",
+    "elbowMinDeg": 77.0,
+    "elbowAt": 0,
+    "kneeMinDeg": 57.5,
+    "kneeAt": 0,
+    "join para-hang frame 0 but arm l, arm r": "0.0 mm (None) / 0.0 deg (None)",
+    "joinMm para-hang frame 0 but arm l, arm r": 0.0,
+    "joinDeg para-hang frame 0 but arm l, arm r": 0.0,
+    "duration": 0.0
+   }
+  },
+  "para-land": {
+   "duration": 1.5,
+   "loop": false,
+   "frames": 46,
+   "cycles": 1,
+   "speed": 0.0,
+   "direction": 0.0,
+   "dir": [
+    0,
+    0
+   ],
+   "contact": {
+    "Left": [
+     [
+      0.0,
+      1.0
+     ]
+    ],
+    "Right": [
+     [
+      0.0,
+      1.0
+     ]
+    ]
+   },
+   "leftStrike": null,
+   "root": [
+    [
+     0.0,
+     0.0,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.01885,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.06982,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.14453,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.23461,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.33169,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.42738,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.51331,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.58429,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.65408,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.72521,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.79738,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.87026,
+     3.141593
+    ],
+    [
+     0.0,
+     -0.94357,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.01697,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.09018,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.16286,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.23473,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.30546,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.37475,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.44229,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.50777,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.57087,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.6313,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.68873,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.74287,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.79339,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.84,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.88101,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.91533,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.94356,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.96628,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.98408,
+     3.141593
+    ],
+    [
+     0.0,
+     -1.99755,
+     3.141593
+    ],
+    [
+     0.0,
+     -2.00728,
+     3.141593
+    ],
+    [
+     0.0,
+     -2.01386,
+     3.141593
+    ],
+    [
+     0.0,
+     -2.01788,
+     3.141593
+    ],
+    [
+     0.0,
+     -2.01992,
+     3.141593
+    ],
+    [
+     0.0,
+     -2.02057,
+     3.141593
+    ],
+    [
+     0.0,
+     -2.02043,
+     3.141593
+    ],
+    [
+     0.0,
+     -2.02007,
+     3.141593
+    ],
+    [
+     0.0,
+     -2.02,
+     3.141593
+    ],
+    [
+     0.0,
+     -2.02,
+     3.141593
+    ],
+    [
+     0.0,
+     -2.02,
+     3.141593
+    ],
+    [
+     0.0,
+     -2.02,
+     3.141593
+    ],
+    [
+     0.0,
+     -2.02,
+     3.141593
+    ]
+   ],
+   "vehicle": "ground",
+   "events": {
+    "ground": 0.25,
+    "free": 1.35
+   },
+   "door": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "contacts": [
+    {
+     "part": "foot_r",
+     "from": 8,
+     "to": 12,
+     "node": null,
+     "at": [
+      0.114,
+      0.0,
+      -0.7341
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "foot_l",
+     "from": 16,
+     "to": 21,
+     "node": null,
+     "at": [
+      -0.114,
+      0.0,
+      -1.3141
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "foot_r",
+     "from": 20,
+     "to": 27,
+     "node": null,
+     "at": [
+      0.114,
+      0.0,
+      -1.7941
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "foot_l",
+     "from": 29,
+     "to": 45,
+     "node": null,
+     "at": [
+      -0.112,
+      0.0,
+      -2.1142
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "foot_r",
+     "from": 34,
+     "to": 45,
+     "node": null,
+     "at": [
+      0.124,
+      0.0,
+      -2.1741
+     ],
+     "kind": "ground",
+     "point": "ball"
+    }
+   ],
+   "review": {
+    "slide": "0.080 / 1.211",
+    "kneeMin": 13.2,
+    "gapCm": "22.3 / 23.6",
+    "seam": "-",
+    "clearCm": "1.0 / 1.0",
+    "headY": "1.410..1.704",
+    "hipsY": "0.819..1.100",
+    "hipsVsIdle": "-",
+    "feetCm": "53 / 23",
+    "elbowDeg": "27..143 / 29..143",
+    "elbowOutCm": "9..25 / 9..25",
+    "wristDeg": "flex +4 dev +2 / flex +4 dev +2",
+    "snap30": "hand_l 2.5 / hand_r 2.5 / foot_l 3.0 / foot_r 2.9 / head 1.5",
+    "snapMax": 2.97,
+    "vehiclePairs": 0,
+    "framesWithPairs": 0,
+    "seatPairs": 0,
+    "contactPairs": 0,
+    "seatSinkCm": "cushion 0.0 / back 0.0 / bolster or harness 0.0",
+    "backGapCm": "0.0..0.0",
+    "controlClearCm": "inf",
+    "headClearCm": "inf at frame 0 (None), head top y 1.979",
+    "contactCm": "foot_r None 8-12 0.01; foot_l None 16-21 0.01; foot_r None 20-27 0.01; foot_l None 29-45 0.01; foot_r None 34-45 0.01",
+    "contactMaxCm": 0.0,
+    "groundUnderCm": {
+     "foot_r": "0.1 at 10"
+    },
+    "groundUnderMaxCm": 0.09,
+    "rollUnderMaxCm": 0.09,
+    "rollUnderAt": "10 (foot_r)",
+    "wristWorst": "Left flex +4 (f6) dev +2 (f9) / Right flex +4 (f6) dev +2 (f9)",
+    "wristPast": [],
+    "twistStepDeg": 20.5,
+    "twistAt": "5 (Left)",
+    "elbowMinDeg": 26.5,
+    "elbowAt": 40,
+    "kneeMinDeg": 13.2,
+    "kneeAt": 22,
+    "join para-hang frame 0": "0.0 mm (None) / 0.0 deg (None)",
+    "joinMm para-hang frame 0": 0.0,
+    "joinDeg para-hang frame 0": 0.0,
+    "duration": 1.5
    }
   }
  }

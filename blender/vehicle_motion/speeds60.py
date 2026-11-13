@@ -16,6 +16,20 @@ import gltfio  # noqa: E402
 
 SPEED = {'hand_l': 4.5, 'hand_r': 4.5, 'foot_l': 4.5, 'foot_r': 4.5, 'head': 2.0, 'pelvis': 1.8}
 DV = {'hand_l': 4.5, 'hand_r': 4.5, 'foot_l': 4.5, 'foot_r': 4.5}
+# (pass A4) per clip: the fast entry / exit clips' brisk steps (feet up to 6 m/s, the brief's allowance, said so in the
+# log; car-exit's hands too) and the athletic gate for the new clips (hands / feet 8, head / pelvis 5, velocity change
+# per 60 Hz sample 6 except within 2 frames (30 fps) after events.ground)
+BRISK = dict(SPEED, foot_l=6.0, foot_r=6.0)
+ATHLETIC = {'hand_l': 8.0, 'hand_r': 8.0, 'foot_l': 8.0, 'foot_r': 8.0, 'head': 5.0, 'pelvis': 5.0}
+ATHLETIC_DV = {k: 6.0 for k in DV}
+LIMITS = {'car-enter': (BRISK, DV), 'car-exit': (dict(BRISK, hand_l=6.0, hand_r=6.0), DV), 'heli-enter': (BRISK, DV), 'heli-exit': (BRISK, DV)}
+for _c in ('car-bail', 'bail-roll', 'heli-jump', 'fall', 'land-roll', 'land-hard', 'para-pickup', 'para-deploy', 'para-hang', 'para-steer-l',
+           'para-steer-r', 'para-flare', 'para-land'):
+    LIMITS[_c] = (ATHLETIC, ATHLETIC_DV)
+
+
+def limits(clip):
+    return LIMITS.get(clip, (SPEED, DV))
 
 
 def _qmul(a, b):
@@ -89,38 +103,44 @@ def positions(path, clip, hz=60.0, g_b=None):
     return {k: P[name[k]] for k in SPEED if k in name}, ts
 
 
-def measure(path, clip, g_b=None):
+def measure(path, clip, g_b=None, exempt=()):
+    """exempt: [(t0, t1)] clip times where the velocity change is not gated (an impact: events.ground and 2 frames after)."""
     pos, ts = positions(path, clip, g_b=g_b)
+    LS, LD = limits(clip)
     out = {}
+    if len(ts) < 3:  # (pass A4: a one-pose clip: nothing moves)
+        return {k: dict(speed=(0.0, 0.0), dv60=(0.0, 0.0), over=[], dvOver=[]) for k in pos}
     for k, p in pos.items():
         v = np.diff(p, axis=0) * 60.0
         s = np.linalg.norm(v, axis=1)
         d = np.linalg.norm(np.diff(v, axis=0), axis=1)
         spans, cur = [], None
         for i, x in enumerate(s):
-            if x > SPEED[k]:
+            if x > LS[k]:
                 cur = [ts[i], ts[i + 1], x] if cur is None else [cur[0], ts[i + 1], max(cur[2], x)]
             elif cur:
                 spans.append(cur)
                 cur = None
         if cur:
             spans.append(cur)
-        dsp = [(ts[i + 1], x) for i, x in enumerate(d) if k in DV and x > DV[k]]
+        dsp = [(ts[i + 1], x) for i, x in enumerate(d) if k in LD and x > LD[k] and not any(a - 1e-6 <= ts[i + 1] <= b + 1e-6 for a, b in exempt)]
         i, j = int(np.argmax(s)), int(np.argmax(d))
         out[k] = dict(speed=(float(s[i]), float(ts[i + 1])), dv60=(float(d[j]), float(ts[j + 1])), over=spans, dvOver=dsp)
     return out
 
 
-def lines(path, clips, gb=None):
-    """Two lines per clip: '<clip>: speed60 ...; dv60 ...' and '<clip> SPEED PASS' or '<clip> SPEED FAIL: ...'."""
+def lines(path, clips, gb=None, exempt=None):
+    """Two lines per clip: '<clip>: speed60 ...; dv60 ...' and '<clip> SPEED PASS' or '<clip> SPEED FAIL: ...'.
+    exempt: {clip: [(t0, t1)]} (pass A4: the impact frames of a ground clip)."""
     gb = gb or gltfio.read(path)
     out, res = [], {}
     for clip in clips:
-        m = measure(path, clip, g_b=gb)
+        m = measure(path, clip, g_b=gb, exempt=(exempt or {}).get(clip, ()))
         res[clip] = m
         sp = ' / '.join(f'{k} {v["speed"][0]:.2f}@{v["speed"][1]:.2f}' for k, v in m.items())
         dv = ' / '.join(f'{k} {v["dv60"][0]:.2f}@{v["dv60"][1]:.2f}' for k, v in m.items() if k in DV)
-        out.append(f'{clip}: speed60 {sp}; dv60 {dv}')
+        LS, LD = limits(clip)
+        out.append(f'{clip}: speed60 {sp}; dv60 {dv}; limits ' + ' / '.join(f'{k} {LS[k]:g}' for k in LS) + f'; dv {max(LD.values()):g}')
         fails = []
         for k, v in m.items():
             for a, b_, pk in v['over']:

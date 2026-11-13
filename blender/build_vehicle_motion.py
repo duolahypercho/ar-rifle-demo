@@ -51,9 +51,9 @@ from rifle_motion import bake, carry, closeups, crouch, gait, gltfio, handling, 
 
 for module in (gltfio, skel, carry, pouch, rig, gait, crouch, transitions, handling, reactions, keys, bake, review, closeups):
     importlib.reload(module)
-from vehicle_motion import vehicles, pose, judge, judge_a2, clips_car, clips_heli, fit  # noqa: E402
+from vehicle_motion import vehicles, pose, judge, judge_a2, judge_a4, clips_car, clips_heli, clips_a4, fit  # noqa: E402
 
-for module in (fit, vehicles, pose, judge, judge_a2, clips_car, clips_heli):
+for module in (fit, vehicles, pose, judge, judge_a2, judge_a4, clips_car, clips_heli, clips_a4):
     importlib.reload(module)
 FIT = fit.FITS[_CHOICE['TABLE']]
 vehicles.FIT.clear()
@@ -143,12 +143,17 @@ def setup():
         bpy.context.view_layer.update()
         test = judge.VehicleTest(veh, objs, scn['body'], empty)
         props[kind] = dict(veh=veh, empty=empty, objs=objs, test=test)
+    # (pass A4: the ground clips' 'vehicle' and the body against the ground plane)
+    props['ground'] = dict(veh=clips_a4.Ground(), empty=None, objs={}, test=judge_a4.GroundTest(scn['body']))
     ctx = dict(scn=scn, skeleton=skeleton, author=author, props=props)
     bpy.app.driver_namespace['vehicle_motion'] = ctx
     return ctx
 
 
 def make_clip(name, ctx):
+    if name in clips_a4.NAMES:  # (pass A4: the athletic clips)
+        kind = {'car-bail': 'car', 'heli-jump': 'heli'}.get(name, 'ground')
+        return clips_a4.make(name, ctx['props'][kind]['veh'], ctx['author'])
     kind = 'car' if name.startswith('car-') else 'heli'
     veh = ctx['props'][kind]['veh']
     mod = clips_car if kind == 'car' else clips_heli
@@ -213,6 +218,8 @@ def moment(name, meta, P, V):
         return next((c['from'] for c in meta['contacts'] if c['node'] == 'skid_R'), 0)
     if name == 'end':
         return n - 1
+    if name.startswith('f'):  # (pass A4: a clip frame, as the gate names it)
+        return int(name[1:])
     return int(name)
 
 
@@ -227,9 +234,10 @@ def key_knees(scn, action, frames):
         for side, s in (('Left', 'L'), ('Right', 'R')):
             t = Vector()
             if f.get('knees'):
-                ground, yaw, pitch = f['feet'][side]
+                ground, yaw, pitch = f['feet'][side][:3]
                 rf = bones['foot_ctrl.' + s].matrix_local
-                posed = Matrix.Translation(skel.g2b(ground)) @ (skel.rot_b(Quaternion((0, 1, 0), yaw)) @ rf.to_quaternion()).to_matrix().to_4x4()
+                whole = f['feet'][side][3] if len(f['feet'][side]) > 3 else Quaternion((0, 1, 0), yaw)
+                posed = Matrix.Translation(skel.g2b(ground)) @ (skel.rot_b(whole) @ rf.to_quaternion()).to_matrix().to_4x4()
                 k = posed @ rf.inverted() @ bones['knee_pole.' + s].matrix_local
                 t = k.to_3x3().inverted() @ (skel.g2b(f['knees'][side]) - k.translation)
                 w_ = f.get('knees_w', 1.0)
@@ -246,7 +254,8 @@ def run_clip(ctx, name, sheets=True):
     clip = make_clip(name, ctx)
     kind = clip.veh.kind
     p = ctx['props'][kind]
-    p['test'].__class__ = judge.VehicleTest  # (a reused scene keeps the instance; the class is this run's)
+    if kind != 'ground':
+        p['test'].__class__ = judge.VehicleTest  # (a reused scene keeps the instance; the class is this run's)
     frames, meta, V, roots = clip.make(scn['carry'], scn['carry2'])
     action = keys.key_clip(scn, skeleton, name, frames)
     key_knees(scn, action, frames)
@@ -254,9 +263,18 @@ def run_clip(ctx, name, sheets=True):
     baked = bake.bake(scene, scn, action, n)
     bake.key_twist(scn, name, bake.gltf_frames(skeleton, baked + baked[:1] if meta['loop'] else baked, meta['root'] + meta['root'][:1] if meta['loop'] else meta['root']))
     ctls = [v['ctl'] for v in V]
-    vehicles.key_prop(p['veh'], p['empty'], p['objs'], roots, ctls)
     ground = bpy.data.objects['review-ground']
-    ground.hide_render = True  # (the vehicle's own ground plane: the review floor would be wrong under a moving root)
+    if kind != 'ground':
+        vehicles.key_prop(p['veh'], p['empty'], p['objs'], roots, ctls)
+        ground.hide_render = True  # (the vehicle's own ground plane: the review floor would be wrong under a moving root)
+    else:  # (pass A4: the ground plane of the clip's frame, carried by the inverse root like a vehicle)
+        ground.hide_render = False
+        ground.animation_data_clear()
+        ground.rotation_mode = 'QUATERNION'
+        for f, (x, z, yaw) in enumerate(roots):
+            ground.matrix_basis = vehicles.C4 @ (Matrix.Translation((x, 0, z)) @ Matrix.Rotation(yaw, 4, 'Y')).inverted() @ vehicles.CI
+            ground.keyframe_insert('location', frame=f)
+            ground.keyframe_insert('rotation_quaternion', frame=f)
     numbers = review.metrics(baked, meta, scn['carry'])
     numbers.pop('gripCm', None)
     P = judge.world_parts(baked, roots)
@@ -298,6 +316,36 @@ def run_clip(ctx, name, sheets=True):
         pass
     numbers['contactMaxCm'] = max((m[5] for m in misses if m[0].startswith('hand')), default=0.0)
     ctx.setdefault('baked', {})[name] = (baked, roots)
+    if name in clips_a4.NAMES:  # (pass A4: the athletic gate's measures)
+        refs = {}
+        for label, (other, k_this, k_other) in clips_a4.JOINS.get(name, {}).items():
+            if other == name:
+                refs[label] = (k_this if k_this >= 0 else n + k_this, baked[k_other if k_other >= 0 else n + k_other])
+                continue
+            if other not in ctx['baked']:
+                run_clip(ctx, other, sheets=False)
+                return run_clip(ctx, name, sheets)
+            ob = ctx['baked'][other][0]
+            refs[label] = (k_this if k_this >= 0 else n + k_this, ob[k_other if k_other >= 0 else len(ob) + k_other])
+        if kind != 'ground':  # (the start on the seated reference, in the vehicle's frame: the clip gate's join)
+            ref_name = 'car-drive' if kind == 'car' else 'heli-fly'
+            if ref_name not in ctx['baked']:
+                run_clip(ctx, ref_name, sheets=False)
+                return run_clip(ctx, name, sheets)
+            rb, rr = ctx['baked'][ref_name]
+            meta['_veh'], meta['_ctl'] = p['veh'], ctls
+            m2 = judge_a2.measures(kind, baked, roots, meta, P, results, ((baked[0], roots[0]), (rb[0], rr[0])))
+            meta.pop('_veh')
+            meta.pop('_ctl')
+            numbers.update({k: m2[k] for k in ('hardPairs', 'softPairs', 'hardMaxCm', 'softMaxCm', 'headByCm', 'joinErr')})
+            write_frames(REVIEW / f'{name}-frames.txt', name, results, P, meta, ctls, p['veh'], baked)
+        a4 = judge_a4.measures(baked, meta, P, results, refs, getattr(clip, 'roll', ()))
+        a4['contactCm'] = contact_miss(meta, P, ctls, p['veh'])
+        a4['wristEst'] = getattr(clip, 'wrist_est', None)
+        a4['events'] = meta['events']
+        a4['duration'] = meta['duration']
+        (REVIEW / f'{name}-a4.json').write_text(json.dumps(dict(a4, numbers={k: v for k, v in numbers.items() if isinstance(v, (int, float, str))}), indent=1, default=str))
+        numbers.update({k: v for k, v in a4.items() if k not in ('lowestCm', 'lowTrunkCm', 'contactCm', 'events', 'wristPerFrame', 'wristEst')})
     if 'enter' in name or 'exit' in name or name.endswith('-seated') or name == 'heli-collective-down' or globals().get('A2_ALL'):  # (pass A2's measures: depths, wrists per frame, balance, the join)
         ref_name = getattr(clip, 'join_ref', None) or ('car-drive' if kind == 'car' else 'heli-fly')
         if ref_name not in ctx['baked']:
@@ -314,7 +362,18 @@ def run_clip(ctx, name, sheets=True):
     ctx['last'] = dict(name=name, P=P, baked=baked, roots=roots, V=V, meta=meta)
     line = f'{name}: ' + ', '.join(f'{k} {v}' for k, v in numbers.items())
     print(line)
+    if globals().get('CLOSE_ONLY') and name in globals().get('CLOSE_EXTRA', {}):  # (pass A4: just the named close-ups)
+        ctx['clip'] = clip
+        scene = bpy.context.scene
+        parts = CONTACT_PARTS.get(kind)
+        for at, views in globals()['CLOSE_EXTRA'][name]:
+            f = moment(at, meta, P, V)
+            scene.frame_set(f)
+            show_only(ctx, kind, None if globals().get('CLOSE_ALL_PARTS') else parts)
+            closeups.render(scene, ctx['scn']['skeleton'], REVIEW / f'close-{name}-{at}.png', f, views)
+        show_only(ctx, kind, None)
     if sheets and not globals().get('NO_SHEETS'):
+        ctx['clip'] = clip
         render_sheets(ctx, name, meta, P, V, roots, kind)
     print(f'  ({time.time() - t0:.0f} s)')
     return baked, meta, numbers, line, per_frame
@@ -371,13 +430,16 @@ def render_sheets(ctx, name, meta, P, V, roots, kind):
             d = Matrix.Rotation(-yaw, 3, 'Y') @ Vector(direction)
             judge.set_cam(cam, centre(f), skel.g2b(d), scale, cut=cut)
         return setup
-    parts = CONTACT_PARTS[kind] if ('enter' in name or 'exit' in name) else SEATED_PARTS[kind]
+    parts = CONTACT_PARTS.get(kind) if ('enter' in name or 'exit' in name or name in clips_a4.NAMES) else SEATED_PARTS.get(kind)
     rows = [('front', view((0, 0.05, -1), 2.2, parts)), ('side', view((-1, 0.05, 0) if kind == 'car' else (1, 0.05, 0), 2.2, parts)),
             ('above', view((0.0001, 1, 0), 2.2, parts)),
             ('section', view((-1, 0.0, 0) if kind == 'car' else (1, 0.0, 0), 2.2, None, cut=0.12)), ('threequarter', view((-1, 0.6, -1.1) if kind == 'car' else (1, 0.6, -1.1), 3.2, None))]
     judge.sheet(scene, REVIEW / f'{name}.png', picks, rows)
-    for at, views in CLOSEUPS.get(name, ()):
+    for at, views in list(CLOSEUPS.get(name, ())) + list(globals().get('CLOSE_EXTRA', {}).get(name, ())):
         f = moment(at, meta, P, V) if isinstance(at, str) else at
+        cl = ctx.get('clip')
+        if not isinstance(at, str) and cl is not None and cl.warp:  # (pass A4: close-up frames are authored frames)
+            f = min(n - 1, int(round(cl.Winv(at / 30.0) * 30)))
         scene.frame_set(f)
         show_only(ctx, kind, parts)
         closeups.render(scene, ctx['scn']['skeleton'], REVIEW / f'close-{name}-{at}-{f}.png', f, views)
@@ -411,7 +473,10 @@ def notes_top():
                      'collective': f'collective: local rotation = rest * Rx(coll) (+ raises the grip); heli-collective-down / -up coll = {vehicles.COLLECTIVE_DEG["down"]} / +{vehicles.COLLECTIVE_DEG["up"]} deg, heli-fly holds {vehicles.COLLECTIVE_DEG["fly"]}',
                      'pedals': f'pedal_L / pedal_R: translated along the parent\'s -Z by +-push; heli-pedal-l pushes the left pedal {vehicles.PEDAL_M} m forward and the right one back by the same, -r the reverse'},
             'note': 'Per clip, notes `ctl` holds the controls per frame (only those that move). The game\'s own control ranges may differ: scale the pose clips\' weights to them; the contacts follow the nodes either way.'},
-        'events': 'seconds from the clip\'s start: doorOpenStart, doorOpenEnd, seated, doorCloseStart, doorCloseEnd, handsOn (exit clips: doorOpenStart / -End, unseated (the hips leave the seat), doorCloseStart / -End, handsOff).',
+        'events': 'seconds from the clip\'s start: doorOpenStart, doorOpenEnd, seated, doorCloseStart, doorCloseEnd, handsOn (exit clips: doorOpenStart / -End, unseated (the hips leave the seat), doorCloseStart / -End, handsOff). '
+                  'Pass A4: handsOn (enter clips) = the hands on the wheel / the controls, driving or flying input live from here; free (exit clips) = standing clear of the door, movement input may take over from here (the door, if not shut, closes by itself). '
+                  'The fast entry / exit clips (A4) are the same moves as before at a speed-limited pace (holds shortened, the moves as brisk as the limits allow); car-exit and heli-exit end standing where the body got out (no steps back to the entry point), '
+                  'and their doors close by themselves after free (no hand).',
         'door': 'per frame 0 shut .. 1 open: the game drives the real door node from it (see controls).',
         'contacts': 'list of {part: hand_l | hand_r | foot_l | foot_r, from, to (frames, inclusive), node (vehicle node name, or null = the ground / the vehicle root\'s frame), '
                     'at: [x, y, z] in that node\'s own glTF frame (the palm\'s middle for a hand, the ball of the foot (point: ball) or the back of the heel (point: heel) for a foot), kind}. '
@@ -421,6 +486,23 @@ def notes_top():
                'outgoing half of the swap clip before car-enter / heli-enter and hides both guns once the door is shut (VEHICLE_NOTES.md).',
         'gunNode': {'node': bake.GUN, 'parent': 'spine_05'},
         'vehicleFit': {k: {n: dict({'translate': v['translate']}, **({'scale': v['scale']} if 'scale' in v else {}), why=v['why']) for n, v in nodes.items()} for k, nodes in FIT.items()},
+        'athleticClips': 'Pass A4. car-bail (car frame) and heli-jump (helicopter frame) are like the entry / exit clips (the vehicle root\'s frame, root [x, z, yaw] on its ground plane, door per frame, '
+                         'contacts) and start exactly on car-drive frame 0 / heli-fly frame 0; events.release is the frame the body is clear of the vehicle: from there the game carries the body in world space '
+                         'with the vehicle\'s velocity. Their last frame is airborne (pelvis 0.90 m over the car\'s ground plane / 1.27 m over the helicopter\'s), root yaw = the body\'s facing. '
+                         'bail-roll, fall, land-roll, land-hard are ground clips: the clip\'s own frame, ground y = 0, the travel along -Z, root [x, z, yaw] from where the body starts. bail-roll frame 0 = car-bail\'s '
+                         'last frame re-rooted (same pose about the root, root (0, 0, car-bail\'s last root yaw)): its frame is the car\'s at the release, moved to the body (-Z = the car\'s forward, the travel at speed); '
+                         'its pelvis starts 0.90 m over its ground, the right shoulder meets it at events.ground; scale the root\'s x / z travel to the speed. fall is a loop with its root fixed at (0, 0, pi), the '
+                         'pelvis 1.10 m over the root, facing the root\'s yaw; car-bail\'s and heli-jump\'s last poses are near its frame 0 (one arm lower at their ends, by about 0.3 m: a 0.2 s blend). '
+                         'land-roll / land-hard start exactly on fall frame 0 (pelvis 1.10 m over their ground, the soles 0.14 m over it), the feet down at events.ground; free = standing, movement may take over.',
+        'parachuteClips': 'Pass A4. Ground-frame clips like the athletic ones (forward -Z, ground y = 0, root [x, z, yaw]). The toggles are at the palms (the hands\' '
+                          'palm points, every frame), the risers meet the harness at clavicle_l / clavicle_r. para-hang: a 2 s loop, root fixed at (0, 0, pi), the pelvis 1.10 m over '
+                          'the root (as fall), hands up at the toggles. para-steer-l / -r / para-flare: one-pose clips equal to para-hang frame 0 except the pulled arm(s) (left / right / '
+                          'both hands down at the hips): add them over para-hang per bone (delta = pose * para-hang frame 0 ^-1) weighted by how far the toggle is pulled. '
+                          'para-deploy: from fall frame 0 exactly to para-hang frame 0 (1.4 mm at a hand); events.pull = the handle out of its pocket at the right hip, events.open = '
+                          'the opening jerk. para-land: from para-hang frame 0 exactly; the flare (hands to the hips), feet first at events.ground, three steps, standing at events.free, '
+                          '2.0 m along -Z. para-pickup: standing to standing (pelvis 0.895 m, hands by the thighs), the pack on a crate 0.45 m ahead, its top 0.55 m up; '
+                          'events.grab = both hands on it; from grab to events.onBack the pack goes with the right palm, after it on spine_05; arms stay in front of / above the '
+                          'shoulders (clear of a 12 cm pack on the back), the right hand over the right shoulder in the swing.',
         'vehicleFitNote': 'Fixed adjustments of the vehicle for this body family (a driver / pilot setting the seat, the wheel, the pedals): '
                           'translate = an offset in the node\'s PARENT frame (here the vehicle root), added to its rest translation; '
                           'the clips (root, contacts, poses) are authored with them applied: the game must apply the same offsets to the real model '
@@ -505,9 +587,10 @@ def main():
     # (pass A3 round 2: the game's 60 Hz speed measure on the exported file, entry and exit clips; gate_a2.py reads it)
     sys.path.insert(0, str(ROOT / 'blender'))
     from vehicle_motion import speeds60
-    ee = [nm for nm, _, _ in done if 'enter' in nm or 'exit' in nm]
+    ee = [nm for nm, _, _ in done if 'enter' in nm or 'exit' in nm or nm in clips_a4.NAMES]
+    exempt = {nm: [(m['events']['ground'], m['events']['ground'] + 2.0 / 30.0)] for nm, _, m in done if 'ground' in m.get('events', {})}
     if ee:
-        sl, _ = speeds60.lines(str(out_glb), ee)
+        sl, _ = speeds60.lines(str(out_glb), ee, exempt=exempt)
         (REVIEW / ('speeds60.txt' if not only else 'speeds60-partial.txt')).write_text('\n'.join(sl) + '\n')
         print('\n'.join(sl))
     if not only:

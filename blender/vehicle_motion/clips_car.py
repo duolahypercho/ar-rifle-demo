@@ -15,7 +15,7 @@ from rifle_motion.gait import foot
 
 from rifle_motion.handling import ease
 
-from .pose import Clip, K, V3, const, ground_for_ball, hq, sole_points, warp_of, wheel_grip
+from .pose import Clip, K, V3, const, ground_for_ball, hq, sole_points, tail, warp_of, wheel_grip
 
 DEG = math.pi / 180
 SEAT_ROOT = (-0.37, 0.06, math.pi)  # seat_driver_point on the ground plane, facing forward (-Z)
@@ -116,9 +116,12 @@ UE5['vias'].update({  # (car-exit: its own last step backwards off the floor; th
 UE5['pitch'].update({'Right 3.25': [(0.0, 0.0), (0.2, 25.0), (0.75, 20.0), (1.0, 0.0)]})  # (toes up over the sill)
 UE5.update({
     'xw': 0.3,  # (car-exit: the hips 30 % of dy lower while seated, not 100 %: the back off the seat's wing)
-    'hand_vias': {'Left 1.00': [(-0.48, 0.58, -0.32)]},  # (the left hand from the door to the thigh, in front of the wing)
+    'a4_clear': None,  # (pass A4, tried 0.12 (car-exit's feet straight up off their places): the clip 3.1 s, more pairs)
+    'a4_clear_at': {2.3: 0.12},  # (pass A4, car-exit: the right foot off the pedal and the left off the floor straight up first)
+    'hand_vias': {'Left 1.00': [(-0.48, 0.58, -0.36)]},  # (the left hand from the door to the thigh, in front of the wing)
     'EX': {  # (car-exit's middle (exit_middle) for this body: its broader back under the roof's edge)
         'hang_r2': (3.9, 4.25, (0.07, 0.14, 0.50)), 'r0': 1.65,
+        'r2': 3.25,  # (pass A4: the left hand off the roof's edge 0.15 s sooner: its wrist 56 deg off as the body went down at the warp's instants)
         't': [(1.5, (182.0, -41.0, -4.0)), (2.0, (192.0, -40.0, -8.0)), (2.5, (196.0, -36.0, -8.0)), (3.0, (200.0, -18.0, -6.0)), (3.5, (245.0, 6.0, -6.0))],
         's': [(1.5, (4.0, 10.0, -12.0)), (2.0, (5.0, 16.0, -22.0)), (2.6, (6.0, 22.0, -30.0)), (3.2, (16.0, 16.0, -26.0)), (3.6, (17.0, 4.0, -16.0))],
         'p': [(1.6, (-0.40, 0.372, -0.21)), (1.9, (-0.45, 0.39, -0.20)), (2.3, (-0.50, 0.42, -0.19)), (3.0, (-0.58, 0.48, -0.13)), (3.4, (-0.66, 0.50, -0.12)),
@@ -257,11 +260,13 @@ def make(name, veh, author):
     if name == 'car-enter':
         c = Clip(name, veh, author, 8.0, loop=False)
         enter(c)
+        if A4['on']:
+            enter_a4(c)
         _adapt_body(c, lambda t: (1.0 - ease((t - 4.3) / 0.4)) + ease((t - 5.9) / 0.5) * (1.0 - ease((t - UE5.get('e0', 7.0)) / UE5.get('e1', 0.7))))
         c.warp = warp_of(c)  # (pass A3 round 2: the speed-limited time warp, warps_a3.json)
         return c
     if name == 'car-exit':
-        c = Clip(name, veh, author, 7.8, loop=False)
+        c = Clip(name, veh, author, (A4_EXIT_END if A4.get('door_push', True) else 6.2) if A4['on'] else 7.8, loop=False)
         keep = dict(EX)
         EX.update(_ue5().get('EX', {}))  # (the EarthOnline body's own values for the middle; none for Tripo)
         exit_(c)
@@ -269,6 +274,12 @@ def make(name, veh, author):
             exit_middle(c)
         EX.clear()
         EX.update(keep)
+        if A4['on']:  # (pass A4: no steps back to the entry point; standing where the door was pushed shut)
+            exit_a4_tail(c)
+            if _ue5().get('a4_clear'):  # (the EarthOnline body: feet straight up off and down onto their places)
+                c.step_clear = _ue5()['a4_clear']
+            if _ue5().get('a4_clear_at'):  # (... for these steps only, by their start)
+                c.step_clear_at = dict(_ue5()['a4_clear_at'])
         xw = _ue5().get('xw', 1.0)
         _adapt_body(c, lambda t: xw * ease((t - 0.3) / 0.7) * (1.0 - ease((t - 2.4) / 0.4)) + ease((t - 4.1) / 0.5))
         c.warp = warp_of(c)
@@ -543,7 +554,7 @@ def enter(c):
         a = ease((t - 5.9) / 0.5)  # (up while the foot is outside, then out to the side once it is in)
         b = ease((t - U.get('kb0', 5.2)) / U.get('kb1', 0.4))
         kl = V3(-0.2, 1.0, -0.3).lerp(V3(-0.7, 0.6, -0.3), a)
-        kr = V3(0.1, 1.0, -0.4).lerp(Vector(U.get('kr1', (0.6, 0.3, -0.6))), b).lerp(V3(0.45, 0.25, -0.85), ease((t - 5.8) / 0.3))
+        kr = V3(0.1, 1.0, -0.4).lerp(Vector(U.get('kr1', A4E['kr1'] if (A4['on'] and c.name == 'car-enter') else (0.6, 0.3, -0.6))), b).lerp(V3(0.45, 0.25, -0.85), ease((t - 5.8) / 0.3))
         wl, wr = _bumpk(t, 4.7, 5.0, 6.6, 7.5), _bumpk(t, 4.9, 5.2, 5.9, 6.6)
         if S.get('knees_w'):  # (pass A3: after the old poles have faded to rest (6.6 / 7.5 s), into the reference's own)
             e = ease((t - ke0) / ke1)
@@ -556,6 +567,140 @@ def enter(c):
     c.balance, c.seat_area, c.seat_pad, c.fixed_roll, c.seated_from = True, SEAT_AREA, SEAT_PAD, True, 6.6
     c.contact_lead = {'Left': 0.03}  # (the left foot's last 2 cm into its resting place, against the footwell's side, are on its contact)
     c.events = {'doorOpenStart': 1.1, 'doorOpenEnd': 2.2, 'seated': 4.7, 'doorCloseStart': 6.35, 'doorCloseEnd': 7.35, 'handsOn': 7.6}
+
+
+def settle_tail(f, t0, t1, v1):
+    """(pass A4) The channel f as it is up to t0, then from f(t0) with f's own slope there to v1 at rest at t1, held."""
+    return tail(f, t0, [(t1, tuple(v1), 'stop')])
+
+
+A4 = {'on': True, 'door_push': False}  # (pass A4: the fast car-exit's own end, exit_a4_tail; its speed warp is in warps_a4.json)
+A4_EXIT_END = 6.3
+A4_GRAB = (4.85, 5.55, 5.68, 6.13)  # (car-exit, pass A4: the right hand's reach to the door's grab while rising, the push, the way down)
+A4_EXIT_STAND = (V3(-1.60, 0.0, -0.30), 155.0)  # (where the hips settle after the door is pushed shut: over the feet's middle, facing)
+
+
+A4E = {  # (pass A4, car-enter at its fast warp: its frames fall at other instants of the authored move)
+    'hand_off_via': None,  # (tried: the right hand off the rising door's grab outward first: the arm straight, fingers deeper)
+    'lead_l': 0.015,  # (the left foot on its contact from 1.5 cm, the gate's own line, not 3)
+    'lift_l': 0.04, 'via_l_dy': 0.03, 'via_l_dx': 0.03,  # (the left foot's last step 3 cm higher and 3 cm nearer the middle: 2.2 cm into the footwell before its contact)
+    'kr1': (0.6, 0.3, -0.6),  # (tried (0.55, 0.05, -0.8), the knee down: thigh and calf 4.4 cm into the sill)
+    'hips_down': (5.9, 6.05, 6.4, 6.6, 0.0),  # (tried -1.5 cm: no change to thigh_r on the rim)
+    'hips_back': (5.05, 5.3, 5.6, 5.9, -0.01),  # (Tripo: the hips 1 cm further forward as the right leg comes in under the rim: thigh_r 2.2 cm into its bottom; back 1.5 or 3 cm was worse)
+    'viaR_dy': (0.0, ()),  # (Tripo: the right foot's way in under the rim 2 cm lower at its 2nd and 3rd points)
+}
+
+
+def enter_a4(c):
+    """(pass A4) car-enter's small changes for its fast warp (A4E)."""
+    if A4E.get('hand_off_via'):
+        hr = c.hands['Right']
+        k = next(i for i, s in enumerate(hr) if s[0] == 'move' and abs(s[1] - 1.3) < 1e-6)
+        hr[k] = hr[k][:3] + (list(A4E['hand_off_via']),) + hr[k][4:]
+    c.contact_lead = dict(c.contact_lead, Left=A4E['lead_l'])
+    # (the door waits on its strut a moment after the hand lets go of its grab (1.3-1.45) before it rises: the curled
+    # fingers were still in the grab's recess as it rose, 2.3-2.5 cm in at the warp's instants)
+    c.ctl['door'] = K([(0.0, 0.0), (1.1, 0.0, 'stop'), (1.3, 0.12, 'stop'), (1.45, 0.14), (2.25, 1.0, 'stop'), (6.35, 1.0, 'stop'), (6.68, 0.56), (7.05, 0.22),
+                       (7.35, 0.0, 'stop')])
+    c.events['doorOpenEnd'] = 2.25
+    # (the left foot's last step (6.85-7.3) 1.5 cm higher: 2.0-2.7 cm into the footwell just before its contact)
+    fl = c.feet['Left']
+    k = next(i for i, s in enumerate(fl) if s[0] == 'step' and abs(s[1] - 6.85) < 1e-6)
+    try:
+        import bpy
+        A4E.update({k: tuple(v) if isinstance(v, list) else v for k, v in bpy.app.driver_namespace.get('car_A4E', {}).items()})
+    except ImportError:
+        pass
+    fl[k] = fl[k][:3] + (A4E['lift_l'], [Vector(v) + V3(A4E.get('via_l_dx', 0.0), A4E['via_l_dy'], 0.0) for v in fl[k][4]]) + fl[k][5:]
+
+    if _ue5():
+        return
+    a, b, cc, d, dy = A4E['hips_down']
+    a2, b2, c2, d2, dz = A4E['hips_back']
+    pel = c.pelvis
+    c.pelvis = lambda t, dy=dy: pel(t) + V3(0.0, dy * _bumpk(t, a, b, cc, d), dz * _bumpk(t, a2, b2, c2, d2))
+    fr = c.feet['Right']
+    k = next(i for i, s in enumerate(fr) if s[0] == 'step' and abs(s[1] - 5.0) < 1e-6)
+    dy, idx = A4E['viaR_dy']
+    vias = [Vector(v) + (V3(0.0, dy, 0.0) if j in idx else V3(0.0, 0.0, 0.0)) for j, v in enumerate(fr[k][4])]
+    fr[k] = fr[k][:4] + (vias,) + fr[k][5:]
+
+
+def exit_a4_tail(c):
+    """(pass A4) car-exit's end, brisk: the right hand goes up for the door's grab while the body rises out of the doorway
+    and steps round (A4_GRAB: 4.85-5.55, 0.45 s sooner than before), pushes it down (5.55-5.68) and the door drops shut
+    (by 6.2) while the hand comes down to the side (5.68-6.13); no steps back to the entry point: the feet stay where they
+    are (left at (-1.68, -0.16) from 5.6, right at (-1.52, -0.44) from 5.92), the hips settle over them, upright, facing
+    155 deg (5.85-6.2). Upright outside the doorway, clear of the door, from 5.35 (`free`); the clip ends at 6.3."""
+    end = A4_EXIT_END
+    st = 0.915
+    T0 = 5.85
+    sp, yaw = A4_EXIT_STAND
+    c.pelvis = settle_tail(c.pelvis, T0, 6.2, (sp.x, st - 0.01, sp.z))
+    c.turn = settle_tail(c.turn, T0, 6.2, (yaw, 0.0, 0.0))
+    c.spine = settle_tail(c.spine, T0, 6.2, (2.0, 0.0, 0.0))
+    c.look = settle_tail(c.look, T0, 6.25, (0.0, 8.0))
+    c.collar = settle_tail(c.collar, T0, 6.25, (0.0, 0.0, 0.0, 0.0))
+    if not A4.get('door_push', True):
+        return exit_a4_nopush(c)
+    G0, G1, G2, G3 = A4_GRAB  # (the reach up to the grab, the push, the hand back down)
+    c.curl = tail(c.curl, 4.8, [(G1 - 0.15, (0.25, 0.4)), (G1, (0.25, 0.85)), (G2, (0.25, 0.85)), (G2 + 0.2, (0.25, 0.3)), (G3 + 0.05, (0.25, 0.25), 'stop')])
+    c.ctl['door'] = K([(0.0, 0.0), (0.65, 0.0, 'stop'), (1.0, 0.35), (1.6, 1.0, 'stop'), (G1, 1.0, 'stop'), (G2, 0.76), (G2 + 0.52, 0.0, 'stop')])
+    old_poles = c.poles
+
+    def poles(t):
+        pl, pr = old_poles(t)
+        if t > 4.2:
+            pr = V3(-0.7, -0.8, -0.2).lerp(V3(-0.9, 0.1, -0.3), _bumpk(t, G0 + 0.1, G1 - 0.15, G2 + 0.05, G3 - 0.05))
+        return (pl, pr)
+    c.poles = poles
+    hr = c.hands['Right']
+    kd = max(i for i, s in enumerate(hr) if s[0] == 'hold' and s[3] == 'door_L')
+    hr[kd - 2] = hr[kd - 2][:2] + (G0,) + hr[kd - 2][3:]
+    hr[kd - 1] = ('move', G0, G1) + hr[kd - 1][3:]
+    hr[kd] = hr[kd][:1] + (G1, G2) + hr[kd][3:]
+    hr[kd + 1] = ('move', G2, G3) + hr[kd + 1][3:]
+    hr[kd + 2] = hr[kd + 2][:1] + (G3,) + hr[kd + 2][2:]
+    for side, x, z in (('Left', -1.68, -0.16), ('Right', -1.52, -0.44)):
+        fe = c.feet[side]
+        i = next(i for i, s in enumerate(fe) if s[0] == 'plant' and s[3] is None and abs(s[4].x - x) < 1e-6 and abs(s[4].z - z) < 1e-6)
+        c.feet[side] = fe[:i] + [fe[i][:2] + (end + 1,) + fe[i][3:]]
+    c.root1 = (sp.x, sp.z, math.radians(yaw))
+    c.events.update({'free': 5.35, 'doorCloseStart': G1, 'doorCloseEnd': G2 + 0.52})  # (free: upright outside the doorway, clear of the door's edge)
+
+
+def exit_a4_nopush(c):
+    """(pass A4, what shipped) car-exit's end without the hand on the door: the right hand stays by the side, the door is
+    left to close by itself once the body is clear of it (A4_DROP: from `free`, 5.35, shut by 5.95); the steps round to
+    face the car's front as before (left 5.08-5.6, right 5.62-5.92), no steps back to the entry point; the hips settle
+    over the feet, upright, facing 155 deg, by 6.15; the clip ends at 6.2 (authored)."""
+    st = 0.915
+    T0 = 5.85
+    sp, yaw = A4_EXIT_STAND
+    c.pelvis = settle_tail(c.pelvis, T0, 6.15, (sp.x, st - 0.01, sp.z))
+    c.turn = settle_tail(c.turn, T0, 6.15, (yaw, 0.0, 0.0))
+    c.spine = settle_tail(c.spine, 5.5, 6.15, (2.0, 0.0, 0.0))
+    c.look = settle_tail(c.look, 5.5, 6.15, (0.0, 8.0))
+    c.collar = settle_tail(c.collar, 5.3, 6.0, (0.0, 0.0, 0.0, 0.0))
+    c.curl = settle_tail(c.curl, 5.3, 5.8, (0.25, 0.25))
+    d0, d1 = A4_DROP
+    c.ctl['door'] = K([(0.0, 0.0), (0.65, 0.0, 'stop'), (1.0, 0.35), (1.6, 1.0, 'stop'), (d0, 1.0, 'stop'), (d1, 0.0, 'stop')])
+    old_poles = c.poles
+    c.poles = lambda t: (old_poles(t)[0], V3(-0.7, -0.8, -0.2)) if t > 4.2 else old_poles(t)
+    hr = c.hands['Right']
+    kd = max(i for i, s in enumerate(hr) if s[0] == 'hold' and s[3] == 'door_L')
+    c.hands['Right'] = hr[:kd - 2] + [hr[kd - 2][:2] + (c.seconds + 1,) + hr[kd - 2][3:]]
+    c.auto_contacts = {k: v for k, v in c.auto_contacts.items() if not (k[0] == 'Right' and k[1] >= kd - 2)}
+    end = c.seconds
+    for side, x, z in (('Left', -1.68, -0.16), ('Right', -1.52, -0.44)):
+        fe = c.feet[side]
+        i = next(i for i, s in enumerate(fe) if s[0] == 'plant' and s[3] is None and abs(s[4].x - x) < 1e-6 and abs(s[4].z - z) < 1e-6)
+        c.feet[side] = fe[:i] + [fe[i][:2] + (end + 1,) + fe[i][3:]]
+    c.root1 = (sp.x, sp.z, math.radians(yaw))
+    c.events.update({'free': 5.35, 'doorCloseStart': d0, 'doorCloseEnd': d1})
+
+
+A4_DROP = (5.35, 5.95)
 
 
 DOOR_IN = V3(-0.715, 0.62, -0.30)  # V, door shut: the palm on the door's inner panel at shoulder height, pushing it open

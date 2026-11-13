@@ -141,3 +141,13 @@ blender/vehicle_motion/warps_a3.json, plus a few re-placed holds), car-exit 7.83
 lower; the seated clips unchanged), car-exit 7.83 s, car-enter with two hand moves started earlier. The judge no longer
 counts a vertex as inside a surface when its nearest point is on an edge or corner and the surface's crossing count
 says outside. No gun hand-off yet (no `guns` track). See `notes/A3_log_entry.md`.
+
+Pass A4 (2026-11-13): both vehicle packs carry 30 clips. The four entry / exit clips are the same authored moves played
+through a speed-limited time warp (`blender/vehicle_motion/warp_a4.py`, `warps_a4.json`): car-enter 3.5 / 3.43 s,
+car-exit 2.93 / 3.0 s, heli-enter 4.43 / 4.5 s, heli-exit 3.57 / 3.57 s (Tripo / EarthOnline), with `events.handsOn`
+and `events.free`; car-exit and heli-exit end standing where the body got out, their doors closing by themselves. New:
+car-bail, bail-roll, heli-jump, fall, land-roll, land-hard (getting out of a moving vehicle and coming down) and the
+parachute clips para-pickup, para-deploy, para-hang, para-steer-l, para-steer-r, para-flare, para-land
+(`blender/vehicle_motion/clips_a4.py`, judged by `judge_a4.py` / `gate_a4.py`, ground fits `ground_a4.json`). The JSON's
+`athleticClips` and `parachuteClips` notes say how their frames, roots and heights hand over. Authored keys only, no
+motion capture, no outside assets. See `notes/A4_log_entry.md`.

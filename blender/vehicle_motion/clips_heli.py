@@ -15,7 +15,7 @@ from mathutils import Quaternion, Vector
 from . import vehicles
 from rifle_motion.handling import ease
 
-from .pose import Clip, K, V3, const, ground_for_ball, hq, sole_points, warp_of, wheel_grip
+from .pose import Clip, K, V3, const, ground_for_ball, hq, sole_points, tail, warp_of, wheel_grip
 
 SEAT_ROOT = (0.42, -1.19, math.pi)  # seat_pilot_point on the ground plane, facing forward
 ENTRY_ROOT = (1.8, -1.55, -math.pi / 2)  # entry_cockpit_R: faces -X (towards the helicopter)
@@ -175,6 +175,13 @@ def make(name, veh, author):
     if name == 'heli-enter':
         c = Clip(name, veh, author, 8.0, loop=False)
         enter2(c)
+        from rifle_motion import body as body_table
+        # (pass A4, Tripo: the hips `d` m higher between t1 and t2, easing in from t0 and out by t3: the left calf 4.7 cm
+        # into the seat's front as the left foot comes off the skid onto the doorway's step, at the warp's instants)
+        ups = (E2.get('a4_up') or []) if body_table.T.get('name') != 'civilian-m-01-player-ue5' else []
+        if ups:
+            pel_a4 = c.pelvis
+            c.pelvis = lambda t: pel_a4(t) + V3(0.0, sum(u[4] * _bumpk(t, *u[:4]) for u in ups), 0.0)
         c.warp = warp_of(c)  # (pass A3 round 2: the speed-limited time warp, warps_a3.json)
         return c
     if name == 'heli-exit':
@@ -182,8 +189,13 @@ def make(name, veh, author):
         keep = dict(E3)
         if body_table.T.get('name') == 'civilian-m-01-player-ue5':  # (pass A3 round 2: its own values, E3['ue5'])
             E3.update(E3.get('ue5', {}))
-        c = Clip(name, veh, author, 5.55 + (9.5 - 5.55) * E3.get('walk_stretch', 1.3), loop=False)
+        if A4['on']:
+            E3['walk_stretch'] = 1.0
+            E3.setdefault('push_y', A4['push_y'])  # (Tripo: the palm on the glass 2.7 cm lower: its wrist 51 deg off at the warp's instants)
+        c = Clip(name, veh, author, A4['end'] if A4['on'] else 5.55 + (9.5 - 5.55) * E3.get('walk_stretch', 1.3), loop=False)
         exit3(c)
+        if A4['on']:  # (pass A4: no walk round the door: two steps out of its swing, the door closing by itself)
+            exit_a4_tail(c)
         E3.clear()
         E3.update(keep)
         c.warp = warp_of(c)
@@ -674,7 +686,8 @@ E2 = {  # (pass A3 round 2, heli-enter with its speed warp: the left foot from t
     # let go at 1.36 s and the door's frame at 6.70 s, the left toes up 40 deg over the cyclic onto the pedal, the hips
     # 2.5 cm lower as the left thigh passes the cyclic)
     'ue5_lift': 0.04, 'ue5_dy': 0.05, 'ue5_pitch': -8, 'ue5_hold_end': {'Right 1.03': 1.36, 'Right 6.40': 6.70},
-    'ue5_pitch_k': {'Left 5.00': [(0, 0), (0.6, 40), (0.9, 40), (1.0, 30)]}, 'ue5_up': [(6.0, 6.25, 6.6, 6.9, -0.025)]}
+    'ue5_pitch_k': {'Left 5.00': [(0, 0), (0.6, 40), (0.9, 40), (1.0, 30)]}, 'ue5_up': [(6.0, 6.25, 6.6, 6.9, -0.025)],
+    'a4_up': [(3.4, 3.55, 3.75, 3.95, 0.015)]}
 try:  # (fitting: values tried from a script)
     import bpy as _bpy
     E2.update(_bpy.app.driver_namespace.get('heli_E2', {}))
@@ -771,6 +784,42 @@ try:  # (fitting: values tried from a script)
     E3.update(_bpy.app.driver_namespace.get('heli_E3', {}))
 except ImportError:
     pass
+
+
+A4 = {'on': True, 'end': 7.0, 'push_y': 1.47, 'stand': (2.05, -1.27, 95.0), 'r_out': (1.98, -1.12, 95.0), 'l_out': (2.12, -1.42, 95.0)}
+
+
+def exit_a4_tail(c):
+    """(pass A4) heli-exit after both feet are on the ground (5.55, authored): no walk round the door (the brief: "no walk
+    round the door"). Two steps out of the open door's swing (right 5.6-5.95, left 5.95-6.35), facing away from the
+    helicopter (yaw 110 -> 95), upright and settled by 6.75; the door, clear of the body from 6.0, closes by itself
+    (6.0-6.85). `free` at 6.35 (standing clear of the door)."""
+    from .clips_car import settle_tail
+    end = A4['end']
+    st = 0.90
+    W0 = 5.55
+    sx, sz, yaw = A4['stand']
+    c.pelvis = tail(c.pelvis, W0, [(5.95, (1.80, st - 0.03, -1.30)), (6.35, (2.03, st - 0.02, -1.27)), (6.75, (sx, st, sz), 'stop')])
+    c.turn = tail(c.turn, W0, [(5.95, (100.0, 2.0, 0.0)), (6.4, (yaw, 0.0, 0.0), 'stop')])
+    c.spine = settle_tail(c.spine, 5.6, 6.4, (2.0, 0.0, 0.0))
+    c.look = settle_tail(c.look, W0, 6.6, (0.0, 8.0))
+    c.collar = settle_tail(c.collar, 5.6, 6.4, (0.0, 0.0, 0.0, 0.0))
+    c.curl = settle_tail(c.curl, W0, 6.3, (0.25, 0.25))
+    old_door = c.ctl['door']
+    door2 = K([(6.0, 1.0, 'stop'), (6.45, 0.72), (6.85, 0.0, 'stop')])
+    c.ctl['door'] = lambda t: old_door(t) if t <= 6.0 else door2(t)
+    hr = c.hands['Right']
+    k = next(i for i, s in enumerate(hr) if s[0] == 'hold' and s[1] <= 3.7 <= s[2])
+    c.hands['Right'] = hr[:k] + [hr[k][:2] + (end + 1,) + hr[k][3:]]
+    fr, fl = c.feet['Right'], c.feet['Left']
+    k = next(i for i, s in enumerate(fr) if s[0] == 'plant' and s[1] >= 4.5)
+    c.feet['Right'] = fr[:k + 1] + [('step', fr[k + 1][1], 5.95, 0.08, []), ('plant', 5.95, end + 1, None, *_flat(*A4['r_out'][:2], A4['r_out'][2]))]
+    k = next(i for i, s in enumerate(fl) if s[0] == 'plant' and s[3] is None and s[1] >= 5.0)
+    c.feet['Left'] = fl[:k] + [fl[k][:2] + (5.95,) + fl[k][3:], ('step', 5.95, 6.35, 0.08, []), ('plant', 6.35, end + 1, None, *_flat(*A4['l_out'][:2], A4['l_out'][2]))]
+    old_k = c.knees
+    c.knees = lambda t: (lambda k: (k[0], k[1], 1.0 - ease((t - 5.6) / 0.6)))(old_k(t))
+    c.root1 = (sx, sz, math.radians(yaw))
+    c.events.update({'doorCloseStart': 6.0, 'doorCloseEnd': 6.85, 'free': 6.35})
 
 
 def _keys_fn(ks):

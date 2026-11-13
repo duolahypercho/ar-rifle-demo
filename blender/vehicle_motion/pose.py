@@ -32,7 +32,7 @@ import math
 from mathutils import Matrix, Quaternion, Vector
 
 from rifle_motion.carry import PALM_LOCAL, hand_quat
-from rifle_motion.gait import FPS, foot, periodic_smooth
+from rifle_motion.gait import ANKLE as ANKLE_G, FPS, foot, periodic_smooth
 from rifle_motion.handling import Keys, QKeys, arrive, ease, min_jerk, smooth_poses, two_bone
 from rifle_motion.skel import SIDE, ypr
 
@@ -141,14 +141,18 @@ class Clip:
             f = local['pelvis'] @ Vector((0, 0, 1))
             yaw = Matrix.Rotation(math.atan2(f.x, f.z), 4, 'Y')
             pos, _ = self.skel.fk(local, hips)
+            _, rot = self.skel.fk(local, hips)
             cache[key] = {'@body': Matrix.Translation(hips) @ yaw, '@shoulder_l': Matrix.Translation(pos['upperarm_l']) @ yaw,
-                          '@shoulder_r': Matrix.Translation(pos['upperarm_r']) @ yaw}
+                          '@shoulder_r': Matrix.Translation(pos['upperarm_r']) @ yaw,
+                          # (pass A4: the pelvis and the chest with their whole turn, for limbs that go with a rolling body)
+                          '@pelvis': Matrix.Translation(hips) @ rot['pelvis'].to_matrix().to_4x4(),
+                          '@chest': Matrix.Translation(pos['spine_05']) @ rot['spine_05'].to_matrix().to_4x4()}
         return cache[key]
 
     def node_frame(self, node, t, ctl):
         if node is None:
             return Matrix.Identity(4)
-        if node in ('@body', '@shoulder_l', '@shoulder_r'):
+        if node in ('@body', '@shoulder_l', '@shoulder_r', '@pelvis', '@chest'):
             return self._frames_at(t)[node]
         return self.veh.world(node, ctl)
 
@@ -306,7 +310,10 @@ class Clip:
                 if r.w < 0:
                     r = -r
                 tw = 2 * math.atan2(Vector((r.x, r.y, r.z)).dot(d), r.w)
-                tw = max(-math.radians(12), min(math.radians(12), tw))
+                # (pass A4: 12 deg per AUTHORED frame: a warped clip's frames lie further apart in authored time, and a
+                # per-frame cap made the hand lag its authored turn and snap onto the hold's turn at the end)
+                cap = math.radians(12) * (max(1.0, (v['t'] - V[i - 1]['t']) * FPS) if i > 0 else 1.0)
+                tw = max(-cap, min(cap, tw))
                 q2 = (Quaternion(d, tw) @ q2).normalized()
                 prev = q2
                 if q.dot(q2) < 0:
@@ -408,7 +415,7 @@ class Clip:
             # (pass A3, opt-in `step_clear` = c: the foot goes straight up off its place for the first c of the step
             # and straight down onto the next for the last c, moving along its path only between: no slide while
             # it is near the surface)
-            c0 = getattr(self, 'step_clear', 0.0)
+            c0 = getattr(self, 'step_clear_at', {}).get(round(t0, 3), getattr(self, 'step_clear', 0.0))  # (pass A4: per step)
             u = min_jerk((x - c0) / (1.0 - 2.0 * c0)) if c0 else min_jerk(x)
             pts = [a[0]] + [Vector(v) for v in via] + [b[0]]
             lengths = [0.0]
@@ -569,16 +576,19 @@ class Clip:
                 hqr = (turn @ q).normalized()
                 hands[side] = (to_root(palm) - hqr @ PALM_LOCAL, hqr)
             feet = {}
-            for side, (g, fyaw, pitch) in v['feet'].items():
+            for side, ft in v['feet'].items():
+                g, fyaw, pitch = ft[:3]
                 feet[side] = (to_root(g), fyaw * DEG - yaw, pitch * DEG)
+                if len(ft) > 3:  # (pass A4: a foot turned whole (airborne, rolling): its turn in V, the ankle turning about its ground point)
+                    feet[side] = (to_root(g), 0.0, 0.0, (turn @ ft[3]).normalized())
             pos, rot = self.skel.fk(local, hips)
             if self.knees is not None:
                 from rifle_motion.gait import foot as foot_of
                 kd = self.knees(v['t'])
                 knees = {}
                 for k, side in enumerate(('Left', 'Right')):
-                    g, fy, fp = feet[side]
-                    ankle = foot_of(g, fy, fp)[0]
+                    g, fy, fp = feet[side][:3]
+                    ankle = foot_of(g, fy, fp)[0] if len(feet[side]) < 4 else g + feet[side][3] @ ANKLE_G
                     mid = (pos['thigh_' + SIDE[side]] + ankle) / 2
                     knees[side] = mid + (turn @ Vector(kd[k])).normalized() * 1.0
             p = (lambda s: (Vector(s[0]), Vector(s[1])))(v['poles'])
@@ -677,13 +687,14 @@ def wheel_grip(fingers):
 
 
 def warp_of(clip):
-    """(pass A3 round 2) The clip's speed-limited time warp from warps_a3.json (key '<name>' for Tripo, 'ue5:<name>'
-    for civilian-m-01-player-ue5), or None."""
+    """(pass A3 round 2) The clip's speed-limited time warp, or None. (pass A4: from warps_a4.json, the fast clips'
+    warps (warp_a4.py); the A3 warps (warps_a3.json) were for the slow clips A4 replaced and are no longer read. Key
+    '<name>' for Tripo, 'ue5:<name>' for civilian-m-01-player-ue5; A4_WARPS names another file.)"""
     import json
     import pathlib
     from rifle_motion import body as body_table
     import os
-    f = pathlib.Path(os.environ.get('A3_WARPS') or pathlib.Path(__file__).with_name('warps_a3.json'))
+    f = pathlib.Path(os.environ.get('A4_WARPS') or pathlib.Path(__file__).with_name('warps_a4.json'))
     if not f.exists():
         return None
     w = json.loads(f.read_text())
@@ -698,6 +709,17 @@ def warp_of(clip):
         u1 = math.ceil(keys[-1][0] * 30) / 30
     keys[-1] = (u1, keys[-1][1])
     return keys
+
+
+def tail(f, t0, keys):
+    """(pass A4) The channel f as it is up to t0, then cubic keys [(t, value[, 'stop'])...] starting from f's value and
+    slope at t0 (no jump in value or speed); the last key is passed at rest and held."""
+    h = 1e-3
+    v0, m0 = f(t0), (f(t0) - f(t0 - h)) / h
+    k = Keys([(t0, v0 * 1)] + [(kk[0], Vector(kk[1]) if isinstance(kk[1], (tuple, list)) else kk[1]) + tuple(kk[2:]) for kk in keys])
+    base = k._tangent
+    k._tangent = lambda i: m0 * 1 if i == 0 else base(i)
+    return lambda t: f(t) if t <= t0 else k(t)
 
 
 def _frames(t0, t1, n):
