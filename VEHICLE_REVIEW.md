@@ -1,4 +1,4 @@
-# Vehicle review (2026-11-12, 23:45)
+# Vehicle review (2026-11-13, 00:30)
 
 The supercar and the utility helicopter in the game, after passes V1 to V8 (game), H1 (flight model)
 and A1 to A3 (character clips). Numbers were re-measured by the main session unless marked "pass".
@@ -23,8 +23,9 @@ helicopter clips).
   tail strike damage, chase and cockpit cameras, synthesised turbine and rotor sound.
 - **The character.** Your Tripo model has authored clips for getting into and out of both vehicles,
   seated loops that stay alive, steering poses and control poses; hands and feet are pinned to the real
-  door, wheel, cyclic, collective and pedals; push-pull steering; guns go on the back before getting in
-  and lie in the cabin while seated. The four EarthOnline bodies have their own seated clips and
+  door, wheel, cyclic, collective and pedals; push-pull steering. Guns are put away in vehicles: both are put
+  away the moment you press T, nothing is shown in the vehicle, and after getting out they are back on the
+  back and the gun is drawn. The four EarthOnline bodies have their own seated clips and
   authored clips for getting into and out of both vehicles.
 - **World.** A 2.55 km track loop, skidpad, helipad, buildings with windows and doors, barriers, cones,
   rolling ground off the paving, grass, trees, bushes, hills, clouds, edge lights, tyre walls, a wind
@@ -52,7 +53,7 @@ helicopter clips).
 | Autorotation descent (pass) | 10.3 m/s, rotor 97 to 104 % | 8 to 12 m/s |
 | Gentle landing (pass) | 0.32 m/s, no bounce | under 1 m/s |
 | Pilot's palms and soles on the controls (pass) | 0.0 cm at 11 control positions | on the controls |
-| Joins in the get-in, drive, get-out chain | car 2.2 m/s worst, helicopter 2.0 m/s worst velocity change in a frame; root 0.3 cm | under 4 m/s, no teleport |
+| Joins in the get-in, drive, get-out chain | car 1.4 m/s worst, helicopter 1.8 m/s worst velocity change in a frame; root 0.3 cm | under 4 m/s, no teleport |
 | Velocity change inside the helicopter clips | 3.2 m/s worst (was 7.9) | 4.5 m/s |
 | Hands and feet on their contacts while getting in and out of the car | 0.6 cm worst (Tripo), 0.9 cm (EarthOnline) | under 1.5 cm |
 | Peak limb speed getting into and out of the car | hands 4.4 to 5.1, feet 4.6, head 1.2, pelvis 1.35 m/s | hands and feet 4.5, head 2.0, pelvis 1.8 |
@@ -75,11 +76,6 @@ in Blender for the entry and exit clips.
 
 ## Below target or not verified
 
-- **Gun hand-off.** The guns still jump between the back and the cabin. Getting in, the gun on the
-  back passes into the seat's back as he sits; getting out, a gun stands in the cabin and then appears
-  on his back in one frame. The `guns` track is implemented in the game but no clip carries one. A
-  hand-off that reads right needs a design choice (about 2.4 s more at the doorway, or other cabin
-  places, or carrying one gun in and laying it across once seated); not built.
 - **Start of each entry.** For the first 0.1 s the feet glide 2 to 3 cm from where the walk left them
   to the clip's first frame.
 - **EarthOnline helicopter seat.** Its seat is lowered 0.06 m to clear the thigh; the back leaves the
@@ -87,8 +83,8 @@ in Blender for the entry and exit clips.
 - **Frame time in the helicopter and frame spikes.** The helicopter is at or just over 16.7 ms, and in
   both vehicles the slowest frames reach 35 to 51 ms. The spikes are not traced. The render scale is
   1.5 device pixels per CSS pixel; edges are a little softer than at 2.
-- **Right hand in the stow and draw.** It changes speed by 4.1 m/s in one frame where the gun reaches
-  the back (the rifle pack's swap clip; limit 4).
+- **Right hand in the draw.** It changes speed by 4.1 m/s in one frame where the hand reaches the gun on
+  the back after getting out (the rifle pack's swap clip; limit 4). The stow on the way in is gone.
 - **Postures accepted with faults.** Getting into and out of the car goes through a very deep squat
   beside the sill. The pilot's thigh is 5.6 cm into the seat cushion, the driver's shoulders 2 to 3 cm
   into the seat's wings. Balance is up to 22 cm outside the support for a moment in the car exit.

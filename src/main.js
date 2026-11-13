@@ -865,6 +865,13 @@ async function main() {
   };
   /** The guns in a vehicle mode this frame: the clip's track if it has one, else the V4 rule. */
   const placeVehicleGuns = (veh, kind, doorShut) => {
+    // (guns away, the default since 2026-11-12: no gun goes into a vehicle; both are away from the press of T until
+    // the exit clip has ended. demo.gunsCabin = true brings back the stow, the cabin places and the clip's track)
+    if (gunsAway()) {
+      rifle.pivot.visible = shotgun.pivot.visible = false;
+      demo.gunsAt = 'away';
+      return 'away';
+    }
     const tr = gunTrack();
     rifle.pivot.visible = shotgun.pivot.visible = true;
     const at = tr ? tr.at : gunsInCabin(veh, kind, doorShut) ? 'cabin' : 'back';
@@ -911,6 +918,12 @@ async function main() {
   let shown = { ammo: -1, status: '', hits: -1, gap: -1, fade: -1 };
 
   // ---- (pass V1) vehicles ----
+  // Guns and vehicles (default): pressing T to get in puts both guns away at once (out of sight, the hands
+  // drop free over the hand-over blend) and the body walks to the door empty-handed; nothing is shown in the cabin;
+  // when the exit clip ends they are back on the back and the draw (the swap's outgoing half backwards) brings the gun
+  // to the hands, so the hands are never off a gun that is shown in them. demo.gunsCabin = true: the V1-V7 way (the
+  // stow onto the back, the cabin places, the clip's `guns` track).
+  const gunsAway = () => !demo.gunsCabin;
   // stow: the swap clip's outgoing half, forwards (the gun onto the back) or backwards (off it)
   let stow = null; // { clip, t, dir }
   let handsFree = false; // both guns on the back
@@ -1349,7 +1362,13 @@ async function main() {
       if (input.aimToggle) setAimToggle(false);
       if (vmode === 'walking' && vehicles.walkTo(input, dt)) vehicles.arrived();
     }
-    if (vmode === 'stowing' && !stow && !swap && weapon.state === 'ready') stow = { clip: motion.actions[`swap-${weapon.key}-${other.key}`], t: 0, dir: 1 };
+    if (vmode === 'stowing' && !stow && !swap && weapon.state === 'ready') {
+      if (gunsAway()) {
+        // (away at once: no stow clip; the walk to the door starts next frame with empty hands)
+        handsFree = true;
+        vehicles.stowed();
+      } else stow = { clip: motion.actions[`swap-${weapon.key}-${other.key}`], t: 0, dir: 1 };
+    }
     if (vmode === 'drawing' && !stow) {
       const clip = motion.actions[`swap-${weapon.key}-${other.key}`];
       // (V6) the stow's outgoing half backwards from its end, as it went forwards: the empty right hand goes back
@@ -1367,6 +1386,8 @@ async function main() {
       }
     }
     if (vmode === 'foot') handsFree = false;
+    // (both guns out of sight on the way to the door, and while a reload or swap finishes before it)
+    if (gunsAway() && (vehicles.mode === 'walking' || (vehicles.mode === 'stowing' && handsFree))) rifle.pivot.visible = shotgun.pivot.visible = false;
     // ---- controls ----
     input.tap = Math.max(0, input.tap - dt);
     input.fire = input.fireKey || input.fireMouse || input.fireButton || input.tap > 0;

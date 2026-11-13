@@ -996,3 +996,15 @@ the frame you keep (one step after the last).
   frames with a wheel off the tarmac or kerb, the springs' travel, the peak tyre load and vertical acceleration.
 - **Hand-overs:** the stow's end into the walk to the vehicle blends the arms over 1.3 s (`src/inertia.js`).
 - **Tools:** `/tools/v8_cost.js`, `/tools/v8_shots.js` (sheets, crops, `carAt`, `heliAt`, `crashFilm`).
+
+## Vehicles: guns put away (2026-11-12)
+
+- **Getting in:** pressing `T` puts both guns away at once: they leave the hands and the back
+  out of sight, the arms drop free over the hand-over blend (0.35 s), and the body walks to the door
+  empty-handed. There is no stow clip on the way in any more, so the walk starts 1.3 s sooner.
+- **In the vehicle:** no gun is shown anywhere (no cabin places, nothing on the back against the seat).
+- **Getting out:** when the exit clip ends the guns are back on the back, and the draw (the swap clip's outgoing
+  half backwards) brings the gun into the hands, so a gun is never shown in hands that are not on it.
+- `demo.gunsCabin = true` in the console brings back the earlier way for comparison: the stow onto the back, the
+  guns across the passenger seat or in the helicopter's footwell (`CABIN_GUNS` in `src/main.js`), and a clip's
+  `guns` track where a pack has one.

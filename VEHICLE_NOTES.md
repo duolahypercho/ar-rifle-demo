@@ -1711,3 +1711,17 @@ Contract extensions decided for this round (both sides must follow them):
     cabin places are 1.2 to 1.4 m from the doorways. A version that reads right needs either about 2.4
     s more at the doorway or different places (or carrying one gun in and laying it across once
     seated). Left to the user.
+
+- Guns put away in vehicles (main session, 2026-11-13 about 00:20; the user's choice when asked how the guns
+  should get into the vehicle). `src/main.js` only: `gunsAway()` (default; `demo.gunsCabin = true`
+  for the old way). Pressing T: no stow clip; both guns hidden at once and `handsFree` set, the walk
+  starts the next frame, the arms drop through the hand-over blend (`foot:foot>foot:walking`, 0.35 s).
+  In every vehicle mode `placeVehicleGuns` hides both (`demo.gunsAt = 'away'`). After the exit clip the
+  `drawing` step is unchanged: the guns show on the back and the draw brings the gun to the hands (a
+  gun never shown in hands that are not on it; popping it into the hands would have had the hands
+  reach it over 0.35 s). Checked in the game: `chainReview('car')` joins at most 1.43 m/s (foot >
+  walking: hands 1.43 / 0.84), leaving > drawing 1.42; `chainReview('heli')` joins at most 1.81; the
+  only jolt over 4 m/s left in either chain is the draw's right hand (4.09, the swap clip) and in the
+  car Tripo car-enter's right hand at 3.85 s (4.01). Films `a3check/gtachain_car_*`, `gta_*_heli.jpg`:
+  no gun anywhere from the press of T to the end of the exit; the walk to the door starts 1.3 s
+  sooner. The `guns` track contract and `CABIN_GUNS` stay in the code behind the flag.
