@@ -40,6 +40,6 @@ tree=$(git write-tree)
 unset GIT_INDEX_FILE
 commit=$(git commit-tree "$tree" -m "Playable build of $head
 
-Co-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>")
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>")
 git push -f "$REMOTE" "$commit:refs/heads/gh-pages"
 echo "deployed build of $head ($(du -sh "$tmp/dist" | cut -f1)) to $REMOTE gh-pages under $BASE"

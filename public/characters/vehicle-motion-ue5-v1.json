@@ -75,15 +75,15 @@
    "pilot_seat": {
     "translate": [
      0.0,
-     0.0,
+     -0.06,
      -0.145
     ],
-    "why": "seat 0.145 m forward: the backrest against the back as the hands hold the controls (pass A3)"
+    "why": "seat 0.145 m forward: the backrest against the back as the hands hold the controls (pass A3); 0.060 m down: its thighs off the cushion's front (pass A3 round 2)"
    },
    "seat_pilot_point": {
     "translate": [
      0.0,
-     0.0,
+     -0.06,
      -0.145
     ],
     "why": "moves with the seat"
@@ -3581,20 +3581,17 @@
     "snap30": "hand_l 0.0 / hand_r 0.0 / foot_l 0.0 / foot_r 0.0 / head 0.0",
     "snapMax": 0.01,
     "vehiclePairs": {
-     "calf_r/pilot_seat": 13538,
-     "calf_l/pilot_seat": 14057
+     "calf_r/pilot_seat": 6832,
+     "calf_l/pilot_seat": 6052
     },
     "framesWithPairs": 240,
     "seatPairs": {
-     "spine_01/pilot_seat": 3913,
-     "pelvis/pilot_seat": 26359,
-     "thigh_r/pilot_seat": 20793,
-     "thigh_l/pilot_seat": 36414,
-     "spine_03/pilot_seat": 1956
+     "pelvis/pilot_seat": 7763,
+     "thigh_r/pilot_seat": 621
     },
     "contactPairs": 149154,
-    "seatSinkCm": "cushion 1.6 / back 5.6 / bolster or harness 6.4",
-    "backGapCm": "0.0..0.5",
+    "seatSinkCm": "cushion 0.0 / back 0.1 / bolster or harness 8.0",
+    "backGapCm": "0.0..1.7",
     "controlClearCm": "3.7",
     "headClearCm": "11.2 at frame 57 (interior), head top y 2.125",
     "contactCm": "hand_l collective 0-239 0.14; hand_r cyclic 0-239 0.09; foot_l pedal_L 0-239 0.0; foot_r pedal_R 0-239 0.01",
@@ -3710,20 +3707,17 @@
     "snap30": "hand_l 0.0 / hand_r 0.0 / foot_l 0.0 / foot_r 0.0 / head 0.0",
     "snapMax": 0.0,
     "vehiclePairs": {
-     "calf_r/pilot_seat": 57,
-     "calf_l/pilot_seat": 64
+     "calf_r/pilot_seat": 29,
+     "calf_l/pilot_seat": 28
     },
     "framesWithPairs": 1,
     "seatPairs": {
-     "pelvis/pilot_seat": 113,
-     "spine_01/pilot_seat": 21,
-     "thigh_r/pilot_seat": 98,
-     "thigh_l/pilot_seat": 147,
-     "spine_03/pilot_seat": 11
+     "pelvis/pilot_seat": 42,
+     "thigh_r/pilot_seat": 9
     },
     "contactPairs": 696,
-    "seatSinkCm": "cushion 0.5 / back 0.7 / bolster or harness 4.1",
-    "backGapCm": "0.1..0.1",
+    "seatSinkCm": "cushion 0.0 / back 0.1 / bolster or harness 6.4",
+    "backGapCm": "1.4..1.4",
     "controlClearCm": "6.1",
     "headClearCm": "13.1 at frame 0 (interior), head top y 2.116",
     "contactCm": "hand_l collective 0-0 0.0; hand_r cyclic 0-0 0.01; foot_l pedal_L 0-0 0.0; foot_r pedal_R 0-0 0.01",
@@ -3839,20 +3833,17 @@
     "snap30": "hand_l 0.0 / hand_r 0.0 / foot_l 0.0 / foot_r 0.0 / head 0.0",
     "snapMax": 0.0,
     "vehiclePairs": {
-     "calf_r/pilot_seat": 57,
-     "calf_l/pilot_seat": 64
+     "calf_r/pilot_seat": 29,
+     "calf_l/pilot_seat": 28
     },
     "framesWithPairs": 1,
     "seatPairs": {
-     "spine_01/pilot_seat": 21,
-     "pelvis/pilot_seat": 113,
-     "thigh_r/pilot_seat": 98,
-     "thigh_l/pilot_seat": 147,
-     "spine_03/pilot_seat": 11
+     "pelvis/pilot_seat": 42,
+     "thigh_r/pilot_seat": 9
     },
     "contactPairs": 646,
-    "seatSinkCm": "cushion 0.5 / back 0.7 / bolster or harness 4.1",
-    "backGapCm": "0.1..0.1",
+    "seatSinkCm": "cushion 0.0 / back 0.1 / bolster or harness 6.4",
+    "backGapCm": "1.4..1.4",
     "controlClearCm": "1.3",
     "headClearCm": "13.0 at frame 0 (interior), head top y 2.120",
     "contactCm": "hand_l collective 0-0 0.0; hand_r cyclic 0-0 0.0; foot_l pedal_L 0-0 0.0; foot_r pedal_R 0-0 0.01",
@@ -3969,20 +3960,17 @@
     "snapMax": 0.0,
     "vehiclePairs": {
      "thigh_l/cyclic": 36,
-     "calf_r/pilot_seat": 57,
-     "calf_l/pilot_seat": 64
+     "calf_r/pilot_seat": 29,
+     "calf_l/pilot_seat": 28
     },
     "framesWithPairs": 1,
     "seatPairs": {
-     "pelvis/pilot_seat": 113,
-     "spine_01/pilot_seat": 22,
-     "thigh_r/pilot_seat": 98,
-     "thigh_l/pilot_seat": 147,
-     "spine_03/pilot_seat": 10
+     "pelvis/pilot_seat": 42,
+     "thigh_r/pilot_seat": 9
     },
     "contactPairs": 687,
-    "seatSinkCm": "cushion 0.5 / back 0.7 / bolster or harness 4.1",
-    "backGapCm": "0.1..0.1",
+    "seatSinkCm": "cushion 0.0 / back 0.1 / bolster or harness 6.4",
+    "backGapCm": "1.3..1.3",
     "controlClearCm": "-0.2",
     "headClearCm": "13.6 at frame 0 (interior), head top y 2.115",
     "contactCm": "hand_l collective 0-0 0.0; hand_r cyclic 0-0 0.0; foot_l pedal_L 0-0 0.0; foot_r pedal_R 0-0 0.01",
@@ -4099,20 +4087,17 @@
     "snapMax": 0.0,
     "vehiclePairs": {
      "thigh_r/cyclic": 14,
-     "calf_r/pilot_seat": 57,
-     "calf_l/pilot_seat": 64
+     "calf_r/pilot_seat": 29,
+     "calf_l/pilot_seat": 28
     },
     "framesWithPairs": 1,
     "seatPairs": {
-     "pelvis/pilot_seat": 113,
-     "thigh_r/pilot_seat": 98,
-     "spine_01/pilot_seat": 21,
-     "thigh_l/pilot_seat": 147,
-     "spine_03/pilot_seat": 11
+     "pelvis/pilot_seat": 42,
+     "thigh_r/pilot_seat": 9
     },
     "contactPairs": 662,
-    "seatSinkCm": "cushion 0.5 / back 0.7 / bolster or harness 4.1",
-    "backGapCm": "0.1..0.1",
+    "seatSinkCm": "cushion 0.0 / back 0.1 / bolster or harness 6.4",
+    "backGapCm": "1.4..1.4",
     "controlClearCm": "0.3",
     "headClearCm": "12.4 at frame 0 (interior), head top y 2.121",
     "contactCm": "hand_l collective 0-0 0.01; hand_r cyclic 0-0 0.01; foot_l pedal_L 0-0 0.0; foot_r pedal_R 0-0 0.01",
@@ -4228,20 +4213,17 @@
     "snap30": "hand_l 0.0 / hand_r 0.0 / foot_l 0.0 / foot_r 0.0 / head 0.0",
     "snapMax": 0.0,
     "vehiclePairs": {
-     "calf_r/pilot_seat": 57,
-     "calf_l/pilot_seat": 64
+     "calf_r/pilot_seat": 29,
+     "calf_l/pilot_seat": 28
     },
     "framesWithPairs": 1,
     "seatPairs": {
-     "pelvis/pilot_seat": 113,
-     "spine_01/pilot_seat": 21,
-     "thigh_r/pilot_seat": 98,
-     "thigh_l/pilot_seat": 147,
-     "spine_03/pilot_seat": 11
+     "pelvis/pilot_seat": 42,
+     "thigh_r/pilot_seat": 9
     },
     "contactPairs": 628,
-    "seatSinkCm": "cushion 0.5 / back 0.7 / bolster or harness 4.1",
-    "backGapCm": "0.1..0.1",
+    "seatSinkCm": "cushion 0.0 / back 0.1 / bolster or harness 6.4",
+    "backGapCm": "1.4..1.4",
     "controlClearCm": "4.9",
     "headClearCm": "13.0 at frame 0 (interior), head top y 2.118",
     "contactCm": "hand_l collective 0-0 0.0; hand_r cyclic 0-0 0.0; foot_l pedal_L 0-0 0.0; foot_r pedal_R 0-0 0.01",
@@ -4357,35 +4339,27 @@
     "snap30": "hand_l 0.0 / hand_r 0.0 / foot_l 0.0 / foot_r 0.0 / head 0.0",
     "snapMax": 0.0,
     "vehiclePairs": {
-     "thumb_03_l/pilot_seat": 11,
-     "calf_r/pilot_seat": 57,
-     "calf_l/pilot_seat": 64
+     "calf_r/pilot_seat": 29,
+     "calf_l/pilot_seat": 28
     },
     "framesWithPairs": 1,
     "seatPairs": {
-     "pelvis/pilot_seat": 121,
-     "thigh_r/pilot_seat": 43,
-     "spine_01/pilot_seat": 22,
-     "thigh_l/pilot_seat": 191,
-     "spine_03/pilot_seat": 10
+     "pelvis/pilot_seat": 44,
+     "thigh_r/pilot_seat": 9
     },
     "contactPairs": 622,
-    "seatSinkCm": "cushion 0.7 / back 0.8 / bolster or harness 4.6",
-    "backGapCm": "0.1..0.1",
+    "seatSinkCm": "cushion 0.0 / back 0.0 / bolster or harness 7.0",
+    "backGapCm": "0.9..0.9",
     "controlClearCm": "4.7",
     "headClearCm": "16.9 at frame 0 (interior), head top y 2.088",
     "contactCm": "hand_l collective 0-0 0.0; hand_r cyclic 0-0 0.01; foot_l pedal_L 0-0 0.0; foot_r pedal_R 0-0 0.01",
     "contactMaxCm": 0.01,
     "hardPairs": {},
     "softPairs": {
-     "thigh_l/pilot_seat": "6.7 cm at 0 (1 frames)",
-     "calf_l/pilot_seat": "2.5 cm at 0 (1 frames)",
-     "calf_r/pilot_seat": "2.2 cm at 0 (1 frames)",
-     "pelvis/pilot_seat": "2.1 cm at 0 (1 frames)",
-     "thigh_r/pilot_seat": "1.2 cm at 0 (1 frames)",
-     "spine_01/pilot_seat": "0.5 cm at 0 (1 frames)",
-     "spine_03/pilot_seat": "0.5 cm at 0 (1 frames)",
-     "thumb_03_l/pilot_seat": "0.1 cm at 0 (1 frames)"
+     "calf_r/pilot_seat": "0.9 cm at 0 (1 frames)",
+     "calf_l/pilot_seat": "0.8 cm at 0 (1 frames)",
+     "pelvis/pilot_seat": "0.1 cm at 0 (1 frames)",
+     "thigh_r/pilot_seat": "0.1 cm at 0 (1 frames)"
     },
     "contactPairsDepth": {
      "ring_01_l/collective": "1.1 cm at 0 (1 frames)",
@@ -4411,7 +4385,7 @@
      "middle_01_r/cyclic": "0.1 cm at 0 (1 frames)"
     },
     "hardMaxCm": 0.0,
-    "softMaxCm": 6.68,
+    "softMaxCm": 0.86,
     "headByCm": {
      "interior": "16.9 at 0"
     },
@@ -4535,20 +4509,16 @@
     "snap30": "hand_l 0.0 / hand_r 0.0 / foot_l 0.0 / foot_r 0.0 / head 0.0",
     "snapMax": 0.0,
     "vehiclePairs": {
-     "calf_r/pilot_seat": 137,
-     "calf_l/pilot_seat": 30
+     "calf_r/pilot_seat": 117
     },
     "framesWithPairs": 1,
     "seatPairs": {
-     "pelvis/pilot_seat": 117,
-     "spine_01/pilot_seat": 21,
-     "thigh_r/pilot_seat": 96,
-     "thigh_l/pilot_seat": 156,
-     "spine_03/pilot_seat": 11
+     "pelvis/pilot_seat": 37,
+     "thigh_r/pilot_seat": 7
     },
     "contactPairs": 622,
-    "seatSinkCm": "cushion 0.7 / back 0.6 / bolster or harness 4.2",
-    "backGapCm": "0.1..0.1",
+    "seatSinkCm": "cushion 0.0 / back 0.1 / bolster or harness 5.9",
+    "backGapCm": "1.4..1.4",
     "controlClearCm": "4.6",
     "headClearCm": "13.0 at frame 0 (interior), head top y 2.118",
     "contactCm": "hand_l collective 0-0 0.0; hand_r cyclic 0-0 0.0; foot_l pedal_L 0-0 0.0; foot_r pedal_R 0-0 0.0",
@@ -4664,20 +4634,16 @@
     "snap30": "hand_l 0.0 / hand_r 0.0 / foot_l 0.0 / foot_r 0.0 / head 0.0",
     "snapMax": 0.0,
     "vehiclePairs": {
-     "calf_r/pilot_seat": 26,
-     "calf_l/pilot_seat": 134
+     "calf_l/pilot_seat": 110
     },
     "framesWithPairs": 1,
     "seatPairs": {
-     "pelvis/pilot_seat": 111,
-     "spine_01/pilot_seat": 21,
-     "thigh_r/pilot_seat": 114,
-     "thigh_l/pilot_seat": 151,
-     "spine_03/pilot_seat": 11
+     "pelvis/pilot_seat": 42,
+     "thigh_r/pilot_seat": 9
     },
     "contactPairs": 620,
-    "seatSinkCm": "cushion 0.6 / back 0.8 / bolster or harness 3.9",
-    "backGapCm": "0.1..0.1",
+    "seatSinkCm": "cushion 0.0 / back 0.1 / bolster or harness 6.3",
+    "backGapCm": "1.4..1.4",
     "controlClearCm": "5.1",
     "headClearCm": "13.0 at frame 0 (interior), head top y 2.118",
     "contactCm": "hand_l collective 0-0 0.0; hand_r cyclic 0-0 0.0; foot_l pedal_L 0-0 0.01; foot_r pedal_R 0-0 0.0",
@@ -5267,238 +5233,238 @@
      4.944325
     ],
     [
-     -1.26888,
+     -1.26887,
      0.02514,
      4.947361
     ],
     [
-     -1.26113,
+     -1.26112,
      0.02503,
      4.950403
     ],
     [
-     -1.25289,
+     -1.25288,
      0.02366,
      4.953436
     ],
     [
-     -1.24422,
+     -1.24421,
      0.02104,
      4.956448
     ],
     [
-     -1.23524,
+     -1.23521,
      0.01726,
      4.959433
     ],
     [
-     -1.226,
+     -1.22597,
      0.01243,
      4.962392
     ],
     [
-     -1.21661,
+     -1.21656,
      0.00669,
      4.96533
     ],
     [
-     -1.20714,
+     -1.20708,
      0.00021,
      4.968259
     ],
     [
-     -1.19767,
+     -1.19759,
      -0.00684,
      4.97119
     ],
     [
-     -1.18827,
-     -0.01426,
+     -1.18817,
+     -0.01425,
      4.974135
     ],
     [
-     -1.17897,
-     -0.02185,
+     -1.17885,
+     -0.02184,
      4.977108
     ],
     [
-     -1.1698,
-     -0.02945,
+     -1.16965,
+     -0.02943,
      4.98012
     ],
     [
-     -1.16072,
-     -0.03689,
+     -1.16056,
+     -0.03685,
      4.983181
     ],
     [
-     -1.15169,
-     -0.04403,
+     -1.15151,
+     -0.04398,
      4.986299
     ],
     [
-     -1.1426,
-     -0.05077,
+     -1.14241,
+     -0.0507,
      4.989478
     ],
     [
-     -1.13332,
-     -0.05705,
+     -1.13314,
+     -0.05696,
      4.992718
     ],
     [
-     -1.1237,
-     -0.06283,
+     -1.12352,
+     -0.06272,
      4.996011
     ],
     [
-     -1.11355,
-     -0.06811,
+     -1.11339,
+     -0.06797,
      4.999338
     ],
     [
-     -1.1027,
-     -0.07291,
+     -1.10257,
+     -0.07273,
      5.002671
     ],
     [
-     -1.09098,
-     -0.07725,
+     -1.09088,
+     -0.07704,
      5.00597
     ],
     [
-     -1.07823,
-     -0.08117,
+     -1.07817,
+     -0.08093,
      5.009189
     ],
     [
-     -1.06429,
-     -0.0847,
+     -1.06427,
+     -0.08443,
      5.012271
     ],
     [
-     -1.04902,
-     -0.08787,
+     -1.04905,
+     -0.08757,
      5.015159
     ],
     [
-     -1.03233,
-     -0.09068,
+     -1.0324,
+     -0.09036,
      5.017796
     ],
     [
-     -1.0141,
-     -0.09313,
+     -1.01421,
+     -0.0928,
      5.020111
     ],
     [
-     -0.99428,
-     -0.0952,
+     -0.99442,
+     -0.09486,
      5.022023
     ],
     [
-     -0.97287,
-     -0.09688,
+     -0.97304,
+     -0.09654,
      5.023438
     ],
     [
-     -0.94994,
-     -0.09815,
+     -0.95012,
+     -0.09781,
      5.024221
     ],
     [
-     -0.92563,
-     -0.09901,
+     -0.92582,
+     -0.09867,
      5.024181
     ],
     [
-     -0.90019,
-     -0.09947,
+     -0.90039,
+     -0.09914,
      5.02304
     ],
     [
-     -0.87392,
-     -0.0996,
+     -0.87412,
+     -0.09929,
      5.020412
     ],
     [
-     -0.84719,
-     -0.09951,
+     -0.84737,
+     -0.09922,
      5.015793
     ],
     [
-     -0.82037,
-     -0.09934,
+     -0.82054,
+     -0.09908,
      5.008574
     ],
     [
-     -0.79381,
-     -0.09927,
+     -0.79396,
+     -0.09904,
      4.998093
     ],
     [
-     -0.76786,
-     -0.09948,
+     -0.76799,
+     -0.09928,
      4.983719
     ],
     [
-     -0.7428,
-     -0.10015,
+     -0.74291,
+     -0.09998,
      4.964949
     ],
     [
-     -0.7189,
-     -0.10138,
+     -0.719,
+     -0.10124,
      4.941506
     ],
     [
-     -0.69641,
-     -0.10321,
+     -0.69648,
+     -0.1031,
      4.913412
     ],
     [
-     -0.67553,
-     -0.10562,
+     -0.6756,
+     -0.10553,
      4.881003
     ],
     [
-     -0.65648,
-     -0.10849,
+     -0.65653,
+     -0.10842,
      4.844891
     ],
     [
-     -0.63941,
-     -0.11165,
+     -0.63945,
+     -0.1116,
      4.80588
     ],
     [
-     -0.62442,
-     -0.11493,
+     -0.62444,
+     -0.11489,
      4.764846
     ],
     [
-     -0.61153,
-     -0.11815,
+     -0.61155,
+     -0.11812,
      4.722625
     ],
     [
-     -0.60067,
-     -0.12115,
+     -0.60068,
+     -0.12113,
      4.679925
     ],
     [
-     -0.5917,
-     -0.12383,
+     -0.59171,
+     -0.12382,
      4.637276
     ],
     [
      -0.5844,
-     -0.12614,
+     -0.12613,
      4.595033
     ],
     [
      -0.57851,
-     -0.12806,
+     -0.12805,
      4.553398
     ],
     [
@@ -5507,7 +5473,7 @@
      4.512467
     ],
     [
-     -0.56986,
+     -0.56987,
      -0.13079,
      4.472279
     ],
@@ -5518,7 +5484,7 @@
     ],
     [
      -0.56379,
-     -0.13227,
+     -0.13226,
      4.394192
     ],
     [
@@ -6279,8 +6245,8 @@
      "to": 129,
      "node": "door_L",
      "at": [
-      -0.211,
-      -0.5807,
+      -0.2108,
+      -0.5808,
       0.46
      ],
      "kind": "grip"
@@ -6291,7 +6257,7 @@
      "to": 153,
      "node": "body_shell",
      "at": [
-      -0.8594,
+      -0.8593,
       0.29,
       0.18
      ],
@@ -6408,39 +6374,40 @@
     "hipsY": "0.339..0.880",
     "hipsVsIdle": "-",
     "feetCm": "113 / 110",
-    "elbowDeg": "26..140 / 26..113",
-    "elbowOutCm": "-16..19 / 3..25",
-    "wristDeg": "flex -42 dev -44 / flex -50 dev +39",
-    "snap30": "hand_l 3.9 / hand_r 3.6 / foot_l 1.9 / foot_r 3.0 / head 0.4",
+    "elbowDeg": "26..140 / 10..113",
+    "elbowOutCm": "-16..19 / 3..26",
+    "wristDeg": "flex -42 dev -44 / flex +42 dev -29",
+    "snap30": "hand_l 3.9 / hand_r 2.0 / foot_l 1.9 / foot_r 3.0 / head 0.4",
     "snapMax": 3.89,
     "vehiclePairs": {
      "index_02_r/door_L": 20,
      "middle_02_r/door_L": 42,
-     "middle_03_r/door_L": 37,
-     "ring_03_r/door_L": 168,
-     "ring_02_r/door_L": 43,
+     "middle_03_r/door_L": 51,
+     "ring_03_r/door_L": 156,
+     "ring_02_r/door_L": 58,
      "index_01_r/door_L": 23,
      "middle_01_r/door_L": 99,
      "ring_01_r/door_L": 107,
-     "thumb_03_r/door_L": 189,
-     "pinky_03_r/door_L": 97,
+     "thumb_03_r/door_L": 184,
+     "pinky_03_r/door_L": 95,
      "hand_r/door_L": 125,
-     "pinky_01_r/door_L": 109,
-     "pinky_02_r/door_L": 148,
+     "pinky_01_r/door_L": 98,
+     "pinky_02_r/door_L": 171,
      "thumb_01_r/door_L": 50,
-     "thumb_02_r/door_L": 119,
-     "thumb_02_l/body_shell": 74,
-     "thumb_03_l/body_shell": 66,
-     "index_02_l/body_shell": 68,
-     "index_03_l/body_shell": 41,
-     "pinky_02_l/body_shell": 55,
-     "pinky_03_l/body_shell": 80,
-     "ring_03_l/body_shell": 101,
-     "middle_03_l/body_shell": 26,
-     "middle_02_l/body_shell": 71,
+     "thumb_02_r/door_L": 132,
+     "thumb_03_l/body_shell": 82,
+     "index_03_l/body_shell": 45,
+     "pinky_03_l/body_shell": 87,
+     "middle_03_l/body_shell": 31,
+     "thumb_02_l/body_shell": 78,
+     "index_02_l/body_shell": 87,
+     "pinky_02_l/body_shell": 62,
+     "ring_03_l/body_shell": 104,
+     "middle_02_l/body_shell": 86,
+     "pinky_01_l/body_shell": 2,
      "ring_02_l/body_shell": 5,
      "foot_l/body_shell": 406,
-     "upperarm_l/seat_driver": 2023,
+     "upperarm_l/seat_driver": 2025,
      "lowerarm_l/seat_driver": 51,
      "thigh_r/steering_wheel": 96,
      "calf_r/seat_driver": 11,
@@ -6490,21 +6457,21 @@
      "pinky_02_l/steering_wheel": 34,
      "pinky_01_l/steering_wheel": 4
     },
-    "framesWithPairs": 87,
+    "framesWithPairs": 88,
     "seatPairs": {
-     "pelvis/seat_driver": 5528,
-     "thigh_l/seat_driver": 5244,
+     "pelvis/seat_driver": 5529,
+     "thigh_l/seat_driver": 5243,
      "spine_01/seat_driver": 235,
      "thigh_r/seat_driver": 3390,
      "spine_05/seat_driver": 8891,
      "spine_03/seat_driver": 651
     },
-    "contactPairs": 24267,
+    "contactPairs": 24268,
     "seatSinkCm": "cushion 4.7 / back 4.8 / bolster or harness 4.8",
     "backGapCm": "0.0..inf",
     "controlClearCm": "-0.9",
     "headClearCm": "0.5 at frame 204 (body_shell), head top y 1.706",
-    "contactCm": "foot_l None 0-58 0.0; foot_r None 0-9 0.0; foot_r None 18-45 0.01; hand_r door_L 32-39 0.0; foot_r None 55-74 0.12; foot_l None 72-88 0.0; foot_r None 87-150 0.01; foot_l None 99-139 0.06; hand_r door_L 122-129 0.01; hand_l body_shell 145-153 0.01; foot_l body_shell 153-168 0.87; foot_r interior 173-240 0.49; hand_l door_L 190-200 0.0; foot_l interior 192-206 0.09; hand_r steering_wheel 204-240 0.0; foot_l interior 216-240 1.2; hand_l steering_wheel 224-225 0.0; hand_l steering_wheel 228-240 0.0",
+    "contactCm": "foot_l None 0-58 0.0; foot_r None 0-9 0.0; foot_r None 18-45 0.01; hand_r door_L 32-39 0.0; foot_r None 55-74 0.12; foot_l None 72-88 0.0; foot_r None 87-150 0.01; foot_l None 99-139 0.06; hand_r door_L 122-129 0.0; hand_l body_shell 145-153 0.01; foot_l body_shell 153-168 0.87; foot_r interior 173-240 0.49; hand_l door_L 190-200 0.0; foot_l interior 192-206 0.09; hand_r steering_wheel 204-240 0.0; foot_l interior 216-240 1.2; hand_l steering_wheel 224-225 0.0; hand_l steering_wheel 228-240 0.0",
     "contactMaxCm": 0.01,
     "hardPairs": {
      "ball_l/interior": "1.9 cm at 210 (14 frames)",
@@ -6512,69 +6479,70 @@
      "thigh_r/steering_wheel": "1.6 cm at 170 (3 frames)",
      "hand_r/door_L": "1.5 cm at 44 (4 frames)",
      "lowerarm_r/steering_wheel": "1.5 cm at 172 (8 frames)",
-     "pinky_01_r/door_L": "1.4 cm at 42 (6 frames)",
+     "pinky_01_r/door_L": "1.4 cm at 42 (5 frames)",
      "thumb_01_r/door_L": "1.4 cm at 44 (3 frames)",
      "foot_l/body_shell": "1.4 cm at 171 (8 frames)",
-     "pinky_02_r/door_L": "1.1 cm at 42 (7 frames)",
+     "pinky_02_r/door_L": "1.1 cm at 42 (8 frames)",
      "thumb_02_r/door_L": "1.1 cm at 43 (6 frames)",
      "ring_01_r/door_L": "1.0 cm at 43 (4 frames)",
      "ball_r/interior": "1.0 cm at 172 (3 frames)",
      "middle_01_r/door_L": "0.9 cm at 42 (4 frames)",
-     "thumb_03_r/door_L": "0.9 cm at 120 (5 frames)",
      "middle_02_l/steering_wheel": "0.9 cm at 226 (9 frames)",
      "ring_02_l/steering_wheel": "0.9 cm at 227 (2 frames)",
      "ring_02_l/door_L": "0.8 cm at 206 (7 frames)",
      "middle_02_l/door_L": "0.8 cm at 206 (6 frames)",
+     "index_02_l/body_shell": "0.8 cm at 144 (3 frames)",
      "calf_l/interior": "0.8 cm at 212 (2 frames)",
      "index_02_l/steering_wheel": "0.8 cm at 221 (6 frames)",
-     "index_03_l/body_shell": "0.8 cm at 143 (3 frames)",
-     "middle_01_l/steering_wheel": "0.8 cm at 226 (5 frames)",
      "ring_03_r/door_L": "0.8 cm at 131 (7 frames)",
-     "index_02_l/body_shell": "0.8 cm at 144 (3 frames)",
+     "middle_01_l/steering_wheel": "0.8 cm at 226 (5 frames)",
      "middle_02_r/steering_wheel": "0.8 cm at 202 (6 frames)",
      "ring_03_l/body_shell": "0.8 cm at 144 (4 frames)",
-     "middle_03_l/body_shell": "0.8 cm at 143 (2 frames)",
+     "thumb_03_l/body_shell": "0.7 cm at 142 (7 frames)",
      "thumb_03_l/door_L": "0.7 cm at 205 (8 frames)",
      "pinky_03_l/door_L": "0.7 cm at 208 (6 frames)",
      "pinky_02_l/door_L": "0.7 cm at 208 (7 frames)",
-     "pinky_03_l/body_shell": "0.7 cm at 143 (4 frames)",
      "index_01_r/door_L": "0.7 cm at 45 (2 frames)",
      "index_03_r/steering_wheel": "0.7 cm at 200 (6 frames)",
      "pinky_01_l/door_L": "0.7 cm at 209 (6 frames)",
-     "thumb_03_l/body_shell": "0.7 cm at 155 (6 frames)",
+     "thumb_03_r/door_L": "0.7 cm at 131 (5 frames)",
+     "pinky_03_r/door_L": "0.7 cm at 131 (5 frames)",
+     "pinky_03_l/body_shell": "0.7 cm at 154 (5 frames)",
      "pinky_02_l/body_shell": "0.7 cm at 154 (3 frames)",
      "middle_02_l/body_shell": "0.7 cm at 144 (3 frames)",
-     "pinky_03_r/door_L": "0.7 cm at 131 (5 frames)",
      "ring_03_l/steering_wheel": "0.7 cm at 227 (2 frames)",
      "ring_02_r/steering_wheel": "0.7 cm at 197 (2 frames)",
      "index_02_r/steering_wheel": "0.7 cm at 198 (7 frames)",
+     "ring_02_r/door_L": "0.7 cm at 121 (4 frames)",
      "ring_03_l/door_L": "0.7 cm at 208 (7 frames)",
      "middle_03_r/steering_wheel": "0.6 cm at 203 (6 frames)",
      "index_03_l/steering_wheel": "0.6 cm at 220 (7 frames)",
      "index_03_l/door_L": "0.6 cm at 203 (8 frames)",
      "ring_01_l/steering_wheel": "0.6 cm at 226 (2 frames)",
      "middle_01_r/steering_wheel": "0.6 cm at 202 (4 frames)",
-     "ring_02_r/door_L": "0.6 cm at 121 (3 frames)",
      "middle_03_l/steering_wheel": "0.6 cm at 216 (8 frames)",
      "ring_03_r/steering_wheel": "0.6 cm at 203 (3 frames)",
      "middle_02_r/door_L": "0.6 cm at 41 (2 frames)",
-     "thumb_02_l/body_shell": "0.6 cm at 143 (4 frames)",
      "index_01_r/steering_wheel": "0.5 cm at 203 (6 frames)",
      "ring_01_l/door_L": "0.5 cm at 210 (4 frames)",
+     "thumb_02_l/body_shell": "0.5 cm at 144 (4 frames)",
      "pinky_03_r/steering_wheel": "0.5 cm at 203 (3 frames)",
      "index_02_r/door_L": "0.5 cm at 41 (1 frames)",
-     "middle_03_r/door_L": "0.5 cm at 41 (2 frames)",
+     "middle_03_r/door_L": "0.5 cm at 41 (3 frames)",
      "middle_03_l/door_L": "0.5 cm at 204 (6 frames)",
      "thumb_02_l/door_L": "0.5 cm at 203 (7 frames)",
      "ring_01_r/steering_wheel": "0.4 cm at 203 (2 frames)",
      "hand_l/door_L": "0.4 cm at 210 (2 frames)",
      "thumb_03_l/interior": "0.4 cm at 167 (3 frames)",
+     "middle_03_l/body_shell": "0.4 cm at 154 (3 frames)",
+     "index_03_l/body_shell": "0.4 cm at 143 (4 frames)",
      "pinky_03_l/steering_wheel": "0.3 cm at 226 (2 frames)",
      "middle_01_l/door_L": "0.3 cm at 209 (1 frames)",
      "pinky_02_l/steering_wheel": "0.3 cm at 227 (2 frames)",
      "index_02_l/door_L": "0.2 cm at 205 (3 frames)",
      "hand_r/steering_wheel": "0.1 cm at 175 (1 frames)",
      "pinky_01_l/steering_wheel": "0.1 cm at 227 (1 frames)",
+     "pinky_01_l/body_shell": "0.1 cm at 144 (1 frames)",
      "ring_02_l/body_shell": "0.1 cm at 144 (1 frames)"
     },
     "softPairs": {
@@ -6592,30 +6560,30 @@
      "calf_r/seat_driver": "0.1 cm at 165 (1 frames)"
     },
     "contactPairsDepth": {
-     "foot_l/body_shell": "4.0 cm at 164 (16 frames)",
      "ball_r/interior": "2.3 cm at 180 (68 frames)",
      "ball_l/interior": "1.6 cm at 206 (40 frames)",
      "foot_l/interior": "1.4 cm at 218 (40 frames)",
      "ring_02_l/body_shell": "1.4 cm at 149 (9 frames)",
+     "foot_l/body_shell": "1.2 cm at 153 (16 frames)",
      "ring_02_l/steering_wheel": "1.0 cm at 231 (13 frames)",
-     "ring_02_r/door_L": "1.0 cm at 129 (8 frames)",
      "index_02_l/body_shell": "0.9 cm at 153 (9 frames)",
      "middle_02_l/body_shell": "0.9 cm at 153 (9 frames)",
      "index_02_l/steering_wheel": "0.9 cm at 225 (15 frames)",
      "middle_02_r/steering_wheel": "0.8 cm at 204 (37 frames)",
+     "ring_03_r/door_L": "0.8 cm at 129 (5 frames)",
+     "ring_02_r/door_L": "0.8 cm at 128 (8 frames)",
      "ring_02_r/steering_wheel": "0.8 cm at 204 (37 frames)",
      "middle_02_l/steering_wheel": "0.8 cm at 229 (14 frames)",
      "ring_01_r/steering_wheel": "0.8 cm at 206 (37 frames)",
      "middle_01_l/steering_wheel": "0.8 cm at 228 (13 frames)",
-     "ring_03_r/door_L": "0.8 cm at 129 (5 frames)",
-     "pinky_02_r/door_L": "0.7 cm at 128 (8 frames)",
+     "pinky_02_r/door_L": "0.8 cm at 128 (8 frames)",
      "pinky_02_l/body_shell": "0.7 cm at 148 (9 frames)",
-     "thumb_03_r/door_L": "0.7 cm at 123 (8 frames)",
+     "thumb_03_r/door_L": "0.7 cm at 129 (8 frames)",
      "middle_01_r/steering_wheel": "0.7 cm at 206 (37 frames)",
      "thumb_03_l/door_L": "0.7 cm at 190 (11 frames)",
+     "thumb_02_l/body_shell": "0.6 cm at 152 (9 frames)",
      "middle_03_r/steering_wheel": "0.6 cm at 206 (37 frames)",
      "ring_03_r/steering_wheel": "0.6 cm at 206 (37 frames)",
-     "thumb_02_l/body_shell": "0.6 cm at 152 (9 frames)",
      "middle_03_l/steering_wheel": "0.6 cm at 231 (14 frames)",
      "ring_03_l/steering_wheel": "0.6 cm at 231 (13 frames)",
      "index_01_l/steering_wheel": "0.6 cm at 230 (12 frames)",
@@ -6624,19 +6592,19 @@
      "index_03_l/steering_wheel": "0.6 cm at 225 (3 frames)",
      "pinky_02_l/steering_wheel": "0.6 cm at 231 (13 frames)",
      "pinky_03_r/steering_wheel": "0.6 cm at 205 (37 frames)",
-     "pinky_01_r/door_L": "0.5 cm at 129 (8 frames)",
      "ring_01_l/steering_wheel": "0.5 cm at 229 (12 frames)",
      "thumb_02_l/door_L": "0.5 cm at 200 (11 frames)",
      "index_02_r/steering_wheel": "0.5 cm at 206 (37 frames)",
      "pinky_01_l/body_shell": "0.5 cm at 149 (9 frames)",
-     "middle_03_r/door_L": "0.4 cm at 125 (8 frames)",
+     "pinky_01_r/door_L": "0.5 cm at 124 (8 frames)",
+     "middle_03_r/door_L": "0.5 cm at 125 (8 frames)",
      "thumb_02_r/door_L": "0.4 cm at 124 (8 frames)",
      "ring_03_l/body_shell": "0.4 cm at 153 (2 frames)",
-     "pinky_03_r/door_L": "0.4 cm at 124 (3 frames)",
+     "pinky_03_r/door_L": "0.4 cm at 125 (3 frames)",
      "index_01_r/steering_wheel": "0.3 cm at 204 (37 frames)",
      "middle_01_l/body_shell": "0.2 cm at 149 (4 frames)",
+     "ring_01_r/door_L": "0.1 cm at 125 (5 frames)",
      "index_03_l/door_L": "0.1 cm at 190 (4 frames)",
-     "ring_01_r/door_L": "0.1 cm at 123 (5 frames)",
      "ring_01_l/body_shell": "0.1 cm at 149 (2 frames)"
     },
     "hardMaxCm": 1.95,
@@ -6647,21 +6615,21 @@
      "body_shell": "0.5 at 204",
      "interior": "1.0 at 216"
     },
-    "wristWorst": "Left flex -42 (f239) dev -44 (f201) / Right flex -50 (f115) dev +39 (f115)",
+    "wristWorst": "Left flex -42 (f239) dev -44 (f201) / Right flex +42 (f32) dev -29 (f232)",
     "wristFramesPast": "-",
-    "twistStepDeg": "27.2 at 115 (Right)",
-    "elbowMinDeg": "25.7 at 136",
+    "twistStepDeg": "27.1 at 181 (Left)",
+    "elbowMinDeg": "10.2 at 116",
     "kneeMinDeg": "29.8 at 18",
     "balanceOutCm": "17.8 at 75",
-    "balanceFramesOver3cm": "17, 46-47, 51-56, 59-66, 75-86, 89-115, 139-143",
+    "balanceFramesOver3cm": "17, 46-47, 51-56, 59-66, 75-86, 89-114, 139-143",
     "plantSlideMmPerFrame": "11.15 at 217",
     "joinErr": "0.000 mm (None) / 0.000 deg (None)"
    }
   },
   "car-exit": {
-   "duration": 7.8,
+   "duration": 7.833333333333333,
    "loop": false,
-   "frames": 235,
+   "frames": 236,
    "cycles": 1,
    "speed": 0.0,
    "direction": 0.0,
@@ -6736,7 +6704,7 @@
      3.141593
     ],
     [
-     -0.36996,
+     -0.36997,
      -0.14026,
      3.141593
     ],
@@ -6752,7 +6720,7 @@
     ],
     [
      -0.36994,
-     -0.14044,
+     -0.14043,
      3.141593
     ],
     [
@@ -6761,18 +6729,18 @@
      3.141593
     ],
     [
-     -0.36992,
-     -0.14058,
+     -0.36993,
+     -0.14057,
      3.141593
     ],
     [
-     -0.36991,
+     -0.36992,
      -0.14065,
      3.141593
     ],
     [
      -0.3699,
-     -0.14074,
+     -0.14073,
      3.141593
     ],
     [
@@ -6786,1073 +6754,1078 @@
      3.141593
     ],
     [
-     -0.36986,
-     -0.14101,
+     -0.36987,
+     -0.141,
      3.141593
     ],
     [
-     -0.36985,
+     -0.36986,
      -0.14111,
      3.141593
     ],
     [
-     -0.36984,
+     -0.36985,
      -0.14122,
      3.141594
     ],
     [
      -0.36984,
-     -0.14135,
+     -0.14134,
      3.141598
     ],
     [
-     -0.36984,
-     -0.14148,
+     -0.36985,
+     -0.14147,
      3.141605
     ],
     [
-     -0.36986,
-     -0.14164,
+     -0.36987,
+     -0.14163,
      3.141619
     ],
     [
-     -0.36989,
-     -0.14183,
+     -0.3699,
+     -0.14182,
      3.141645
     ],
     [
-     -0.36997,
-     -0.14207,
+     -0.36998,
+     -0.14206,
      3.141692
     ],
     [
-     -0.37008,
-     -0.14237,
+     -0.3701,
+     -0.14235,
      3.141771
     ],
     [
-     -0.37027,
-     -0.14274,
+     -0.37028,
+     -0.14273,
      3.141899
     ],
     [
-     -0.37053,
-     -0.14322,
+     -0.37055,
+     -0.1432,
      3.142098
     ],
     [
-     -0.3709,
-     -0.1438,
+     -0.37091,
+     -0.14379,
      3.142397
     ],
     [
-     -0.37139,
-     -0.14452,
+     -0.3714,
+     -0.1445,
      3.142828
     ],
     [
-     -0.37201,
-     -0.14537,
+     -0.37203,
+     -0.14535,
      3.143433
     ],
     [
-     -0.37279,
-     -0.14636,
+     -0.3728,
+     -0.14634,
      3.144256
     ],
     [
-     -0.37372,
-     -0.14748,
+     -0.37374,
+     -0.14746,
      3.145349
     ],
     [
-     -0.37482,
-     -0.14872,
+     -0.37484,
+     -0.14869,
      3.146768
     ],
     [
-     -0.37609,
-     -0.15006,
+     -0.37611,
+     -0.15003,
      3.148572
     ],
     [
-     -0.37753,
-     -0.15147,
+     -0.37755,
+     -0.15145,
      3.150823
     ],
     [
-     -0.37914,
-     -0.15294,
+     -0.37917,
+     -0.15291,
      3.153586
     ],
     [
-     -0.38093,
-     -0.15442,
+     -0.38095,
+     -0.1544,
      3.156929
     ],
     [
-     -0.38289,
-     -0.15589,
+     -0.38291,
+     -0.15586,
      3.16092
     ],
     [
-     -0.38503,
-     -0.1573,
+     -0.38506,
+     -0.15728,
      3.165624
     ],
     [
-     -0.38738,
-     -0.15863,
+     -0.3874,
+     -0.1586,
      3.171104
     ],
     [
-     -0.38994,
-     -0.15983,
+     -0.38996,
+     -0.1598,
      3.17741
     ],
     [
-     -0.39274,
-     -0.16087,
+     -0.39277,
+     -0.16084,
      3.184576
     ],
     [
-     -0.39582,
-     -0.16172,
+     -0.39585,
+     -0.16168,
      3.192616
     ],
     [
-     -0.39921,
-     -0.16235,
+     -0.39924,
+     -0.16231,
      3.201514
     ],
     [
-     -0.40292,
-     -0.16274,
+     -0.40295,
+     -0.1627,
      3.211224
     ],
     [
-     -0.40697,
-     -0.16289,
+     -0.407,
+     -0.16285,
      3.221667
     ],
     [
-     -0.41135,
-     -0.1628,
+     -0.41139,
+     -0.16276,
      3.232733
     ],
     [
-     -0.41604,
-     -0.16249,
+     -0.41607,
+     -0.16245,
      3.244287
     ],
     [
-     -0.42097,
-     -0.162,
+     -0.42101,
+     -0.16196,
      3.256173
     ],
     [
-     -0.42609,
-     -0.16138,
+     -0.42613,
+     -0.16133,
      3.26822
     ],
     [
-     -0.43132,
-     -0.16066,
+     -0.43136,
+     -0.16061,
      3.280253
     ],
     [
-     -0.43657,
-     -0.15989,
+     -0.43661,
+     -0.15985,
      3.292103
     ],
     [
-     -0.44178,
-     -0.15913,
+     -0.44182,
+     -0.15908,
      3.303609
     ],
     [
-     -0.44689,
-     -0.15839,
+     -0.44693,
+     -0.15834,
      3.314631
     ],
     [
-     -0.45186,
-     -0.15771,
+     -0.4519,
+     -0.15766,
      3.325056
     ],
     [
-     -0.45667,
-     -0.15707,
+     -0.45672,
+     -0.15702,
      3.334802
     ],
     [
-     -0.46132,
-     -0.15649,
+     -0.46137,
+     -0.15644,
      3.343817
     ],
     [
-     -0.46582,
-     -0.15593,
+     -0.46587,
+     -0.15587,
      3.352086
     ],
     [
-     -0.47018,
-     -0.15536,
+     -0.47023,
+     -0.1553,
      3.359623
     ],
     [
-     -0.47442,
-     -0.15475,
+     -0.47447,
+     -0.15469,
      3.366469
     ],
     [
-     -0.47856,
-     -0.15406,
+     -0.47861,
+     -0.154,
      3.372683
     ],
     [
-     -0.48262,
-     -0.15325,
+     -0.48267,
+     -0.15319,
      3.378334
     ],
     [
-     -0.4866,
-     -0.15229,
+     -0.48666,
+     -0.15223,
      3.383498
     ],
     [
-     -0.49053,
-     -0.15115,
+     -0.49059,
+     -0.15109,
      3.388248
     ],
     [
-     -0.4944,
-     -0.14983,
+     -0.49446,
+     -0.14976,
      3.392647
     ],
     [
-     -0.49822,
-     -0.14829,
+     -0.49828,
+     -0.14823,
      3.396742
     ],
     [
-     -0.50199,
-     -0.14656,
+     -0.50205,
+     -0.14649,
      3.400559
     ],
     [
-     -0.50571,
-     -0.14463,
+     -0.50577,
+     -0.14456,
      3.404094
     ],
     [
-     -0.50938,
-     -0.14253,
+     -0.50945,
+     -0.14245,
      3.40732
     ],
     [
-     -0.51301,
-     -0.14026,
+     -0.51308,
+     -0.14018,
      3.410188
     ],
     [
-     -0.51661,
-     -0.13785,
+     -0.51668,
+     -0.13777,
      3.412636
     ],
     [
-     -0.52017,
-     -0.13532,
+     -0.52025,
+     -0.13524,
      3.414613
     ],
     [
-     -0.52372,
-     -0.1327,
+     -0.5238,
+     -0.13262,
      3.4161
     ],
     [
-     -0.52726,
-     -0.13,
+     -0.52734,
+     -0.12992,
      3.417127
     ],
     [
-     -0.53081,
-     -0.12726,
+     -0.53089,
+     -0.12718,
      3.417803
     ],
     [
-     -0.53438,
-     -0.12448,
+     -0.53446,
+     -0.1244,
      3.418319
     ],
     [
-     -0.53798,
-     -0.1217,
+     -0.53806,
+     -0.12161,
      3.418958
     ],
     [
-     -0.54164,
-     -0.11892,
+     -0.54172,
+     -0.11884,
      3.42009
     ],
     [
-     -0.54536,
-     -0.11618,
+     -0.54544,
+     -0.11609,
      3.422154
     ],
     [
-     -0.54917,
-     -0.11349,
+     -0.54925,
+     -0.1134,
      3.425643
     ],
     [
-     -0.55307,
-     -0.11087,
+     -0.55316,
+     -0.11078,
      3.431082
     ],
     [
-     -0.55709,
-     -0.10835,
+     -0.55718,
+     -0.10825,
      3.439006
     ],
     [
-     -0.56125,
-     -0.10593,
+     -0.56134,
+     -0.10584,
      3.449931
     ],
     [
-     -0.56556,
-     -0.10363,
+     -0.56565,
+     -0.10354,
      3.464333
     ],
     [
-     -0.57005,
-     -0.10147,
+     -0.57015,
+     -0.10138,
      3.482619
     ],
     [
-     -0.57476,
-     -0.09945,
+     -0.57486,
+     -0.09935,
      3.505105
     ],
     [
-     -0.57972,
-     -0.09755,
+     -0.57982,
+     -0.09745,
      3.531992
     ],
     [
-     -0.585,
-     -0.09577,
+     -0.5851,
+     -0.09566,
      3.56335
     ],
     [
-     -0.59065,
-     -0.09404,
+     -0.59076,
+     -0.09394,
      3.599107
     ],
     [
-     -0.59679,
-     -0.09232,
+     -0.5969,
+     -0.09222,
      3.63905
     ],
     [
-     -0.60353,
-     -0.09051,
+     -0.60364,
+     -0.0904,
      3.682836
     ],
     [
-     -0.61102,
-     -0.08849,
+     -0.61113,
+     -0.08838,
      3.730011
     ],
     [
-     -0.61943,
-     -0.08612,
+     -0.61954,
+     -0.08601,
      3.78003
     ],
     [
-     -0.62895,
-     -0.08324,
+     -0.62906,
+     -0.08313,
      3.832293
     ],
     [
-     -0.63977,
-     -0.07968,
+     -0.63989,
+     -0.07957,
      3.886168
     ],
     [
-     -0.65209,
-     -0.07528,
+     -0.6522,
+     -0.07517,
      3.941028
     ],
     [
-     -0.66605,
-     -0.06989,
+     -0.66617,
+     -0.06978,
      3.996281
     ],
     [
-     -0.68178,
-     -0.06343,
+     -0.68189,
+     -0.06332,
      4.051401
     ],
     [
-     -0.69928,
-     -0.05587,
+     -0.6994,
+     -0.05575,
      4.105952
     ],
     [
-     -0.71853,
-     -0.04725,
+     -0.71865,
+     -0.04714,
      4.159605
     ],
     [
-     -0.73936,
-     -0.03773,
+     -0.73948,
+     -0.03761,
      4.212148
     ],
     [
-     -0.76154,
-     -0.0275,
+     -0.76167,
+     -0.02738,
      4.263479
     ],
     [
-     -0.78478,
-     -0.01688,
+     -0.78491,
+     -0.01675,
      4.313591
     ],
     [
-     -0.80871,
-     -0.00618,
+     -0.80884,
+     -0.00606,
      4.362542
     ],
     [
-     -0.833,
-     0.00422,
+     -0.83313,
+     0.00435,
      4.410431
     ],
     [
-     -0.8573,
-     0.01401,
+     -0.85743,
+     0.01413,
      4.457363
     ],
     [
-     -0.88134,
-     0.02286,
+     -0.88148,
+     0.02299,
      4.503431
     ],
     [
-     -0.90493,
-     0.03055,
+     -0.90507,
+     0.03068,
      4.548695
     ],
     [
-     -0.92792,
-     0.03692,
+     -0.92806,
+     0.03705,
      4.593147
     ],
     [
-     -0.95022,
-     0.04189,
+     -0.95036,
+     0.04202,
      4.636745
     ],
     [
-     -0.97174,
-     0.04542,
+     -0.97188,
+     0.04556,
      4.679388
     ],
     [
-     -0.99235,
-     0.04758,
+     -0.99249,
+     0.04771,
      4.720914
     ],
     [
-     -1.01184,
-     0.04843,
+     -1.01198,
+     0.04856,
      4.76109
     ],
     [
-     -1.0299,
-     0.04809,
+     -1.03005,
+     0.04823,
      4.799608
     ],
     [
-     -1.04614,
-     0.04669,
+     -1.04629,
+     0.04682,
      4.836086
     ],
     [
-     -1.06005,
-     0.04435,
+     -1.0602,
+     0.04449,
      4.870087
     ],
     [
-     -1.07113,
-     0.04124,
+     -1.07128,
+     0.04138,
      4.901151
     ],
     [
-     -1.07891,
-     0.0375,
+     -1.07906,
+     0.03764,
      4.92885
     ],
     [
-     -1.08304,
-     0.03331,
+     -1.0832,
+     0.03345,
      4.952852
     ],
     [
-     -1.08338,
-     0.02886,
+     -1.08354,
+     0.029,
      4.972977
     ],
     [
-     -1.08001,
-     0.02435,
+     -1.08017,
+     0.02449,
      4.989238
     ],
     [
-     -1.0733,
-     0.01998,
+     -1.07346,
+     0.02012,
      5.001842
     ],
     [
-     -1.06383,
-     0.01595,
+     -1.064,
+     0.0161,
      5.011168
     ],
     [
-     -1.05242,
-     0.01245,
+     -1.05259,
+     0.01259,
      5.017708
     ],
     [
-     -1.03999,
-     0.0096,
+     -1.04015,
+     0.00975,
      5.021995
     ],
     [
-     -1.02751,
-     0.00752,
+     -1.02768,
+     0.00766,
      5.024543
     ],
     [
-     -1.01592,
-     0.00622,
+     -1.01609,
+     0.00637,
      5.0258
     ],
     [
-     -1.00605,
-     0.00571,
+     -1.00622,
+     0.00586,
      5.026118
     ],
     [
-     -0.99854,
-     0.00591,
+     -0.99871,
+     0.00605,
      5.025756
     ],
     [
-     -0.99381,
-     0.0067,
+     -0.99399,
+     0.00685,
      5.024891
     ],
     [
-     -0.99209,
-     0.00794,
+     -0.99227,
+     0.00809,
      5.023632
     ],
     [
-     -0.9934,
-     0.00946,
+     -0.99358,
+     0.00961,
      5.022045
     ],
     [
-     -0.99758,
-     0.01107,
+     -0.99776,
+     0.01122,
      5.020164
     ],
     [
-     -1.00438,
-     0.01259,
+     -1.00456,
+     0.01274,
      5.018021
     ],
     [
-     -1.01348,
-     0.01384,
+     -1.01366,
+     0.01399,
      5.015604
     ],
     [
-     -1.02455,
-     0.01465,
+     -1.02474,
+     0.0148,
      5.012899
     ],
     [
-     -1.03731,
-     0.0149,
+     -1.0375,
+     0.01505,
      5.009881
     ],
     [
-     -1.05154,
-     0.01449,
+     -1.05173,
+     0.01464,
      5.006519
     ],
     [
-     -1.06714,
-     0.01339,
+     -1.06733,
+     0.01354,
      5.002776
     ],
     [
-     -1.08409,
-     0.01162,
+     -1.08428,
+     0.01178,
      4.998614
     ],
     [
-     -1.10247,
-     0.00927,
+     -1.10266,
+     0.00942,
      4.994004
     ],
     [
-     -1.12243,
-     0.00648,
+     -1.12262,
+     0.00663,
      4.988896
     ],
     [
-     -1.14414,
-     0.00345,
-     4.983203
+     -1.14433,
+     0.0036,
+     4.983207
     ],
     [
-     -1.16776,
-     0.0004,
-     4.976806
+     -1.16795,
+     0.00056,
+     4.976821
     ],
     [
-     -1.19336,
-     -0.00242,
-     4.969508
+     -1.19355,
+     -0.00227,
+     4.96955
     ],
     [
-     -1.22091,
-     -0.00479,
-     4.960981
+     -1.2211,
+     -0.00464,
+     4.961083
     ],
     [
-     -1.25026,
-     -0.00655,
-     4.950693
+     -1.25042,
+     -0.0064,
+     4.95091
     ],
     [
-     -1.28107,
-     -0.00757,
-     4.937818
+     -1.2812,
+     -0.00741,
+     4.938245
     ],
     [
-     -1.3129,
-     -0.00783,
-     4.921201
+     -1.31299,
+     -0.00765,
+     4.921989
     ],
     [
-     -1.34521,
-     -0.0074,
-     4.899375
+     -1.34522,
+     -0.00717,
+     4.900747
     ],
     [
-     -1.37739,
-     -0.00645,
-     4.870662
+     -1.37729,
+     -0.00615,
+     4.872934
     ],
     [
-     -1.40886,
-     -0.00529,
-     4.833349
+     -1.4086,
+     -0.00486,
+     4.836944
     ],
     [
-     -1.43905,
-     -0.0043,
-     4.785937
+     -1.4386,
+     -0.00365,
+     4.791389
     ],
     [
-     -1.46752,
-     -0.00396,
-     4.727376
+     -1.46682,
+     -0.00296,
+     4.735331
     ],
     [
-     -1.49393,
-     -0.00478,
-     4.657236
+     -1.49294,
+     -0.00328,
+     4.66845
     ],
     [
-     -1.51804,
-     -0.00729,
-     4.575792
+     -1.51675,
+     -0.0051,
+     4.591093
     ],
     [
-     -1.53977,
-     -0.01199,
-     4.483959
+     -1.53814,
+     -0.00887,
+     4.504211
     ],
     [
-     -1.55908,
-     -0.01927,
-     4.383115
+     -1.55714,
+     -0.01497,
+     4.409173
     ],
     [
-     -1.57605,
-     -0.02941,
-     4.274856
+     -1.57383,
+     -0.02368,
+     4.307515
     ],
     [
-     -1.59081,
-     -0.04252,
-     4.160771
+     -1.58836,
+     -0.03514,
+     4.200701
     ],
     [
-     -1.60351,
-     -0.05856,
-     4.042284
+     -1.60088,
+     -0.04934,
+     4.089961
     ],
     [
-     -1.61433,
-     -0.07734,
-     3.920568
+     -1.61161,
+     -0.06618,
+     3.976226
     ],
     [
-     -1.62348,
-     -0.09852,
-     3.796636
+     -1.62073,
+     -0.08542,
+     3.860145
     ],
     [
-     -1.63115,
-     -0.12162,
-     3.671499
+     -1.62845,
+     -0.10673,
+     3.742264
     ],
     [
-     -1.63753,
-     -0.14602,
-     3.546358
+     -1.63495,
+     -0.12966,
+     3.623228
     ],
     [
-     -1.64279,
-     -0.17101,
-     3.42276
+     -1.6404,
+     -0.15364,
+     3.503992
     ],
     [
-     -1.64706,
-     -0.19576,
-     3.302673
+     -1.64493,
+     -0.17801,
+     3.385982
     ],
     [
-     -1.65046,
-     -0.21942,
-     3.188401
+     -1.64865,
+     -0.20202,
+     3.271112
     ],
     [
-     -1.65306,
-     -0.24118,
-     3.082348
+     -1.65163,
+     -0.22485,
+     3.161654
     ],
     [
-     -1.65493,
-     -0.26035,
-     2.986731
+     -1.65391,
+     -0.24574,
+     3.060016
     ],
     [
-     -1.6561,
-     -0.27649,
-     2.903256
+     -1.65554,
+     -0.26406,
+     2.968415
+    ],
+    [
+     -1.65652,
+     -0.2794,
+     2.888546
+    ],
+    [
+     -1.65687,
+     -0.29163,
+     2.821342
     ],
     [
      -1.6566,
-     -0.28942,
-     2.832863
+     -0.30092,
+     2.76684
     ],
     [
-     -1.65646,
-     -0.29929,
-     2.77562
+     -1.65568,
+     -0.3077,
+     2.72424
     ],
     [
-     -1.65566,
-     -0.30652,
-     2.730744
+     -1.65408,
+     -0.31259,
+     2.692107
     ],
     [
-     -1.65417,
-     -0.31172,
-     2.696791
+     -1.65175,
+     -0.31626,
+     2.668653
     ],
     [
-     -1.65196,
-     -0.31556,
-     2.67194
+     -1.6486,
+     -0.31937,
+     2.652029
     ],
     [
-     -1.64894,
-     -0.31874,
-     2.654283
+     -1.6446,
+     -0.32246,
+     2.640555
     ],
     [
-     -1.64507,
-     -0.32181,
-     2.642066
+     -1.63971,
+     -0.32593,
+     2.632866
     ],
     [
-     -1.6403,
-     -0.32521,
-     2.633848
+     -1.63395,
+     -0.33,
+     2.627972
     ],
     [
-     -1.63466,
-     -0.3292,
-     2.628569
+     -1.6274,
+     -0.33477,
+     2.625221
     ],
     [
-     -1.62821,
-     -0.33388,
-     2.625521
+     -1.62022,
+     -0.34022,
+     2.624252
     ],
     [
-     -1.62111,
-     -0.33925,
-     2.624296
+     -1.61262,
+     -0.34625,
+     2.624924
     ],
     [
-     -1.61354,
-     -0.34522,
-     2.624725
+     -1.60482,
+     -0.3527,
+     2.627261
     ],
     [
-     -1.60574,
-     -0.35164,
-     2.626807
+     -1.59707,
+     -0.35938,
+     2.631385
     ],
     [
-     -1.59796,
-     -0.35832,
-     2.630654
+     -1.58959,
+     -0.3661,
+     2.63748
     ],
     [
-     -1.59041,
-     -0.36506,
-     2.636441
+     -1.58257,
+     -0.37265,
+     2.645758
     ],
     [
-     -1.5833,
-     -0.37166,
-     2.644382
+     -1.57612,
+     -0.37884,
+     2.656382
     ],
     [
-     -1.57676,
-     -0.37792,
-     2.654648
+     -1.57033,
+     -0.38449,
+     2.669426
     ],
     [
-     -1.57087,
-     -0.38367,
-     2.66733
+     -1.56524,
+     -0.38947,
+     2.684862
     ],
     [
-     -1.56567,
-     -0.38877,
-     2.682415
+     -1.56083,
+     -0.39368,
+     2.702548
     ],
     [
-     -1.56116,
-     -0.3931,
-     2.699778
+     -1.5571,
+     -0.39703,
+     2.722233
     ],
     [
-     -1.55733,
-     -0.39659,
-     2.719184
+     -1.55402,
+     -0.39948,
+     2.743574
     ],
     [
-     -1.55415,
-     -0.39918,
-     2.740301
+     -1.55158,
+     -0.401,
+     2.766166
     ],
     [
-     -1.55162,
-     -0.40084,
-     2.762734
+     -1.5498,
+     -0.40157,
+     2.789578
     ],
     [
-     -1.54973,
-     -0.40155,
-     2.786052
+     -1.54869,
+     -0.40114,
+     2.813385
     ],
     [
-     -1.54852,
-     -0.40128,
-     2.809825
+     -1.54834,
+     -0.39971,
+     2.837201
     ],
     [
-     -1.54805,
-     -0.4,
-     2.833662
+     -1.54879,
+     -0.39724,
+     2.860705
     ],
     [
-     -1.54837,
-     -0.39769,
-     2.857231
+     -1.55013,
+     -0.3937,
+     2.883659
     ],
     [
-     -1.54957,
-     -0.39431,
-     2.88028
+     -1.55243,
+     -0.38908,
+     2.905908
     ],
     [
-     -1.55172,
-     -0.38985,
-     2.902641
+     -1.55572,
+     -0.38337,
+     2.927374
     ],
     [
-     -1.55486,
-     -0.3843,
-     2.924226
+     -1.55998,
+     -0.37661,
+     2.948037
     ],
     [
-     -1.55898,
-     -0.37769,
-     2.945008
+     -1.56517,
+     -0.36889,
+     2.967912
     ],
     [
-     -1.56405,
-     -0.3701,
-     2.964999
+     -1.57115,
+     -0.36033,
+     2.987017
     ],
     [
-     -1.56993,
-     -0.36165,
-     2.984218
+     -1.57773,
+     -0.35112,
+     3.005352
     ],
     [
-     -1.57645,
-     -0.35251,
-     3.002668
+     -1.58468,
+     -0.34148,
+     3.022882
     ],
     [
-     -1.58338,
-     -0.34291,
-     3.020321
+     -1.59172,
+     -0.33167,
+     3.039532
     ],
     [
-     -1.59044,
-     -0.33309,
-     3.037109
+     -1.59856,
+     -0.32194,
+     3.055191
     ],
     [
-     -1.59735,
-     -0.32333,
-     3.052924
+     -1.60493,
+     -0.31256,
+     3.069723
     ],
     [
-     -1.60383,
-     -0.31388,
-     3.067633
+     -1.61058,
+     -0.30377,
+     3.082984
     ],
     [
-     -1.60961,
-     -0.30497,
-     3.081093
+     -1.6153,
+     -0.29573,
+     3.094846
     ],
     [
-     -1.6145,
-     -0.29681,
-     3.093171
+     -1.61893,
+     -0.28858,
+     3.105212
     ],
     [
-     -1.61831,
-     -0.28952,
-     3.103765
+     -1.62137,
+     -0.28238,
+     3.114035
     ],
     [
-     -1.62093,
-     -0.28318,
-     3.112819
+     -1.62255,
+     -0.27713,
+     3.121328
     ],
     [
-     -1.6223,
-     -0.2778,
-     3.120337
+     -1.62246,
+     -0.27278,
+     3.127164
     ],
     [
-     -1.6224,
-     -0.27332,
-     3.126384
+     -1.62112,
+     -0.26921,
+     3.131672
     ],
     [
-     -1.62124,
-     -0.26964,
-     3.131079
+     -1.61859,
+     -0.26631,
+     3.135024
     ],
     [
-     -1.61887,
-     -0.26666,
-     3.134592
+     -1.61497,
+     -0.26394,
+     3.137417
     ],
     [
-     -1.61539,
-     -0.26422,
-     3.137115
+     -1.61037,
+     -0.26196,
+     3.139054
     ],
     [
-     -1.61092,
-     -0.26219,
-     3.138852
+     -1.60498,
+     -0.26027,
+     3.140122
     ],
     [
-     -1.60562,
-     -0.26047,
-     3.139994
+     -1.59899,
+     -0.25877,
+     3.140787
     ],
     [
-     -1.59969,
-     -0.25895,
-     3.140709
+     -1.59262,
+     -0.25742,
+     3.141179
     ],
     [
-     -1.59334,
-     -0.25757,
-     3.141134
+     -1.58612,
+     -0.25617,
+     3.141396
     ],
     [
-     -1.58683,
-     -0.25631,
-     3.141372
+     -1.5797,
+     -0.25502,
+     3.141509
     ],
     [
-     -1.58037,
-     -0.25514,
-     3.141497
+     -1.57359,
+     -0.25396,
+     3.141562
     ],
     [
-     -1.57419,
-     -0.25407,
-     3.141557
+     -1.56797,
+     -0.25301,
+     3.141584
     ],
     [
-     -1.56848,
-     -0.2531,
-     3.141582
-    ],
-    [
-     -1.56337,
-     -0.25224,
+     -1.56297,
+     -0.25217,
      3.141591
     ],
     [
-     -1.55896,
-     -0.2515,
+     -1.55866,
+     -0.25145,
      3.141593
     ],
     [
-     -1.55527,
-     -0.25089,
+     -1.55509,
+     -0.25086,
      3.141593
     ],
     [
-     -1.5523,
-     -0.25039,
+     -1.55222,
+     -0.25038,
      3.141593
     ],
     [
@@ -7867,8 +7840,8 @@
     "doorOpenStart": 0.65,
     "doorOpenEnd": 1.6,
     "unseated": 4.0,
-    "doorCloseStart": 6.0,
-    "doorCloseEnd": 6.65
+    "doorCloseStart": 6.0284,
+    "doorCloseEnd": 6.6784
    },
    "door": [
     0.0,
@@ -8052,25 +8025,26 @@
     1.0,
     1.0,
     1.0,
-    0.9705,
-    0.901,
-    0.8198,
-    0.7548,
-    0.7005,
-    0.6417,
-    0.5798,
-    0.5158,
-    0.4509,
-    0.3863,
-    0.3229,
-    0.2621,
-    0.2049,
-    0.1524,
-    0.1059,
-    0.0664,
-    0.035,
-    0.013,
-    0.0015,
+    0.9993,
+    0.962,
+    0.8889,
+    0.8084,
+    0.747,
+    0.6919,
+    0.6327,
+    0.5704,
+    0.5062,
+    0.4412,
+    0.3767,
+    0.3137,
+    0.2533,
+    0.1967,
+    0.1451,
+    0.0995,
+    0.0611,
+    0.0311,
+    0.0106,
+    0.0007,
     0.0,
     0.0,
     0.0,
@@ -8149,7 +8123,7 @@
     {
      "part": "hand_r",
      "from": 0,
-     "to": 44,
+     "to": 43,
      "node": "steering_wheel",
      "at": [
       0.194,
@@ -8186,7 +8160,7 @@
     {
      "part": "foot_r",
      "from": 57,
-     "to": 98,
+     "to": 97,
      "node": "interior",
      "at": [
       -0.432,
@@ -8249,7 +8223,7 @@
     },
     {
      "part": "foot_l",
-     "from": 160,
+     "from": 161,
      "to": 161,
      "node": null,
      "at": [
@@ -8262,7 +8236,7 @@
     },
     {
      "part": "foot_l",
-     "from": 168,
+     "from": 169,
      "to": 195,
      "node": null,
      "at": [
@@ -8275,7 +8249,7 @@
     },
     {
      "part": "foot_r",
-     "from": 178,
+     "from": 179,
      "to": 208,
      "node": null,
      "at": [
@@ -8288,20 +8262,20 @@
     },
     {
      "part": "hand_r",
-     "from": 180,
+     "from": 181,
      "to": 184,
      "node": "door_L",
      "at": [
       -0.0763,
-      0.0594,
-      0.9199
+      0.0585,
+      0.92
      ],
      "kind": "handle"
     },
     {
      "part": "foot_l",
-     "from": 207,
-     "to": 234,
+     "from": 208,
+     "to": 235,
      "node": null,
      "at": [
       -1.65,
@@ -8313,8 +8287,8 @@
     },
     {
      "part": "foot_r",
-     "from": 218,
-     "to": 234,
+     "from": 220,
+     "to": 235,
      "node": null,
      "at": [
       -1.45,
@@ -8326,19 +8300,19 @@
     }
    ],
    "review": {
-    "slide": "0.005 / 0.153",
+    "slide": "0.005 / 0.302",
     "kneeMin": 28.8,
-    "gapCm": "7.2 / 6.4",
+    "gapCm": "7.2 / 5.0",
     "seam": "-",
     "clearCm": "0.9 / 0.9",
     "headY": "0.819..1.470",
     "hipsY": "0.339..0.880",
     "hipsVsIdle": "-",
     "feetCm": "116 / 114",
-    "elbowDeg": "27..139 / 27..159",
+    "elbowDeg": "27..139 / 27..158",
     "elbowOutCm": "-20..22 / -6..27",
     "wristDeg": "flex -56 dev +46 / flex -42 dev -31",
-    "snap30": "hand_l 1.3 / hand_r 1.6 / foot_l 2.6 / foot_r 2.7 / head 0.6",
+    "snap30": "hand_l 1.3 / hand_r 1.3 / foot_l 2.3 / foot_r 2.7 / head 0.6",
     "snapMax": 2.67,
     "vehiclePairs": {
      "neck_01/seat_driver": 5735,
@@ -8362,17 +8336,17 @@
      "thumb_03_l/door_L": 36,
      "middle_03_l/door_L": 16,
      "head/seat_driver": 1921,
+     "pinky_03_r/steering_wheel": 115,
+     "middle_03_r/steering_wheel": 50,
      "thigh_r/steering_wheel": 92,
-     "pinky_03_r/steering_wheel": 85,
-     "ring_03_r/steering_wheel": 161,
-     "middle_03_r/steering_wheel": 24,
-     "middle_01_r/steering_wheel": 163,
-     "ring_01_r/steering_wheel": 123,
-     "ring_02_r/steering_wheel": 214,
-     "pinky_02_r/steering_wheel": 139,
-     "index_01_r/steering_wheel": 60,
-     "index_02_r/steering_wheel": 66,
-     "middle_02_r/steering_wheel": 199,
+     "ring_03_r/steering_wheel": 229,
+     "middle_01_r/steering_wheel": 200,
+     "ring_02_r/steering_wheel": 257,
+     "ring_01_r/steering_wheel": 137,
+     "pinky_02_r/steering_wheel": 168,
+     "index_02_r/steering_wheel": 95,
+     "index_01_r/steering_wheel": 72,
+     "middle_02_r/steering_wheel": 238,
      "ball_l/interior": 479,
      "foot_l/interior": 178,
      "pinky_01_r/steering_wheel": 22,
@@ -8404,63 +8378,62 @@
      "ball_r/body_shell": 28,
      "lowerarm_l/body_shell": 15,
      "upperarm_l/body_shell": 2,
-     "lowerarm_r/door_L": 100,
+     "lowerarm_r/door_L": 112,
      "upperarm_r/door_L": 2
     },
     "framesWithPairs": 94,
     "seatPairs": {
-     "thigh_r/seat_driver": 4133,
+     "thigh_r/seat_driver": 4135,
      "pelvis/seat_driver": 5444,
      "thigh_l/seat_driver": 5823,
      "spine_05/seat_driver": 14450,
      "spine_03/seat_driver": 3141,
      "spine_01/seat_driver": 756
     },
-    "contactPairs": 21970,
+    "contactPairs": 21643,
     "seatSinkCm": "cushion 4.7 / back 4.6 / bolster or harness 4.7",
     "backGapCm": "0.0..inf",
     "controlClearCm": "-0.6",
     "headClearCm": "0.2 at frame 60 (body_shell), head top y 1.707",
-    "contactCm": "foot_l interior 0-45 1.2; foot_r interior 0-46 1.35; hand_l steering_wheel 0-6 0.0; hand_r steering_wheel 0-44 0.0; hand_l door_L 20-30 0.01; foot_l interior 56-69 0.01; foot_r interior 57-98 0.25; hand_l body_shell 66-102 0.0; foot_l None 90-152 0.01; foot_r None 120-144 0.01; foot_r None 152-169 0.18; foot_l None 160-161 0.22; foot_l None 168-195 0.01; foot_r None 178-208 0.07; hand_r door_L 180-184 0.37; foot_l None 207-234 0.0; foot_r None 218-234 0.07",
-    "contactMaxCm": 0.37,
+    "contactCm": "foot_l interior 0-45 1.2; foot_r interior 0-46 1.35; hand_l steering_wheel 0-6 0.0; hand_r steering_wheel 0-43 0.0; hand_l door_L 20-30 0.01; foot_l interior 56-69 0.01; foot_r interior 57-97 0.0; hand_l body_shell 66-102 0.0; foot_l None 90-152 0.01; foot_r None 120-144 0.01; foot_r None 152-169 0.0; foot_l None 161-161 0.0; foot_l None 169-195 0.01; foot_r None 179-208 0.0; hand_r door_L 181-184 0.0; foot_l None 208-235 0.0; foot_r None 220-235 0.0",
+    "contactMaxCm": 0.01,
     "hardPairs": {
      "ball_r/interior": "2.0 cm at 104 (9 frames)",
      "ball_l/interior": "1.9 cm at 51 (14 frames)",
      "foot_l/interior": "1.9 cm at 51 (13 frames)",
      "lowerarm_l/door_L": "1.9 cm at 12 (5 frames)",
-     "middle_01_r/steering_wheel": "1.2 cm at 47 (4 frames)",
-     "ring_01_r/steering_wheel": "1.2 cm at 48 (5 frames)",
+     "middle_01_r/steering_wheel": "1.2 cm at 47 (5 frames)",
+     "ring_01_r/steering_wheel": "1.2 cm at 48 (6 frames)",
      "middle_01_l/steering_wheel": "1.0 cm at 8 (4 frames)",
-     "ring_02_r/steering_wheel": "0.9 cm at 48 (5 frames)",
+     "ring_02_r/steering_wheel": "0.9 cm at 48 (6 frames)",
      "middle_02_l/body_shell": "0.9 cm at 61 (2 frames)",
      "upperarm_l/door_L": "0.9 cm at 12 (3 frames)",
      "calf_l/interior": "0.8 cm at 49 (2 frames)",
      "middle_02_l/steering_wheel": "0.8 cm at 8 (4 frames)",
      "ring_02_l/steering_wheel": "0.8 cm at 7 (5 frames)",
-     "middle_02_r/steering_wheel": "0.7 cm at 46 (4 frames)",
+     "middle_02_r/steering_wheel": "0.7 cm at 46 (5 frames)",
      "ring_01_l/steering_wheel": "0.7 cm at 10 (4 frames)",
      "index_01_l/steering_wheel": "0.7 cm at 7 (2 frames)",
-     "pinky_02_r/steering_wheel": "0.7 cm at 45 (4 frames)",
-     "ring_03_r/steering_wheel": "0.7 cm at 46 (3 frames)",
+     "pinky_02_r/steering_wheel": "0.7 cm at 45 (5 frames)",
+     "ring_03_r/steering_wheel": "0.7 cm at 46 (4 frames)",
      "index_02_l/body_shell": "0.7 cm at 62 (1 frames)",
-     "index_02_l/interior": "0.7 cm at 62 (1 frames)",
      "ball_r/body_shell": "0.7 cm at 106 (1 frames)",
      "ring_03_l/steering_wheel": "0.7 cm at 7 (5 frames)",
-     "middle_03_r/steering_wheel": "0.7 cm at 46 (2 frames)",
+     "middle_03_r/steering_wheel": "0.7 cm at 46 (3 frames)",
+     "pinky_03_r/steering_wheel": "0.7 cm at 48 (5 frames)",
      "thigh_r/steering_wheel": "0.7 cm at 45 (5 frames)",
-     "pinky_03_r/steering_wheel": "0.7 cm at 48 (4 frames)",
-     "lowerarm_r/door_L": "0.6 cm at 182 (5 frames)",
-     "thumb_02_l/interior": "0.6 cm at 101 (7 frames)",
      "thumb_03_l/body_shell": "0.6 cm at 106 (7 frames)",
+     "lowerarm_r/door_L": "0.6 cm at 183 (5 frames)",
      "thumb_03_l/interior": "0.6 cm at 64 (6 frames)",
      "thumb_02_l/door_L": "0.6 cm at 32 (2 frames)",
-     "index_02_r/steering_wheel": "0.6 cm at 45 (3 frames)",
+     "index_02_r/steering_wheel": "0.6 cm at 45 (4 frames)",
      "index_02_l/steering_wheel": "0.5 cm at 7 (2 frames)",
      "middle_03_l/steering_wheel": "0.5 cm at 10 (4 frames)",
      "pinky_03_l/body_shell": "0.5 cm at 62 (1 frames)",
+     "thumb_02_l/interior": "0.5 cm at 106 (7 frames)",
      "ring_02_l/body_shell": "0.5 cm at 61 (1 frames)",
      "pinky_01_r/steering_wheel": "0.5 cm at 48 (2 frames)",
-     "index_01_r/steering_wheel": "0.5 cm at 46 (3 frames)",
+     "index_01_r/steering_wheel": "0.5 cm at 46 (4 frames)",
      "pinky_03_l/steering_wheel": "0.4 cm at 7 (2 frames)",
      "pinky_02_l/steering_wheel": "0.4 cm at 7 (1 frames)",
      "index_03_l/interior": "0.4 cm at 62 (1 frames)",
@@ -8470,12 +8443,13 @@
      "ring_03_l/body_shell": "0.4 cm at 62 (2 frames)",
      "pinky_02_l/body_shell": "0.3 cm at 62 (1 frames)",
      "index_03_l/body_shell": "0.3 cm at 62 (1 frames)",
+     "index_02_l/interior": "0.3 cm at 62 (1 frames)",
      "middle_03_l/door_L": "0.2 cm at 32 (1 frames)",
      "lowerarm_l/body_shell": "0.2 cm at 115 (1 frames)",
      "upperarm_l/body_shell": "0.2 cm at 115 (1 frames)",
      "index_03_l/door_L": "0.2 cm at 31 (1 frames)",
      "ring_03_l/interior": "0.1 cm at 61 (1 frames)",
-     "upperarm_r/door_L": "0.1 cm at 173 (1 frames)"
+     "upperarm_r/door_L": "0.1 cm at 174 (1 frames)"
     },
     "softPairs": {
      "spine_05/seat_driver": "4.5 cm at 53 (88 frames)",
@@ -8503,27 +8477,27 @@
      "ball_l/interior": "1.6 cm at 56 (60 frames)",
      "foot_l/interior": "1.4 cm at 43 (60 frames)",
      "ring_02_l/steering_wheel": "1.0 cm at 0 (7 frames)",
-     "ring_02_r/steering_wheel": "0.8 cm at 44 (45 frames)",
-     "ring_01_r/steering_wheel": "0.8 cm at 44 (45 frames)",
+     "ring_02_r/steering_wheel": "0.8 cm at 0 (44 frames)",
+     "ring_01_r/steering_wheel": "0.8 cm at 0 (44 frames)",
      "middle_02_l/steering_wheel": "0.7 cm at 0 (7 frames)",
      "middle_01_l/steering_wheel": "0.7 cm at 0 (7 frames)",
-     "middle_01_r/steering_wheel": "0.7 cm at 44 (45 frames)",
-     "middle_02_r/steering_wheel": "0.6 cm at 37 (45 frames)",
-     "middle_03_r/steering_wheel": "0.6 cm at 37 (45 frames)",
-     "ring_03_r/steering_wheel": "0.6 cm at 37 (45 frames)",
+     "middle_01_r/steering_wheel": "0.7 cm at 0 (44 frames)",
+     "middle_02_r/steering_wheel": "0.6 cm at 37 (44 frames)",
+     "middle_03_r/steering_wheel": "0.6 cm at 37 (44 frames)",
+     "ring_03_r/steering_wheel": "0.6 cm at 37 (44 frames)",
      "ring_03_l/steering_wheel": "0.6 cm at 0 (7 frames)",
      "middle_03_l/steering_wheel": "0.6 cm at 0 (7 frames)",
-     "pinky_02_r/steering_wheel": "0.6 cm at 44 (45 frames)",
      "index_01_l/steering_wheel": "0.6 cm at 0 (7 frames)",
+     "pinky_02_r/steering_wheel": "0.6 cm at 0 (44 frames)",
      "pinky_02_l/steering_wheel": "0.6 cm at 0 (7 frames)",
      "thumb_03_l/body_shell": "0.6 cm at 101 (12 frames)",
-     "index_02_r/steering_wheel": "0.5 cm at 44 (45 frames)",
+     "index_02_r/steering_wheel": "0.5 cm at 0 (44 frames)",
      "index_02_l/steering_wheel": "0.5 cm at 0 (7 frames)",
      "pinky_03_l/steering_wheel": "0.5 cm at 0 (7 frames)",
-     "pinky_03_r/steering_wheel": "0.5 cm at 44 (45 frames)",
+     "pinky_03_r/steering_wheel": "0.4 cm at 0 (44 frames)",
      "ring_01_l/steering_wheel": "0.4 cm at 0 (7 frames)",
      "thumb_02_l/body_shell": "0.3 cm at 100 (3 frames)",
-     "index_01_r/steering_wheel": "0.2 cm at 44 (45 frames)"
+     "index_01_r/steering_wheel": "0.2 cm at 0 (44 frames)"
     },
     "hardMaxCm": 1.97,
     "softMaxCm": 4.49,
@@ -8531,16 +8505,5030 @@
      "interior": "0.9 at 64",
      "body_shell": "0.2 at 60",
      "door_L": "1.3 at 107",
-     "door_glass_L": "76.9 at 191"
+     "door_glass_L": "77.7 at 192"
     },
     "wristWorst": "Left flex -56 (f66) dev +46 (f103) / Right flex -42 (f30) dev -31 (f30)",
     "wristFramesPast": "103",
-    "twistStepDeg": "35.9 at 196 (Right)",
+    "twistStepDeg": "35.0 at 197 (Right)",
     "elbowMinDeg": "27.1 at 212",
-    "kneeMinDeg": "28.8 at 175",
+    "kneeMinDeg": "28.8 at 176",
     "balanceOutCm": "22.2 at 107",
-    "balanceFramesOver3cm": "107-114, 146-151, 159, 161-167, 173-178, 209-214",
+    "balanceFramesOver3cm": "107-114, 146-151, 159-168, 173-179, 209-215",
     "plantSlideMmPerFrame": "13.49 at 46",
+    "joinErr": "0.000 mm (None) / 0.000 deg (None)"
+   }
+  },
+  "heli-enter": {
+   "duration": 9.533333333333333,
+   "loop": false,
+   "frames": 287,
+   "cycles": 1,
+   "speed": 0.0,
+   "direction": 0.0,
+   "dir": [
+    0,
+    0
+   ],
+   "contact": {
+    "Left": [
+     [
+      0.0,
+      1.0
+     ]
+    ],
+    "Right": [
+     [
+      0.0,
+      1.0
+     ]
+    ]
+   },
+   "leftStrike": null,
+   "root": [
+    [
+     1.8,
+     -1.55,
+     -1.570796
+    ],
+    [
+     1.79975,
+     -1.54963,
+     -1.571687
+    ],
+    [
+     1.79936,
+     -1.54904,
+     -1.572435
+    ],
+    [
+     1.79876,
+     -1.54816,
+     -1.573069
+    ],
+    [
+     1.79791,
+     -1.54689,
+     -1.573604
+    ],
+    [
+     1.79674,
+     -1.54515,
+     -1.574047
+    ],
+    [
+     1.7952,
+     -1.54284,
+     -1.57439
+    ],
+    [
+     1.79323,
+     -1.53989,
+     -1.574625
+    ],
+    [
+     1.7908,
+     -1.53623,
+     -1.57474
+    ],
+    [
+     1.78787,
+     -1.53181,
+     -1.574726
+    ],
+    [
+     1.78442,
+     -1.52658,
+     -1.57458
+    ],
+    [
+     1.78046,
+     -1.52054,
+     -1.574302
+    ],
+    [
+     1.77596,
+     -1.51367,
+     -1.573894
+    ],
+    [
+     1.77094,
+     -1.50597,
+     -1.573356
+    ],
+    [
+     1.76538,
+     -1.49744,
+     -1.572681
+    ],
+    [
+     1.75928,
+     -1.48809,
+     -1.571852
+    ],
+    [
+     1.75259,
+     -1.47788,
+     -1.570841
+    ],
+    [
+     1.74529,
+     -1.46677,
+     -1.569605
+    ],
+    [
+     1.73728,
+     -1.45471,
+     -1.568094
+    ],
+    [
+     1.72848,
+     -1.44158,
+     -1.566248
+    ],
+    [
+     1.71875,
+     -1.42724,
+     -1.564002
+    ],
+    [
+     1.70792,
+     -1.4115,
+     -1.561289
+    ],
+    [
+     1.69582,
+     -1.39415,
+     -1.558044
+    ],
+    [
+     1.68225,
+     -1.37496,
+     -1.554205
+    ],
+    [
+     1.66705,
+     -1.35373,
+     -1.549717
+    ],
+    [
+     1.65011,
+     -1.33033,
+     -1.544533
+    ],
+    [
+     1.63144,
+     -1.3048,
+     -1.538617
+    ],
+    [
+     1.61118,
+     -1.27731,
+     -1.531951
+    ],
+    [
+     1.58965,
+     -1.2483,
+     -1.524539
+    ],
+    [
+     1.56732,
+     -1.2184,
+     -1.516414
+    ],
+    [
+     1.54479,
+     -1.18843,
+     -1.507641
+    ],
+    [
+     1.52273,
+     -1.15928,
+     -1.498313
+    ],
+    [
+     1.50179,
+     -1.13185,
+     -1.488553
+    ],
+    [
+     1.4825,
+     -1.10687,
+     -1.478497
+    ],
+    [
+     1.46522,
+     -1.08489,
+     -1.468279
+    ],
+    [
+     1.45012,
+     -1.06616,
+     -1.458017
+    ],
+    [
+     1.43715,
+     -1.05063,
+     -1.447792
+    ],
+    [
+     1.42609,
+     -1.03803,
+     -1.437636
+    ],
+    [
+     1.41665,
+     -1.02793,
+     -1.427523
+    ],
+    [
+     1.40853,
+     -1.01982,
+     -1.417369
+    ],
+    [
+     1.40151,
+     -1.01319,
+     -1.407035
+    ],
+    [
+     1.39547,
+     -1.0076,
+     -1.396341
+    ],
+    [
+     1.39046,
+     -1.00269,
+     -1.385079
+    ],
+    [
+     1.38667,
+     -0.99819,
+     -1.373033
+    ],
+    [
+     1.38439,
+     -0.99387,
+     -1.359993
+    ],
+    [
+     1.384,
+     -0.98957,
+     -1.345777
+    ],
+    [
+     1.38587,
+     -0.98511,
+     -1.330239
+    ],
+    [
+     1.39035,
+     -0.98034,
+     -1.313283
+    ],
+    [
+     1.39765,
+     -0.97511,
+     -1.294865
+    ],
+    [
+     1.40783,
+     -0.9693,
+     -1.274987
+    ],
+    [
+     1.42078,
+     -0.96287,
+     -1.2537
+    ],
+    [
+     1.43617,
+     -0.95583,
+     -1.231087
+    ],
+    [
+     1.45349,
+     -0.94825,
+     -1.207256
+    ],
+    [
+     1.47208,
+     -0.94028,
+     -1.182329
+    ],
+    [
+     1.49118,
+     -0.93214,
+     -1.156435
+    ],
+    [
+     1.51,
+     -0.92405,
+     -1.129695
+    ],
+    [
+     1.52776,
+     -0.91625,
+     -1.102226
+    ],
+    [
+     1.5438,
+     -0.90893,
+     -1.07413
+    ],
+    [
+     1.55759,
+     -0.90226,
+     -1.045494
+    ],
+    [
+     1.56877,
+     -0.89635,
+     -1.016398
+    ],
+    [
+     1.57719,
+     -0.89125,
+     -0.986912
+    ],
+    [
+     1.58285,
+     -0.88698,
+     -0.957101
+    ],
+    [
+     1.58592,
+     -0.88353,
+     -0.927032
+    ],
+    [
+     1.58667,
+     -0.88087,
+     -0.896775
+    ],
+    [
+     1.58546,
+     -0.87898,
+     -0.866399
+    ],
+    [
+     1.58265,
+     -0.87783,
+     -0.835972
+    ],
+    [
+     1.57861,
+     -0.87741,
+     -0.805556
+    ],
+    [
+     1.57366,
+     -0.87771,
+     -0.775203
+    ],
+    [
+     1.56809,
+     -0.87874,
+     -0.744951
+    ],
+    [
+     1.56212,
+     -0.88055,
+     -0.714823
+    ],
+    [
+     1.5559,
+     -0.88318,
+     -0.684829
+    ],
+    [
+     1.54952,
+     -0.88671,
+     -0.654964
+    ],
+    [
+     1.54302,
+     -0.89123,
+     -0.625218
+    ],
+    [
+     1.53639,
+     -0.89689,
+     -0.595572
+    ],
+    [
+     1.52959,
+     -0.90382,
+     -0.566006
+    ],
+    [
+     1.52255,
+     -0.91214,
+     -0.536498
+    ],
+    [
+     1.51519,
+     -0.92197,
+     -0.507029
+    ],
+    [
+     1.50747,
+     -0.93335,
+     -0.477581
+    ],
+    [
+     1.49936,
+     -0.94627,
+     -0.448142
+    ],
+    [
+     1.49085,
+     -0.96064,
+     -0.418704
+    ],
+    [
+     1.482,
+     -0.97626,
+     -0.389263
+    ],
+    [
+     1.4729,
+     -0.99287,
+     -0.359818
+    ],
+    [
+     1.46368,
+     -1.01014,
+     -0.330371
+    ],
+    [
+     1.4545,
+     -1.02766,
+     -0.300921
+    ],
+    [
+     1.44552,
+     -1.04499,
+     -0.271465
+    ],
+    [
+     1.43692,
+     -1.0617,
+     -0.24199
+    ],
+    [
+     1.42888,
+     -1.07733,
+     -0.212474
+    ],
+    [
+     1.42152,
+     -1.0915,
+     -0.182876
+    ],
+    [
+     1.41495,
+     -1.10387,
+     -0.15314
+    ],
+    [
+     1.40921,
+     -1.11422,
+     -0.123191
+    ],
+    [
+     1.40428,
+     -1.12241,
+     -0.092948
+    ],
+    [
+     1.40008,
+     -1.12845,
+     -0.06233
+    ],
+    [
+     1.39646,
+     -1.13246,
+     -0.031276
+    ],
+    [
+     1.39325,
+     -1.13468,
+     0.000239
+    ],
+    [
+     1.39022,
+     -1.13544,
+     0.032184
+    ],
+    [
+     1.38718,
+     -1.13516,
+     0.064458
+    ],
+    [
+     1.38391,
+     -1.13426,
+     0.096885
+    ],
+    [
+     1.38022,
+     -1.13324,
+     0.12922
+    ],
+    [
+     1.37597,
+     -1.13255,
+     0.161163
+    ],
+    [
+     1.37103,
+     -1.13265,
+     0.192388
+    ],
+    [
+     1.36532,
+     -1.13394,
+     0.222576
+    ],
+    [
+     1.35879,
+     -1.13673,
+     0.251445
+    ],
+    [
+     1.35143,
+     -1.14127,
+     0.27878
+    ],
+    [
+     1.34326,
+     -1.14764,
+     0.304452
+    ],
+    [
+     1.33437,
+     -1.15585,
+     0.328421
+    ],
+    [
+     1.32483,
+     -1.16574,
+     0.350736
+    ],
+    [
+     1.3148,
+     -1.17707,
+     0.371513
+    ],
+    [
+     1.30441,
+     -1.18951,
+     0.390916
+    ],
+    [
+     1.29383,
+     -1.20269,
+     0.409127
+    ],
+    [
+     1.2832,
+     -1.21623,
+     0.426327
+    ],
+    [
+     1.27267,
+     -1.22977,
+     0.442676
+    ],
+    [
+     1.26233,
+     -1.24302,
+     0.458298
+    ],
+    [
+     1.25226,
+     -1.25575,
+     0.473282
+    ],
+    [
+     1.24252,
+     -1.26778,
+     0.487679
+    ],
+    [
+     1.23311,
+     -1.27903,
+     0.501509
+    ],
+    [
+     1.22403,
+     -1.28948,
+     0.514772
+    ],
+    [
+     1.21525,
+     -1.29912,
+     0.52746
+    ],
+    [
+     1.20674,
+     -1.30802,
+     0.53956
+    ],
+    [
+     1.19844,
+     -1.31625,
+     0.55107
+    ],
+    [
+     1.19033,
+     -1.32387,
+     0.561998
+    ],
+    [
+     1.18235,
+     -1.33098,
+     0.572371
+    ],
+    [
+     1.17446,
+     -1.33764,
+     0.582229
+    ],
+    [
+     1.16664,
+     -1.34391,
+     0.591624
+    ],
+    [
+     1.15885,
+     -1.34986,
+     0.60062
+    ],
+    [
+     1.15106,
+     -1.35552,
+     0.609284
+    ],
+    [
+     1.14325,
+     -1.36095,
+     0.617685
+    ],
+    [
+     1.1354,
+     -1.36616,
+     0.62589
+    ],
+    [
+     1.12748,
+     -1.37119,
+     0.633963
+    ],
+    [
+     1.11946,
+     -1.37607,
+     0.641958
+    ],
+    [
+     1.11134,
+     -1.3808,
+     0.649923
+    ],
+    [
+     1.10309,
+     -1.3854,
+     0.657893
+    ],
+    [
+     1.09472,
+     -1.38988,
+     0.665896
+    ],
+    [
+     1.0862,
+     -1.39422,
+     0.673952
+    ],
+    [
+     1.07757,
+     -1.39843,
+     0.682078
+    ],
+    [
+     1.06883,
+     -1.40249,
+     0.690292
+    ],
+    [
+     1.06002,
+     -1.40638,
+     0.698615
+    ],
+    [
+     1.05117,
+     -1.41006,
+     0.70708
+    ],
+    [
+     1.04232,
+     -1.41352,
+     0.715727
+    ],
+    [
+     1.03352,
+     -1.41672,
+     0.724606
+    ],
+    [
+     1.02481,
+     -1.41962,
+     0.733774
+    ],
+    [
+     1.01623,
+     -1.42218,
+     0.743289
+    ],
+    [
+     1.00781,
+     -1.42438,
+     0.753212
+    ],
+    [
+     0.9996,
+     -1.42616,
+     0.763596
+    ],
+    [
+     0.9916,
+     -1.4275,
+     0.774492
+    ],
+    [
+     0.98384,
+     -1.42837,
+     0.785946
+    ],
+    [
+     0.97632,
+     -1.42874,
+     0.797994
+    ],
+    [
+     0.96904,
+     -1.42863,
+     0.81067
+    ],
+    [
+     0.96199,
+     -1.42804,
+     0.824001
+    ],
+    [
+     0.95514,
+     -1.42701,
+     0.838003
+    ],
+    [
+     0.94848,
+     -1.42559,
+     0.852688
+    ],
+    [
+     0.94198,
+     -1.42382,
+     0.868052
+    ],
+    [
+     0.93558,
+     -1.42176,
+     0.884083
+    ],
+    [
+     0.92927,
+     -1.41948,
+     0.900753
+    ],
+    [
+     0.92299,
+     -1.417,
+     0.918025
+    ],
+    [
+     0.91669,
+     -1.41437,
+     0.93585
+    ],
+    [
+     0.91035,
+     -1.41161,
+     0.954172
+    ],
+    [
+     0.90389,
+     -1.40873,
+     0.97293
+    ],
+    [
+     0.89728,
+     -1.40574,
+     0.992063
+    ],
+    [
+     0.89044,
+     -1.40265,
+     1.011514
+    ],
+    [
+     0.88333,
+     -1.39947,
+     1.03123
+    ],
+    [
+     0.87588,
+     -1.39622,
+     1.051167
+    ],
+    [
+     0.86804,
+     -1.39292,
+     1.071287
+    ],
+    [
+     0.85978,
+     -1.3896,
+     1.091562
+    ],
+    [
+     0.85106,
+     -1.38629,
+     1.11197
+    ],
+    [
+     0.84188,
+     -1.38303,
+     1.132495
+    ],
+    [
+     0.83225,
+     -1.37983,
+     1.153125
+    ],
+    [
+     0.82219,
+     -1.37673,
+     1.173855
+    ],
+    [
+     0.81175,
+     -1.37374,
+     1.194685
+    ],
+    [
+     0.80098,
+     -1.37088,
+     1.215623
+    ],
+    [
+     0.78994,
+     -1.36815,
+     1.236686
+    ],
+    [
+     0.77867,
+     -1.36557,
+     1.257901
+    ],
+    [
+     0.76724,
+     -1.36314,
+     1.279308
+    ],
+    [
+     0.75569,
+     -1.36087,
+     1.300955
+    ],
+    [
+     0.74407,
+     -1.35876,
+     1.322897
+    ],
+    [
+     0.73244,
+     -1.35681,
+     1.345195
+    ],
+    [
+     0.72087,
+     -1.35503,
+     1.367911
+    ],
+    [
+     0.70945,
+     -1.35344,
+     1.3911
+    ],
+    [
+     0.69831,
+     -1.35202,
+     1.414812
+    ],
+    [
+     0.6876,
+     -1.3508,
+     1.439078
+    ],
+    [
+     0.67751,
+     -1.34977,
+     1.463903
+    ],
+    [
+     0.66823,
+     -1.34894,
+     1.489262
+    ],
+    [
+     0.65991,
+     -1.34829,
+     1.515094
+    ],
+    [
+     0.65269,
+     -1.34783,
+     1.541294
+    ],
+    [
+     0.64661,
+     -1.34753,
+     1.567726
+    ],
+    [
+     0.64166,
+     -1.34739,
+     1.594224
+    ],
+    [
+     0.63775,
+     -1.34738,
+     1.62061
+    ],
+    [
+     0.63475,
+     -1.34748,
+     1.646711
+    ],
+    [
+     0.63246,
+     -1.34765,
+     1.672375
+    ],
+    [
+     0.63069,
+     -1.34788,
+     1.697482
+    ],
+    [
+     0.62925,
+     -1.34814,
+     1.721957
+    ],
+    [
+     0.62796,
+     -1.3484,
+     1.745762
+    ],
+    [
+     0.62668,
+     -1.34865,
+     1.768899
+    ],
+    [
+     0.62529,
+     -1.34887,
+     1.791392
+    ],
+    [
+     0.6237,
+     -1.34904,
+     1.81328
+    ],
+    [
+     0.62185,
+     -1.34916,
+     1.834607
+    ],
+    [
+     0.61969,
+     -1.3492,
+     1.855412
+    ],
+    [
+     0.61721,
+     -1.34918,
+     1.875727
+    ],
+    [
+     0.61439,
+     -1.34908,
+     1.895575
+    ],
+    [
+     0.61125,
+     -1.34891,
+     1.91498
+    ],
+    [
+     0.6078,
+     -1.34867,
+     1.933964
+    ],
+    [
+     0.60408,
+     -1.34837,
+     1.952555
+    ],
+    [
+     0.60016,
+     -1.34802,
+     1.970789
+    ],
+    [
+     0.59608,
+     -1.34764,
+     1.988709
+    ],
+    [
+     0.59191,
+     -1.34723,
+     2.006367
+    ],
+    [
+     0.58774,
+     -1.34681,
+     2.023815
+    ],
+    [
+     0.58362,
+     -1.34639,
+     2.041104
+    ],
+    [
+     0.57963,
+     -1.34599,
+     2.058274
+    ],
+    [
+     0.57583,
+     -1.34562,
+     2.075351
+    ],
+    [
+     0.57228,
+     -1.34529,
+     2.09234
+    ],
+    [
+     0.56903,
+     -1.34501,
+     2.10923
+    ],
+    [
+     0.5661,
+     -1.34477,
+     2.125996
+    ],
+    [
+     0.56351,
+     -1.3446,
+     2.142613
+    ],
+    [
+     0.56127,
+     -1.34448,
+     2.159063
+    ],
+    [
+     0.55938,
+     -1.34442,
+     2.175357
+    ],
+    [
+     0.55782,
+     -1.34441,
+     2.191546
+    ],
+    [
+     0.55659,
+     -1.34446,
+     2.20773
+    ],
+    [
+     0.55567,
+     -1.34456,
+     2.224068
+    ],
+    [
+     0.55506,
+     -1.3447,
+     2.240776
+    ],
+    [
+     0.55474,
+     -1.3449,
+     2.258121
+    ],
+    [
+     0.55473,
+     -1.34514,
+     2.276412
+    ],
+    [
+     0.55502,
+     -1.34543,
+     2.295995
+    ],
+    [
+     0.55563,
+     -1.34577,
+     2.317237
+    ],
+    [
+     0.55659,
+     -1.34617,
+     2.340515
+    ],
+    [
+     0.55793,
+     -1.34663,
+     2.366198
+    ],
+    [
+     0.55968,
+     -1.34716,
+     2.394625
+    ],
+    [
+     0.56189,
+     -1.34776,
+     2.426081
+    ],
+    [
+     0.56457,
+     -1.34843,
+     2.460764
+    ],
+    [
+     0.56774,
+     -1.34919,
+     2.498755
+    ],
+    [
+     0.5714,
+     -1.35003,
+     2.539995
+    ],
+    [
+     0.5755,
+     -1.35094,
+     2.584265
+    ],
+    [
+     0.57996,
+     -1.3519,
+     2.631177
+    ],
+    [
+     0.58467,
+     -1.35291,
+     2.680181
+    ],
+    [
+     0.5895,
+     -1.35393,
+     2.730583
+    ],
+    [
+     0.59427,
+     -1.35494,
+     2.781566
+    ],
+    [
+     0.5988,
+     -1.3559,
+     2.832221
+    ],
+    [
+     0.60289,
+     -1.35678,
+     2.881576
+    ],
+    [
+     0.60635,
+     -1.35755,
+     2.928628
+    ],
+    [
+     0.60898,
+     -1.35816,
+     2.97238
+    ],
+    [
+     0.61064,
+     -1.35861,
+     3.011884
+    ],
+    [
+     0.61119,
+     -1.35885,
+     3.046292
+    ],
+    [
+     0.61052,
+     -1.35888,
+     3.074913
+    ],
+    [
+     0.60859,
+     -1.35868,
+     3.09727
+    ],
+    [
+     0.60538,
+     -1.35825,
+     3.113154
+    ],
+    [
+     0.60093,
+     -1.35759,
+     3.12266
+    ],
+    [
+     0.59529,
+     -1.35673,
+     3.126202
+    ],
+    [
+     0.58856,
+     -1.35566,
+     3.124483
+    ],
+    [
+     0.58085,
+     -1.35442,
+     3.118443
+    ],
+    [
+     0.57231,
+     -1.35303,
+     3.109173
+    ],
+    [
+     0.56307,
+     -1.35152,
+     3.097814
+    ],
+    [
+     0.55329,
+     -1.34992,
+     3.085454
+    ],
+    [
+     0.54312,
+     -1.34825,
+     3.073045
+    ],
+    [
+     0.53272,
+     -1.34655,
+     3.06134
+    ],
+    [
+     0.52224,
+     -1.34485,
+     3.050872
+    ],
+    [
+     0.51183,
+     -1.34318,
+     3.041962
+    ],
+    [
+     0.50163,
+     -1.34157,
+     3.034754
+    ],
+    [
+     0.49178,
+     -1.34005,
+     3.029268
+    ],
+    [
+     0.48239,
+     -1.33865,
+     3.025449
+    ],
+    [
+     0.47358,
+     -1.33739,
+     3.023209
+    ],
+    [
+     0.46542,
+     -1.33629,
+     3.022453
+    ],
+    [
+     0.45798,
+     -1.33536,
+     3.023089
+    ],
+    [
+     0.4513,
+     -1.33462,
+     3.025025
+    ],
+    [
+     0.4454,
+     -1.33407,
+     3.028163
+    ],
+    [
+     0.44027,
+     -1.33368,
+     3.032383
+    ],
+    [
+     0.43588,
+     -1.33346,
+     3.037541
+    ],
+    [
+     0.43221,
+     -1.33336,
+     3.043468
+    ],
+    [
+     0.42918,
+     -1.33338,
+     3.049977
+    ],
+    [
+     0.42675,
+     -1.33347,
+     3.056881
+    ],
+    [
+     0.42483,
+     -1.33361,
+     3.063997
+    ],
+    [
+     0.42337,
+     -1.33378,
+     3.071161
+    ],
+    [
+     0.42228,
+     -1.33396,
+     3.078236
+    ],
+    [
+     0.42149,
+     -1.33413,
+     3.085113
+    ],
+    [
+     0.42094,
+     -1.33428,
+     3.09171
+    ],
+    [
+     0.42057,
+     -1.33441,
+     3.097973
+    ],
+    [
+     0.42033,
+     -1.33452,
+     3.103862
+    ],
+    [
+     0.42018,
+     -1.33461,
+     3.109355
+    ],
+    [
+     0.4201,
+     -1.33469,
+     3.114435
+    ],
+    [
+     0.42005,
+     -1.33475,
+     3.119094
+    ],
+    [
+     0.42002,
+     -1.3348,
+     3.123326
+    ],
+    [
+     0.42001,
+     -1.33485,
+     3.127125
+    ],
+    [
+     0.42,
+     -1.33488,
+     3.13049
+    ],
+    [
+     0.42,
+     -1.33492,
+     3.133416
+    ],
+    [
+     0.42,
+     -1.33494,
+     3.135901
+    ],
+    [
+     0.42,
+     -1.33496,
+     3.137941
+    ],
+    [
+     0.42,
+     -1.33498,
+     3.139534
+    ],
+    [
+     0.42,
+     -1.33499,
+     3.140676
+    ],
+    [
+     0.42,
+     -1.335,
+     3.141363
+    ],
+    [
+     0.42,
+     -1.335,
+     3.141593
+    ]
+   ],
+   "vehicle": "heli",
+   "events": {
+    "doorOpenStart": 1.555,
+    "doorOpenEnd": 3.0395,
+    "seated": 6.138,
+    "doorCloseStart": 7.938,
+    "doorCloseEnd": 8.688,
+    "handsOn": 9.238,
+    "seatedPose": "heli-collective-down"
+   },
+   "door": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0006,
+    0.0089,
+    0.0268,
+    0.0538,
+    0.0886,
+    0.1294,
+    0.1735,
+    0.2186,
+    0.262,
+    0.3012,
+    0.3338,
+    0.3575,
+    0.3728,
+    0.3818,
+    0.3865,
+    0.3886,
+    0.39,
+    0.3922,
+    0.3965,
+    0.4027,
+    0.4071,
+    0.4102,
+    0.4132,
+    0.417,
+    0.4221,
+    0.4291,
+    0.4386,
+    0.451,
+    0.4668,
+    0.4862,
+    0.5085,
+    0.5333,
+    0.5603,
+    0.5892,
+    0.6194,
+    0.6508,
+    0.683,
+    0.7157,
+    0.7485,
+    0.781,
+    0.8133,
+    0.8446,
+    0.8753,
+    0.9043,
+    0.9314,
+    0.9562,
+    0.9769,
+    0.9922,
+    0.9998,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.9886,
+    0.9497,
+    0.8885,
+    0.8103,
+    0.7203,
+    0.6241,
+    0.5269,
+    0.434,
+    0.351,
+    0.283,
+    0.2342,
+    0.1935,
+    0.1571,
+    0.1247,
+    0.0964,
+    0.072,
+    0.0513,
+    0.0343,
+    0.0209,
+    0.0108,
+    0.0041,
+    0.0006,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "contacts": [
+    {
+     "part": "foot_l",
+     "from": 0,
+     "to": 9,
+     "node": null,
+     "at": [
+      1.685,
+      0.0,
+      -1.45
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "foot_r",
+     "from": 0,
+     "to": 23,
+     "node": null,
+     "at": [
+      1.685,
+      0.0,
+      -1.65
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "foot_l",
+     "from": 24,
+     "to": 83,
+     "node": null,
+     "at": [
+      1.4853,
+      0.0,
+      -1.028
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "foot_r",
+     "from": 42,
+     "to": 62,
+     "node": null,
+     "at": [
+      1.3461,
+      0.0,
+      -1.136
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "hand_r",
+     "from": 44,
+     "to": 54,
+     "node": "cockpit_door_R_handle",
+     "at": [
+      0.1085,
+      0.0347,
+      1.0776
+     ],
+     "kind": "handle"
+    },
+    {
+     "part": "foot_r",
+     "from": 76,
+     "to": 103,
+     "node": null,
+     "at": [
+      1.3861,
+      0.0,
+      -1.136
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "hand_l",
+     "from": 92,
+     "to": 125,
+     "node": "fuselage",
+     "at": [
+      0.8863,
+      1.7,
+      -1.0011
+     ],
+     "kind": "grip"
+    },
+    {
+     "part": "foot_l",
+     "from": 103,
+     "to": 137,
+     "node": "skid_R",
+     "at": [
+      0.9853,
+      0.137,
+      -1.188
+     ],
+     "kind": "step",
+     "point": "ball"
+    },
+    {
+     "part": "foot_r",
+     "from": 145,
+     "to": 253,
+     "node": null,
+     "at": [
+      0.588,
+      0.785,
+      -1.8547
+     ],
+     "kind": "rest",
+     "point": "ball"
+    },
+    {
+     "part": "hand_l",
+     "from": 152,
+     "to": 159,
+     "node": "pilot_seat",
+     "at": [
+      0.0,
+      0.565,
+      0.045
+     ],
+     "kind": "rest"
+    },
+    {
+     "part": "foot_l",
+     "from": 157,
+     "to": 196,
+     "node": null,
+     "at": [
+      0.7057,
+      0.87,
+      -1.4353
+     ],
+     "kind": "rest",
+     "point": "ball"
+    },
+    {
+     "part": "foot_l",
+     "from": 237,
+     "to": 286,
+     "node": "pedal_L",
+     "at": [
+      0.0,
+      0.128,
+      0.0
+     ],
+     "kind": "press",
+     "point": "ball"
+    },
+    {
+     "part": "hand_r",
+     "from": 239,
+     "to": 247,
+     "node": "cockpit_door_R",
+     "at": [
+      -0.068,
+      0.709,
+      0.284
+     ],
+     "kind": "grip"
+    },
+    {
+     "part": "foot_r",
+     "from": 267,
+     "to": 286,
+     "node": "pedal_R",
+     "at": [
+      0.005,
+      0.128,
+      0.0
+     ],
+     "kind": "press",
+     "point": "ball"
+    },
+    {
+     "part": "hand_l",
+     "from": 273,
+     "to": 286,
+     "node": "collective",
+     "at": [
+      -0.0278,
+      0.2303,
+      -0.4564
+     ],
+     "kind": "grip"
+    },
+    {
+     "part": "hand_r",
+     "from": 278,
+     "to": 286,
+     "node": "cyclic",
+     "at": [
+      0.0329,
+      0.5962,
+      0.0974
+     ],
+     "kind": "grip"
+    }
+   ],
+   "review": {
+    "slide": "0.001 / 0.045",
+    "kneeMin": 37.8,
+    "gapCm": "14.1 / 7.2",
+    "seam": "-",
+    "clearCm": "0.8 / 0.8",
+    "headY": "1.307..1.956",
+    "hipsY": "0.790..1.398",
+    "hipsVsIdle": "-",
+    "feetCm": "106 / 63",
+    "elbowDeg": "18..133 / 13..131",
+    "elbowOutCm": "-2..23 / 0..27",
+    "wristDeg": "flex -60 dev +47 / flex -37 dev -35",
+    "snap30": "hand_l 1.5 / hand_r 2.4 / foot_l 2.9 / foot_r 1.0 / head 0.4",
+    "snapMax": 2.89,
+    "vehiclePairs": {
+     "ring_03_r/cockpit_door_R": 519,
+     "middle_02_r/cockpit_door_R_handle": 196,
+     "middle_03_r/cockpit_door_R_handle": 18,
+     "middle_03_r/cockpit_door_R": 231,
+     "middle_02_r/cockpit_door_R": 362,
+     "index_02_r/cockpit_door_R_handle": 97,
+     "index_03_r/cockpit_door_R_handle": 110,
+     "index_03_r/cockpit_door_R": 450,
+     "ring_03_r/cockpit_door_R_handle": 61,
+     "ring_02_r/cockpit_door_R_handle": 32,
+     "index_02_r/cockpit_door_R": 121,
+     "pinky_03_r/cockpit_door_R": 114,
+     "pinky_01_r/cockpit_door_R_handle": 79,
+     "pinky_02_r/cockpit_door_R_handle": 2,
+     "pinky_01_r/cockpit_door_R": 196,
+     "pinky_02_r/cockpit_door_R": 99,
+     "ring_02_r/cockpit_door_R": 92,
+     "hand_r/cockpit_door_R_handle": 168,
+     "thumb_03_r/cockpit_door_R": 225,
+     "thumb_02_r/cockpit_door_R_handle": 117,
+     "ring_01_r/cockpit_door_R": 152,
+     "ring_01_r/cockpit_door_R_handle": 71,
+     "middle_01_r/cockpit_door_R": 236,
+     "middle_01_r/cockpit_door_R_handle": 78,
+     "index_01_r/cockpit_door_R_handle": 35,
+     "index_01_r/cockpit_door_R": 185,
+     "thumb_03_r/cockpit_door_R_handle": 11,
+     "hand_r/cockpit_door_R": 541,
+     "thumb_01_r/cockpit_door_R_handle": 72,
+     "thumb_01_r/cockpit_door_R": 160,
+     "thumb_02_r/cockpit_door_R": 228,
+     "lowerarm_r/cockpit_door_R_handle": 4,
+     "upperarm_r/cockpit_door_R": 4,
+     "lowerarm_r/cockpit_door_R": 35,
+     "index_03_l/fuselage": 43,
+     "index_01_l/fuselage": 78,
+     "index_02_l/fuselage": 24,
+     "hand_l/fuselage": 68,
+     "thumb_01_l/fuselage": 271,
+     "thumb_02_l/fuselage": 308,
+     "middle_03_l/fuselage": 169,
+     "middle_02_l/fuselage": 324,
+     "index_03_l/interior": 16,
+     "index_02_l/interior": 33,
+     "index_01_l/interior": 9,
+     "ring_02_l/fuselage": 80,
+     "ring_03_l/fuselage": 53,
+     "thumb_03_l/fuselage": 47,
+     "thumb_03_l/interior": 265,
+     "thumb_02_l/interior": 482,
+     "middle_02_l/interior": 4,
+     "middle_03_l/interior": 119,
+     "lowerarm_l/fuselage": 166,
+     "upperarm_l/fuselage": 5,
+     "thumb_01_l/interior": 1,
+     "index_03_r/fuselage": 141,
+     "ball_r/pedal_R": 5231,
+     "index_02_r/fuselage": 236,
+     "middle_03_r/fuselage": 149,
+     "index_01_r/fuselage": 46,
+     "middle_02_r/fuselage": 161,
+     "index_03_r/interior": 66,
+     "pinky_02_l/pilot_seat": 20,
+     "pinky_03_l/pilot_seat": 7,
+     "ring_03_l/pilot_seat": 312,
+     "ring_03_r/fuselage": 93,
+     "middle_03_r/interior": 14,
+     "calf_l/pilot_seat": 5029,
+     "middle_03_l/pilot_seat": 112,
+     "ring_02_l/pilot_seat": 6,
+     "thumb_01_l/cyclic": 38,
+     "thumb_02_l/cyclic": 112,
+     "hand_l/cyclic": 200,
+     "index_01_l/cyclic": 456,
+     "middle_01_l/cyclic": 597,
+     "index_02_l/cyclic": 1124,
+     "middle_02_l/cyclic": 1391,
+     "index_03_l/cyclic": 1520,
+     "middle_03_l/cyclic": 1043,
+     "foot_l/pilot_seat": 166,
+     "ball_l/pilot_seat": 136,
+     "ring_01_l/cyclic": 109,
+     "thigh_l/cyclic": 1380,
+     "ball_l/pedal_L": 1000,
+     "foot_l/pedal_L": 43,
+     "pinky_01_l/cyclic": 21,
+     "ring_02_l/cyclic": 70,
+     "thumb_02_r/cockpit_door_R_glass": 14,
+     "thumb_01_r/cockpit_door_R_glass": 4,
+     "ring_03_l/cyclic": 27,
+     "thumb_03_r/cockpit_door_R_glass": 26,
+     "middle_03_r/cockpit_door_R_glass": 19,
+     "middle_02_r/cockpit_door_R_glass": 8,
+     "calf_r/pilot_seat": 625,
+     "pinky_03_l/collective": 179,
+     "middle_01_l/collective": 238,
+     "middle_02_l/collective": 245,
+     "middle_03_l/collective": 200,
+     "ring_03_l/collective": 197,
+     "ring_01_l/collective": 53,
+     "pinky_02_l/collective": 73,
+     "ring_02_l/collective": 214,
+     "hand_l/collective": 13,
+     "index_01_l/collective": 13,
+     "thumb_03_r/cyclic": 285,
+     "thumb_02_r/cyclic": 390,
+     "thumb_01_r/cyclic": 95,
+     "ring_03_r/cyclic": 137,
+     "middle_02_r/cyclic": 135,
+     "hand_r/cyclic": 6,
+     "ring_02_r/cyclic": 91,
+     "middle_03_r/cyclic": 53,
+     "ring_01_r/cyclic": 47,
+     "middle_01_r/cyclic": 70
+    },
+    "framesWithPairs": 223,
+    "seatPairs": {
+     "thigh_l/pilot_seat": 129,
+     "pelvis/pilot_seat": 1363,
+     "thigh_r/pilot_seat": 238
+    },
+    "contactPairs": 18017,
+    "seatSinkCm": "cushion 0.3 / back 8.0 / bolster or harness 8.0",
+    "backGapCm": "0.9..inf",
+    "controlClearCm": "-1.8",
+    "headClearCm": "0.1 at frame 253 (interior), head top y 2.167",
+    "contactCm": "foot_l None 0-9 0.0; foot_r None 0-23 0.0; foot_l None 24-83 0.0; foot_r None 42-62 0.0; hand_r cockpit_door_R_handle 44-54 0.01; foot_r None 76-103 0.0; hand_l fuselage 92-125 0.01; foot_l skid_R 103-137 0.01; foot_r None 145-253 0.01; hand_l pilot_seat 152-159 0.0; foot_l None 157-196 0.01; foot_l pedal_L 237-286 0.55; hand_r cockpit_door_R 239-247 0.0; foot_r pedal_R 267-286 0.01; hand_l collective 273-286 0.0; hand_r cyclic 278-286 0.01",
+    "contactMaxCm": 0.01,
+    "hardPairs": {
+     "thigh_l/cyclic": "1.9 cm at 237 (23 frames)",
+     "thumb_01_l/fuselage": "1.7 cm at 91 (12 frames)",
+     "ball_l/pedal_L": "1.6 cm at 235 (9 frames)",
+     "hand_r/cockpit_door_R": "1.5 cm at 59 (10 frames)",
+     "thumb_01_r/cockpit_door_R": "1.5 cm at 59 (9 frames)",
+     "thumb_02_r/cockpit_door_R": "1.5 cm at 59 (9 frames)",
+     "thumb_02_l/fuselage": "1.4 cm at 126 (12 frames)",
+     "index_01_l/fuselage": "1.3 cm at 85 (3 frames)",
+     "hand_l/fuselage": "1.3 cm at 85 (8 frames)",
+     "middle_01_l/cyclic": "1.2 cm at 248 (26 frames)",
+     "ring_02_l/cyclic": "1.2 cm at 249 (3 frames)",
+     "thumb_01_l/cyclic": "1.2 cm at 178 (4 frames)",
+     "thumb_02_l/cyclic": "1.2 cm at 178 (4 frames)",
+     "ring_02_r/cockpit_door_R": "1.2 cm at 56 (3 frames)",
+     "thumb_02_r/cockpit_door_R_handle": "1.1 cm at 59 (4 frames)",
+     "hand_l/cyclic": "1.1 cm at 177 (12 frames)",
+     "ring_02_r/cyclic": "1.1 cm at 276 (4 frames)",
+     "ring_02_l/collective": "1.1 cm at 268 (6 frames)",
+     "thumb_02_r/cyclic": "1.1 cm at 273 (7 frames)",
+     "thumb_01_r/cyclic": "1.1 cm at 273 (6 frames)",
+     "middle_01_r/cockpit_door_R": "1.1 cm at 60 (9 frames)",
+     "middle_02_l/fuselage": "1.1 cm at 86 (11 frames)",
+     "hand_r/cyclic": "1.0 cm at 277 (4 frames)",
+     "thumb_01_r/cockpit_door_R_handle": "1.0 cm at 58 (3 frames)",
+     "ring_01_r/cockpit_door_R": "1.0 cm at 251 (6 frames)",
+     "ring_01_l/cyclic": "1.0 cm at 249 (5 frames)",
+     "thumb_02_r/cockpit_door_R_glass": "1.0 cm at 250 (2 frames)",
+     "thumb_01_r/cockpit_door_R_glass": "1.0 cm at 250 (1 frames)",
+     "index_02_r/cockpit_door_R": "1.0 cm at 60 (6 frames)",
+     "pinky_03_r/cockpit_door_R": "1.0 cm at 60 (5 frames)",
+     "pinky_02_r/cockpit_door_R": "1.0 cm at 60 (7 frames)",
+     "middle_02_r/fuselage": "0.9 cm at 143 (7 frames)",
+     "hand_r/cockpit_door_R_handle": "0.9 cm at 59 (5 frames)",
+     "middle_02_r/cockpit_door_R_handle": "0.9 cm at 43 (3 frames)",
+     "middle_03_l/cyclic": "0.9 cm at 203 (38 frames)",
+     "index_02_r/cockpit_door_R_handle": "0.9 cm at 60 (4 frames)",
+     "middle_02_l/cyclic": "0.9 cm at 181 (43 frames)",
+     "index_01_l/cyclic": "0.9 cm at 177 (21 frames)",
+     "pinky_01_l/cyclic": "0.9 cm at 248 (2 frames)",
+     "ball_r/pedal_R": "0.9 cm at 258 (133 frames)",
+     "index_03_l/cyclic": "0.8 cm at 209 (37 frames)",
+     "middle_02_r/cockpit_door_R": "0.8 cm at 60 (18 frames)",
+     "index_01_r/cockpit_door_R": "0.8 cm at 235 (7 frames)",
+     "index_02_l/cyclic": "0.8 cm at 199 (36 frames)",
+     "middle_02_r/cyclic": "0.8 cm at 274 (6 frames)",
+     "pinky_01_r/cockpit_door_R": "0.8 cm at 251 (8 frames)",
+     "thumb_02_l/interior": "0.8 cm at 122 (34 frames)",
+     "index_02_r/fuselage": "0.8 cm at 138 (9 frames)",
+     "middle_03_r/fuselage": "0.8 cm at 144 (8 frames)",
+     "middle_01_l/collective": "0.8 cm at 269 (6 frames)",
+     "middle_03_l/fuselage": "0.7 cm at 130 (12 frames)",
+     "middle_03_l/interior": "0.7 cm at 120 (11 frames)",
+     "index_02_l/fuselage": "0.7 cm at 86 (3 frames)",
+     "thumb_01_l/interior": "0.7 cm at 129 (1 frames)",
+     "pinky_03_l/collective": "0.7 cm at 269 (6 frames)",
+     "pinky_02_l/collective": "0.7 cm at 269 (6 frames)",
+     "ring_03_r/cyclic": "0.7 cm at 274 (6 frames)",
+     "index_03_r/cockpit_door_R_handle": "0.7 cm at 42 (3 frames)",
+     "middle_02_l/collective": "0.7 cm at 270 (5 frames)",
+     "thumb_03_r/cyclic": "0.7 cm at 277 (8 frames)",
+     "thumb_03_r/cockpit_door_R_glass": "0.7 cm at 251 (1 frames)",
+     "middle_03_r/cockpit_door_R_glass": "0.7 cm at 251 (1 frames)",
+     "middle_02_r/cockpit_door_R_glass": "0.7 cm at 251 (1 frames)",
+     "index_03_r/interior": "0.7 cm at 140 (4 frames)",
+     "middle_03_l/collective": "0.7 cm at 268 (6 frames)",
+     "lowerarm_l/fuselage": "0.6 cm at 124 (7 frames)",
+     "upperarm_l/fuselage": "0.6 cm at 124 (2 frames)",
+     "index_03_r/fuselage": "0.6 cm at 132 (9 frames)",
+     "middle_03_r/cockpit_door_R_handle": "0.6 cm at 42 (1 frames)",
+     "pinky_01_r/cockpit_door_R_handle": "0.6 cm at 60 (2 frames)",
+     "middle_03_r/interior": "0.6 cm at 144 (2 frames)",
+     "thumb_03_r/cockpit_door_R": "0.6 cm at 58 (7 frames)",
+     "lowerarm_r/cockpit_door_R": "0.6 cm at 249 (2 frames)",
+     "ring_03_l/fuselage": "0.6 cm at 134 (4 frames)",
+     "ring_03_r/fuselage": "0.6 cm at 144 (3 frames)",
+     "ring_01_r/cyclic": "0.6 cm at 277 (3 frames)",
+     "index_03_r/cockpit_door_R": "0.6 cm at 47 (17 frames)",
+     "middle_03_r/cockpit_door_R": "0.6 cm at 47 (15 frames)",
+     "thumb_03_l/interior": "0.6 cm at 118 (35 frames)",
+     "ring_03_r/cockpit_door_R_handle": "0.6 cm at 55 (2 frames)",
+     "foot_l/pedal_L": "0.6 cm at 233 (8 frames)",
+     "ring_03_r/cockpit_door_R": "0.6 cm at 46 (19 frames)",
+     "index_01_r/fuselage": "0.6 cm at 139 (5 frames)",
+     "middle_01_r/cockpit_door_R_handle": "0.6 cm at 56 (2 frames)",
+     "index_03_l/fuselage": "0.5 cm at 85 (2 frames)",
+     "ring_03_l/cyclic": "0.5 cm at 250 (1 frames)",
+     "ring_03_l/collective": "0.5 cm at 269 (5 frames)",
+     "middle_03_r/cyclic": "0.5 cm at 276 (3 frames)",
+     "thumb_03_l/fuselage": "0.5 cm at 89 (5 frames)",
+     "index_02_l/interior": "0.5 cm at 85 (2 frames)",
+     "ring_01_r/cockpit_door_R_handle": "0.4 cm at 56 (2 frames)",
+     "ring_01_l/collective": "0.4 cm at 267 (3 frames)",
+     "index_01_r/cockpit_door_R_handle": "0.4 cm at 60 (2 frames)",
+     "index_03_l/interior": "0.4 cm at 85 (1 frames)",
+     "index_01_l/interior": "0.4 cm at 85 (2 frames)",
+     "ring_02_r/cockpit_door_R_handle": "0.3 cm at 55 (2 frames)",
+     "thumb_03_r/cockpit_door_R_handle": "0.3 cm at 56 (1 frames)",
+     "middle_01_r/cyclic": "0.3 cm at 275 (3 frames)",
+     "ring_02_l/fuselage": "0.3 cm at 91 (5 frames)",
+     "middle_02_l/interior": "0.2 cm at 119 (2 frames)",
+     "hand_l/collective": "0.2 cm at 269 (1 frames)",
+     "index_01_l/collective": "0.2 cm at 269 (3 frames)",
+     "pinky_02_r/cockpit_door_R_handle": "0.1 cm at 56 (1 frames)",
+     "lowerarm_r/cockpit_door_R_handle": "0.1 cm at 58 (1 frames)",
+     "upperarm_r/cockpit_door_R": "0.1 cm at 75 (1 frames)"
+    },
+    "softPairs": {
+     "calf_l/pilot_seat": "3.8 cm at 241 (66 frames)",
+     "foot_l/pilot_seat": "1.8 cm at 208 (6 frames)",
+     "ball_l/pilot_seat": "1.8 cm at 208 (6 frames)",
+     "thigh_l/pilot_seat": "1.5 cm at 202 (31 frames)",
+     "pelvis/pilot_seat": "1.5 cm at 202 (59 frames)",
+     "calf_r/pilot_seat": "0.9 cm at 267 (22 frames)",
+     "pinky_03_l/pilot_seat": "0.8 cm at 139 (1 frames)",
+     "ring_03_l/pilot_seat": "0.6 cm at 265 (6 frames)",
+     "pinky_02_l/pilot_seat": "0.5 cm at 139 (1 frames)",
+     "middle_03_l/pilot_seat": "0.5 cm at 166 (5 frames)",
+     "ring_02_l/pilot_seat": "0.4 cm at 168 (2 frames)",
+     "thigh_r/pilot_seat": "0.1 cm at 256 (31 frames)"
+    },
+    "contactPairsDepth": {
+     "thumb_01_l/fuselage": "1.8 cm at 117 (34 frames)",
+     "thumb_02_l/fuselage": "1.7 cm at 120 (34 frames)",
+     "ring_02_l/collective": "1.2 cm at 274 (3 frames)",
+     "thumb_01_r/cockpit_door_R": "1.1 cm at 246 (9 frames)",
+     "ring_01_l/collective": "1.1 cm at 278 (13 frames)",
+     "thumb_02_r/cyclic": "1.0 cm at 278 (9 frames)",
+     "thumb_01_r/cyclic": "1.0 cm at 278 (9 frames)",
+     "hand_r/cyclic": "1.0 cm at 278 (9 frames)",
+     "middle_01_l/collective": "1.0 cm at 275 (14 frames)",
+     "middle_02_r/cockpit_door_R_handle": "0.9 cm at 44 (11 frames)",
+     "hand_r/cockpit_door_R": "0.9 cm at 246 (9 frames)",
+     "thumb_02_r/cockpit_door_R": "0.9 cm at 246 (9 frames)",
+     "middle_02_l/fuselage": "0.9 cm at 118 (29 frames)",
+     "middle_03_l/collective": "0.8 cm at 274 (14 frames)",
+     "middle_03_l/fuselage": "0.8 cm at 120 (25 frames)",
+     "thumb_03_r/cockpit_door_R": "0.8 cm at 247 (9 frames)",
+     "ring_03_l/collective": "0.8 cm at 277 (12 frames)",
+     "index_03_r/cockpit_door_R_handle": "0.7 cm at 53 (11 frames)",
+     "pinky_02_r/cockpit_door_R": "0.7 cm at 240 (9 frames)",
+     "ball_l/pedal_L": "0.7 cm at 237 (50 frames)",
+     "thumb_03_r/cyclic": "0.7 cm at 278 (9 frames)",
+     "middle_02_r/cyclic": "0.7 cm at 278 (9 frames)",
+     "thumb_03_l/fuselage": "0.7 cm at 120 (29 frames)",
+     "hand_l/fuselage": "0.7 cm at 102 (27 frames)",
+     "ring_01_r/cyclic": "0.6 cm at 278 (9 frames)",
+     "ring_03_r/cyclic": "0.6 cm at 278 (9 frames)",
+     "pinky_03_l/collective": "0.6 cm at 273 (14 frames)",
+     "pinky_02_l/collective": "0.6 cm at 273 (14 frames)",
+     "middle_02_l/collective": "0.6 cm at 273 (1 frames)",
+     "ring_02_r/cyclic": "0.6 cm at 278 (9 frames)",
+     "pinky_01_l/collective": "0.5 cm at 276 (11 frames)",
+     "ring_03_r/cockpit_door_R": "0.5 cm at 247 (9 frames)",
+     "ring_03_l/fuselage": "0.5 cm at 120 (6 frames)",
+     "index_02_r/cockpit_door_R_handle": "0.4 cm at 47 (11 frames)",
+     "ring_03_r/cockpit_door_R_handle": "0.4 cm at 47 (11 frames)",
+     "foot_l/pedal_L": "0.4 cm at 239 (50 frames)",
+     "ring_02_l/fuselage": "0.3 cm at 118 (28 frames)",
+     "ball_r/pedal_R": "0.3 cm at 267 (20 frames)",
+     "middle_03_r/cyclic": "0.2 cm at 278 (9 frames)",
+     "ring_02_r/cockpit_door_R_handle": "0.2 cm at 51 (11 frames)",
+     "index_01_l/collective": "0.1 cm at 277 (13 frames)",
+     "pinky_01_r/cockpit_door_R": "0.1 cm at 247 (1 frames)",
+     "middle_01_r/cyclic": "0.1 cm at 278 (9 frames)"
+    },
+    "hardMaxCm": 1.91,
+    "softMaxCm": 3.83,
+    "headByCm": {
+     "cockpit_door_R_glass": "37.8 at 33",
+     "cockpit_door_R": "2.4 at 251",
+     "fuselage": "0.5 at 253",
+     "interior": "0.1 at 253"
+    },
+    "wristWorst": "Left flex -60 (f160) dev +47 (f127) / Right flex -37 (f238) dev -35 (f55)",
+    "wristFramesPast": "126-127",
+    "twistStepDeg": "39.6 at 237 (Right)",
+    "elbowMinDeg": "12.8 at 33",
+    "kneeMinDeg": "37.8 at 72",
+    "balanceOutCm": "inf at 138",
+    "balanceFramesOver3cm": "10-43, 45-86, 104-166",
+    "plantSlideMmPerFrame": "5.44 at 238",
+    "joinErr": "0.000 mm (None) / 0.000 deg (None)"
+   }
+  },
+  "heli-exit": {
+   "duration": 12.233333333333333,
+   "loop": false,
+   "frames": 368,
+   "cycles": 1,
+   "speed": 0.0,
+   "direction": 0.0,
+   "dir": [
+    0,
+    0
+   ],
+   "contact": {
+    "Left": [
+     [
+      0.0,
+      1.0
+     ]
+    ],
+    "Right": [
+     [
+      0.0,
+      1.0
+     ]
+    ]
+   },
+   "leftStrike": null,
+   "root": [
+    [
+     0.42,
+     -1.335,
+     3.141593
+    ],
+    [
+     0.42,
+     -1.335,
+     3.141593
+    ],
+    [
+     0.42,
+     -1.33499,
+     3.141593
+    ],
+    [
+     0.42,
+     -1.33499,
+     3.141593
+    ],
+    [
+     0.42,
+     -1.33498,
+     3.141593
+    ],
+    [
+     0.42,
+     -1.33496,
+     3.141596
+    ],
+    [
+     0.42,
+     -1.33495,
+     3.141602
+    ],
+    [
+     0.42001,
+     -1.33494,
+     3.141619
+    ],
+    [
+     0.42001,
+     -1.33492,
+     3.141652
+    ],
+    [
+     0.42003,
+     -1.33491,
+     3.141715
+    ],
+    [
+     0.42006,
+     -1.33491,
+     3.141827
+    ],
+    [
+     0.42011,
+     -1.33492,
+     3.142012
+    ],
+    [
+     0.42018,
+     -1.33496,
+     3.142305
+    ],
+    [
+     0.4203,
+     -1.33502,
+     3.142745
+    ],
+    [
+     0.42048,
+     -1.33513,
+     3.143374
+    ],
+    [
+     0.42073,
+     -1.33528,
+     3.144235
+    ],
+    [
+     0.42107,
+     -1.3355,
+     3.145364
+    ],
+    [
+     0.42152,
+     -1.33579,
+     3.146783
+    ],
+    [
+     0.4221,
+     -1.33615,
+     3.148499
+    ],
+    [
+     0.42281,
+     -1.33659,
+     3.150499
+    ],
+    [
+     0.42367,
+     -1.33709,
+     3.152748
+    ],
+    [
+     0.42469,
+     -1.33766,
+     3.155194
+    ],
+    [
+     0.42587,
+     -1.33828,
+     3.157772
+    ],
+    [
+     0.42721,
+     -1.33893,
+     3.16041
+    ],
+    [
+     0.42872,
+     -1.3396,
+     3.163036
+    ],
+    [
+     0.43039,
+     -1.34029,
+     3.165588
+    ],
+    [
+     0.43221,
+     -1.34096,
+     3.168019
+    ],
+    [
+     0.43418,
+     -1.34161,
+     3.170302
+    ],
+    [
+     0.4363,
+     -1.34223,
+     3.172436
+    ],
+    [
+     0.43855,
+     -1.34282,
+     3.174435
+    ],
+    [
+     0.44094,
+     -1.34337,
+     3.17633
+    ],
+    [
+     0.44344,
+     -1.34387,
+     3.178152
+    ],
+    [
+     0.44605,
+     -1.34434,
+     3.179925
+    ],
+    [
+     0.44876,
+     -1.34477,
+     3.181651
+    ],
+    [
+     0.45157,
+     -1.34518,
+     3.183304
+    ],
+    [
+     0.45446,
+     -1.34555,
+     3.184823
+    ],
+    [
+     0.45743,
+     -1.3459,
+     3.18611
+    ],
+    [
+     0.46047,
+     -1.34624,
+     3.187036
+    ],
+    [
+     0.46359,
+     -1.34656,
+     3.187447
+    ],
+    [
+     0.46677,
+     -1.34687,
+     3.187165
+    ],
+    [
+     0.47001,
+     -1.34716,
+     3.186003
+    ],
+    [
+     0.47332,
+     -1.34745,
+     3.183765
+    ],
+    [
+     0.47667,
+     -1.34774,
+     3.180258
+    ],
+    [
+     0.48008,
+     -1.34802,
+     3.175291
+    ],
+    [
+     0.48354,
+     -1.3483,
+     3.168689
+    ],
+    [
+     0.48704,
+     -1.34858,
+     3.160293
+    ],
+    [
+     0.49059,
+     -1.34886,
+     3.149972
+    ],
+    [
+     0.49418,
+     -1.34914,
+     3.137628
+    ],
+    [
+     0.49782,
+     -1.34943,
+     3.123198
+    ],
+    [
+     0.5015,
+     -1.34972,
+     3.106662
+    ],
+    [
+     0.50523,
+     -1.35002,
+     3.088041
+    ],
+    [
+     0.50902,
+     -1.35032,
+     3.067399
+    ],
+    [
+     0.51286,
+     -1.35064,
+     3.044834
+    ],
+    [
+     0.51678,
+     -1.35096,
+     3.02048
+    ],
+    [
+     0.52077,
+     -1.35129,
+     2.994496
+    ],
+    [
+     0.52485,
+     -1.35163,
+     2.967062
+    ],
+    [
+     0.52901,
+     -1.35198,
+     2.938373
+    ],
+    [
+     0.53325,
+     -1.35234,
+     2.908631
+    ],
+    [
+     0.53758,
+     -1.35271,
+     2.878042
+    ],
+    [
+     0.54198,
+     -1.35308,
+     2.846808
+    ],
+    [
+     0.54642,
+     -1.35346,
+     2.815117
+    ],
+    [
+     0.5509,
+     -1.35384,
+     2.783129
+    ],
+    [
+     0.55538,
+     -1.35423,
+     2.750963
+    ],
+    [
+     0.55984,
+     -1.35461,
+     2.718684
+    ],
+    [
+     0.56426,
+     -1.355,
+     2.686294
+    ],
+    [
+     0.56861,
+     -1.35538,
+     2.653728
+    ],
+    [
+     0.57288,
+     -1.35577,
+     2.620864
+    ],
+    [
+     0.57705,
+     -1.35615,
+     2.587543
+    ],
+    [
+     0.58113,
+     -1.35655,
+     2.553589
+    ],
+    [
+     0.58512,
+     -1.35695,
+     2.518843
+    ],
+    [
+     0.58901,
+     -1.35736,
+     2.483191
+    ],
+    [
+     0.59282,
+     -1.35779,
+     2.446589
+    ],
+    [
+     0.59655,
+     -1.35824,
+     2.409075
+    ],
+    [
+     0.60022,
+     -1.35871,
+     2.370782
+    ],
+    [
+     0.60382,
+     -1.35921,
+     2.331929
+    ],
+    [
+     0.60736,
+     -1.35974,
+     2.29282
+    ],
+    [
+     0.61083,
+     -1.36029,
+     2.253828
+    ],
+    [
+     0.61421,
+     -1.36085,
+     2.215376
+    ],
+    [
+     0.61747,
+     -1.36143,
+     2.177917
+    ],
+    [
+     0.6206,
+     -1.362,
+     2.141912
+    ],
+    [
+     0.62357,
+     -1.36256,
+     2.107811
+    ],
+    [
+     0.62633,
+     -1.36309,
+     2.076023
+    ],
+    [
+     0.62887,
+     -1.36359,
+     2.046884
+    ],
+    [
+     0.63117,
+     -1.36405,
+     2.02063
+    ],
+    [
+     0.63323,
+     -1.36446,
+     1.997364
+    ],
+    [
+     0.63506,
+     -1.36484,
+     1.977038
+    ],
+    [
+     0.63669,
+     -1.3652,
+     1.959445
+    ],
+    [
+     0.63816,
+     -1.36556,
+     1.944228
+    ],
+    [
+     0.63956,
+     -1.36595,
+     1.93091
+    ],
+    [
+     0.64095,
+     -1.3664,
+     1.918949
+    ],
+    [
+     0.64243,
+     -1.36694,
+     1.907789
+    ],
+    [
+     0.6441,
+     -1.36763,
+     1.896929
+    ],
+    [
+     0.64606,
+     -1.36848,
+     1.885965
+    ],
+    [
+     0.6484,
+     -1.36953,
+     1.874624
+    ],
+    [
+     0.6512,
+     -1.37081,
+     1.862774
+    ],
+    [
+     0.65454,
+     -1.37235,
+     1.850412
+    ],
+    [
+     0.65851,
+     -1.37417,
+     1.837644
+    ],
+    [
+     0.66318,
+     -1.37629,
+     1.824648
+    ],
+    [
+     0.66861,
+     -1.37875,
+     1.811641
+    ],
+    [
+     0.67487,
+     -1.38155,
+     1.79885
+    ],
+    [
+     0.68204,
+     -1.38474,
+     1.786479
+    ],
+    [
+     0.69015,
+     -1.38834,
+     1.774698
+    ],
+    [
+     0.69928,
+     -1.39237,
+     1.763626
+    ],
+    [
+     0.70943,
+     -1.39686,
+     1.753337
+    ],
+    [
+     0.72062,
+     -1.40179,
+     1.743854
+    ],
+    [
+     0.7328,
+     -1.40717,
+     1.735163
+    ],
+    [
+     0.74592,
+     -1.41295,
+     1.72723
+    ],
+    [
+     0.75984,
+     -1.41907,
+     1.720009
+    ],
+    [
+     0.77442,
+     -1.42544,
+     1.713457
+    ],
+    [
+     0.78945,
+     -1.43195,
+     1.707536
+    ],
+    [
+     0.80473,
+     -1.43849,
+     1.702219
+    ],
+    [
+     0.82002,
+     -1.44492,
+     1.697488
+    ],
+    [
+     0.83511,
+     -1.45113,
+     1.693325
+    ],
+    [
+     0.84979,
+     -1.45701,
+     1.689718
+    ],
+    [
+     0.86392,
+     -1.46247,
+     1.686647
+    ],
+    [
+     0.87738,
+     -1.46744,
+     1.684089
+    ],
+    [
+     0.8901,
+     -1.47187,
+     1.682017
+    ],
+    [
+     0.90206,
+     -1.47574,
+     1.6804
+    ],
+    [
+     0.9133,
+     -1.47903,
+     1.679208
+    ],
+    [
+     0.92384,
+     -1.48174,
+     1.678411
+    ],
+    [
+     0.93378,
+     -1.48386,
+     1.677984
+    ],
+    [
+     0.9432,
+     -1.48541,
+     1.677908
+    ],
+    [
+     0.9522,
+     -1.48639,
+     1.678168
+    ],
+    [
+     0.9609,
+     -1.48682,
+     1.678756
+    ],
+    [
+     0.96939,
+     -1.4867,
+     1.679667
+    ],
+    [
+     0.9778,
+     -1.48607,
+     1.680897
+    ],
+    [
+     0.98624,
+     -1.48495,
+     1.68244
+    ],
+    [
+     0.9948,
+     -1.4834,
+     1.684287
+    ],
+    [
+     1.00359,
+     -1.48147,
+     1.686421
+    ],
+    [
+     1.01266,
+     -1.47922,
+     1.688818
+    ],
+    [
+     1.02209,
+     -1.47672,
+     1.691445
+    ],
+    [
+     1.0319,
+     -1.47404,
+     1.694263
+    ],
+    [
+     1.04209,
+     -1.47123,
+     1.697229
+    ],
+    [
+     1.05265,
+     -1.46835,
+     1.700298
+    ],
+    [
+     1.06354,
+     -1.46544,
+     1.703428
+    ],
+    [
+     1.07471,
+     -1.46251,
+     1.706584
+    ],
+    [
+     1.08611,
+     -1.45959,
+     1.709738
+    ],
+    [
+     1.0977,
+     -1.45666,
+     1.712874
+    ],
+    [
+     1.10943,
+     -1.45375,
+     1.715984
+    ],
+    [
+     1.1213,
+     -1.45085,
+     1.719067
+    ],
+    [
+     1.13329,
+     -1.44796,
+     1.72213
+    ],
+    [
+     1.14542,
+     -1.44511,
+     1.725183
+    ],
+    [
+     1.1577,
+     -1.44232,
+     1.728234
+    ],
+    [
+     1.17017,
+     -1.4396,
+     1.731292
+    ],
+    [
+     1.18287,
+     -1.43701,
+     1.73436
+    ],
+    [
+     1.19583,
+     -1.43458,
+     1.737435
+    ],
+    [
+     1.20909,
+     -1.43238,
+     1.740508
+    ],
+    [
+     1.22266,
+     -1.43046,
+     1.743562
+    ],
+    [
+     1.23655,
+     -1.4289,
+     1.746574
+    ],
+    [
+     1.25073,
+     -1.42778,
+     1.749518
+    ],
+    [
+     1.26517,
+     -1.42715,
+     1.752366
+    ],
+    [
+     1.2798,
+     -1.42706,
+     1.755095
+    ],
+    [
+     1.29454,
+     -1.42755,
+     1.75769
+    ],
+    [
+     1.30931,
+     -1.42862,
+     1.760148
+    ],
+    [
+     1.32403,
+     -1.43024,
+     1.76248
+    ],
+    [
+     1.33862,
+     -1.43236,
+     1.764711
+    ],
+    [
+     1.35302,
+     -1.43489,
+     1.766882
+    ],
+    [
+     1.36718,
+     -1.43774,
+     1.769044
+    ],
+    [
+     1.38106,
+     -1.44081,
+     1.771259
+    ],
+    [
+     1.39462,
+     -1.44398,
+     1.773594
+    ],
+    [
+     1.40783,
+     -1.44719,
+     1.776117
+    ],
+    [
+     1.42068,
+     -1.45034,
+     1.778898
+    ],
+    [
+     1.43314,
+     -1.4534,
+     1.782003
+    ],
+    [
+     1.4452,
+     -1.45633,
+     1.785498
+    ],
+    [
+     1.45684,
+     -1.45911,
+     1.789447
+    ],
+    [
+     1.46808,
+     -1.46172,
+     1.793912
+    ],
+    [
+     1.47893,
+     -1.46416,
+     1.798959
+    ],
+    [
+     1.48945,
+     -1.46637,
+     1.804662
+    ],
+    [
+     1.49969,
+     -1.46832,
+     1.811108
+    ],
+    [
+     1.50973,
+     -1.46994,
+     1.818399
+    ],
+    [
+     1.51966,
+     -1.47112,
+     1.826659
+    ],
+    [
+     1.52957,
+     -1.47175,
+     1.836036
+    ],
+    [
+     1.53956,
+     -1.47171,
+     1.846703
+    ],
+    [
+     1.54972,
+     -1.47086,
+     1.858857
+    ],
+    [
+     1.5601,
+     -1.46907,
+     1.872716
+    ],
+    [
+     1.57075,
+     -1.46623,
+     1.888502
+    ],
+    [
+     1.58167,
+     -1.46225,
+     1.906423
+    ],
+    [
+     1.59285,
+     -1.45707,
+     1.926646
+    ],
+    [
+     1.60423,
+     -1.4507,
+     1.949269
+    ],
+    [
+     1.61574,
+     -1.44319,
+     1.974297
+    ],
+    [
+     1.62728,
+     -1.43463,
+     2.001627
+    ],
+    [
+     1.63878,
+     -1.42518,
+     2.031054
+    ],
+    [
+     1.65014,
+     -1.41502,
+     2.062287
+    ],
+    [
+     1.6613,
+     -1.40431,
+     2.09499
+    ],
+    [
+     1.67224,
+     -1.39324,
+     2.128823
+    ],
+    [
+     1.68296,
+     -1.38196,
+     2.163483
+    ],
+    [
+     1.6935,
+     -1.3706,
+     2.19874
+    ],
+    [
+     1.70393,
+     -1.35923,
+     2.234453
+    ],
+    [
+     1.71436,
+     -1.34789,
+     2.270567
+    ],
+    [
+     1.72492,
+     -1.33662,
+     2.307096
+    ],
+    [
+     1.73574,
+     -1.32541,
+     2.344091
+    ],
+    [
+     1.74696,
+     -1.31425,
+     2.381595
+    ],
+    [
+     1.75871,
+     -1.30314,
+     2.419614
+    ],
+    [
+     1.77108,
+     -1.29207,
+     2.458082
+    ],
+    [
+     1.78414,
+     -1.28105,
+     2.496846
+    ],
+    [
+     1.79791,
+     -1.27009,
+     2.535668
+    ],
+    [
+     1.81237,
+     -1.25921,
+     2.574241
+    ],
+    [
+     1.82743,
+     -1.24846,
+     2.612218
+    ],
+    [
+     1.84299,
+     -1.23787,
+     2.649254
+    ],
+    [
+     1.85889,
+     -1.22753,
+     2.685048
+    ],
+    [
+     1.87496,
+     -1.2175,
+     2.719379
+    ],
+    [
+     1.89106,
+     -1.20788,
+     2.752134
+    ],
+    [
+     1.90704,
+     -1.19877,
+     2.783324
+    ],
+    [
+     1.92281,
+     -1.19027,
+     2.813083
+    ],
+    [
+     1.93831,
+     -1.1825,
+     2.841664
+    ],
+    [
+     1.95353,
+     -1.17556,
+     2.869417
+    ],
+    [
+     1.9685,
+     -1.16957,
+     2.89677
+    ],
+    [
+     1.9833,
+     -1.16467,
+     2.924215
+    ],
+    [
+     1.998,
+     -1.16102,
+     2.952285
+    ],
+    [
+     2.01271,
+     -1.15881,
+     2.981534
+    ],
+    [
+     2.02753,
+     -1.15829,
+     3.012509
+    ],
+    [
+     2.04254,
+     -1.15971,
+     3.045722
+    ],
+    [
+     2.05782,
+     -1.16338,
+     3.081612
+    ],
+    [
+     2.07339,
+     -1.1696,
+     3.120509
+    ],
+    [
+     2.08927,
+     -1.17862,
+     3.162592
+    ],
+    [
+     2.10543,
+     -1.19065,
+     3.207862
+    ],
+    [
+     2.1218,
+     -1.20577,
+     3.25612
+    ],
+    [
+     2.13826,
+     -1.22393,
+     3.306973
+    ],
+    [
+     2.15468,
+     -1.24492,
+     3.359859
+    ],
+    [
+     2.17087,
+     -1.26838,
+     3.414097
+    ],
+    [
+     2.18666,
+     -1.29384,
+     3.468953
+    ],
+    [
+     2.20188,
+     -1.32075,
+     3.523711
+    ],
+    [
+     2.21636,
+     -1.34856,
+     3.57775
+    ],
+    [
+     2.22999,
+     -1.37672,
+     3.630595
+    ],
+    [
+     2.24269,
+     -1.40482,
+     3.681953
+    ],
+    [
+     2.25444,
+     -1.43252,
+     3.731726
+    ],
+    [
+     2.26523,
+     -1.4596,
+     3.779993
+    ],
+    [
+     2.27511,
+     -1.48598,
+     3.826986
+    ],
+    [
+     2.28412,
+     -1.51164,
+     3.873054
+    ],
+    [
+     2.29232,
+     -1.53661,
+     3.918632
+    ],
+    [
+     2.29974,
+     -1.56097,
+     3.964221
+    ],
+    [
+     2.30641,
+     -1.58482,
+     4.010373
+    ],
+    [
+     2.31233,
+     -1.60825,
+     4.057701
+    ],
+    [
+     2.31746,
+     -1.63138,
+     4.106878
+    ],
+    [
+     2.32176,
+     -1.65429,
+     4.158627
+    ],
+    [
+     2.32516,
+     -1.67707,
+     4.213698
+    ],
+    [
+     2.32757,
+     -1.6998,
+     4.272811
+    ],
+    [
+     2.32892,
+     -1.72252,
+     4.336588
+    ],
+    [
+     2.32911,
+     -1.74525,
+     4.405462
+    ],
+    [
+     2.32809,
+     -1.76796,
+     4.47959
+    ],
+    [
+     2.32583,
+     -1.79059,
+     4.55878
+    ],
+    [
+     2.32234,
+     -1.813,
+     4.642453
+    ],
+    [
+     2.31765,
+     -1.83505,
+     4.729649
+    ],
+    [
+     2.31188,
+     -1.85655,
+     4.819082
+    ],
+    [
+     2.30514,
+     -1.87731,
+     4.909247
+    ],
+    [
+     2.29761,
+     -1.89715,
+     4.998545
+    ],
+    [
+     2.28945,
+     -1.9159,
+     5.08543
+    ],
+    [
+     2.28085,
+     -1.93346,
+     5.168538
+    ],
+    [
+     2.27196,
+     -1.94978,
+     5.246783
+    ],
+    [
+     2.26292,
+     -1.96485,
+     5.31941
+    ],
+    [
+     2.25382,
+     -1.97873,
+     5.385996
+    ],
+    [
+     2.24473,
+     -1.99152,
+     5.446408
+    ],
+    [
+     2.23567,
+     -2.00334,
+     5.500725
+    ],
+    [
+     2.22663,
+     -2.01434,
+     5.549151
+    ],
+    [
+     2.21758,
+     -2.02465,
+     5.591932
+    ],
+    [
+     2.20846,
+     -2.03442,
+     5.62929
+    ],
+    [
+     2.19921,
+     -2.04374,
+     5.661374
+    ],
+    [
+     2.18975,
+     -2.05271,
+     5.688241
+    ],
+    [
+     2.17999,
+     -2.06139,
+     5.709856
+    ],
+    [
+     2.16985,
+     -2.06977,
+     5.726119
+    ],
+    [
+     2.15923,
+     -2.07786,
+     5.736901
+    ],
+    [
+     2.14807,
+     -2.08556,
+     5.742086
+    ],
+    [
+     2.13631,
+     -2.09278,
+     5.741634
+    ],
+    [
+     2.12393,
+     -2.09936,
+     5.735629
+    ],
+    [
+     2.11097,
+     -2.10515,
+     5.724325
+    ],
+    [
+     2.09748,
+     -2.10998,
+     5.708169
+    ],
+    [
+     2.0836,
+     -2.11371,
+     5.687799
+    ],
+    [
+     2.06948,
+     -2.11624,
+     5.664003
+    ],
+    [
+     2.05527,
+     -2.11753,
+     5.63766
+    ],
+    [
+     2.04115,
+     -2.11757,
+     5.609667
+    ],
+    [
+     2.02725,
+     -2.11643,
+     5.580856
+    ],
+    [
+     2.01365,
+     -2.11417,
+     5.551945
+    ],
+    [
+     2.00042,
+     -2.1109,
+     5.523491
+    ],
+    [
+     1.98753,
+     -2.10668,
+     5.495891
+    ],
+    [
+     1.97494,
+     -2.10159,
+     5.469385
+    ],
+    [
+     1.96257,
+     -2.09566,
+     5.44409
+    ],
+    [
+     1.95032,
+     -2.08887,
+     5.42002
+    ],
+    [
+     1.93807,
+     -2.08119,
+     5.397122
+    ],
+    [
+     1.92572,
+     -2.07257,
+     5.3753
+    ],
+    [
+     1.91317,
+     -2.06293,
+     5.354433
+    ],
+    [
+     1.90037,
+     -2.05224,
+     5.334403
+    ],
+    [
+     1.88729,
+     -2.04046,
+     5.315107
+    ],
+    [
+     1.87396,
+     -2.02766,
+     5.296476
+    ],
+    [
+     1.86047,
+     -2.01392,
+     5.278484
+    ],
+    [
+     1.84695,
+     -1.99942,
+     5.261149
+    ],
+    [
+     1.83353,
+     -1.98438,
+     5.244515
+    ],
+    [
+     1.82036,
+     -1.96902,
+     5.228642
+    ],
+    [
+     1.80758,
+     -1.95357,
+     5.213578
+    ],
+    [
+     1.79528,
+     -1.93823,
+     5.199343
+    ],
+    [
+     1.78351,
+     -1.92314,
+     5.185917
+    ],
+    [
+     1.77226,
+     -1.90839,
+     5.17324
+    ],
+    [
+     1.76149,
+     -1.89399,
+     5.161215
+    ],
+    [
+     1.75114,
+     -1.87994,
+     5.149724
+    ],
+    [
+     1.74111,
+     -1.86619,
+     5.13863
+    ],
+    [
+     1.73131,
+     -1.85268,
+     5.127794
+    ],
+    [
+     1.72164,
+     -1.83932,
+     5.117074
+    ],
+    [
+     1.71199,
+     -1.82605,
+     5.106324
+    ],
+    [
+     1.70225,
+     -1.8128,
+     5.095389
+    ],
+    [
+     1.69232,
+     -1.7995,
+     5.084102
+    ],
+    [
+     1.68209,
+     -1.78611,
+     5.072281
+    ],
+    [
+     1.67142,
+     -1.77258,
+     5.05973
+    ],
+    [
+     1.66023,
+     -1.75892,
+     5.04625
+    ],
+    [
+     1.64841,
+     -1.74516,
+     5.031647
+    ],
+    [
+     1.6359,
+     -1.73138,
+     5.015751
+    ],
+    [
+     1.62268,
+     -1.71771,
+     4.998436
+    ],
+    [
+     1.60875,
+     -1.7043,
+     4.979641
+    ],
+    [
+     1.59419,
+     -1.69133,
+     4.959384
+    ],
+    [
+     1.57911,
+     -1.679,
+     4.937777
+    ],
+    [
+     1.56367,
+     -1.66748,
+     4.915031
+    ],
+    [
+     1.5481,
+     -1.6569,
+     4.891449
+    ],
+    [
+     1.53262,
+     -1.64736,
+     4.867411
+    ],
+    [
+     1.51749,
+     -1.63893,
+     4.843363
+    ],
+    [
+     1.50298,
+     -1.6316,
+     4.819785
+    ],
+    [
+     1.48938,
+     -1.62535,
+     4.79717
+    ],
+    [
+     1.47693,
+     -1.62011,
+     4.775984
+    ],
+    [
+     1.46589,
+     -1.61579,
+     4.756638
+    ],
+    [
+     1.45647,
+     -1.61228,
+     4.739456
+    ],
+    [
+     1.44887,
+     -1.60948,
+     4.724645
+    ],
+    [
+     1.4432,
+     -1.60724,
+     4.712285
+    ],
+    [
+     1.43955,
+     -1.60547,
+     4.702323
+    ],
+    [
+     1.43794,
+     -1.60403,
+     4.694588
+    ],
+    [
+     1.43834,
+     -1.60282,
+     4.688814
+    ],
+    [
+     1.44067,
+     -1.60174,
+     4.684683
+    ],
+    [
+     1.44481,
+     -1.60074,
+     4.681856
+    ],
+    [
+     1.4506,
+     -1.59973,
+     4.680009
+    ],
+    [
+     1.45788,
+     -1.59869,
+     4.678863
+    ],
+    [
+     1.46644,
+     -1.59758,
+     4.678189
+    ],
+    [
+     1.47611,
+     -1.5964,
+     4.677815
+    ],
+    [
+     1.48667,
+     -1.59514,
+     4.677623
+    ],
+    [
+     1.49795,
+     -1.5938,
+     4.677532
+    ],
+    [
+     1.50976,
+     -1.59239,
+     4.677496
+    ],
+    [
+     1.52194,
+     -1.59092,
+     4.677484
+    ],
+    [
+     1.53434,
+     -1.5894,
+     4.677482
+    ],
+    [
+     1.54684,
+     -1.58783,
+     4.677482
+    ],
+    [
+     1.55936,
+     -1.58622,
+     4.677482
+    ],
+    [
+     1.57185,
+     -1.58456,
+     4.677482
+    ],
+    [
+     1.5843,
+     -1.58286,
+     4.677482
+    ],
+    [
+     1.5967,
+     -1.5811,
+     4.677482
+    ],
+    [
+     1.6091,
+     -1.57929,
+     4.677482
+    ],
+    [
+     1.62153,
+     -1.57741,
+     4.677482
+    ],
+    [
+     1.63399,
+     -1.57547,
+     4.677482
+    ],
+    [
+     1.6465,
+     -1.57347,
+     4.677482
+    ],
+    [
+     1.65902,
+     -1.57143,
+     4.677482
+    ],
+    [
+     1.67149,
+     -1.56936,
+     4.677482
+    ],
+    [
+     1.6838,
+     -1.56728,
+     4.677482
+    ],
+    [
+     1.69584,
+     -1.56521,
+     4.677482
+    ],
+    [
+     1.70745,
+     -1.5632,
+     4.677482
+    ],
+    [
+     1.71849,
+     -1.56127,
+     4.677482
+    ],
+    [
+     1.7288,
+     -1.55945,
+     4.677482
+    ],
+    [
+     1.73825,
+     -1.55777,
+     4.677482
+    ],
+    [
+     1.74671,
+     -1.55626,
+     4.677482
+    ],
+    [
+     1.75411,
+     -1.55492,
+     4.677482
+    ],
+    [
+     1.76041,
+     -1.55378,
+     4.677482
+    ],
+    [
+     1.76561,
+     -1.55282,
+     4.677482
+    ],
+    [
+     1.76977,
+     -1.55205,
+     4.677482
+    ],
+    [
+     1.77297,
+     -1.55145,
+     4.677482
+    ],
+    [
+     1.77535,
+     -1.551,
+     4.677482
+    ],
+    [
+     1.77705,
+     -1.55067,
+     4.677482
+    ],
+    [
+     1.77821,
+     -1.55043,
+     4.677482
+    ],
+    [
+     1.77897,
+     -1.55028,
+     4.677482
+    ],
+    [
+     1.77943,
+     -1.55017,
+     4.677482
+    ],
+    [
+     1.77971,
+     -1.5501,
+     4.677482
+    ],
+    [
+     1.77986,
+     -1.55006,
+     4.677482
+    ],
+    [
+     1.77994,
+     -1.55003,
+     4.677482
+    ],
+    [
+     1.77998,
+     -1.55002,
+     4.677482
+    ],
+    [
+     1.77999,
+     -1.55001,
+     4.677482
+    ],
+    [
+     1.78,
+     -1.55,
+     4.677482
+    ],
+    [
+     1.78,
+     -1.55,
+     4.677482
+    ]
+   ],
+   "vehicle": "heli",
+   "events": {
+    "handsOff": 0.3,
+    "doorOpenStart": 0.8,
+    "doorOpenEnd": 2.0,
+    "unseated": 3.4336,
+    "doorCloseStart": 8.7172,
+    "doorCloseEnd": 10.6572,
+    "seatedPose": "heli-collective-down"
+   },
+   "door": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0025,
+    0.0096,
+    0.0209,
+    0.036,
+    0.0544,
+    0.0756,
+    0.0992,
+    0.1248,
+    0.1519,
+    0.18,
+    0.2086,
+    0.2375,
+    0.266,
+    0.2943,
+    0.3255,
+    0.3596,
+    0.3962,
+    0.4349,
+    0.4752,
+    0.5169,
+    0.5593,
+    0.602,
+    0.6448,
+    0.687,
+    0.7283,
+    0.7683,
+    0.8066,
+    0.8426,
+    0.876,
+    0.9063,
+    0.9331,
+    0.9561,
+    0.9746,
+    0.9884,
+    0.997,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.9999,
+    0.9951,
+    0.9843,
+    0.9702,
+    0.9548,
+    0.9387,
+    0.9227,
+    0.906,
+    0.8888,
+    0.871,
+    0.8526,
+    0.8337,
+    0.8143,
+    0.7942,
+    0.7734,
+    0.7518,
+    0.7278,
+    0.7023,
+    0.6741,
+    0.6436,
+    0.615,
+    0.5906,
+    0.5674,
+    0.5468,
+    0.5266,
+    0.5073,
+    0.488,
+    0.4691,
+    0.4503,
+    0.4315,
+    0.4129,
+    0.3943,
+    0.3758,
+    0.3571,
+    0.3385,
+    0.3188,
+    0.2989,
+    0.2762,
+    0.2522,
+    0.2262,
+    0.2,
+    0.1751,
+    0.1512,
+    0.1286,
+    0.1075,
+    0.088,
+    0.0702,
+    0.0541,
+    0.0399,
+    0.0276,
+    0.0175,
+    0.0095,
+    0.0039,
+    0.0007,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "contacts": [
+    {
+     "part": "foot_l",
+     "from": 0,
+     "to": 53,
+     "node": "pedal_L",
+     "at": [
+      0.0,
+      0.128,
+      0.0
+     ],
+     "kind": "press",
+     "point": "ball"
+    },
+    {
+     "part": "foot_r",
+     "from": 0,
+     "to": 40,
+     "node": "pedal_R",
+     "at": [
+      0.005,
+      0.128,
+      0.0
+     ],
+     "kind": "press",
+     "point": "ball"
+    },
+    {
+     "part": "hand_l",
+     "from": 0,
+     "to": 9,
+     "node": "collective",
+     "at": [
+      -0.0278,
+      0.2303,
+      -0.4564
+     ],
+     "kind": "grip"
+    },
+    {
+     "part": "hand_r",
+     "from": 0,
+     "to": 6,
+     "node": "cyclic",
+     "at": [
+      0.0329,
+      0.5962,
+      0.0974
+     ],
+     "kind": "grip"
+    },
+    {
+     "part": "hand_r",
+     "from": 23,
+     "to": 39,
+     "node": "cockpit_door_R_glass",
+     "at": [
+      0.0172,
+      0.4384,
+      0.8709
+     ],
+     "kind": "push"
+    },
+    {
+     "part": "foot_r",
+     "from": 56,
+     "to": 129,
+     "node": null,
+     "at": [
+      0.8496,
+      0.83,
+      -1.4575
+     ],
+     "kind": "step",
+     "point": "ball"
+    },
+    {
+     "part": "foot_l",
+     "from": 92,
+     "to": 109,
+     "node": null,
+     "at": [
+      0.8946,
+      0.84,
+      -1.65
+     ],
+     "kind": "step",
+     "point": "ball"
+    },
+    {
+     "part": "hand_l",
+     "from": 92,
+     "to": 103,
+     "node": "fuselage",
+     "at": [
+      0.86,
+      1.55,
+      -1.9
+     ],
+     "kind": "grip"
+    },
+    {
+     "part": "foot_l",
+     "from": 130,
+     "to": 160,
+     "node": "skid_R",
+     "at": [
+      1.2146,
+      0.097,
+      -1.61
+     ],
+     "kind": "step",
+     "point": "ball"
+    },
+    {
+     "part": "foot_r",
+     "from": 153,
+     "to": 179,
+     "node": null,
+     "at": [
+      1.5933,
+      0.0,
+      -1.28
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "foot_l",
+     "from": 178,
+     "to": 198,
+     "node": null,
+     "at": [
+      1.7681,
+      0.0,
+      -1.6593
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "foot_r",
+     "from": 197,
+     "to": 216,
+     "node": null,
+     "at": [
+      2.0775,
+      0.0,
+      -1.0796
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "foot_l",
+     "from": 217,
+     "to": 244,
+     "node": null,
+     "at": [
+      2.3,
+      0.0,
+      -1.4933
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "foot_r",
+     "from": 244,
+     "to": 267,
+     "node": null,
+     "at": [
+      2.3004,
+      0.0,
+      -2.1375
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "hand_r",
+     "from": 266,
+     "to": 296,
+     "node": "cockpit_door_R",
+     "at": [
+      0.1062,
+      0.093,
+      0.6783
+     ],
+     "kind": "push"
+    },
+    {
+     "part": "foot_l",
+     "from": 267,
+     "to": 283,
+     "node": null,
+     "at": [
+      1.9061,
+      0.0,
+      -2.2319
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "foot_r",
+     "from": 284,
+     "to": 307,
+     "node": null,
+     "at": [
+      1.7004,
+      0.0,
+      -1.6925
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "hand_r",
+     "from": 305,
+     "to": 319,
+     "node": "cockpit_door_R",
+     "at": [
+      0.1062,
+      0.093,
+      0.6783
+     ],
+     "kind": "push"
+    },
+    {
+     "part": "foot_l",
+     "from": 307,
+     "to": 339,
+     "node": null,
+     "at": [
+      1.3651,
+      0.0,
+      -1.436
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "foot_r",
+     "from": 320,
+     "to": 323,
+     "node": null,
+     "at": [
+      1.2654,
+      0.0,
+      -1.79
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "foot_r",
+     "from": 338,
+     "to": 367,
+     "node": null,
+     "at": [
+      1.645,
+      0.0,
+      -1.72
+     ],
+     "kind": "ground",
+     "point": "ball"
+    },
+    {
+     "part": "foot_l",
+     "from": 353,
+     "to": 367,
+     "node": null,
+     "at": [
+      1.685,
+      0.0,
+      -1.4
+     ],
+     "kind": "ground",
+     "point": "ball"
+    }
+   ],
+   "review": {
+    "slide": "0.004 / 0.098",
+    "kneeMin": 9.8,
+    "gapCm": "14.9 / 15.1",
+    "seam": "-",
+    "clearCm": "0.9 / 0.9",
+    "headY": "1.343..1.945",
+    "hipsY": "0.770..1.399",
+    "hipsVsIdle": "-",
+    "feetCm": "109 / 70",
+    "elbowDeg": "26..135 / 26..114",
+    "elbowOutCm": "1..22 / -5..23",
+    "wristDeg": "flex -29 dev -48 / flex -65 dev +49",
+    "snap30": "hand_l 1.9 / hand_r 2.4 / foot_l 2.9 / foot_r 2.0 / head 0.2",
+    "snapMax": 2.93,
+    "vehiclePairs": {
+     "calf_r/pilot_seat": 1175,
+     "calf_l/pilot_seat": 2865,
+     "thumb_01_r/cyclic": 57,
+     "thumb_02_r/cyclic": 300,
+     "thumb_03_r/cyclic": 124,
+     "ring_02_r/cyclic": 25,
+     "ring_03_r/cyclic": 92,
+     "middle_02_r/cyclic": 74,
+     "hand_r/cyclic": 21,
+     "middle_03_r/cyclic": 56,
+     "index_01_r/cyclic": 28,
+     "index_02_r/cyclic": 51,
+     "index_03_r/cyclic": 29,
+     "middle_02_l/collective": 119,
+     "middle_01_l/collective": 26,
+     "ring_02_l/collective": 43,
+     "middle_03_l/collective": 32,
+     "pinky_03_l/collective": 41,
+     "ring_03_l/collective": 48,
+     "pinky_02_l/collective": 1,
+     "middle_03_r/cockpit_door_R_glass": 65,
+     "ring_03_r/cockpit_door_R_glass": 81,
+     "pinky_03_r/cockpit_door_R_glass": 67,
+     "middle_02_r/cockpit_door_R_glass": 11,
+     "ring_02_r/cockpit_door_R_glass": 12,
+     "ball_r/pedal_R": 465,
+     "foot_r/pilot_seat": 257,
+     "thigh_l/cyclic": 566,
+     "ball_l/pedal_L": 377,
+     "foot_l/pedal_L": 250,
+     "foot_r/fuselage": 690,
+     "foot_r/interior": 690,
+     "middle_03_l/cyclic": 92,
+     "middle_02_l/cyclic": 81,
+     "ring_03_l/cyclic": 104,
+     "ring_02_l/cyclic": 141,
+     "pinky_03_l/cyclic": 67,
+     "pinky_02_l/cyclic": 77,
+     "ring_01_l/cyclic": 30,
+     "pinky_01_l/cyclic": 92,
+     "hand_l/cyclic": 4,
+     "foot_l/skid_R": 23,
+     "index_03_r/cockpit_door_R": 176,
+     "index_02_r/cockpit_door_R": 163,
+     "middle_03_r/cockpit_door_R": 286,
+     "middle_02_r/cockpit_door_R": 161,
+     "index_01_r/cockpit_door_R": 3,
+     "ring_03_r/cockpit_door_R": 145,
+     "ring_02_r/cockpit_door_R": 8
+    },
+    "framesWithPairs": 149,
+    "seatPairs": {
+     "pelvis/pilot_seat": 1158,
+     "thigh_r/pilot_seat": 710
+    },
+    "contactPairs": 16039,
+    "seatSinkCm": "cushion 0.0 / back 7.7 / bolster or harness 8.0",
+    "backGapCm": "0.9..inf",
+    "controlClearCm": "-1.9",
+    "headClearCm": "0.4 at frame 53 (interior), head top y 2.170",
+    "contactCm": "foot_l pedal_L 0-53 1.06; foot_r pedal_R 0-40 0.49; hand_l collective 0-9 0.0; hand_r cyclic 0-6 0.01; hand_r cockpit_door_R_glass 23-39 0.0; foot_r None 56-129 0.01; foot_l None 92-109 0.01; hand_l fuselage 92-103 0.0; foot_l skid_R 130-160 0.01; foot_r None 153-179 0.01; foot_l None 178-198 0.01; foot_r None 197-216 0.01; foot_l None 217-244 0.01; foot_r None 244-267 0.0; hand_r cockpit_door_R 266-296 0.01; foot_l None 267-283 0.0; foot_r None 284-307 0.0; hand_r cockpit_door_R 305-319 0.01; foot_l None 307-339 0.01; foot_r None 320-323 0.01; foot_r None 338-367 0.0; foot_l None 353-367 0.0",
+    "contactMaxCm": 0.01,
+    "hardPairs": {
+     "ball_r/pedal_R": "2.0 cm at 42 (4 frames)",
+     "thigh_l/cyclic": "1.9 cm at 57 (11 frames)",
+     "ball_l/pedal_L": "1.6 cm at 63 (10 frames)",
+     "foot_l/pedal_L": "1.6 cm at 63 (10 frames)",
+     "middle_03_l/cyclic": "1.6 cm at 59 (4 frames)",
+     "thumb_02_r/cyclic": "1.2 cm at 10 (5 frames)",
+     "hand_r/cyclic": "1.2 cm at 10 (4 frames)",
+     "thumb_01_r/cyclic": "1.1 cm at 8 (4 frames)",
+     "ring_02_l/cyclic": "1.0 cm at 64 (4 frames)",
+     "middle_02_l/cyclic": "0.9 cm at 62 (4 frames)",
+     "index_02_r/cockpit_door_R": "0.9 cm at 260 (6 frames)",
+     "ring_03_r/cyclic": "0.8 cm at 7 (3 frames)",
+     "index_03_r/cockpit_door_R": "0.8 cm at 262 (9 frames)",
+     "thumb_03_r/cyclic": "0.7 cm at 10 (5 frames)",
+     "ring_03_l/cyclic": "0.7 cm at 62 (4 frames)",
+     "ring_03_r/cockpit_door_R": "0.7 cm at 262 (6 frames)",
+     "middle_02_r/cockpit_door_R": "0.7 cm at 263 (7 frames)",
+     "ring_02_l/collective": "0.7 cm at 14 (2 frames)",
+     "middle_03_r/cockpit_door_R": "0.7 cm at 264 (15 frames)",
+     "middle_03_r/cockpit_door_R_glass": "0.7 cm at 22 (3 frames)",
+     "middle_02_r/cockpit_door_R_glass": "0.7 cm at 22 (2 frames)",
+     "middle_02_l/collective": "0.6 cm at 13 (3 frames)",
+     "ring_03_r/cockpit_door_R_glass": "0.6 cm at 21 (3 frames)",
+     "index_02_r/cyclic": "0.6 cm at 11 (1 frames)",
+     "pinky_03_l/collective": "0.6 cm at 14 (2 frames)",
+     "ring_03_l/collective": "0.6 cm at 13 (1 frames)",
+     "ring_01_l/cyclic": "0.6 cm at 64 (2 frames)",
+     "pinky_01_l/cyclic": "0.6 cm at 65 (3 frames)",
+     "pinky_03_r/cockpit_door_R_glass": "0.5 cm at 20 (3 frames)",
+     "pinky_03_l/cyclic": "0.5 cm at 66 (3 frames)",
+     "index_03_r/cyclic": "0.5 cm at 11 (1 frames)",
+     "ring_02_r/cockpit_door_R_glass": "0.5 cm at 22 (2 frames)",
+     "middle_03_r/cyclic": "0.5 cm at 11 (2 frames)",
+     "middle_02_r/cyclic": "0.5 cm at 7 (4 frames)",
+     "index_01_r/cyclic": "0.4 cm at 11 (1 frames)",
+     "middle_01_l/collective": "0.4 cm at 14 (2 frames)",
+     "pinky_02_l/cyclic": "0.4 cm at 64 (5 frames)",
+     "ring_02_r/cockpit_door_R": "0.4 cm at 264 (2 frames)",
+     "ring_02_r/cyclic": "0.3 cm at 7 (2 frames)",
+     "foot_r/fuselage": "0.3 cm at 56 (77 frames)",
+     "middle_03_l/collective": "0.3 cm at 13 (1 frames)",
+     "foot_r/interior": "0.2 cm at 68 (77 frames)",
+     "pinky_02_l/collective": "0.2 cm at 14 (1 frames)",
+     "foot_l/skid_R": "0.1 cm at 129 (2 frames)",
+     "hand_l/cyclic": "0.1 cm at 67 (1 frames)",
+     "index_01_r/cockpit_door_R": "0.1 cm at 262 (1 frames)"
+    },
+    "softPairs": {
+     "pelvis/pilot_seat": "4.0 cm at 81 (59 frames)",
+     "thigh_r/pilot_seat": "4.0 cm at 81 (57 frames)",
+     "calf_l/pilot_seat": "2.8 cm at 48 (60 frames)",
+     "calf_r/pilot_seat": "1.5 cm at 113 (39 frames)",
+     "foot_r/pilot_seat": "1.4 cm at 48 (2 frames)"
+    },
+    "contactPairsDepth": {
+     "ring_02_r/cyclic": "1.4 cm at 3 (7 frames)",
+     "ring_01_l/collective": "1.1 cm at 0 (6 frames)",
+     "ring_02_l/collective": "1.1 cm at 5 (5 frames)",
+     "thumb_02_r/cyclic": "1.1 cm at 6 (7 frames)",
+     "thumb_01_r/cyclic": "1.1 cm at 6 (7 frames)",
+     "hand_r/cyclic": "1.0 cm at 0 (4 frames)",
+     "middle_01_l/collective": "1.0 cm at 4 (8 frames)",
+     "index_03_r/cockpit_door_R": "0.9 cm at 266 (31 frames)",
+     "pinky_03_r/cockpit_door_R_glass": "0.9 cm at 23 (17 frames)",
+     "pinky_02_r/cockpit_door_R_glass": "0.9 cm at 23 (17 frames)",
+     "ring_03_r/cyclic": "0.8 cm at 6 (7 frames)",
+     "middle_03_l/collective": "0.8 cm at 4 (8 frames)",
+     "middle_02_r/cockpit_door_R": "0.8 cm at 268 (31 frames)",
+     "ring_03_l/collective": "0.7 cm at 0 (5 frames)",
+     "ball_r/pedal_R": "0.7 cm at 40 (41 frames)",
+     "ring_03_r/cockpit_door_R": "0.7 cm at 266 (31 frames)",
+     "thumb_03_r/cyclic": "0.7 cm at 0 (7 frames)",
+     "middle_02_r/cyclic": "0.7 cm at 0 (7 frames)",
+     "pinky_02_l/collective": "0.7 cm at 2 (7 frames)",
+     "pinky_01_l/collective": "0.7 cm at 2 (4 frames)",
+     "ball_l/pedal_L": "0.7 cm at 52 (54 frames)",
+     "foot_l/pedal_L": "0.7 cm at 52 (54 frames)",
+     "ring_01_r/cyclic": "0.6 cm at 2 (6 frames)",
+     "middle_02_r/cockpit_door_R_glass": "0.6 cm at 23 (17 frames)",
+     "middle_03_r/cockpit_door_R_glass": "0.6 cm at 23 (17 frames)",
+     "pinky_03_l/collective": "0.6 cm at 4 (8 frames)",
+     "middle_02_l/collective": "0.6 cm at 7 (4 frames)",
+     "middle_03_r/cockpit_door_R": "0.5 cm at 268 (46 frames)",
+     "middle_01_r/cyclic": "0.5 cm at 5 (6 frames)",
+     "ring_03_r/cockpit_door_R_glass": "0.5 cm at 23 (17 frames)",
+     "middle_03_r/cyclic": "0.5 cm at 2 (5 frames)",
+     "ring_02_r/cockpit_door_R_glass": "0.5 cm at 23 (17 frames)",
+     "index_02_r/cockpit_door_R": "0.2 cm at 266 (31 frames)",
+     "index_01_l/collective": "0.1 cm at 0 (6 frames)",
+     "foot_l/skid_R": "0.1 cm at 130 (31 frames)"
+    },
+    "hardMaxCm": 1.96,
+    "softMaxCm": 4.01,
+    "headByCm": {
+     "interior": "0.4 at 53",
+     "fuselage": "0.5 at 54",
+     "cockpit_door_R": "1.2 at 29",
+     "cockpit_door_R_glass": "8.0 at 267"
+    },
+    "wristWorst": "Left flex -29 (f111) dev -48 (f111) / Right flex -65 (f266) dev +49 (f265)",
+    "wristFramesPast": "111, 265-267",
+    "twistStepDeg": "34.5 at 45 (Right)",
+    "elbowMinDeg": "25.6 at 333",
+    "kneeMinDeg": "9.8 at 248",
+    "balanceOutCm": "39.7 at 196",
+    "balanceFramesOver3cm": "108-152, 161-177, 180-196, 199-243, 245-265, 268-304, 308-319, 324-337, 340-352",
+    "plantSlideMmPerFrame": "4.91 at 40",
     "joinErr": "0.000 mm (None) / 0.000 deg (None)"
    }
   }

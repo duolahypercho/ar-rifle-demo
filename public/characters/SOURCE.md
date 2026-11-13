@@ -132,3 +132,12 @@ seat_pilot_point 0.145 m forward, no `scale`; the 9 seated helicopter clips and 
 pause applies only to Tripo). `vehicle-motion-ue5-v1` (13 seated clips, no enter / exit) has the pilot posture with its
 own fit (pilot seat 0.145 m forward) and now also `car-enter` and `car-exit` fitted to its body (`clips_car.UE5`;
 15 clips). Not done: EarthOnline heli-enter / heli-exit, gun hand-off. See `notes/A3_log_entry.md`.
+
+Pass A3 round 2 (2026-11-12): every entry / exit clip meets the game's 60 Hz speed lines (blender/vehicle_motion/
+speeds60.py, gated in gate_a2.py: hands / feet 4.5 m/s, head 2.0, pelvis 1.8, velocity change between 60 Hz samples
+hands / feet 4.5). `vehicle-motion-tripo-v1`: heli-enter 9.43 s and heli-exit 12.17 s (a speed-limited time warp,
+blender/vehicle_motion/warps_a3.json, plus a few re-placed holds), car-exit 7.83 s. `vehicle-motion-ue5-v1` now has all
+17 clips: heli-enter (9.53 s) and heli-exit (12.23 s) for civilian-m-01-player-ue5 on its own fit (pilot_seat 0.06 m
+lower; the seated clips unchanged), car-exit 7.83 s, car-enter with two hand moves started earlier. The judge no longer
+counts a vertex as inside a surface when its nearest point is on an edge or corner and the surface's crossing count
+says outside. No gun hand-off yet (no `guns` track). See `notes/A3_log_entry.md`.

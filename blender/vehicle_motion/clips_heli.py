@@ -178,8 +178,14 @@ def make(name, veh, author):
         c.warp = warp_of(c)  # (pass A3 round 2: the speed-limited time warp, warps_a3.json)
         return c
     if name == 'heli-exit':
+        from rifle_motion import body as body_table
+        keep = dict(E3)
+        if body_table.T.get('name') == 'civilian-m-01-player-ue5':  # (pass A3 round 2: its own values, E3['ue5'])
+            E3.update(E3.get('ue5', {}))
         c = Clip(name, veh, author, 5.55 + (9.5 - 5.55) * E3.get('walk_stretch', 1.3), loop=False)
         exit3(c)
+        E3.clear()
+        E3.update(keep)
         c.warp = warp_of(c)
         return c
     raise NotImplementedError(name)
@@ -662,7 +668,13 @@ E2 = {  # (pass A3 round 2, heli-enter with its speed warp: the left foot from t
     'viaS': [V3(0.97, 0.76, -1.28)], 'clear': 0.1, 'h_end': 1.40, 'lcv': [V3(0.22, 1.42, -1.30)],
     # (the right hand hanging 6 cm further in while the door swings open, the left hand's grip on the post 0.6 cm
     # further out, the left ball on its pedal 1.5 cm before its plant)
-    'hr19': (0.12, -0.10, 0.50), 'lpost': (0.018, 0.0, 0.012), 'lead': {'Left': 0.015}}
+    'hr19': (0.12, -0.10, 0.50), 'lpost': (0.018, 0.0, 0.012), 'lead': {'Left': 0.015},
+    # (civilian-m-01-player-ue5 only (_adapt_body), on its seat 0.06 m lower: hips 5 cm lower while the feet carry it,
+    # its feet's places 4 cm higher, the trunk pitched back 8 deg at the seat's edge under the doorway's top, the handle
+    # let go at 1.36 s and the door's frame at 6.70 s, the left toes up 40 deg over the cyclic onto the pedal, the hips
+    # 2.5 cm lower as the left thigh passes the cyclic)
+    'ue5_lift': 0.04, 'ue5_dy': 0.05, 'ue5_pitch': -8, 'ue5_hold_end': {'Right 1.03': 1.36, 'Right 6.40': 6.70},
+    'ue5_pitch_k': {'Left 5.00': [(0, 0), (0.6, 40), (0.9, 40), (1.0, 30)]}, 'ue5_up': [(6.0, 6.25, 6.6, 6.9, -0.025)]}
 try:  # (fitting: values tried from a script)
     import bpy as _bpy
     E2.update(_bpy.app.driver_namespace.get('heli_E2', {}))
@@ -747,12 +759,32 @@ def exit2(c):
 
 
 EDGE = V3(0.031, 0.499, 1.117)  # the door's rear edge at waist height (door local): pulled shut from behind it
-E3 = {}
+E3 = {  # (pass A3 round 2: civilian-m-01-player-ue5's own values (its seat 0.06 m lower, shorter arms and legs): the
+    # right hand onto the glass 5.5 cm lower and 1 cm less pressed, from 0.2 s over 0.55 s; the trunk leaning 8 deg (not
+    # 14) to the door; the right foot off its pedal toes up (30 -> 38 -> 0 deg), on the pedal's contact until 1.5 cm off
+    # it; its first ground step 8 cm nearer the skid)
+    'ue5': {'push_y': 1.42, 'pin': 0.035, 'appr': [V3(0.70, 1.37, -1.30), V3(0.80, 1.43, -1.31)], 'h0': 0.2, 'h1': 0.75,
+            's10': 8.0, 'rgnd': (1.48, -1.26), 'rpk': [(0, 30), (0.3, 38), (1.0, 0)], 'trail': {'Left': 0.012, 'Right': 0.015}},
+}
 try:  # (fitting: values tried from a script)
     import bpy as _bpy
     E3.update(_bpy.app.driver_namespace.get('heli_E3', {}))
 except ImportError:
     pass
+
+
+def _keys_fn(ks):
+    """(pass A3 round 2) A step's pitch curve from [x, deg] keys, eased between."""
+    ks = tuple(map(tuple, ks))
+
+    def f(x):
+        if x <= ks[0][0]:
+            return ks[0][1]
+        for (xa, pa), (xb, pb) in zip(ks, ks[1:]):
+            if x <= xb:
+                return pa + (pb - pa) * ease((x - xa) / (xb - xa))
+        return ks[-1][1]
+    return f
 
 
 def exit3(c):
@@ -790,7 +822,7 @@ def exit3(c):
                (5.55, (110.0, 2.0, 0.0)), (5.95, (150.0, 2.0, 0.0)), (6.35, (185.0, 2.0, 0.0)),
                (6.75, (250.0, 2.0, 0.0)), (7.15, (330.0, 6.0, 0.0)), (7.55, (305.0, 8.0, 0.0)), (7.95, (285.0, 10.0, 0.0)), (8.3, (268.0, 12.0, 0.0), 'stop'),
                (9.2, (268.0, 0.0, 0.0), 'stop'))
-    c.spine = P((0.0, sp, 'stop'), (0.5, sp, 'stop'), (1.0, (sp[0] + 4.0, 0.0, 14.0)), (1.6, (14.0, 0.0, 0.0)), (2.9, (16.0, 0.0, 0.0), 'stop'),
+    c.spine = P((0.0, sp, 'stop'), (0.5, sp, 'stop'), (1.0, (sp[0] + 4.0, 0.0, E3.get('s10', 14.0))), (1.6, (14.0, 0.0, 0.0)), (2.9, (16.0, 0.0, 0.0), 'stop'),
                 (3.4, (22.0, 0.0, 0.0)), (3.9, (20.0, 0.0, 0.0)), (4.6, (10.0, 0.0, 0.0)), (5.6, (4.0, 0.0, 0.0)),
                 (7.2, (8.0, 0.0, 0.0)), (8.3, (12.0, 0.0, 0.0)), (9.0, (2.0, 0.0, 0.0), 'stop'))
     c.look = P((0.0, tuple(cd.look(0.0)), 'stop'), (0.6, (-30.0, 0.0)), (1.2, (-20.0, 10.0)), (2.2, (0.0, 30.0)), (3.4, (0.0, 35.0)),
@@ -832,10 +864,10 @@ def exit3(c):
     fl, fr = cd.feet['Left'][0], cd.feet['Right'][0]
     c.feet = {
         'Right': [('plant', -1.0, 1.3) + fr[3:],
-                  ('step', 1.3, 1.85, 0.07, [V3(0.62, 0.95, -1.70), V3(0.72, 0.95, -1.52)]),
+                  ('step', 1.3, 1.85, 0.07, [V3(0.62, 0.95, -1.70), V3(0.72, 0.95, -1.52)]) + ((_keys_fn(E3['rpk']),) if E3.get('rpk') else ()),
                   ('plant', 1.85, 4.17, None, *_flat(0.75, -1.40, 120.0, 0.83)),
                   ('step', 4.17, 4.75, 0.04, [V3(0.98, 0.80, -1.34), V3(1.20, 0.42, -1.28)]),
-                  ('plant', 4.75, 5.6, None, *_flat(1.55, -1.24, 100.0)), ('step', 5.6, 5.95, 0.08, []),
+                  ('plant', 4.75, 5.6, None, *_flat(*E3.get('rgnd', (1.55, -1.24)), 100.0)), ('step', 5.6, 5.95, 0.08, []),
                   ('plant', 5.95, 6.37, None, *_flat(2.02, -0.98, 150.0)), ('step', 6.37, 6.88, 0.08, []),
                   ('plant', 6.88, 7.34, None, *_flat(2.40, -2.08, 240.0)), ('step', 7.34, 7.62, 0.08, []),
                   ('plant', 7.62, 8.0, None, *_flat(1.80, -1.75, 300.0)), ('step', 8.0, 8.3, 0.08, []),
@@ -872,6 +904,6 @@ def exit3(c):
     c.seated_before = 1.6
     c.balance_skip = ((3.3, 99.0),)  # (stepping down held by the left hand on the front post; then the walk round the door)  # (stepping down out of the doorway held by the right hand on the post)
     c.step_clear = 0.15
-    c.contact_trail = {'Left': 0.012, 'Right': 0.012}
+    c.contact_trail = E3.get('trail', {'Left': 0.012, 'Right': 0.012})
     c.events = {'handsOff': 0.3, 'doorOpenStart': 0.8, 'doorOpenEnd': 2.0, 'unseated': 3.4, 'doorCloseStart': RT(7.2), 'doorCloseEnd': RT(8.3),
                 'seatedPose': 'heli-collective-down'}

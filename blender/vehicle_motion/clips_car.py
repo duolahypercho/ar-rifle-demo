@@ -106,6 +106,9 @@ UE5 = {  # (pass A3 follow-up: car-enter fitted for civilian-m-01-player-ue5; ke
     'lead': {'Right': 0.015},  # (the right ball on the pedal 1.5 cm before its plant)
     'kb0': 5.0, 'kr1': (0.5, 0.2, -0.8),  # (the right knee down and out under the rim as the leg comes in)
     'e0': 6.6,  # (the hips back to the plan's own height from 6.6 s)
+    # (pass A3 round 2, the 60 Hz speed lines: the right hand's reach to the door's corner from 3.5 s (was 3.65: 5.1 m/s),
+    # the left hand's to the roof's edge from 4.4 s (was 4.5: 4.6 m/s))
+    'hand_t0': {'Right 3.65': 3.5, 'Left 4.50': 4.4},
 }
 UE5['vias'].update({  # (car-exit: its own last step backwards off the floor; the right foot higher over the sill)
     'Left 1.40': [(-0.41, 0.28, -0.80)],
@@ -155,6 +158,11 @@ def _adapt_body(c, w):
             own = UE5.get('hand_vias', {}).get('%s %.2f' % (side, st[1])) if st[0] == 'move' else None
             if own:
                 plan[k] = st[:3] + ([Vector(v) for v in own],) + st[4:]
+            t0n = UE5.get('hand_t0', {}).get('%s %.2f' % (side, st[1])) if st[0] == 'move' and k > 0 else None
+            if t0n:  # (a move starting earlier, the hold before it ending there: a slower reach)
+                plan[k - 1] = plan[k - 1][:2] + (t0n,) + plan[k - 1][3:]
+                plan[k] = plan[k][:1] + (t0n,) + plan[k][2:]
+                st = plan[k]
             at = UE5.get('hand_at', {}).get('%s %.2f' % (side, st[1])) if st[0] == 'hold' else None
             if at:  # (a hold's own place for this body, same node and turn)
                 plan[k] = st[:4] + (Vector(at),) + st[5:]

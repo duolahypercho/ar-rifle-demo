@@ -1679,3 +1679,35 @@ Contract extensions decided for this round (both sides must follow them):
     heli-enter / heli-exit to the new lines, (2) the gun hand-off with the `guns` track (it may edit
     only the guns code in src/main.js and src/vehicles.js, and may drive the game page for this job),
     (3) EarthOnline heli-enter / heli-exit.
+
+- A3 round 2, the clip pass (2026-11-12, 21:45 to 23:10; entries in `notes/A3_log_entry.md`):
+  shipped 22:21 Tripo heli-enter (9.43 s) and heli-exit (12.17 s), 22:29 Tripo car-exit and
+  EarthOnline car-enter / car-exit, 23:05 EarthOnline heli-enter (9.53 s) and heli-exit (12.23 s).
+  Both packs now hold all 17 clips. New in the pipeline: `blender/vehicle_motion/speeds60.py` (the
+  60 Hz speed and velocity-change measure on the exported pack, the same as `tools/a3_speeds.js`),
+  the gate's speed lines (hands and feet 4.5 m/s, head 2.0, pelvis 1.8; velocity change 4.5), a
+  speed-limited time warp (`pose.Clip.warp`, `warp_a3.py`, `warps_a3.json`: poses unchanged, time
+  slowed only where a part is near its limit), and a judge fix (`judge._inside`: a vertex nearest an
+  edge counts as inside only on an odd crossing count on two of three axes; it removed one-frame
+  depth spikes). EarthOnline's helicopter fit lowers `pilot_seat` 0.06 m (thigh in the cushion 6.55
+  -> under 1 cm; heli-fly's back gap 0 to 1.7 cm). Not attempted: the gun hand-off (see below).
+- Main session's check of round 2 in the game (2026-11-12, 23:15 to 23:45):
+  - Tripo, `tools/a3_speeds.js`: heli-enter hands 4.05 / 3.67, feet 4.14 / 3.76, head and pelvis
+    1.65 m/s, velocity change at most 3.15; heli-exit feet 4.16 / 4.20, hands 3.15 / 3.69, head 1.23,
+    pelvis 1.21, change at most 3.19 (was feet 7.8 and 8.8). Same as the pass's offline numbers.
+  - EarthOnline civilian-m-01: heli-enter hands 3.95 / 3.64, feet 4.26 / 3.60, head and pelvis 1.65,
+    change at most 3.71; heli-exit feet 4.16 / 4.19, hands 3.29 / 2.99, change at most 2.93.
+  - `chainReview('heli')`, Tripo: joins at most 2.0 m/s; inside the clips at most 3.19 (was 7.87);
+    only the rifle pack's stow and draw hand remain at 4.09.
+  - Films (`a3check/r2_tripo_*_heli.jpg`, `r2_eo_*_heli.jpg`): door, skid, doorway, seat, legs in, door
+    shut; the exits the reverse, then the walk round the door to close it. Both bodies read in order.
+  - Contacts: the clip holds them; the 2.1 to 3.1 cm readings are the first 0.12 s only, where the
+    walk's end blends into the clip's first frame (the feet glide 2 to 3 cm into place).
+  - Seen: the gun on the back passes into the seat's back while he sits down (5.9 to 7.2 s), and on
+    the way out a gun stands in the cabin and then appears on his back. The hand-off is the open item.
+  - Gun hand-off, why not built (from the pass): both guns hang at one spot on the back, so two reaches
+    of about 1.2 s; in the helicopter the right hand is free only 1.9 to 3.85 s of the entry while the
+    left hand holds the post; the places by the pilot's knee are where the legs pass the doorway; the
+    cabin places are 1.2 to 1.4 m from the doorways. A version that reads right needs either about 2.4
+    s more at the doorway or different places (or carrying one gun in and laying it across once
+    seated). Left to the user.

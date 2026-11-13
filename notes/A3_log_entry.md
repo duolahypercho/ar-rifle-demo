@@ -219,3 +219,58 @@
     2.9 / 1.9 / 0.3, twist 38.2, join 0 / 0, speed60 hands 3.15 / 3.69, feet 4.16 / 4.20, head 1.23, pelvis 1.21, dv60
     max 3.19. The other 15 clips bit-identical, notes identical. Load check PASS. Not shipped with it: car-exit fails
     the new speed line (foot_l 4.62 at 5.47 s, a walk step round the door) - next.
+  - SHIPPED 22:29 `vehicle-motion-tripo-v1` (car-exit) and `vehicle-motion-ue5-v1` (car-enter, car-exit), the car clips
+    to the speed lines. Tripo car-exit: a warp only inside 5.0-6.0 s (warp_a3 --window), 7.80 -> 7.83 s, the walk step
+    round the door x1.08 slower (foot_l 4.62 -> under 4.3). A whole-clip warp shifted the sill crossing by 0.07 frame
+    and showed the right ball 2.48 cm into the sill: the window keeps every other instant. EarthOnline car-enter: no
+    warp; its right hand starts for the door's corner at 3.5 s (was 3.65; 5.07 m/s, dv60 5.01) and its left hand for
+    the roof's edge at 4.4 s (was 4.5; 4.56) (`UE5['hand_t0']`); speed60 hands 3.76 / 2.95, feet 3.48 / 4.21, head 1.15,
+    pelvis 1.00. EarthOnline car-exit: windowed warp 5.0-6.0 s, 7.83 s. Warped contacts now take the frames inside the
+    plant (pose.frames_of; the rounded frame could fall just before a plant: foot 2.88 cm off its place). Gate with
+    the speed lines PASS on all six entry / exit clips of both packs; other clips bit-identical; load check PASS on
+    tripo-player-ue5 and the four -ue5 bodies.
+  - 22:30 Job 2 (gun hand-off) deferred behind Job 3, to come back to with what time is left. Why: both guns hang at the
+    same place on the back (stow at (-0.17, 0.25, -0.20) / (-0.17, 0.25, -0.19) in spine_05's frame), so each needs its
+    own reach over the shoulder, pull, carry and lay-down (about 1.1-1.3 s each, the swap clip's outgoing half);
+    heli-enter is already 9.43 s of its ~9.5 s after the speed warp and its right hand is free only 1.9-3.85 s while
+    the left foot climbs the skid; the car's free stretch is at the doorway, 1.2 m from the passenger seat. It needs a
+    new segment in both entries and both exits plus the game side checked on film: the larger and less certain job.
+  - SHIPPED 23:05 `vehicle-motion-ue5-v1` + heli-enter, heli-exit (Job 3; the pack now has all 17 clips). Its own
+    vehicleFit lowers pilot_seat and seat_pilot_point 0.06 m (fit.py UE5_SEAT_DOWN, the limit given) under the same
+    seated pose: at heli-collective-down the thighs no longer sink into the cushion (thigh_l 6.55 cm -> under 1 cm;
+    cushion sink 0.0, back 0.1), so the reference was not re-seated and the 13 seated clips are bit-identical. Cost:
+    heli-fly's back gap now 0.0-1.7 cm over its loop (was 0.0-0.5; the A3 target was 1 cm), and the harness/bolster
+    group reads 8.0 cm (the harness is hidden while seated). heli-enter (9.53 s, speed warp margin 0.9 / dilate 0.2 /
+    sigma 0.08, key 'ue5:heli-enter'): `clips_heli.E2` ue5_* values: hips 5 cm lower while the feet carry it, its feet's
+    places 4 cm higher, trunk pitched back 8 deg at the seat's edge, handle let go at 1.36 s and the door frame at
+    6.70 s (was 6.75: forearm twist step 40.5), left toes up 40 deg over the cyclic onto its pedal, hips 2.5 cm lower
+    6.0-6.9 s as the left thigh passes the cyclic. heli-exit (12.23 s, warp 0.9 / 0.08 / 0.04, key 'ue5:heli-exit'):
+    `E3['ue5']` (applied only for this body in make()): right palm onto the glass 5.5 cm lower and 1 cm less pressed,
+    from 0.2 s over 0.55 s (wrist was 38 / 76, forearm 6.2 cm into the glass, twist step 68), trunk leaning 8 deg to
+    the door (head 0.2 cm into it at 14 deg), right foot off its pedal toes up 30 -> 38 -> 0, on its pedal's contact to
+    1.5 cm, first ground step 8 cm nearer (the right knee was straight, 0 deg, at 4.9 s). Gate incl. speed lines PASS:
+    heli-enter snap30 1.5 / 2.4 / 2.9 / 1.0 / 0.4, twist 39.6, join 0 / 0, speed60 hands 3.95 / 3.64, feet 4.26 / 3.60,
+    head / pelvis 1.65, dv60 max 3.71; hard max thigh_l/cyclic 1.91, soft max calf_l 3.83. heli-exit snap30 1.9 / 2.4 /
+    2.9 / 2.0 / 0.2, twist 34.5, join 0 / 0, speed60 hands 3.29 / 2.99, feet 4.16 / 4.19, head 1.14, pelvis 1.21, dv60
+    max 2.93; hard max foot_r/pedal_R 1.96, thigh_l/cyclic 1.92, soft max pelvis / thigh_r 4.01. Balance reported:
+    heli-exit 39.7 cm at f196. Sheets read in order (door, skid, doorway, seat, legs in, door shut / the reverse and
+    the walk round the door). Load check PASS on the four -ue5 bodies; car clips bit-identical to 22:29; Tripo's pack
+    rebuilds bit-identical with these values (all ue5-only).
+  - 23:15 Job 2 (gun hand-off) not attempted; the packs carry no `guns` track and src/ is untouched. What blocks a
+    version that reads right, measured on the clips as they now are:
+    heli-enter: the right hand is free only 1.9-3.85 s (authored) while the left holds the doorway's post and the feet
+    climb; the left hand is on the post / cushion until 4.4 s. Both guns hang at one place on the back (rifle butt
+    (-0.17, 0.25, -0.20), shotgun (-0.17, 0.25, -0.19) in spine_05's frame), so taking both needs two reaches. The
+    current cabin places are on the left front seat's footwell (x -0.55 / -0.33), 1.2-1.4 m from the right doorway
+    (pilot at x 0.42 + fit); a place "by the pilot's right knee at the door" (x ~0.8) is where the legs pass while
+    climbing in (doorway step at (0.77, -1.34)), so the guns would have to go there after the legs are in (after
+    ~6.0 s), by which time the back has been against the seat since 4.6 s with both guns on it.
+    car-enter: the hands are free at the doorway (1.85-3.65 s right, until 4.5 s left) but the passenger seat is
+    1.2 m from the doorway; once seated the right hand reaches it (0.6-0.7 m), but by then the back has been in the
+    seat since ~4.7 s.
+    A working version needs (a) both guns off the back before the back meets a seat: an inserted standing segment at
+    the doorway of about 2.4 s (each gun ~1.2 s: reach over the shoulder / behind the hip, pull, lay down), which
+    puts heli-enter near 12 s against the 9.5 s it has now, and (b) a cabin place reachable from the doorway that the
+    legs do not pass through (car: across the driver seat's cushion is sat on; helicopter: the doorway corner is
+    climbed through). Choosing between a longer entry and a different place (or carrying one gun in while sitting
+    and laying it across once seated, the other still on the back) is a design call I am handing back.

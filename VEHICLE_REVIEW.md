@@ -1,10 +1,10 @@
-# Vehicle review (2026-11-12, 22:15)
+# Vehicle review (2026-11-12, 23:45)
 
 The supercar and the utility helicopter in the game, after passes V1 to V8 (game), H1 (flight model)
 and A1 to A3 (character clips). Numbers were re-measured by the main session unless marked "pass".
 Details per pass are in `VEHICLE_NOTES.md`; controls are in `README.md`. A clip pass is still running
-(helicopter step speeds, the gun hand-off, the EarthOnline bodies' helicopter entry); this page is the
-state before it ships anything more.
+until 23:10; this page includes its second round (helicopter step speeds, the EarthOnline bodies'
+helicopter clips).
 
 ## What is there
 
@@ -24,8 +24,8 @@ state before it ships anything more.
 - **The character.** Your Tripo model has authored clips for getting into and out of both vehicles,
   seated loops that stay alive, steering poses and control poses; hands and feet are pinned to the real
   door, wheel, cyclic, collective and pedals; push-pull steering; guns go on the back before getting in
-  and lie in the cabin while seated. The four EarthOnline bodies have their own seated clips for both
-  vehicles and authored clips for getting into and out of the car.
+  and lie in the cabin while seated. The four EarthOnline bodies have their own seated clips and
+  authored clips for getting into and out of both vehicles.
 - **World.** A 2.55 km track loop, skidpad, helipad, buildings with windows and doors, barriers, cones,
   rolling ground off the paving, grass, trees, bushes, hills, clouds, edge lights, tyre walls, a wind
   sock, four times of day, four shadow cascades.
@@ -53,9 +53,10 @@ state before it ships anything more.
 | Gentle landing (pass) | 0.32 m/s, no bounce | under 1 m/s |
 | Pilot's palms and soles on the controls (pass) | 0.0 cm at 11 control positions | on the controls |
 | Joins in the get-in, drive, get-out chain | car 2.2 m/s worst, helicopter 2.0 m/s worst velocity change in a frame; root 0.3 cm | under 4 m/s, no teleport |
+| Velocity change inside the helicopter clips | 3.2 m/s worst (was 7.9) | 4.5 m/s |
 | Hands and feet on their contacts while getting in and out of the car | 0.6 cm worst (Tripo), 0.9 cm (EarthOnline) | under 1.5 cm |
 | Peak limb speed getting into and out of the car | hands 4.4 to 5.1, feet 4.6, head 1.2, pelvis 1.35 m/s | hands and feet 4.5, head 2.0, pelvis 1.8 |
-| Peak limb speed getting into and out of the helicopter | feet 7.8 and 8.8, left hand 7.2, head and pelvis 2.7 m/s | the same limits: **not met** |
+| Peak limb speed getting into and out of the helicopter | hands 4.05, feet 4.26, head and pelvis 1.65 m/s (both bodies) | hands and feet 4.5, head 2.0, pelvis 1.8 |
 | Frame time on foot (quiet machine, median / 95th percentile) | 6.8 to 8.3 / 8.6 to 10.3 ms | 16.7 ms |
 | Frame time, car chase view | 13.5 to 15.7 / 35 to 40 ms | 16.7 ms |
 | Frame time, car cockpit | 8.8 / 17.6 ms | 16.7 ms |
@@ -74,22 +75,20 @@ in Blender for the entry and exit clips.
 
 ## Below target or not verified
 
-- **Helicopter entry and exit: limbs too fast.** The steps into and out of the cabin take 0.1 to 0.15
-  s: feet reach 7.8 m/s getting in and 8.8 m/s getting out, the left hand 7.2 m/s, and the whole body
-  lunges at 2.7 m/s in the first second. The clip gate never limited speed, only the change of
-  velocity per frame, and the film tiles are too far apart to show it. Found on 2026-11-12 at 22:00;
-  the running clip pass has it as its first job, with speed lines added to the gate.
-- **Gun hand-off.** The guns still jump between the back and the cabin. Getting out, the rifle appears
-  on the back in one frame while he stands beside the vehicle. The `guns` track is implemented in the
-  game but no clip carries one yet. Second job of the running pass.
-- **EarthOnline bodies in the helicopter.** They sit correctly but get in and out on the placeholder.
-  A first attempt left the head 1 to 2 cm in the doorway's top and the calf 5 cm in the seat's front.
-  Third job of the running pass.
+- **Gun hand-off.** The guns still jump between the back and the cabin. Getting in, the gun on the
+  back passes into the seat's back as he sits; getting out, a gun stands in the cabin and then appears
+  on his back in one frame. The `guns` track is implemented in the game but no clip carries one. A
+  hand-off that reads right needs a design choice (about 2.4 s more at the doorway, or other cabin
+  places, or carrying one gun in and laying it across once seated); not built.
+- **Start of each entry.** For the first 0.1 s the feet glide 2 to 3 cm from where the walk left them
+  to the clip's first frame.
+- **EarthOnline helicopter seat.** Its seat is lowered 0.06 m to clear the thigh; the back leaves the
+  backrest by up to 1.7 cm during the seated loop.
 - **Frame time in the helicopter and frame spikes.** The helicopter is at or just over 16.7 ms, and in
   both vehicles the slowest frames reach 35 to 51 ms. The spikes are not traced. The render scale is
   1.5 device pixels per CSS pixel; edges are a little softer than at 2.
-- **Right hand inside clips.** It changes speed by 4.0 to 4.1 m/s in one frame at three places: where
-  the gun reaches the back in the stow and in the draw, and once at 3.85 s in the car entry (limit 4).
+- **Right hand in the stow and draw.** It changes speed by 4.1 m/s in one frame where the gun reaches
+  the back (the rifle pack's swap clip; limit 4).
 - **Postures accepted with faults.** Getting into and out of the car goes through a very deep squat
   beside the sill. The pilot's thigh is 5.6 cm into the seat cushion, the driver's shoulders 2 to 3 cm
   into the seat's wings. Balance is up to 22 cm outside the support for a moment in the car exit.

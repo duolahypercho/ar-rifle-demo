@@ -17,6 +17,7 @@ def _col(m):
 
 UE5_WHEEL = 0.03
 UE5_SEAT_FWD = 0.145
+UE5_SEAT_DOWN = 0.06  # (pass A3 round 2: its thighs 6.55 cm into the cushion at the shared seated pose)
 TRIPO_SEAT_FWD = 0.145
 
 FITS = {
@@ -47,7 +48,7 @@ FITS['civilian-m-01-player-ue5'] = {
     'heli': {
         'pedal_L': dict(translate=[0.0, 0.0, 0.25], why='legs 0.78 m: pedal adjuster at its aft limit, 0.25 m'),
         'pedal_R': dict(translate=[0.0, 0.0, 0.25], why='legs 0.78 m: pedal adjuster at its aft limit, 0.25 m'),
-        'pilot_seat': dict(translate=[0.0, 0.0, -UE5_SEAT_FWD], why='seat %.3f m forward: the backrest against the back as the hands hold the controls (pass A3)' % UE5_SEAT_FWD),
-        'seat_pilot_point': dict(translate=[0.0, 0.0, -UE5_SEAT_FWD], why='moves with the seat'),
+        'pilot_seat': dict(translate=[0.0, -UE5_SEAT_DOWN, -UE5_SEAT_FWD], why='seat %.3f m forward: the backrest against the back as the hands hold the controls (pass A3); %.3f m down: its thighs off the cushion\'s front (pass A3 round 2)' % (UE5_SEAT_FWD, UE5_SEAT_DOWN)),
+        'seat_pilot_point': dict(translate=[0.0, -UE5_SEAT_DOWN, -UE5_SEAT_FWD], why='moves with the seat'),
     },
 }
