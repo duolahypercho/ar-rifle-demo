@@ -20,8 +20,7 @@ available; the badge at the top left says which one is running.
 
 ## Play online
 
-A build is hosted on GitHub Pages: https://duolahypercho.github.io/ar-rifle-demo/ (about 150 MB of
-models load on the first visit). It is published by hand, from the last commit:
+A build is hosted on GitHub Pages: https://duolahypercho.github.io/ar-rifle-demo/ models load on the first visit). It is published by hand, from the last commit:
 
 ```bash
 sh tools/deploy_pages.sh
