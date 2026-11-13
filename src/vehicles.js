@@ -30,11 +30,18 @@ import { Smooth, damp, wrapAngle, PALM_LOCAL } from './character.js';
 import { HeliSeated } from './heli/seat.js';
 import { HeliCameras } from './heli/heli.js';
 import { groundAt } from './ground.js';
+import { Exits, BAIL_SPEED, STOP_SPEED } from './exits.js';
 
-const REACH = 2.6; // m from the entry point that T gets in
+const REACH = 5; // m from the entry point that T gets in ((V10) 2.6 before: the jog to the door starts from farther)
+// (V10) the footprints the walk to the door goes round (vehicle frame, m): x and z ranges, and which side the door is on
+const FOOT = { car: { x: [-1.05, 1.05], z: [-2.45, 2.45], side: -1 }, heli: { x: [-1.3, 1.3], z: [-4.6, 4.0], side: 1 } };
 const SOLE = new THREE.Vector3();
 const PIN_EASE = 4; // frames, (V3) a contact's pin eases in and out over this many
 const JOIN = 0.3; // s, (V3) the blend from the pose before an entry or exit clip into its first frames
+const JOIN_BAIL = 0.15; // s, (V10) the seated pose into car-bail / heli-jump (clips of 0.6 to 1 s)
+const JOG_FROM = 2; // m, (V10) farther from the door than this the walk to it is a jog
+const SETTLE_MAX = 0.4; // s, (V10) the settle at the door at most (V6-V9: 0.5 to 1.4 s, and a stop first)
+const DOOR_CLOSE = 0.55; // s, (V10) a door left open swings shut by itself in this
 const PACK_FPS = 30;
 const _v = new THREE.Vector3();
 const _v2 = new THREE.Vector3();
@@ -355,8 +362,8 @@ export class CarCameras {
 
 // Per vehicle kind: helper nodes, clip names, how it is entered (V2: the helicopter joins the car)
 const KIND = {
-  car: { entry: 'entry_driver_point', entryAt: [-1.55, 0, -0.25], seat: 'seat_driver_point', enter: 'car-enter', exit: 'car-exit', loop: 'car-drive', fitNodes: ['seat_driver', 'seat_driver_point', 'steering_wheel'], label: 'car' },
-  heli: { entry: 'entry_cockpit_R', entryAt: [1.8, 0, -1.55], seat: 'seat_pilot_point', enter: 'heli-enter', exit: 'heli-exit', loop: 'heli-fly', fitNodes: ['pilot_seat', 'seat_pilot_point', 'pedal_L', 'pedal_R'], label: 'helicopter' },
+  car: { entry: 'entry_driver_point', entryAt: [-1.55, 0, -0.25], seat: 'seat_driver_point', enter: 'car-enter', exit: 'car-exit', loop: 'car-drive', out: 'car-bail', fitNodes: ['seat_driver', 'seat_driver_point', 'steering_wheel'], label: 'car' },
+  heli: { entry: 'entry_cockpit_R', entryAt: [1.8, 0, -1.55], seat: 'seat_pilot_point', enter: 'heli-enter', exit: 'heli-exit', loop: 'heli-fly', out: 'heli-jump', fitNodes: ['pilot_seat', 'seat_pilot_point', 'pedal_L', 'pedal_R'], label: 'helicopter' },
 };
 
 export class Vehicles {
@@ -385,6 +392,14 @@ export class Vehicles {
     this.usePackSeated = true; // (V2) the pack's seated loop + pose clips when the pack fits the cabins
     this.stats = { palm: { Left: 0, Right: 0 }, paths: {} };
     this._fitRest = {};
+    // (V10) getting out at any speed, the falls and the parachute (exits.js); doors that close by themselves; the brake
+    // to a stop before car-exit; main.js says whether movement keys or the vehicle's own keys are held
+    this.exits = new Exits(this);
+    this.closers = {};
+    this.stopping = false;
+    this.moveHeld = null;
+    this.controlHeld = null;
+    this.settleSpeed = null;
   }
 
   /** The vehicle object being used (car or heli). */
@@ -470,7 +485,56 @@ export class Vehicles {
   }
 
   get inside() {
-    return this.mode === 'entering' || this.mode === 'seated' || this.mode === 'leaving';
+    return this.mode === 'entering' || this.mode === 'seated' || this.mode === 'leaving' || this.mode === 'bailing' || this.mode === 'jumping';
+  }
+
+  /** (V10) Out of the vehicle in world space: flying out of it, falling, under a canopy, landing, or WASTED. */
+  get out() {
+    return this.mode === 'air' || this.mode === 'land' || this.mode === 'wasted';
+  }
+
+  /** (V10) A door that is not shut swings shut by itself after `delay` s (DOOR_CLOSE s), unless a clip drives it. */
+  closeDoor(kind, delay = 0) {
+    const veh = kind === 'heli' ? this.heli : this.car;
+    const now = kind === 'heli' ? veh.door : veh.doorL;
+    if (now <= 0.001) return;
+    this.closers[kind] = { from: now, t: -delay };
+  }
+
+  /** (V10) Every frame, whatever the mode: the doors closing by themselves; the empty car after a bail. */
+  tick(dt) {
+    for (const kind of ['car', 'heli']) {
+      const C = this.closers[kind];
+      if (!C) continue;
+      // (a clip that drives this door again takes it back)
+      if (this.kind === kind && (this.mode === 'entering' || this.mode === 'leaving' || this.mode === 'bailing' || this.mode === 'jumping')) {
+        this.closers[kind] = null;
+        continue;
+      }
+      C.t += dt;
+      const x = C.from * (1 - ease(C.t / DOOR_CLOSE));
+      if (kind === 'heli') this.heli.door = Math.max(0, x);
+      else this.car.doorL = Math.max(0, x);
+      if (C.t >= DOOR_CLOSE) this.closers[kind] = null;
+    }
+    // the driverless car: no throttle, no brake, no steer: it runs on, slowed by the engine in gear (the box shifts down
+    // as it slows); at 4 m/s, where the idle governor would hold it crawling in first, the engine stops and it rolls out
+    const car = this.car;
+    if (car && car.ready && car.abandoned && !(this.inside && this.kind === 'car')) {
+      // ((the model has no rolling resistance (V1): engine off, a car would roll on for minutes at walking pace; once
+      // the engine has stopped the brakes drag at 2 % (0.4 m/s^2), standing in for the tyres' and the box's drag)
+      Object.assign(car.dyn.input, { throttle: 0, brake: car.ignitionOn ? 0 : 0.02, steer: 0, handbrake: 0 });
+      if (Math.abs(car.dyn.speed) < 4 && car.ignitionOn) {
+        car.switchOff();
+        car.userOff = false;
+      }
+      if (Math.abs(car.dyn.speed) < 0.05 && !car.ignitionOn) car.abandoned = false;
+    }
+    // the brake to a stop before car-exit: main.js holds the brake while `stopping`
+    if (this.stopping && this.mode === 'seated' && this.kind === 'car' && Math.abs(this.car.dyn.speed) <= STOP_SPEED) {
+      this.stopping = false;
+      this.toggle();
+    }
   }
 
   /** The vehicle kind near enough to get into (null if none). */
@@ -480,7 +544,9 @@ export class Vehicles {
     for (const kind of ['car', 'heli']) {
       const veh = kind === 'heli' ? this.heli : this.car;
       if (!veh || !veh.ready) continue;
-      const still = kind === 'heli' ? veh.speed < 0.5 && veh.state.contact.onGround : Math.abs(veh.dyn.speed) < 1;
+      // ((V10) a helicopter on its side or its back is a wreck: not got into (main.js puts it back on the helipad)
+      const upright = kind !== 'heli' || _v.set(0, 1, 0).applyQuaternion(veh.root.quaternion).y > 0.7;
+      const still = upright && (kind === 'heli' ? veh.speed < 0.5 && veh.state.contact.onGround : Math.abs(veh.dyn.speed) < 1);
       if (!still) continue;
       this.entryPoint(this._entry, kind);
       const d = Math.hypot(this._entry.x - this.player.pos.x, this._entry.z - this.player.pos.z);
@@ -504,14 +570,24 @@ export class Vehicles {
       this.mode = 'stowing';
       this.t = 0;
       this._start = this._settle = null;
+      this._jog = undefined;
+      this._via = undefined;
       return 'in';
     }
     if (this.mode === 'seated') {
-      if (this.kind === 'car' && Math.abs(this.car.dyn.speed) > 1.5) return 'moving';
-      if (this.kind === 'heli' && (!this.heli.state.contact.onGround || this.heli.speed > 1)) return 'flying';
-      // (V5) the blades stop before the pilot gets out: with the engine lit or the rotor turning, main.js starts the
-      // shutdown and calls toggle() again once the rotor has stopped
-      if (this.kind === 'heli' && (this.heli.state.engine.lit || this.heli.state.rotor.percent > 0.5)) return 'rotor';
+      // (V10) out at any speed (V1-V9 refused: 'moving' over 1.5 m/s, 'flying', and 'rotor', which waited
+      // for a shutdown of 35 s and more): the car brakes to a stop and then car-exit up to BAIL_SPEED, over it the
+      // driver bails; the helicopter on its skids: heli-exit at once, the engine left running; off the ground: heli-jump
+      if (this.kind === 'car') {
+        const d = this.car.dyn;
+        const speed = Math.hypot(d.vel.x, d.vel.z);
+        if (speed > BAIL_SPEED) return this._out('car-bail');
+        if (Math.abs(d.speed) > STOP_SPEED || speed > 0.6) {
+          this.stopping = true;
+          return 'stopping';
+        }
+      } else if (!this.heli.state.contact.onGround || this.heli.speed > 3) return this._out('heli-jump');
+      this.stopping = false;
       this._captureJoin();
       this.mode = 'leaving';
       this.t = 0;
@@ -519,6 +595,19 @@ export class Vehicles {
       return 'out';
     }
     return null;
+  }
+
+  /** (V10) car-bail or heli-jump: in the vehicle's frame from the seated pose, until its events.release. */
+  _out(name) {
+    this.stopping = false;
+    this._captureJoin('toClip', JOIN_BAIL);
+    this.mode = this.kind === 'car' ? 'bailing' : 'jumping';
+    this.t = 0;
+    this.clip = this.exits.clip(name, this.kind);
+    this.usingPack = !!this.clip;
+    this._release = this.exits.ev(this.clip, 'release', this.clip.duration * 0.75);
+    this.exits.track(1 / 60);
+    return this.kind === 'car' ? 'bail' : 'jump';
   }
 
   _clip(name) {
@@ -583,6 +672,42 @@ export class Vehicles {
   }
 
   /**
+   * (V10) A corner to walk round first when the straight line from the player to the walk's end crosses the vehicle's
+   * footprint (FOOT, 0.35 m wider): the end of the door's side nearer the player, 0.6 m out; null if the way is clear.
+   */
+  _detour(S) {
+    const V = this.v.root;
+    V.updateMatrixWorld(true);
+    const F = FOOT[this.kind];
+    const m = 0.35;
+    const a = V.worldToLocal(_v.set(this.player.pos.x, V.position.y, this.player.pos.z)).clone();
+    const b = V.worldToLocal(_v.set(S.x, V.position.y, S.z)).clone();
+    const x0 = F.x[0] - m;
+    const x1 = F.x[1] + m;
+    const z0 = F.z[0] - m;
+    const z1 = F.z[1] + m;
+    // (the segment against the box: slabs)
+    let t0 = 0;
+    let t1 = 1;
+    for (const [p, d, lo, hi] of [[a.x, b.x - a.x, x0, x1], [a.z, b.z - a.z, z0, z1]]) {
+      if (Math.abs(d) < 1e-9) {
+        if (p < lo || p > hi) return null;
+        continue;
+      }
+      let u0 = (lo - p) / d;
+      let u1 = (hi - p) / d;
+      if (u0 > u1) [u0, u1] = [u1, u0];
+      t0 = Math.max(t0, u0);
+      t1 = Math.min(t1, u1);
+      if (t0 > t1) return null;
+    }
+    const x = F.side < 0 ? x0 - 0.25 : x1 + 0.25;
+    const z = Math.abs(a.z - (z0 - 0.6)) + Math.abs(b.z - (z0 - 0.6)) < Math.abs(a.z - (z1 + 0.6)) + Math.abs(b.z - (z1 + 0.6)) ? z0 - 0.6 : z1 + 0.6;
+    const w = V.localToWorld(_v.set(x, 0, z));
+    return { x: w.x, z: w.z };
+  }
+
+  /**
    * The walk to the door. (V6) It walks to the entry clip's first frame (V5: to within 0.3 m and 0.3 rad of the entry
    * point, and the clip's start then pulled the feet up to 25 cm in one frame). Stopped within 0.6 m, it settles: the
    * root eases the rest of the way and round to the clip's facing while the feet stay planted and step, one at a
@@ -591,23 +716,41 @@ export class Vehicles {
   walkTo(input, dt) {
     const p = this.player;
     const S = this._start || (this._start = this._entryStart());
-    const dx = S.x - p.pos.x;
-    const dz = S.z - p.pos.z;
-    const dist = Math.hypot(dx, dz);
+    if (this._via === undefined) this._via = this._detour(S);
+    // ((V10) round the vehicle's end first when the straight way to the door crosses it)
+    let tx = S.x;
+    let tz = S.z;
+    if (this._via) {
+      if (Math.hypot(this._via.x - p.pos.x, this._via.z - p.pos.z) < 0.8) this._via = null;
+      else {
+        tx = this._via.x;
+        tz = this._via.z;
+      }
+    }
+    const dx = tx - p.pos.x;
+    const dz = tz - p.pos.z;
+    const dist = Math.hypot(dx, dz) + (this._via ? Math.hypot(S.x - tx, S.z - tz) : 0);
     input.back = input.left = input.right = input.sprint = false;
-    input.jog = false;
     input.forward = false;
     this.t += dt;
     const st = this._settle;
     if (!st) {
+      // ((V10) the brisk approach: a jog when farther than JOG_FROM, the walk nearer)
+      if (this._jog === undefined) this._jog = dist > JOG_FROM;
+      if (dist < 1.2) this._jog = false;
+      input.jog = this._jog;
       const face = dist > 0.35 ? Math.atan2(-dx, -dz) : S.yaw;
       p.camYaw += wrapAngle(face - p.camYaw) * Math.min(1, dt * 5);
-      input.forward = dist > 0.2;
-      // (stopped, and turned by the game's own turn on the spot to within 0.8 rad of the clip's facing: closer than the
-      // 0.9 rad that starts another, so none starts under the settle)
-      if ((dist <= 0.6 && p.speed < 0.05 && !p.move && !input.forward && Math.abs(wrapAngle(S.yaw - p.yaw)) < 0.8) || this.t > 6) {
-        this._settle = { u: 0, x: p.pos.x, z: p.pos.z, yaw: p.yaw, time: THREE.MathUtils.clamp(Math.max(dist / 0.45, Math.abs(wrapAngle(S.yaw - p.yaw)) / 1.2), 0.5, 1.4) };
+      input.forward = dist > 0.45;
+      // ((V10) the settle starts as soon as he is within 0.6 m and has slowed (V6-V9 waited for a stop, the stop clip
+      // and a turn on the spot); it takes the rest of the way and the turn in at most SETTLE_MAX, from his own speed)
+      if ((!this._via && dist <= 0.6 && p.speed < 1.2) || this.t > 8) {
+        const turn = Math.abs(wrapAngle(S.yaw - p.yaw));
+        this._settle = { u: 0, x: p.pos.x, z: p.pos.z, vx: p.vel.x, vz: p.vel.z, yaw: p.yaw, time: THREE.MathUtils.clamp(Math.max(dist / 1.6, turn / 5, 0.3), 0.2, SETTLE_MAX) };
         this.character.stance = S.feet;
+        if (p.move && p._endMove) p._endMove();
+        p.move = p._pending = null;
+        input.jog = false;
       }
       return false;
     }
@@ -619,16 +762,27 @@ export class Vehicles {
     }
     st.u = Math.min(1, st.u + dt / st.time);
     const e = ease(st.u);
-    p.pos.x = THREE.MathUtils.lerp(st.x, S.x, e);
-    p.pos.z = THREE.MathUtils.lerp(st.z, S.z, e);
+    // ((V10) a cubic from where he was, at the speed he had, to the clip's first frame at rest: no stop before it)
+    const u = st.u;
+    const h10 = u * (1 - u) * (1 - u) * st.time;
+    p.pos.x = THREE.MathUtils.lerp(st.x, S.x, u * u * (3 - 2 * u)) + h10 * st.vx;
+    p.pos.z = THREE.MathUtils.lerp(st.z, S.z, u * u * (3 - 2 * u)) + h10 * st.vz;
     p.vel.set(0, 0, 0);
+    // (the speed the cubic has now, for the legs (main.js))
+    const du = 1e-3;
+    const u2 = Math.min(1, u + du);
+    const hx = (q) => THREE.MathUtils.lerp(st.x, S.x, q * q * (3 - 2 * q)) + q * (1 - q) * (1 - q) * st.time * st.vx;
+    const hz = (q) => THREE.MathUtils.lerp(st.z, S.z, q * q * (3 - 2 * q)) + q * (1 - q) * (1 - q) * st.time * st.vz;
+    this.settleSpeed = u2 > u ? Math.hypot(hx(u2) - hx(u), hz(u2) - hz(u)) / ((u2 - u) * st.time) : 0;
     p.yaw = p.camYaw = wrapAngle(st.yaw + wrapAngle(S.yaw - st.yaw) * e);
     p._yaw.x = p.yaw;
     p._yaw.v = 0;
     const se = this.character.stanceError();
     const feet = !S.feet || (!se.stepping && se.error < 0.015);
-    this.stats.walkEnd = { rootCm: +(Math.hypot(S.x - p.pos.x, S.z - p.pos.z) * 100).toFixed(2), yawDeg: +((wrapAngle(S.yaw - p.yaw) * 180) / Math.PI).toFixed(2), feetCm: +(se.error * 100).toFixed(2), t: +this.t.toFixed(2) };
-    return (st.u >= 1 && feet) || this.t > 9;
+    this.stats.walkEnd = { rootCm: +(Math.hypot(S.x - p.pos.x, S.z - p.pos.z) * 100).toFixed(2), yawDeg: +((wrapAngle(S.yaw - p.yaw) * 180) / Math.PI).toFixed(2), feetCm: +(se.error * 100).toFixed(2), t: +this.t.toFixed(2), settleS: +st.time.toFixed(2), waitS: +(st.wait || 0).toFixed(2) };
+    // ((V10) the feet get what is left of SETTLE_MAX to finish their steps; the clip's join carries what is left of them)
+    if (st.u >= 1 && !feet) st.wait = (st.wait || 0) + dt;
+    return (st.u >= 1 && (feet || st.wait >= SETTLE_MAX - st.time)) || this.t > 9;
   }
 
   _placeholderDoor(t, entering) {
@@ -654,7 +808,8 @@ export class Vehicles {
     let handsOn = 1;
     let door = 0;
     let rootDone = false;
-    if (this.usingPack && this.clip && (entering || leaving)) {
+    const outClip = this.mode === 'bailing' || this.mode === 'jumping';
+    if (this.usingPack && this.clip && (entering || leaving || outClip)) {
       // ---- the authored clip ----
       const clip = this.clip;
       const t = Math.min(this.t, clip.duration);
@@ -672,19 +827,38 @@ export class Vehicles {
       // (V3) hands on the helicopter's controls inside a clip: the controls' pose clips added as the seated layer adds
       // them (heli-enter's last and heli-exit's first frames put the left hand on a collective at 13 deg, mid travel;
       // on the ground it is down at 4 deg, 7.9 cm away, past the arm's reach without the lean collective-down adds)
-      if (this.kind === 'heli') this._heliControlPoses(clip, t);
+      if (this.kind === 'heli' && !outClip) this._heliControlPoses(clip, t);
       const d2 = this.pack.door(clip, t);
       door = d2 === null ? this._placeholderDoor(this.t, entering) : d2;
       ch.model.updateMatrixWorld(true);
       this._pinContacts(clip, t);
       b_eye(ch);
       this.stats.palm = { Left: -1, Right: -1 };
-      if (this.t >= clip.duration) {
-        this._captureJoin('toSeated'); // (the clip's last pose, eased into the seated loop's first frames)
+      if (outClip) {
+        // ((V10) car-bail / heli-jump: at events.release the body leaves the vehicle's frame for the world (exits.js))
+        this.door = door;
+        if (this.t >= this._release) this.exits.release();
+        else this.exits.track(dt);
+        return true;
+      }
+      const ev = clip.note.events || {};
+      // ((V10) controls live from events.handsOn: the vehicle's keys there take the seated pose at once, the door shuts
+      // by itself; (V10) and out of an exit clip from events.free when a movement key is held)
+      const early = entering && typeof ev.handsOn === 'number' && this.t >= ev.handsOn && this.controlHeld && this.controlHeld();
+      const free = leaving && typeof ev.free === 'number' && this.t >= ev.free && this.moveHeld && this.moveHeld();
+      if (this.t >= clip.duration || early || free) {
+        if (early || free) this.stats.early = { mode: this.mode, clip: clip.name, t: +this.t.toFixed(2), of: +clip.duration.toFixed(2), door: +door.toFixed(3) };
+        if (entering) this._captureJoin('toSeated'); // (the clip's last pose, eased into the seated loop's first frames)
+        const kind = this.kind;
         this._finish();
         this._loopT = 0; // (the seated loop starts at its frame 0, where car-enter / heli-enter end)
+        if ((early || free) && door > 0.001) {
+          this.door = door;
+          this.closers[kind] = { from: door, t: 0 };
+        }
+        return true;
       }
-      this.door = this.mode === 'seated' ? 0 : door;
+      this.door = door;
       return true;
     }
     if (entering || leaving) {
@@ -719,7 +893,7 @@ export class Vehicles {
         if (leaving && t >= 3.4) this._finish();
       }
     }
-    this.door = this.mode === 'seated' ? 0 : door;
+    if (!(this.mode === 'seated' && this.closers[this.kind])) this.door = this.mode === 'seated' ? 0 : door;
     if (this.kind === 'heli') this._poseHeli(dt, weight, handsOn, rootDone);
     else this._poseCar(dt, weight, handsOn, rootDone);
     if ((entering || leaving) && this.mode !== 'drawing' && this._join && this._join.on && this._join.tag === 'toClip') {
@@ -922,23 +1096,29 @@ export class Vehicles {
   }
 
   /** (V3) Keeps the proxy pose and root as they are now, for the join into an entry or exit clip. */
-  _captureJoin(tag = 'toClip') {
+  _captureJoin(tag = 'toClip', T = JOIN) {
     const ch = this.character;
     const J = (this._join = this._join || { q: {}, hips: new THREE.Vector3(), pos: new THREE.Vector3(), quat: new THREE.Quaternion() });
     for (const [name, bone] of Object.entries(ch.bones)) (J.q[name] = J.q[name] || new THREE.Quaternion()).copy(bone.quaternion);
     J.hips.copy(ch.bones.Hips.position);
+    // ((V10) the root kept in the vehicle's frame: a join while it moves (a bail at speed) held the body where the car
+    // had been, 37 m/s of root speed in one frame at 80 km/h)
+    const V = this.v.root;
+    V.updateMatrixWorld(true);
     J.pos.copy(ch.root.position);
-    J.quat.copy(ch.root.quaternion);
+    V.worldToLocal(J.pos);
+    J.quat.copy(V.getWorldQuaternion(_q2)).invert().multiply(ch.root.quaternion);
     J.t = 0;
     J.on = true;
     J.tag = tag;
+    J.T = T;
   }
 
   _joinBlend(dt) {
     const J = this._join;
     if (!J || !J.on) return;
     J.t += dt;
-    const u = ease(J.t / JOIN);
+    const u = ease(J.t / (J.T || JOIN));
     if (u >= 1) {
       J.on = false;
       return;
@@ -946,8 +1126,11 @@ export class Vehicles {
     const ch = this.character;
     for (const [name, bone] of Object.entries(ch.bones)) if (J.q[name]) bone.quaternion.copy(_q.copy(J.q[name]).slerp(bone.quaternion, u));
     ch.bones.Hips.position.lerpVectors(J.hips, _v.copy(ch.bones.Hips.position), u);
-    ch.root.position.lerpVectors(J.pos, _v.copy(ch.root.position), u);
-    ch.root.quaternion.copy(_q.copy(J.quat).slerp(ch.root.quaternion, u));
+    const V = this.v.root;
+    const jp = V.localToWorld(_v2.copy(J.pos));
+    const jq = V.getWorldQuaternion(_q2).multiply(J.quat);
+    ch.root.position.lerpVectors(jp, _v.copy(ch.root.position), u);
+    ch.root.quaternion.copy(_q.copy(jq).slerp(ch.root.quaternion, u));
     ch.root.updateMatrixWorld(true);
   }
 
@@ -994,6 +1177,11 @@ export class Vehicles {
     // _arm curled them round a rifle grip on the door handle and the glass)
     const f = t * PACK_FPS;
     const last = clip.frames - 1;
+    // ((V10) a contact held from the clip's first frame comes in with the join (0.3 s; 0.15 into a bail), not at once:
+    // V9's slow settle put the feet on the clip's first-frame places, the brisk one (0.4 s at most) leaves them up to 20 cm
+    // off, and the right foot on the brake after a stop is 13 cm from car-exit's pedal contact: both were a jump in a frame)
+    const J = this._join;
+    const ju = J && J.on && J.tag === 'toClip' ? ease(J.t / (J.T || JOIN)) : 1;
     for (const c of this.pack.contacts(clip, t)) {
       const node = c.node ? veh.nodes[c.node] : veh.root;
       if (!node) continue;
@@ -1001,7 +1189,7 @@ export class Vehicles {
       const side = c.part.endsWith('_l') ? 'Left' : 'Right';
       const easeIn = c.from <= 0 ? 1 : (f - c.from + 1) / PIN_EASE;
       const easeOut = c.to >= last ? 1 : (c.to - f + 1) / PIN_EASE;
-      const w = ease(Math.min(easeIn, easeOut));
+      const w = ease(Math.min(easeIn, easeOut)) * (c.from <= 0 ? ju : 1);
       const hand = c.part.startsWith('hand');
       const chain = hand ? [side + 'Arm', side + 'ForeArm', side + 'Hand'] : [side + 'UpLeg', side + 'Leg', side + 'Foot'];
       const keep = chain.map((n) => ch.bones[n].quaternion.clone());
@@ -1039,6 +1227,7 @@ export class Vehicles {
       if (!node) continue;
       // (only while the pin is at full weight: in its ease frames the limb is meant to be between)
       if ((c.from > 0 && f - c.from + 1 < PIN_EASE) || (c.to < last && c.to - f + 1 < PIN_EASE)) continue;
+      if (c.from <= 0 && ju < 1) continue; // ((V10) nor while it comes in with the join)
       const at = this._groundAt(node.localToWorld(_v.fromArray(c.at)), c, node, clip, t);
       const side = c.part.endsWith('_l') ? 'Left' : 'Right';
       let p;
@@ -1109,9 +1298,18 @@ export class Vehicles {
     // before this frame's on-foot pose: a frame old)
     this._joinPending = 'toClip';
     this._start = this._settle = null;
+    this._jog = undefined;
+    this._via = undefined;
+    this.settleSpeed = null;
     this.character.stance = null;
     this.mode = 'entering';
     this.t = 0;
+    // ((V10) nothing of the last exit carried into this entry)
+    this.exits.reset();
+    this.stopping = false;
+    this.closers[this.kind] = null;
+    if (this.kind === 'car') this.car.abandoned = false;
+    this.stats.early = null;
     this.applyFit(this.kind, this._packFits());
     this._carPoints = null;
     this._startClip(KIND[this.kind].enter);

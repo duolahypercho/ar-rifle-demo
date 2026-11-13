@@ -1148,6 +1148,109 @@ not provoked; altitude performance above 1500 m not checked; the hover with the 
   judgment has to come from the user driving and flying it. The project's Blender on port 9877
   (started by the clip passes) was left running.
 
+## Third request (2026-11-13): brisk entry, and getting out while moving
+
+The user, after the V9 fixes: they like the animations, but getting into the car should be much quicker, and
+they could not get out of the car or the helicopter unless it had stopped. Earlier the same day they asked for the
+guns to be put away while in a vehicle. The user likes how the clips look: keep the moves and the style, make them
+quicker, and let the player leave a vehicle at any time.
+
+What the game does today: walk (tactical walk) to the entry point, settle up to 1.4 s, car-enter 8.0 s,
+car-exit 7.8 s, heli-enter 9.4 s, heli-exit 12.2 s. vehicles.toggle() refuses to leave: 'moving' (car over
+1.5 m/s), 'flying' (helicopter off the ground or over 1 m/s), 'rotor' (engine lit or rotor turning: main.js
+starts the shutdown and gets out once the rotor has stopped, 35 s and more).
+
+### Behaviour (game; pass V10)
+- Getting in: the body jogs to the entry point when it is more than 2 m away (walks when nearer); the settle
+  at the door at most 0.4 s; then the entry clip. Controls are live from the clip's `events.handsOn`: driving
+  or flying input from there on plays on while the door closes (the door finishes by itself).
+- Getting out of a car: at speed up to 8 m/s (29 km/h) the driver brakes the car to a stop and
+  then gets out with car-exit; over 8 m/s he bails: car-bail (the door flung open, the body out of the doorway)
+  then, in world space with the car's velocity at `events.release`, airborne until the ground, then
+  bail-roll, its travel scaled to the speed; the car runs on without a driver (no throttle, no brake: it coasts
+  and slows). Movement input after car-exit's / bail-roll's `events.free` takes over at once (the door, if not
+  shut, closes by itself).
+- Getting out of the helicopter on the ground (skids in contact), engine running or not: heli-exit at once; the
+  engine keeps running at flight idle with the collective down and the rotor turning (it is left running);
+  the I key and the shutdown stay as they are. Getting back into a running helicopter is allowed.
+- Getting out of the helicopter in the air: heli-jump (out of the door), then the body falls (ballistic with air
+  drag, terminal about 55 m/s) in the fall loop, facing the way it left; on reaching the ground, by vertical
+  speed at impact: up to 9 m/s (a fall of about 4 m) land-roll; up to 14 m/s (about 10 m) land-hard; more
+  "Wasted": the picture fades to dark with the word WASTED, and 3 s later the player stands at the helipad's
+  edge, on foot, with both guns. The empty helicopter gets no inputs (collective to minimum, cyclic and
+  pedals centred, the assist off) and comes down by its own physics.
+- Cameras: the chase camera follows the body through a bail and a fall (no cut), looking a little down.
+- Guns stay put away: from the press of T until the body is out and standing (after bail-roll,
+  land-roll, land-hard or car-exit / heli-exit), then on the back and drawn.
+
+### Clips (pass A4), both packs (vehicle-motion-tripo-v1, vehicle-motion-ue5-v1), 30 fps
+Replace, same contract (clip space, root track, door, contacts, joins to the seated reference, vehicleFit):
+- car-enter: at most 3.5 s from standing at the entry point to hands on the wheel, `events.seated` by about
+  2.4 s, `events.handsOn` at hands on, door shut by the clip's end.
+- car-exit: at most 3.0 s; `events.unseated`; `events.free` when standing clear of the door (about 2.2 s); the
+  door may still be closing after `free`.
+- heli-enter: at most 4.5 s; heli-exit: at most 4.0 s (no walk round the door: the door is shut behind with a
+  hand on the way, or left to close by itself); `events.free` as above.
+Keep the moves the user likes (the door, the hand on the frame or roof edge, the step in, the sit): shorten
+holds, overlap phases (the door opening while stepping, the hands going to the controls while sitting), and give
+steps the time a brisk real move takes (brisk, not 8 s).
+New:
+- car-bail (vehicle frame, about 0.6 s): from the seated reference the left hand shoves the door open, the body
+  turns and launches out of the doorway, leaving the seat; ends airborne just outside the doorway.
+  `events.release` (the frame the body is clear of the car), per-frame `door` (open fast).
+- bail-roll (ground frame, about 1.8 s): from car-bail's last pose, airborne: the shoulder and hip meet the
+  ground, a roll along the travel, up to a crouch, standing. Root track [x, z, yaw] in the body's own start frame
+  (forward -Z as the clips' frame), its travel 2 to 3 m; `events.ground` (first contact), `events.free`
+  (standing). Ground contacts for the feet and hands where they plant.
+- heli-jump (vehicle frame, about 1.0 s): from the seated pilot reference, the door pushed open, the body turns
+  and steps or jumps out of the doorway; ends airborne outside; `events.release`, `door`.
+- fall (a loop, about 1.0 s): airborne, limbs spread, a slow flail; joins its own start; its first frame joins
+  heli-jump's and car-bail's last poses closely enough for a 0.2 s blend.
+- land-roll (about 1.3 s): feet first from the fall pose, the knees take it, a forward roll, standing.
+  `events.ground`, `events.free`.
+- land-hard (about 2.5 s): feet first, the knees buckle, down onto the hands and a hip, a beat, up slowly.
+  `events.ground`, `events.free`.
+Gate for the new athletic clips (bail, jump, fall, landings): hands and feet at most 8 m/s, head and pelvis at
+most 5 m/s, velocity change per 60 Hz sample at most 6 m/s except within 2 frames after `events.ground`; ground
+contacts within 1.5 cm while planted; no body part more than 3 cm into the ground while rolling; joins and
+wrists as the clip gate has them. The fast entry and exit clips keep the clip gate (60 Hz speed lines included:
+hands and feet 4.5 m/s) unless a brisk step genuinely needs more: then up to 6 m/s for a foot or hand, said so.
+
+### Parachute (added the same day; the user, verbatim: "add a parachute but they have to pick it up first else
+they will just fall to the ground and die")
+- A parachute pack lies on a low crate at the helipad's edge (and one by the hangar doors), packed, with a soft
+  marker so it can be found. Walking into it picks it up (no key); the pack is then worn on the back
+  (`spine_05`), the slung gun resting against its outer face (its stow place moved out by the pack's
+  thickness). A short pickup move plays if it reads better than a pop (clip para-pickup). The pack is used up by
+  a jump; the crate's pack is back 30 s after it was taken. The HUD shows a small parachute icon while one is worn.
+- Without a pack, a jump or bail ends by impact speed as the section says, and anything over 14 m/s is WASTED
+  ("they will just fall to the ground and die").
+- With a pack, in a fall: "Space: open parachute" is shown once the body is 30 m or more above the ground. Space
+  pulls the handle (para-deploy, about 1.2 s: the canopy streams out and inflates over the body, a jerk upright);
+  from then on the body hangs under the canopy (para-hang loop). Opened too low (under about 25 m when it starts)
+  the canopy is not flying by the ground and the impact rules apply.
+- Canopy flight (a simple ram-air model): forward airspeed about 10 m/s, descent about 5 m/s; A / D pull the left
+  / right toggle (turn up to about 60 deg/s with bank, faster descent in the turn); S pulls both (slower and
+  flatter for a moment: the flare, about 1.5 s of it); W lets both up (a little faster); the wind (key 8) drifts
+  it. Touchdown: descent at or under 6 m/s is a landing (para-land: feet first, a few running steps or a slide,
+  standing, the canopy collapsing behind and fading out); faster is the impact rules. The camera follows from
+  behind and above.
+- The canopy, lines, risers, toggles and pack are made in code (no outside assets): a ram-air canopy of about 9
+  cells, its suspension lines to the risers at the shoulders, the steering lines to the toggles. The toggles are
+  drawn at the hands every frame (the hands are always on what they hold). Its materials are in the warm-up.
+- Clips (A4, both packs, after the clips above): para-pickup (about 1.2 s, ground frame, ends standing with the pack
+  on), para-deploy (about 1.2 s, from the fall pose to hanging, `events.pull`, `events.open`), para-hang (loop,
+  about 2 s, hands up at the toggles above the shoulders, legs hanging, a little sway), para-steer-l and
+  para-steer-r (one hand pulled down to the hip; added by the game by how far the toggle is pulled), para-flare
+  (both down), para-land (about 1.5 s, feet first from hanging to standing, `events.ground`, `events.free`).
+  The toggles' places in each pose are the hands' palms; the risers meet the harness at the shoulders
+  (clavicle_l / clavicle_r).
+
+### Ownership
+A4 owns blender/ and the two vehicle packs in public/characters/; V10 owns src/ and the page. V10 builds the
+behaviour first against the clips there are (the old slow ones, simple stand-ins for the missing ones) and switches
+to A4's clips as they ship (they are looked up by name; durations and events from the notes).
+
 ## Second request (2026-11-12, after the review)
 
 The user read `VEHICLE_REVIEW.md` and answered: "Fix the open list". So every item under "Below

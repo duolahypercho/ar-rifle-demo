@@ -271,6 +271,39 @@ kbd {
   pointer-events: none;
 }
 
+/* (V10) the parachute's keys while falling and under the canopy; WASTED */
+.para-keys {
+  color: #f2c94c;
+}
+.chute {
+  vertical-align: -3px;
+}
+#wasted {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #07080a;
+  pointer-events: none;
+  z-index: 50;
+}
+#wasted[hidden] {
+  display: none;
+}
+#wasted span {
+  font: 700 clamp(40px, 9vw, 120px) / 1 Georgia, 'Times New Roman', serif;
+  letter-spacing: 0.08em;
+  color: #c8312b;
+  text-shadow: 0 2px 0 #000, 0 0 24px rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  transform: scale(1.06);
+  transition: opacity 0.5s ease, transform 1.2s ease;
+}
+#wasted.word span {
+  opacity: 1;
+  transform: scale(1);
+}
+
 @media (max-width: 640px) {
   .keys {
     display: none;

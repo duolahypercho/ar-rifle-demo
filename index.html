@@ -20,18 +20,20 @@
           mouse look · left button or <kbd>Space</kbd> fire · right button or <kbd>Q</kbd> aim<br />
           <kbd>R</kbd> reload · <kbd>E</kbd> swap weapon · <kbd>C</kbd> crouch · <kbd>V</kbd> camera · <kbd>N</kbd> next character<br />
           <kbd>G</kbd> picture: full / plain (no post-processing) · <kbd>`</kbd> frame time<br />
-          <kbd>T</kbd> get in / out of the car (at its driver's door) or the helicopter (at the pilot's door, right front)
+          <kbd>T</kbd> get in / out of the car (at its driver's door) or the helicopter (at the pilot's door, right front)<br />
+          parachute: walk into a pack (on the crate at the helipad's edge or by the hangar doors) to put it on
         </div>
         <div id="car-keys" class="keys" hidden>
           In the car: <kbd>W</kbd> throttle · <kbd>S</kbd> brake, reverse · <kbd>A</kbd><kbd>D</kbd> steer · <kbd>Space</kbd> handbrake<br />
-          <kbd>E</kbd> / <kbd>Q</kbd> shift up / down · <kbd>M</kbd> auto / manual · <kbd>L</kbd> headlights · <kbd>P</kbd> paint · <kbd>V</kbd> camera · <kbd>T</kbd> get out
+          <kbd>E</kbd> / <kbd>Q</kbd> shift up / down · <kbd>M</kbd> auto / manual · <kbd>L</kbd> headlights · <kbd>P</kbd> paint · <kbd>V</kbd> camera · <kbd>T</kbd> get out (slow: stops first; fast: bails)
         </div>
         <div id="heli-keys" class="keys" hidden>
           In the helicopter: <kbd>W</kbd><kbd>S</kbd> cyclic fore / aft · <kbd>A</kbd><kbd>D</kbd> cyclic left / right · <kbd>Q</kbd><kbd>E</kbd> pedals<br />
           <kbd>R</kbd> / <kbd>F</kbd> collective up / down (stays where put) · <kbd>I</kbd> engine start · <kbd>U</kbd> quick start (game option) · <kbd>O</kbd> engine cut<br />
-          <kbd>J</kbd> assist on / off · <kbd>H</kbd> hover hold · <kbd>K</kbd> mouse flies the cyclic · <kbd>L</kbd> landing light · <kbd>V</kbd> camera · <kbd>T</kbd> get out (on the ground)
+          <kbd>J</kbd> assist on / off · <kbd>H</kbd> hover hold · <kbd>K</kbd> mouse flies the cyclic · <kbd>L</kbd> landing light · <kbd>V</kbd> camera · <kbd>T</kbd> get out (in the air: jump)
         </div>
         <div id="prompt" class="keys" hidden></div>
+        <div id="para-keys" class="keys para-keys" hidden></div>
         <div id="mouse" class="keys">Click the view to capture the mouse</div>
       </div>
 
@@ -41,6 +43,7 @@
         <div><span class="label">Camera</span> <span id="camname">Third person</span></div>
         <div><span class="label">Picture</span> <span id="picture">Full</span></div>
         <div id="perf-row" hidden><span class="label">Frame</span> <span id="perf"></span></div>
+        <div id="para-row" hidden><span class="label">Parachute</span> <svg class="chute" viewBox="0 0 24 18" width="22" height="16" aria-label="parachute worn"><path d="M2 8 Q12 -2 22 8 Q19 6.5 17 8 Q14.5 6 12 8 Q9.5 6 7 8 Q5 6.5 2 8Z" fill="#e2602a"/><path d="M2.5 8 L11 16 M7 8 L11.5 16 M12 8 L12 16 M17 8 L12.5 16 M21.5 8 L13 16" stroke="#ddd" stroke-width="0.8" fill="none"/><rect x="10.5" y="15" width="3" height="3" rx="0.8" fill="#ddd"/></svg></div>
       </div>
 
       <div class="panel bottom-left">
@@ -80,6 +83,8 @@
         <div id="status" class="status">Ready</div>
       </div>
     </div>
+
+    <div id="wasted" hidden><span>WASTED</span></div>
 
     <div id="loading">Loading…</div>
 

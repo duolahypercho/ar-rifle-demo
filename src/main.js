@@ -32,6 +32,9 @@ import { CarDamage, HeliDamage } from './damage.js';
 import { Terrain, WEATHER, DETAIL_LAYER, GRASS_LAYER } from './terrain.js';
 import { LIGHT, TIME_NAMES } from './look.js';
 import { FrameMeter } from './adapt.js';
+// pass V10: out at any speed (exits.js) and the parachute (para.js)
+import { Parachute } from './para.js';
+import { PARA_MIN } from './exits.js';
 
 const $ = (id) => document.getElementById(id);
 const ui = {
@@ -75,6 +78,9 @@ const ui = {
   hEngine: $('h-engine'),
   hAssist: $('h-assist'),
   hFlags: $('h-flags'),
+  paraKeys: $('para-keys'),
+  paraRow: $('para-row'),
+  wasted: $('wasted'),
 };
 
 const CAMERAS = ['Third person', 'First person'];
@@ -229,6 +235,14 @@ async function main() {
   };
   const nextBody = () => showBody(bodyIndex + 1);
   const vehicles = new Vehicles({ car, heli, character, player, sound, carSound });
+  // (V10) the parachute: packs on a crate at the helipad's edge (on the side toward the yard) and by the hangar's doors
+  const para = new Parachute(scene);
+  const padOut = new THREE.Vector2(-HELIPAD.x, -HELIPAD.z).normalize();
+  const padCrate = para.addCrate(HELIPAD.x + padOut.x * (HELIPAD.r + 1.6), HELIPAD.z + padOut.y * (HELIPAD.r + 1.6), Math.atan2(padOut.x, padOut.y));
+  para.addCrate(-35.5, -83.2, 0);
+  vehicles.exits.para = para;
+  // (WASTED: on foot again at the helipad's edge, by its crate, facing the pad)
+  vehicles.exits.respawnAt = () => ({ x: padCrate.x + padOut.x * 1.8, z: padCrate.z + padOut.y * 1.8, yaw: Math.atan2(padOut.x, padOut.y) });
   // (V6) the pose carried across each hand-over between what poses the body (inertia.js)
   let inertia = null;
   const inert = () => inertia || (character.bones ? (inertia = new PoseInertia(character)) : null);
@@ -240,6 +254,7 @@ async function main() {
   camera.layers.enable(DETAIL_LAYER); // ((V7) the world's detail: terrain.js)
   camera.layers.enable(GRASS_LAYER); // ((V8) the grass: the lit pass only, flora.js / look.js)
   camera.position.set(0.5, 1.7, 4.5);
+  vehicles.exits.camera = camera;
   look.setCamera(camera);
   look.focus = player.pos;
   let cameraMode = 0;
@@ -371,6 +386,26 @@ async function main() {
     }
     return true;
   };
+  // (V10) the keys held now, whatever the mode: on-foot movement taken up from events.free, the vehicle's controls from
+  // events.handsOn
+  const held = new Set();
+  const MOVE_KEYS = ['KeyW', 'KeyA', 'KeyS', 'KeyD', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ShiftLeft', 'ShiftRight'];
+  const moveKey = (code, down) => {
+    if (code === 'KeyW' || code === 'ArrowUp') input.forward = down;
+    else if (code === 'KeyS' || code === 'ArrowDown') input.back = down;
+    else if (code === 'KeyA' || code === 'ArrowLeft') input.left = down;
+    else if (code === 'KeyD' || code === 'ArrowRight') input.right = down;
+    else if (code === 'ShiftLeft' || code === 'ShiftRight') input.sprint = down;
+    else return false;
+    return true;
+  };
+  /** The movement keys held now onto the on-foot input (at a hand-over to on foot). */
+  const syncMoveKeys = () => {
+    for (const code of MOVE_KEYS) moveKey(code, false);
+    for (const code of MOVE_KEYS) if (held.has(code)) moveKey(code, true);
+  };
+  vehicles.moveHeld = () => MOVE_KEYS.slice(0, 8).some((k) => held.has(k)) || !!demo.moveHeld;
+  vehicles.controlHeld = () => (vehicles.kind === 'heli' ? ['KeyW', 'KeyA', 'KeyS', 'KeyD', 'KeyQ', 'KeyE', 'KeyR', 'KeyF', 'PageUp', 'PageDown'] : ['KeyW', 'KeyA', 'KeyS', 'KeyD', 'Space']).concat(['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight']).some((k) => held.has(k)) || !!demo.controlHeld;
   // (pass V2) the helicopter's controls while in it: rates held by keys, the lever stays where it is put
   const fly = { fwd: false, back: false, left: false, right: false, pedL: false, pedR: false, up: false, down: false, lever: 0, cp: 0, cr: 0, ped: 0, mouse: false };
   const heliPress = (code, down) => {
@@ -471,13 +506,11 @@ async function main() {
         break;
       case 'KeyT':
       case 'Enter':
-        // (V5) on the ground with the rotor turning: the shutdown first; he gets out once the blades have stopped
+        // ((V10) out at once: on the skids heli-exit with the engine left running, in the air heli-jump; either
+        // way the collective goes down. V5-V9 shut the engine down first and got out once the rotor had stopped)
         if (down) {
           const r = vehicles.toggle();
-          if (r === 'rotor') {
-            if (heli.shutdown()) fly.lever = 0;
-            heli.exitWhenStopped = !!heli.shut || heli.exitWhenStopped;
-          }
+          if (r === 'out' || r === 'jump') fly.lever = 0;
         }
         break;
       case 'KeyG':
@@ -506,6 +539,10 @@ async function main() {
     if (vehicles.mode !== 'foot') {
       // (getting in, sitting, getting out: the vehicle's keys; on the way to it, nothing but the look)
       if (vehicles.inside) return vehicles.kind === 'heli' ? heliPress(code, down) : carPress(code, down);
+      // ((V10) falling, under a canopy: Space opens it, A / D / S / W fly it)
+      if (vehicles.out) return vehicles.exits.key(code, down) || ['KeyF', 'KeyR', 'KeyE', 'KeyQ', 'KeyT'].includes(code);
+      // ((V10) the draw after getting out: walking already (an exit clip hands over from events.free on a movement key)
+      if (vehicles.mode === 'drawing' && MOVE_KEYS.includes(code)) return moveKey(code, down);
       return ['KeyW', 'KeyA', 'KeyS', 'KeyD', 'Space', 'KeyF', 'KeyR', 'KeyE', 'KeyQ', 'KeyT'].includes(code);
     }
     switch (code) {
@@ -598,6 +635,7 @@ async function main() {
   window.addEventListener('pointerdown', () => sound.unlock());
   window.addEventListener('keydown', (ev) => {
     sound.unlock(); // browsers only allow sound after a click or a key
+    if (!ev.metaKey && !ev.ctrlKey && !ev.altKey) held.add(ev.code);
     if (ev.repeat || ev.metaKey || ev.ctrlKey || ev.altKey) return;
     // ((V9) ` (the key left of 1), in every mode: the frame-time readout (adapt.js)
     if (ev.code === 'Backquote') {
@@ -608,9 +646,12 @@ async function main() {
     if (press(ev.code, true)) ev.preventDefault();
   });
   window.addEventListener('keyup', (ev) => {
+    held.delete(ev.code);
     press(ev.code, false);
   });
   const release = () => {
+    held.clear();
+    vehicles.exits.keys.space = vehicles.exits.keys.left = vehicles.exits.keys.right = vehicles.exits.keys.flare = vehicles.exits.keys.fast = false;
     drive.throttle = drive.brake = drive.left = drive.right = drive.handbrake = false;
     fly.fwd = fly.back = fly.left = fly.right = fly.pedL = fly.pedR = fly.up = fly.down = false;
     vehicles.carCams.leanHeld = vehicles.heliCams.leanHeld = false;
@@ -739,7 +780,8 @@ async function main() {
   /** Where a gun hangs on the back, in track terms (the clips' stow, less its carry shift). */
   const stowOf = (gun, pos, quat) => {
     const stow = motion.stow[gun.key];
-    pos.copy(stow.pos).sub(gun.carryShift);
+    // ((V10) with a parachute pack on, the gun rests against its outer face: the place moved out by the pack's thickness)
+    pos.copy(stow.pos).sub(gun.carryShift).add(para.packShift);
     quat.copy(stow.quat);
   };
   const ramp = (x) => THREE.MathUtils.smoothstep(x, 0, 1);
@@ -937,6 +979,32 @@ async function main() {
   // stow: the swap clip's outgoing half, forwards (the gun onto the back) or backwards (off it)
   let stow = null; // { clip, t, dir }
   let handsFree = false; // both guns on the back
+  let lastVMode = 'foot';
+  let emptySwing = 0;
+  let camHand = null; // ((V10) the camera's pose at a hand-over to on foot, eased away from)
+  // ((V10) WASTED: standing at the helipad's edge, on foot, the gun in the hands and the other on the back; nothing of the
+  // exit's hand-overs carried over the teleport)
+  vehicles.exits.onRespawn = () => {
+    stow = null;
+    swap = null;
+    struck = null;
+    handsFree = false;
+    lastVMode = 'foot';
+    camHand = null;
+    // (a helicopter left a wreck (struck, or not on its skids) is back on the helipad, as new, cold, as if
+    // fetched back to where it is kept; one that came down on its skids stays where it is)
+    const up = new THREE.Vector3(0, 1, 0).applyQuaternion(heli.root.quaternion).y;
+    if (heli.damaged || up < 0.7) {
+      heli.place(HELIPAD.x, HELIPAD.z, 0);
+      heli.power = false;
+      if (heli.damage) heli.damage.repair();
+    }
+    if (inertia) {
+      inertia.on = false;
+      inertia.tag = null;
+    }
+    syncMoveKeys();
+  };
   const emptyOut = {};
   const stowShoulder = new THREE.Vector3(); // ((V9) the draw's elbow pole, blended)
   const stowPole = new THREE.Vector3();
@@ -1045,7 +1113,7 @@ async function main() {
     setText(ui.hNr, 'nr', String(Math.round(s.rotor.percent)));
     setText(ui.hTq, 'tq', String(Math.round(s.engine.torquePercent)));
     setText(ui.hNg, 'ng', String(Math.round(s.engine.ng)));
-    setText(ui.hEngine, 'eng', heli.shut ? heli.shutLabel : `engine ${s.engine.state}${s.engine.startMode === 'quick' && s.engine.lit ? ' (quick start)' : ''}${heli.damaged ? ' · ROTOR STRUCK' : ''}${heli.exitWhenStopped ? ' · out when the rotor stops' : ''}`);
+    setText(ui.hEngine, 'eng', heli.shut ? heli.shutLabel : `engine ${s.engine.state}${s.engine.startMode === 'quick' && s.engine.lit ? ' (quick start)' : ''}${heli.damaged ? ' · ROTOR STRUCK' : ''}`);
     const a = heli.assist;
     const st = a.status || {};
     const ch = st.channels || {};
@@ -1138,8 +1206,16 @@ async function main() {
   };
 
   /** A frame inside the helicopter: getting in, flying, getting out. */
+  let heliSeatedLast = false;
   const stepInsideHeli = (dt) => {
     const seated = vehicles.mode === 'seated';
+    // ((V10) the controls taken up afresh each time he sits (the assist's references; the lever where the collective is):
+    // the helicopter may have flown on, empty, since the last time)
+    if (seated && !heliSeatedLast) {
+      heli.assist.reset(heli.state);
+      fly.lever = heli.state.controls.collective;
+    }
+    heliSeatedLast = seated;
     heliControls(dt, seated);
     heli.update(dt, camera);
     // the car stays where it is (parked) while the helicopter flies
@@ -1186,11 +1262,6 @@ async function main() {
     heliSound.update(dt, heli.state, 1, seated && cams.mode === 1, doppler(heli.root.position, heli.state.velocity), heli.warn);
     carSound.update(dt, car.dyn, Math.max(0, 1 - camera.position.distanceTo(car.root.position) / 60), false, doppler(car.root.position, car.dyn.vel));
     carEvents(Math.max(0, 1 - camera.position.distanceTo(car.root.position) / 60), dt);
-    // (V5) out once the rotor has stopped (T pressed with it turning started the shutdown)
-    if (seated && heli.exitWhenStopped && !heli.shut && heli.state.rotor.percent < 0.5) {
-      heli.exitWhenStopped = false;
-      vehicles.toggle();
-    }
     showCarHud(false);
     showHeliHud(seated);
     if (seated) updateHeliHud();
@@ -1237,6 +1308,11 @@ async function main() {
         d.input.brake = k.brake;
         d.input.steer = k.steer;
         d.input.handbrake = drive.handbrake ? 1 : 0;
+      }
+      // ((V10) T at up to BAIL_SPEED: the driver brakes to a stop, then car-exit (vehicles.tick); the wheel stays his)
+      if (vehicles.stopping) {
+        d.input.throttle = 0;
+        d.input.brake = 1;
       }
       // (V5) the engine starts by itself once he is seated (the dash's lamp check, the starter, the first firing)
       if (!car.ignitionOn && !car.userOff && !demo.carInput && d.ignition === 'off') car.startSequence();
@@ -1320,6 +1396,57 @@ async function main() {
     ui.prompt.hidden = true;
   };
 
+  /**
+   * (V10) A frame out of the vehicle in world space: flying out of the doorway after a bail or a jump, falling, under a
+   * canopy, rolling or landing, or WASTED (exits.js poses it). Both vehicles go on by themselves: the car coasts, the
+   * helicopter has neutral controls (collective down: heliControls' hands-off branch). The follow camera rides along.
+   */
+  let doorsLast = { car: 0, heli: 0 };
+  const stepOut = (dt) => {
+    const X = vehicles.exits;
+    car.update(dt, camera);
+    world.update(dt, car);
+    heliControls(dt, false);
+    heli.update(dt, camera);
+    X.pose(dt);
+    if (inert()) inertia.record('out');
+    character.bones.Spine2.getWorldPosition(character.chestPos);
+    character.bones.Spine2.getWorldQuaternion(character.chestQuat);
+    player.pos.copy(character.root.position);
+    rifle.pivot.visible = shotgun.pivot.visible = false; // (away until he is standing)
+    character.setFirstPerson(false);
+    car.inCockpit = false;
+    // the follow camera (none on the frame he stands up: the on-foot camera takes over from the next)
+    input.lookX = input.lookY = 0;
+    if (X.busy) X.placeCamera(dt, camera);
+    if (debugView) {
+      const { az = 0, el = 0.15, dist = 7, y = 1.0, fov = 46 } = debugView;
+      const c = _v.copy(character.root.position);
+      c.y += y;
+      camera.position.set(c.x + Math.sin(az) * Math.cos(el) * dist, c.y + Math.sin(el) * dist, c.z + Math.cos(az) * Math.cos(el) * dist);
+      camera.lookAt(c);
+      camera.fov = fov;
+      camera.updateProjectionMatrix();
+    }
+    look.focus = player.pos;
+    look.setShadow(9);
+    look.blur.maxPx.value = 10;
+    viewFrom.copy(camera.position);
+    fx.update(dt, camera);
+    earStep(dt);
+    const near = (p, r) => Math.max(0, 1 - camera.position.distanceTo(p) / r);
+    carSound.update(dt, car.dyn, near(car.root.position, 60), false, doppler(car.root.position, car.dyn.vel));
+    carEvents(near(car.root.position, 60), dt);
+    heliSound.update(dt, heli.state, near(heli.root.position, 250), false, doppler(heli.root.position, heli.state.velocity));
+    // (the doors swinging shut by themselves)
+    if (doorsLast.car >= 0.02 && car.doorL < 0.02 && near(car.root.position, 30) > 0) carSound.door(true);
+    if (doorsLast.heli >= 0.02 && heli.door < 0.02 && near(heli.root.position, 30) > 0) heliSound.door(true);
+    doorsLast = { car: car.doorL, heli: heli.door };
+    showCarHud(false);
+    showHeliHud(false);
+    ui.prompt.hidden = true;
+  };
+
   // (V7) the weather first (the flight model reads the wind), the world's moving parts last (they follow the camera)
   const step = (dt) => {
     WEATHER.step(dt);
@@ -1327,9 +1454,69 @@ async function main() {
       heli.fm.wind[0] = WEATHER.now.x;
       heli.fm.wind[2] = WEATHER.now.z;
     }
+    vehicles.tick(dt);
+    wreckWatch(dt);
     stepGame(dt);
+    // ((V10) the parachute packs: picked up on foot, worn on the back (not in a cabin), refilled; the HUD for it)
+    const vm = vehicles.mode;
+    para.update(dt, character, player, { onFoot: vm === 'foot' || vm === 'drawing', showBack: !(vm === 'entering' || vm === 'seated' || vm === 'leaving' || vm === 'bailing') });
+    paraHud(dt);
     terrain.update(dt, camera, { heli, car });
     terrain.drift(dt);
+  };
+  // (V10) a helicopter come down on its side or back with nobody in it (left in the air: it flies on with its controls
+  // let go) is put back on the helipad, cold and as new, once it has lain still 5 s with the player 25 m or more away
+  let wreckT = 0;
+  const wreckWatch = (dt) => {
+    if (!heli.ready || (vehicles.inside && vehicles.kind === 'heli')) {
+      wreckT = 0;
+      return;
+    }
+    const up = _v.set(0, 1, 0).applyQuaternion(heli.root.quaternion).y;
+    if (up < 0.7 && heli.speed < 0.5 && player.pos.distanceTo(heli.root.position) > 25) wreckT += dt;
+    else wreckT = 0;
+    if (wreckT > 5) {
+      wreckT = 0;
+      heli.place(HELIPAD.x, HELIPAD.z, 0);
+      heli.power = false;
+      if (heli.damage) heli.damage.repair();
+      fly.lever = 0;
+    }
+  };
+  // (V10) the HUD's parachute lines and icon, and the WASTED fade
+  const paraShown = { keys: null, row: null, wasted: null };
+  const paraHud = (dt) => {
+    const X = vehicles.exits;
+    const s = X.s;
+    let keys = '';
+    if (s && s.chute && s.chute.state === 'canopy') keys = 'Under the canopy: <kbd>A</kbd> / <kbd>D</kbd> steer · <kbd>S</kbd> flare · <kbd>W</kbd> faster';
+    else if (s && s.chute && s.chute.state === 'deploy') keys = 'Opening…';
+    else if (X.canPull) keys = '<kbd>Space</kbd> open parachute';
+    else if (s && s.ballistic && !s.chute && !para.worn && X.height > PARA_MIN) keys = 'No parachute';
+    if (keys !== paraShown.keys) {
+      paraShown.keys = keys;
+      ui.paraKeys.innerHTML = keys;
+      ui.paraKeys.hidden = !keys;
+    }
+    const row = para.worn;
+    if (row !== paraShown.row) ui.paraRow.hidden = !(paraShown.row = row);
+    const w = X.wastedT;
+    // (dark over 1.2 s with the word, held, and gone 0.6 s after he stands at the helipad)
+    let fade = 0;
+    if (w >= 0) fade = Math.min(1, w / 1.2) * 0.88;
+    else if (paraShown.wastedEnd !== undefined) {
+      paraShown.wastedEnd += dt;
+      fade = Math.max(0, 0.88 * (1 - paraShown.wastedEnd / 0.6));
+      if (fade <= 0) paraShown.wastedEnd = undefined;
+    }
+    if (w >= 0) paraShown.wastedEnd = 0;
+    const key = fade.toFixed(2);
+    if (key !== paraShown.wasted) {
+      paraShown.wasted = key;
+      ui.wasted.style.opacity = key;
+      ui.wasted.hidden = fade <= 0;
+      ui.wasted.classList.toggle('word', w >= 0.3);
+    }
   };
   const stepGame = (dt) => {
     look.steps += 1; // (motion blur only trusts a frame one step after the last)
@@ -1351,6 +1538,10 @@ async function main() {
       stepInside(dt);
       return;
     }
+    if (vehicles.out) {
+      stepOut(dt);
+      return;
+    }
     car.update(dt, camera);
     world.update(dt, car);
     earStep(dt);
@@ -1367,6 +1558,16 @@ async function main() {
     character.setFirstPerson(player.firstPerson);
     lastGearSeen = null;
     const vmode = vehicles.mode;
+    // ((V10) on foot again: the movement keys held through the exit's end move him at once)
+    if (vmode === 'drawing' && lastVMode !== 'drawing') {
+      syncMoveKeys();
+      // ((V10) and the camera eased from where the vehicle's or the follow camera left it onto the on-foot one (0.4 to 1.1 s):
+      // it cut there before)
+      // (longer from farther: the helicopter's chase camera is 15 m back)
+      const far = camera.position.distanceTo(_v.set(player.pos.x, player.pos.y + 1.6, player.pos.z));
+      camHand = { pos: camera.position.clone(), quat: camera.quaternion.clone(), fov: camera.fov, t: 0, T: THREE.MathUtils.clamp(far / 10, 0.4, 1.1) };
+    }
+    lastVMode = vmode;
     if (vmode !== 'foot') {
       // on the way to the car or back from it: no shooting, aiming, reloading or swapping
       input.swap = null;
@@ -1431,6 +1632,9 @@ async function main() {
     // (no aiming with the hands busy: the reload and the swap bring the gun in to the body)
     const busy = weapon.state === 'reloading' || swapping;
     player.update(dt, input, busy, busy);
+    // ((V10) the settle at the door moves the root itself (p.vel 0): the legs are told the speed it is moving at, so the
+    // gait slows into the stance instead of dropping to a stand in one frame)
+    if (vmode === 'walking' && vehicles.settleSpeed !== null) player.speed = vehicles.settleSpeed;
     character.root.position.copy(player.pos);
     // ((V6) all three: an exit hands over from a tilted vehicle's frame, and the hand-over's offset turns the root too)
     character.root.rotation.set(0, player.yaw, 0);
@@ -1528,10 +1732,12 @@ async function main() {
       const settle = ramp((swap.clip.duration - swap.t) / EASE);
       inPos.lerp(character.locoGunPos, 1 - settle);
       inQuat.slerp(character.locoGunQuat, 1 - settle);
-      slung.gunPos.copy(character.gunPos);
+      // ((V10) a pack worn: the gun going onto the back meets its place out on the pack, the one coming off leaves from it)
+      const sf = swap.t / swap.clip.duration;
+      slung.gunPos.copy(character.gunPos).addScaledVector(para.packShift, THREE.MathUtils.smoothstep(sf, 0.45, 0.9));
       slung.gunQuat.copy(character.gunQuat);
       swap.out.place(slung);
-      slung.gunPos.copy(inPos);
+      slung.gunPos.copy(inPos).addScaledVector(para.packShift, 1 - THREE.MathUtils.smoothstep(sf, 0.1, 0.45));
       slung.gunQuat.copy(inQuat);
       swap.in.place(slung);
     } else if (stow) {
@@ -1539,7 +1745,7 @@ async function main() {
       // gun goes on settling into its place on the back for 0.1 s after the hand lets go at `slung` (7 cm), and the
       // track ends exactly at the stow place; V1-V8 put it at the stow place from `slung` on, and the gun (with the
       // hand that reaches for it) jumped those 7 cm in one frame: the draw's 4.09 m/s, the old stow's 4.08
-      slung.gunPos.copy(character.gunPos);
+      slung.gunPos.copy(character.gunPos).addScaledVector(para.packShift, ramp((stow.t - stow.clip.events.slung + 0.3) / 0.3));
       slung.gunQuat.copy(character.gunQuat);
       weapon.place(slung);
     } else if (handsFree) {
@@ -1600,7 +1806,10 @@ async function main() {
     }
     if (stow || handsFree) {
       // (pass V1) empty hands by the thighs; the firing hand with the gun until it is on the back
-      const empty = emptyHands(character, emptyOut, character.phase, Math.min(1, player.speed / 1.5) * 0.5);
+      // ((V10) the empty hands' swing eased with the pace: the brisk settle at the door stops the body in 0.3 s, and the
+      // swing taken from the speed itself dropped the hands in one frame (4.5 m/s of change at the right hand))
+      emptySwing += (Math.min(1, player.speed / 1.5) * 0.5 - emptySwing) * (1 - Math.exp(-dt / 0.18));
+      const empty = emptyHands(character, emptyOut, character.phase, emptySwing);
       if (stow) {
         const slungAt = stow.clip.events.slung;
         const s = character.act.sample;
@@ -1639,6 +1848,15 @@ async function main() {
     // ---- camera (the sun's shadow box follows the player when the frame is drawn: look.js) ----
     sight.copy(weapon.sightLocal).add(_v.set(-0.004, 0.03, 0.2)).applyQuaternion(player.aimQuat).add(weapon.basePos);
     player.placeCamera(dt, camera, character.eye, sight, character.life);
+    if (camHand) {
+      camHand.t += dt;
+      const u = THREE.MathUtils.smoothstep(camHand.t / camHand.T, 0, 1);
+      camera.position.lerpVectors(camHand.pos, _v.copy(camera.position), u);
+      camera.quaternion.slerpQuaternions(camHand.quat, _q.copy(camera.quaternion), u);
+      camera.fov = THREE.MathUtils.lerp(camHand.fov, camera.fov, u);
+      camera.updateProjectionMatrix();
+      if (u >= 1) camHand = null;
+    }
     // (first person the gun fills the bottom of the view and kicks towards it on every shot: a short
     // smear cap there, so the near gun does not smudge; pass 11)
     look.blur.maxPx.value = player.firstPerson ? 3 : 10;
@@ -1730,6 +1948,13 @@ async function main() {
     heliInput: null, // (review: a function (heli, dt) that sets the helicopter's controls each frame)
     world,
     vehicles,
+    para, // ((V10) the parachute packs and canopy)
+    get exits() {
+      return vehicles.exits;
+    },
+    held,
+    moveHeld: false, // ((V10) review: as if a movement key were held (exits from events.free))
+    controlHeld: false, // ((V10) review: as if the vehicle's keys were held (controls from events.handsOn))
     get inertia() {
       return inertia;
     },

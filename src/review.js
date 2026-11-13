@@ -399,6 +399,7 @@ import * as SC from '../tools/heli/scenarios.js';
 import * as PILOT from '../tools/heli/pilot.js';
 import { Helicopter } from './heli/flight.js';
 import { makeChain } from './chain.js';
+import { makeExitReview } from './exitreview.js';
 
 export function makeReview(demo) {
   const v = new THREE.Vector3();
@@ -1588,5 +1589,5 @@ export function makeReview(demo) {
     return res;
   }
 
-  return { review, trace, record, measure, SITUATIONS, vehicleReview, seatInCar, heliReview, heliReach, seatInHeli, sheet, bodyClearance, enterExit, ...makeChain(demo, sheet) };
+  return { review, trace, record, measure, SITUATIONS, vehicleReview, seatInCar, heliReview, heliReach, seatInHeli, sheet, bodyClearance, enterExit, ...makeChain(demo, sheet), ...makeExitReview(demo, sheet) };
 }

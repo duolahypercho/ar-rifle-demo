@@ -50,7 +50,12 @@ capture it, drag on the view to look around instead.
 | `G` | Picture: full (lighting, shadows, AO, anti-aliasing, motion blur, bloom, grade) or plain (the same scene with no post-processing), to compare |
 | `B` | Spoken calls ("Reloading!") on or off; breathing and grunts stay on |
 | `H` | Debug: be struck, each press from the next way round (front, right, back, left); every fifth press a heavy blow from the front or back |
-| `T` or `Enter` | Get in / out of the car (at its driver's door) or the helicopter (at the pilot's door): see "Vehicles" and "Helicopter" |
+| `T` or `Enter` | Get in / out of the car (at its driver's door) or the helicopter (at the pilot's door): see "Vehicles" and "Helicopter". (V10) From up to 5 m away: the character jogs to the door (walks the last metre) and goes round the vehicle's end if it is in the way |
+| `T` in the car | (V10) At up to 29 km/h the driver brakes to a stop and gets out; faster, he bails out of the moving car, rolls and gets up (the car runs on with nobody at the controls and slows) |
+| `T` in the helicopter | (V10) On its skids: out at once, the engine left running (the `I` key's shutdown is still there); in the air: he jumps out of the door (and falls) |
+| Walk into a parachute pack | (V10) Puts it on (no key): a pack lies on a crate at the helipad's edge (on the yard side) and one by the hangar doors, each marked by a soft column of light; the crate's pack is back 30 s after it is taken. The top-right panel shows "Parachute" while one is worn |
+| `Space`, falling 30 m or more up with a pack on | (V10) Open the parachute (the HUD says when) |
+| `A` / `D` · `S` · `W`, under the canopy | (V10) Steer left / right (up to about 60 degrees a second, banking, sinking faster) · flare (both toggles down: slower and flatter for about 1.5 s; flare from about 4 m up) · let the toggles up (a little faster) |
 | `9` | (V7) Time of day: midday, late afternoon, dusk, night (also in the vehicles) |
 | `8` | (V7) Wind: calm, 3, 6, 10 m/s with gusts (also in the vehicles) |
 | `0` | (V7) Both vehicles back to new (dents, scrapes, glass, lamps, mirrors, steering, the helicopter's skids) |
@@ -1041,3 +1046,55 @@ the frame you keep (one step after the last).
 - **Tools:** `/tools/v9_cost.js` (`turn` the view while tracing every frame's CPU, GPU and what was built or uploaded;
   `blocks`; `real` for the game's own loop; `trace` for any scripted action; `table`), `/tools/v9_shots.js` (`farTrees`,
   `farAB`, `nearFar`).
+
+## Vehicles, pass V10 (brisk entry, out at any speed, the parachute)
+
+- **Getting in, briskly:** T works from 5 m from the door (was 2.6). Farther than 2 m the character jogs, the last metre
+  he walks; where the straight way to the door crosses the car or the helicopter he goes round its end. At the door the
+  settle takes 0.3 to 0.4 s (was up to 1.4 s, after a stop and a turn on the spot) and runs on from the speed he arrives
+  with; the entry clip's contacts come in with its 0.3 s join. From 4.5 m behind the car's door the entry clip starts
+  2.1 s after T (from 1.5 m: 1.45 s) and, with the clip pass's 3.5 s car-enter, he is seated 5.6 s after T (was about
+  10 s). From the entry clip's `events.handsOn` the vehicle's keys are live: pressing one takes the seated pose at once
+  and a door still open shuts by itself (0.55 s).
+- **Getting out of the car:** at up to 8 m/s (29 km/h) the driver brakes to a stop (full brake, the wheel still his) and
+  then car-exit plays (from 20 km/h: stopped 0.5 s after T, standing at 3.4 s with the 2.9 s car-exit); faster, he bails: car-bail in the car's frame (the door shoved open, out of the doorway), then from
+  its `events.release` he is in the world carried at the car's speed, bail-roll lands him and its travel is lengthened by a
+  slide that takes the carried speed off by the time he stands (80 km/h: a 10.7 m slide, 23 m from the door to where he
+  stands; 150 km/h: 20 m and 41 m). The car runs on with no throttle, brake or steering, slowed by its engine in gear; at
+  4 m/s its engine stops and it rolls to rest (from 80 km/h in about 30 s and 330 m on the main straight). Its door shuts
+  by itself.
+- **Getting out of the helicopter:** on its skids, heli-exit at once with the engine running (collective down; standing
+  3.6 s after T with the 3.6 s heli-exit, was 35 s and more of shutdown and a 12 s clip), and he can get back into it
+  running; in the air he jumps: heli-jump, then a fall with air drag (terminal 55 m/s), facing the way he
+  left; long falls go belly-down and come upright for the ground. On the ground by the vertical speed: land-roll up to
+  9 m/s (from about 4 m), land-hard up to 14 m/s (about 10 m), more is **WASTED**: the picture goes dark with the word,
+  and 3 s later he stands at the helipad's edge with both guns. The empty helicopter gets neutral controls (collective
+  down, the assist not used) and comes down by its own physics; if it ends on its side or back it is put back on the
+  helipad (cold, as new) once it has lain still 5 s with the player 25 m away, or at once on a WASTED.
+- **Moving off:** a movement key held when an exit, a bail or a landing reaches its `events.free` hands over at once (the
+  rest of the clip is skipped, the door closes by itself); he walks during the draw.
+- **The parachute:** see the controls. Space opens it from 30 m up (para-deploy: the canopy streams out and inflates; the
+  speed falls to the canopy's over about a second, a jerk upright); a ram-air canopy then flies at about 10 m/s and sinks
+  at about 5 m/s, the wind drifts it; under 6 m/s at the ground is a landing (para-land: the run-out, the canopy settling
+  ahead and going), faster the impact rules above. Opened too low it is not flying by the ground. The pack is used up when
+  it is opened; WASTED loses it. The canopy (9 cells), its lines, risers and toggles and the pack are made in code
+  (`src/para.js`), every mesh is in the loading screen's warm-up.
+- **Cameras:** through a bail, a fall and a canopy flight the chase camera follows the body from the vehicle's chase camera
+  without a cut (behind the way he goes, a little above, looking a little down; under the canopy farther back so both show),
+  kept out of the vehicles' bodies; as he stands it eases to the on-foot camera's place, and every hand-over to on foot
+  (also after a normal exit) eases the camera over 0.4 to 1.1 s instead of cutting.
+- **Guns:** put away as before: from the press of T until he is out and standing (after bail-roll, the landings,
+  car-exit or heli-exit), then on the back and drawn. With a parachute pack on, the slung gun rests 13 cm further out, on
+  the pack.
+- **Clips:** car-bail, bail-roll, heli-jump, fall, land-roll, land-hard and the para clips are looked up by name in the
+  body's vehicle pack (the clip pass A4 is making them); until a pack has one a stand-in built from the pack's own poses
+  plays (the seated driver or pilot, standing, the deepest squat of car-exit, the limbs spread for the fall, the arms up
+  to the toggles): the stand-ins squat and slide rather than roll. The shorter car-enter / car-exit / heli-exit (the
+  Tripo pack, 2026-11-13) replace the old ones by name, and so will the rest. Which played is in
+  `demo.vehicles.stats.paths`.
+- **Review calls** (`src/exitreview.js`): `demo.bailReview(kmh)`, `demo.jumpReview(height)`, `demo.heliGroundExit()`,
+  `demo.paraReview(height, { open, steer, at: 'grass' | 'tarmac' })`, `demo.entryReview(kind, from)`; each gets in by the
+  game's own path, records every frame (hands, feet, head, pelvis, root, camera), posts a film and a witness film to the
+  sheet receiver, then checks that he walks, fires and gets back in. `tools/v10_real.js`: frame time of each path, in the
+  game's own loop (`path`) or step-driven (`traced`).
+
