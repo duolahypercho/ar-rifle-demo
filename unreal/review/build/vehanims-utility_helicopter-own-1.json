@@ -1,0 +1,29 @@
+{
+ "boneRestErrCm": [
+  9.5367431640625e-06,
+  1.7657054125486127e-06
+ ],
+ "clips": {
+  "cabin_doors_open": {
+   "frames": 41,
+   "bytes": 564572,
+   "s": 0.16
+  },
+  "cockpit_doors_open": {
+   "frames": 41,
+   "bytes": 569020,
+   "s": 0.15
+  },
+  "main_rotor_spin": {
+   "frames": 31,
+   "bytes": 593468,
+   "s": 0.12
+  },
+  "tail_rotor_spin": {
+   "frames": 13,
+   "bytes": 491004,
+   "s": 0.07
+  }
+ },
+ "seconds": 0.5
+}

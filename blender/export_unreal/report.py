@@ -68,9 +68,68 @@ def main():
                 skin.append(f"{n} | {clip} | {r['frame']} | {r['worstVertexMm']:.4f} | {r['meanVertexMm']:.5f}")
     L.append('\nbody | clip | frame | worst vertex mm | mean vertex mm   (body FBX posed by the animation FBX, vs the GLB body skinned by the GLB clip)')
     L += skin
+    vehicles(L, chk)
     with open(os.path.join(R, 'proof_summary.txt'), 'w') as f:
         f.write('\n'.join(L) + '\n')
     print('\n'.join(L))
+
+
+def vehicles(L, chk):
+    """Pass U1 sections: the vehicle clips, the vehicles, the vehicle-side clips, the alignment, the paths."""
+    L.append('\n== Pass U1: vehicle clips (FBX as written: plain reader; every bone every frame from the FBX\'s own curves) ==')
+    L.append('pack | clip | frames (= max(2, GLB keys)) | fps | unit | root bones | bones / parents | root vs notes cm | curves worst mm (bone) | curves worst deg (bone) | MB')
+    for pk, res in chk.get('vehicleAnimations', {}).items():
+        for c, r in res.items():
+            if r.get('missing'):
+                L.append(f'{pk} | {c} | MISSING')
+                continue
+            L.append(f"{pk} | {c} | {r['frames']} ({r['wantFrames']}) | {r['fps']:g} | {r['unit']:g} | {r['rootBones']} | "
+                     f"{r['bonesMatch']} / {r['parentsMatch']} | {r['rootErrCm']:.6f} | {r['curvesWorstMm']:.4f} ({r['curvesWorstMmBone']}) | "
+                     f"{r['curvesWorstDeg']:.4f} ({r['curvesWorstDegBone']}) | {r['bytes'] / 1e6:.2f}")
+    for pk in config.VEHICLE_PACKS:
+        a = load(f'proof/vanims-{pk}.json')
+        if not a:
+            continue
+        L.append(f'-- {pk}: Blender re-import vs the GLB pack (numpy FK), every bone, every frame --')
+        L.append('clip | frames | FBX range | fps | worst pos mm (bone) | worst deg (bone) | root vs notes mm / deg | root start -> end [x, z, yaw]')
+        for c, r in a.items():
+            L.append(f"{c} | {r['frames']} | {r['fbxFrameRange']} | {r['sceneFps']:g} | {r['worstPosMm']:.4f} ({r['worstPosBone']}) | "
+                     f"{r['worstDeg']:.4f} ({r['worstDegBone']}) | {r['rootErrMm']:.4f} / {r['rootErrDeg']:.5f} | {r['rootStart']} -> {r['rootEnd']}")
+    L.append('\n== Pass U1: vehicles ==')
+    L.append('vehicle | unit | up | root bones | bones = GLB nodes / parents | mesh parts / GLB parts | pivots vs GLB mm / deg | bounds cm | verts | embedded | MB')
+    for v, r in chk.get('vehicles', {}).items():
+        L.append(f"{v} | {r['unitScaleFactor']} | {'XYZ'[r['upAxis']]} | {r['rootBones']} | {r['limbNodes']} {r['bonesMatchGlb']} / {r['parentsMatchGlb']} | "
+                 f"{r['meshModels']} / {r['partsInGlb']} | {r['pivotsVsGlbMm']:.5f} / {r['pivotsVsGlbDeg']:.5f} | {r['boundsCm']} | {r['vertices']} | "
+                 f"{len(r['embedded'])} | {r['bytes'] / 1e6:.1f}")
+    for v in config.VEHICLES:
+        b = load(f'proof/vehicle-{v}.json')
+        if b:
+            L.append(f"{v} re-imported: {b['armatures']} armature, {b['meshes']} meshes {b['otherObjects']}, bones {b['bones']} names / parents = GLB "
+                     f"{b['boneNamesEqual']} / {b['parentsEqual']}, rest pivots {b['restPivotMm']:.5f} mm / {b['restDeg']:.4f} deg, parts bound to "
+                     f"their own bone only (weight 1) {b['partsFound']} / {b['partsInGlb']} {b['badParts'] or ''}, rest vertices vs GLB "
+                     f"{b['restVertexMm']:.5f} mm ({b['restVertexWorstPart']}), {b['vertices']} vertices")
+    L.append('\n-- vehicle-side clips (vehicles/animations/<group>/<vehicle>_<clip>.fbx): frames, every bone every frame from the curves; Blender re-import --')
+    L.append('group | file | frames (want) | bones = vehicle | curves worst mm / deg | re-import worst mm / deg')
+    for g, res in chk.get('vehicleSideAnimations', {}).items():
+        for fn, r in res.items():
+            v = next(x for x in config.VEHICLES if fn.startswith(x + '_'))
+            p = (load(f'proof/vehanims-{v}-{g}.json') or {}).get(fn[len(v) + 1:])
+            pr = f"{p['worstPosMm']:.4f} / {p['worstDeg']:.4f}" if p else '-'
+            L.append(f"{g} | {fn} | {r['frames']} ({r['wantFrames']}) | {r['bonesMatch']} | {r['curvesWorstMm']:.5f} / {r['curvesWorstDeg']:.5f} | {pr}")
+    L.append('\n-- alignment: character clip FBX + vehicle-side FBX re-imported together, no offset; each contact\'s character bone in its '
+             'vehicle bone\'s frame vs the GLB pack + vehicle formula (every frame of every contact span) --')
+    L.append('pack | clip | contacts | frames | worst mm (at) | worst deg | contact spread in the GLB pack cm / deg (vehicle_data_check.json)')
+    spread = load('vehicle_data_check.json') or {}
+    for pk in config.VEHICLE_PACKS:
+        a = load(f'proof/align-{pk}.json') or {}
+        for c, r in a.items():
+            s = spread.get(pk, {}).get(c, {})
+            L.append(f"{pk} | {c} | {r['contacts']} | {r['framesChecked']} | {r['worstRelPosMm']:.4f} ({r['worstAt']}) | {r['worstRelDeg']:.4f} | "
+                     f"{s.get('worstSpreadCm', 0):.3f} / {s.get('worstSpreadDeg', 0):.2f} ({s.get('worstContact')})")
+    p = chk.get('paths')
+    if p:
+        L.append(f"\n== Paths in the FBX (every file under unreal/) ==\n{p['fbxFiles']} FBX; absolute texture / video paths: {p['absoluteMediaPaths']}; "
+                 f"files containing this machine's home folder: {p['filesWithHomeFolder']}; media folders named: {p['mediaFolders']}")
 
 
 if __name__ == '__main__':

@@ -1725,3 +1725,37 @@ Contract extensions decided for this round (both sides must follow them):
   car Tripo car-enter's right hand at 3.85 s (4.01). Films `a3check/gtachain_car_*`, `gta_*_heli.jpg`:
   no gun anywhere from the press of T to the end of the exit; the walk to the door starts 1.3 s
   sooner. The `guns` track contract and `CABIN_GUNS` stay in the code behind the flag.
+
+- The remaining open items (2026-11-13; the user: "go ahead do it"). Two passes started together:
+  V9 (game, owns the browser page and src/): the draw's right-hand jolt (4.09 m/s), the feet gliding
+  2 to 3 cm in the first 0.1 s of each entry, the far trees (cones from 100 m), then frame time and
+  the slow frames (helicopter median at or over 16.7 ms, vehicle p95 35 to 51 ms; target p95 22 ms),
+  measured last. U1 (Unreal export, headless Blender only): the 17 + 17 vehicle clips and both
+  vehicles as FBX with the door / event / contact data, and make.py fixed so no FBX embeds an
+  absolute path. Sound by ear and hands-on feel still need a person.
+
+- Freeze on getting into the car (the user, 2026-11-13: "when I try to get into the car the entire game
+  just freezes"). Cause, found by the main session on the live site with the node-builder and pipeline
+  caches instrumented: the guns-away change hid the guns, and the muzzle-flash PointLight was a child of the
+  gun's muzzle node, so the scene's light list changed; three.js then rebuilds every material (CPU node
+  building 0.6 to 1.0 s per change on this M5 Pro, plus the GPU's pipeline compiles, far longer on a
+  cold browser cache). It happened on pressing T (1037 ms), at the walk's end and the next frame (745 and
+  737 ms: the guns showed for the one frame where arrived() had set 'entering'), and again when the
+  guns came back after the exit. Fix (commit c1858f9, deployed): the flash light lives in the scene and
+  follows the muzzle (`fx._followFlash`), and the hide line covers 'entering'. After the fix a whole get-in
+  / get-out on a fresh load had no node rebuild at all; one 330 ms frame remains on the walk (no node
+  builds: the mirrors' first render compiling pipelines for their render target), left to V9's
+  precompile work. Lesson: never change a light's presence (or an ancestor's visibility) at run time.
+
+- Driver's right hand backwards (the user, 2026-11-13: "can you fix the hand that are driving car? seems
+  like backwards"). Measured in the game against the wheel's frame: the left hand pointed forward from
+  the wrist with its palm to the rim; the right hand pointed back at the driver (fingers +Y), its wrist
+  past the rim. The solved hands matched their targets exactly: the targets were wrong. seated.js
+  `_handsOnRim` built each hand's X from `tUp`, the rim's counter-clockwise tangent (12 o'clock at 9,
+  6 o'clock at 3), and negated it for the right hand, which rotated that hand 180 degrees about its palm
+  normal. Fix (commit 142e921, deployed): X = tUp for both hands (the canonical hand frames are mirror
+  images and PALM_LOCAL has no X, so this is the exact mirror). After: fingers (-0.26, -0.96, -0.07) and
+  (0.26, -0.96, -0.07), palms 0.0 cm off their targets, lockToLock palms 0.0 cm, never off the rim; test/
+  hands.test.js passes; pictures `a3check/hands_wheel_fixed.jpg`, `hands_close_fixed.jpg`. Every review
+  since V2 measured where the palms were, never which way the hands faced. Seen: the fingers hook rather
+  than wrap the tube tightly (both hands alike).

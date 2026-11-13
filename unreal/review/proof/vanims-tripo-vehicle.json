@@ -1,0 +1,478 @@
+{
+ "car-drive": {
+  "frames": 241,
+  "glbKeys": 241,
+  "fbxFrameRange": [
+   0,
+   240
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 89,
+  "worstPosMm": 0.004522038145035104,
+  "worstPosBone": "foot_l",
+  "worstDeg": 0.0032636812364265806,
+  "worstDegBone": "ring_03_r",
+  "rootErrMm": 4.805480094503882e-06,
+  "rootErrDeg": 1.9847842819546455e-05,
+  "rootStart": [
+   -0.37,
+   -0.14,
+   3.14159
+  ],
+  "rootEnd": [
+   -0.37,
+   -0.14,
+   3.14159
+  ]
+ },
+ "car-steer-l": {
+  "frames": 2,
+  "glbKeys": 1,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 89,
+  "worstPosMm": 0.0046308751405204785,
+  "worstPosBone": "foot_l",
+  "worstDeg": 0.0027924573026348264,
+  "worstDegBone": "index_03_r",
+  "rootErrMm": 4.805480094503882e-06,
+  "rootErrDeg": 1.9847842819546455e-05,
+  "rootStart": [
+   -0.37,
+   -0.14,
+   3.14159
+  ],
+  "rootEnd": [
+   -0.37,
+   -0.14,
+   3.14159
+  ]
+ },
+ "car-steer-r": {
+  "frames": 2,
+  "glbKeys": 1,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 89,
+  "worstPosMm": 0.0046308751405204785,
+  "worstPosBone": "foot_l",
+  "worstDeg": 0.002599344097217743,
+  "worstDegBone": "ring_03_l",
+  "rootErrMm": 4.805480094503882e-06,
+  "rootErrDeg": 1.9847842819546455e-05,
+  "rootStart": [
+   -0.37,
+   -0.14,
+   3.14159
+  ],
+  "rootEnd": [
+   -0.37,
+   -0.14,
+   3.14159
+  ]
+ },
+ "car-look-back": {
+  "frames": 2,
+  "glbKeys": 1,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 89,
+  "worstPosMm": 0.003614923666842949,
+  "worstPosBone": "foot_r",
+  "worstDeg": 0.001845204524958516,
+  "worstDegBone": "ring_03_l",
+  "rootErrMm": 4.805480094503882e-06,
+  "rootErrDeg": 1.9847842819546455e-05,
+  "rootStart": [
+   -0.37,
+   -0.14,
+   3.14159
+  ],
+  "rootEnd": [
+   -0.37,
+   -0.14,
+   3.14159
+  ]
+ },
+ "heli-fly": {
+  "frames": 241,
+  "glbKeys": 241,
+  "fbxFrameRange": [
+   0,
+   240
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 89,
+  "worstPosMm": 0.003495746656215258,
+  "worstPosBone": "ball_l",
+  "worstDeg": 0.0024584305844938367,
+  "worstDegBone": "index_03_r",
+  "rootErrMm": 8.211607976636423e-05,
+  "rootErrDeg": 1.9847842819546455e-05,
+  "rootStart": [
+   0.42,
+   -1.335,
+   3.14159
+  ],
+  "rootEnd": [
+   0.42,
+   -1.335,
+   3.14159
+  ]
+ },
+ "heli-cyclic-f": {
+  "frames": 2,
+  "glbKeys": 1,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 89,
+  "worstPosMm": 0.002995595938929771,
+  "worstPosBone": "foot_l",
+  "worstDeg": 0.0020627302696140633,
+  "worstDegBone": "index_02_r",
+  "rootErrMm": 8.211607976636423e-05,
+  "rootErrDeg": 1.9847842819546455e-05,
+  "rootStart": [
+   0.42,
+   -1.335,
+   3.14159
+  ],
+  "rootEnd": [
+   0.42,
+   -1.335,
+   3.14159
+  ]
+ },
+ "heli-cyclic-b": {
+  "frames": 2,
+  "glbKeys": 1,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 89,
+  "worstPosMm": 0.002995595938929771,
+  "worstPosBone": "foot_l",
+  "worstDeg": 0.0026989725751898246,
+  "worstDegBone": "index_03_r",
+  "rootErrMm": 8.211607976636423e-05,
+  "rootErrDeg": 1.9847842819546455e-05,
+  "rootStart": [
+   0.42,
+   -1.335,
+   3.14159
+  ],
+  "rootEnd": [
+   0.42,
+   -1.335,
+   3.14159
+  ]
+ },
+ "heli-cyclic-l": {
+  "frames": 2,
+  "glbKeys": 1,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 89,
+  "worstPosMm": 0.002995595938929771,
+  "worstPosBone": "foot_l",
+  "worstDeg": 0.002360399722641045,
+  "worstDegBone": "pinky_02_r",
+  "rootErrMm": 8.211607976636423e-05,
+  "rootErrDeg": 1.9847842819546455e-05,
+  "rootStart": [
+   0.42,
+   -1.335,
+   3.14159
+  ],
+  "rootEnd": [
+   0.42,
+   -1.335,
+   3.14159
+  ]
+ },
+ "heli-cyclic-r": {
+  "frames": 2,
+  "glbKeys": 1,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 89,
+  "worstPosMm": 0.002995595938929771,
+  "worstPosBone": "foot_l",
+  "worstDeg": 0.0013423110930076217,
+  "worstDegBone": "index_03_r",
+  "rootErrMm": 8.211607976636423e-05,
+  "rootErrDeg": 1.9847842819546455e-05,
+  "rootStart": [
+   0.42,
+   -1.335,
+   3.14159
+  ],
+  "rootEnd": [
+   0.42,
+   -1.335,
+   3.14159
+  ]
+ },
+ "heli-collective-up": {
+  "frames": 2,
+  "glbKeys": 1,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 89,
+  "worstPosMm": 0.002995595938929771,
+  "worstPosBone": "foot_l",
+  "worstDeg": 0.00196961591612016,
+  "worstDegBone": "index_03_r",
+  "rootErrMm": 8.211607976636423e-05,
+  "rootErrDeg": 1.9847842819546455e-05,
+  "rootStart": [
+   0.42,
+   -1.335,
+   3.14159
+  ],
+  "rootEnd": [
+   0.42,
+   -1.335,
+   3.14159
+  ]
+ },
+ "heli-collective-down": {
+  "frames": 2,
+  "glbKeys": 1,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 89,
+  "worstPosMm": 0.0030626321701167124,
+  "worstPosBone": "ball_l",
+  "worstDeg": 0.002469348545727051,
+  "worstDegBone": "index_03_r",
+  "rootErrMm": 8.211607976636423e-05,
+  "rootErrDeg": 1.9847842819546455e-05,
+  "rootStart": [
+   0.42,
+   -1.335,
+   3.14159
+  ],
+  "rootEnd": [
+   0.42,
+   -1.335,
+   3.14159
+  ]
+ },
+ "heli-pedal-l": {
+  "frames": 2,
+  "glbKeys": 1,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 89,
+  "worstPosMm": 0.0034033187825657377,
+  "worstPosBone": "foot_l",
+  "worstDeg": 0.00196961591612016,
+  "worstDegBone": "index_03_r",
+  "rootErrMm": 8.211607976636423e-05,
+  "rootErrDeg": 1.9847842819546455e-05,
+  "rootStart": [
+   0.42,
+   -1.335,
+   3.14159
+  ],
+  "rootEnd": [
+   0.42,
+   -1.335,
+   3.14159
+  ]
+ },
+ "heli-pedal-r": {
+  "frames": 2,
+  "glbKeys": 1,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 89,
+  "worstPosMm": 0.0029065021731609656,
+  "worstPosBone": "ball_l",
+  "worstDeg": 0.00196961591612016,
+  "worstDegBone": "index_03_r",
+  "rootErrMm": 8.211607976636423e-05,
+  "rootErrDeg": 1.9847842819546455e-05,
+  "rootStart": [
+   0.42,
+   -1.335,
+   3.14159
+  ],
+  "rootEnd": [
+   0.42,
+   -1.335,
+   3.14159
+  ]
+ },
+ "car-enter": {
+  "frames": 241,
+  "glbKeys": 241,
+  "fbxFrameRange": [
+   0,
+   240
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 89,
+  "worstPosMm": 0.15430912947699216,
+  "worstPosBone": "ik_hand_l",
+  "worstDeg": 0.0067185174436257015,
+  "worstDegBone": "root",
+  "rootErrMm": 0.13908590729712458,
+  "rootErrDeg": 0.006735541911555957,
+  "rootStart": [
+   -1.55,
+   -0.25,
+   3.14159
+  ],
+  "rootEnd": [
+   -0.37,
+   -0.14,
+   3.14159
+  ]
+ },
+ "car-exit": {
+  "frames": 236,
+  "glbKeys": 236,
+  "fbxFrameRange": [
+   0,
+   235
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 89,
+  "worstPosMm": 0.030835891983165307,
+  "worstPosBone": "ik_hand_gun",
+  "worstDeg": 0.003345900008169181,
+  "worstDegBone": "ring_03_r",
+  "rootErrMm": 0.0006274255554678528,
+  "rootErrDeg": 9.106177095847191e-05,
+  "rootStart": [
+   -0.37,
+   -0.14,
+   3.14159
+  ],
+  "rootEnd": [
+   -1.55,
+   -0.25,
+   3.14159
+  ]
+ },
+ "heli-enter": {
+  "frames": 284,
+  "glbKeys": 284,
+  "fbxFrameRange": [
+   0,
+   283
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 89,
+  "worstPosMm": 0.011346442717357333,
+  "worstPosBone": "ball_l",
+  "worstDeg": 0.002917285919131482,
+  "worstDegBone": "pinky_03_r",
+  "rootErrMm": 0.0006654952449247261,
+  "rootErrDeg": 3.837427910678656e-05,
+  "rootStart": [
+   1.8,
+   -1.55,
+   -1.5708
+  ],
+  "rootEnd": [
+   0.42,
+   -1.335,
+   3.14159
+  ]
+ },
+ "heli-exit": {
+  "frames": 366,
+  "glbKeys": 366,
+  "fbxFrameRange": [
+   0,
+   365
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 89,
+  "worstPosMm": 0.03186203392939194,
+  "worstPosBone": "ik_foot_r",
+  "worstDeg": 0.003276853986716554,
+  "worstDegBone": "index_03_r",
+  "rootErrMm": 0.001152541158240947,
+  "rootErrDeg": 0.00011347071530717478,
+  "rootStart": [
+   0.42,
+   -1.335,
+   3.14159
+  ],
+  "rootEnd": [
+   1.78,
+   -1.55,
+   4.67748
+  ]
+ }
+}

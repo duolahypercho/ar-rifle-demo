@@ -1,0 +1,38 @@
+{
+ "doors_open": {
+  "frames": 51,
+  "fbxFrameRange": [
+   0,
+   50
+  ],
+  "sceneFps": 30.0,
+  "worstPosMm": 0.00033717478808715227,
+  "worstPosBone": "door_glass_L",
+  "worstDeg": 3.138947970540072e-05,
+  "worstDegBone": "mirror_L"
+ },
+ "doors_close": {
+  "frames": 51,
+  "fbxFrameRange": [
+   0,
+   50
+  ],
+  "sceneFps": 30.0,
+  "worstPosMm": 0.0003816559456248789,
+  "worstPosBone": "door_glass_L",
+  "worstDeg": 3.5652504501115183e-05,
+  "worstDegBone": "mirror_L"
+ },
+ "steering_demo": {
+  "frames": 151,
+  "fbxFrameRange": [
+   0,
+   150
+  ],
+  "sceneFps": 30.0,
+  "worstPosMm": 0.00043901562281418544,
+  "worstPosBone": "brake_disc_FR",
+  "worstDeg": 0.01655415307111945,
+  "worstDegBone": "brake_disc_FL"
+ }
+}

@@ -1,0 +1,44 @@
+{
+ "boneRestErrCm": [
+  4.76837158203125e-06,
+  1.8016167502299396e-07
+ ],
+ "clips": {
+  "car-drive": {
+   "frames": 241,
+   "bytes": 1164364,
+   "s": 0.46
+  },
+  "car-steer-l": {
+   "frames": 2,
+   "bytes": 391260,
+   "s": 0.04
+  },
+  "car-steer-r": {
+   "frames": 2,
+   "bytes": 391260,
+   "s": 0.04
+  },
+  "car-look-back": {
+   "frames": 2,
+   "bytes": 391276,
+   "s": 0.04
+  },
+  "car-enter": {
+   "frames": 241,
+   "bytes": 1164892,
+   "s": 0.4
+  },
+  "car-exit": {
+   "frames": 236,
+   "bytes": 1147596,
+   "s": 0.47
+  },
+  "fit": {
+   "frames": 2,
+   "bytes": 391212,
+   "s": 0.06
+  }
+ },
+ "seconds": 1.5
+}

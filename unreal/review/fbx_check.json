@@ -11,7 +11,7 @@
    "coordSign": 1,
    "timeMode": 6,
    "fps": 30.0,
-   "bytes": 11521164,
+   "bytes": 11520812,
    "limbNodes": 89,
    "rootBones": [
     "root"
@@ -63,7 +63,7 @@
    "coordSign": 1,
    "timeMode": 6,
    "fps": 30.0,
-   "bytes": 8023996,
+   "bytes": 8023564,
    "limbNodes": 92,
    "rootBones": [
     "root"
@@ -115,7 +115,7 @@
    "coordSign": 1,
    "timeMode": 6,
    "fps": 30.0,
-   "bytes": 2400652,
+   "bytes": 2400236,
    "limbNodes": 92,
    "rootBones": [
     "root"
@@ -167,7 +167,7 @@
    "coordSign": 1,
    "timeMode": 6,
    "fps": 30.0,
-   "bytes": 2586412,
+   "bytes": 2585980,
    "limbNodes": 92,
    "rootBones": [
     "root"
@@ -219,7 +219,7 @@
    "coordSign": 1,
    "timeMode": 6,
    "fps": 30.0,
-   "bytes": 2513116,
+   "bytes": 2512684,
    "limbNodes": 92,
    "rootBones": [
     "root"
@@ -281,7 +281,7 @@
     ],
     "bonesMatch": true,
     "parentsMatch": true,
-    "bytes": 802012
+    "bytes": 802044
    },
    "reload-shotgun-start": {
     "fps": 30.0,
@@ -1697,7 +1697,7 @@
     ],
     "bonesMatch": true,
     "parentsMatch": true,
-    "bytes": 802172
+    "bytes": 802268
    },
    "reload-rifle-tac": {
     "fps": 30.0,
@@ -3723,7 +3723,7 @@
     ]
    ],
    "embedded": 6,
-   "bytes": 13791196
+   "bytes": 13790092
   },
   "pump_shotgun": {
    "version": 7400,
@@ -3816,7 +3816,2313 @@
     ]
    ],
    "embedded": 6,
-   "bytes": 18392284
+   "bytes": 18391164
   }
+ },
+ "vehicleAnimations": {
+  "tripo-vehicle": {
+   "car-drive": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "car-drive"
+    ],
+    "frames": 241,
+    "glbKeys": 241,
+    "wantFrames": 241,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 1868252,
+    "rootStartCm": [
+     -37.0,
+     14.0
+    ],
+    "rootTravelCm": 0.0,
+    "rootErrCm": 1.7763568394002505e-15,
+    "curvesWorstMm": 0.010549335921871905,
+    "curvesWorstMmBone": "ball_l",
+    "curvesWorstDeg": 0.0006226720520013881,
+    "curvesWorstDegBone": "ball_r"
+   },
+   "car-steer-l": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "car-steer-l"
+    ],
+    "frames": 2,
+    "glbKeys": 1,
+    "wantFrames": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 529372,
+    "rootStartCm": [
+     -37.0,
+     14.0
+    ],
+    "rootTravelCm": 0.0,
+    "rootErrCm": 1.7763568394002505e-15,
+    "curvesWorstMm": 0.01026088278198477,
+    "curvesWorstMmBone": "ball_l",
+    "curvesWorstDeg": 0.0006112542320063747,
+    "curvesWorstDegBone": "ball_r"
+   },
+   "car-steer-r": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "car-steer-r"
+    ],
+    "frames": 2,
+    "glbKeys": 1,
+    "wantFrames": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 529372,
+    "rootStartCm": [
+     -37.0,
+     14.0
+    ],
+    "rootTravelCm": 0.0,
+    "rootErrCm": 1.7763568394002505e-15,
+    "curvesWorstMm": 0.01026088278198477,
+    "curvesWorstMmBone": "ball_l",
+    "curvesWorstDeg": 0.0006112542320063747,
+    "curvesWorstDegBone": "ball_r"
+   },
+   "car-look-back": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "car-look-back"
+    ],
+    "frames": 2,
+    "glbKeys": 1,
+    "wantFrames": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 529388,
+    "rootStartCm": [
+     -37.0,
+     14.0
+    ],
+    "rootTravelCm": 0.0,
+    "rootErrCm": 1.7763568394002505e-15,
+    "curvesWorstMm": 0.010686316663120556,
+    "curvesWorstMmBone": "ball_l",
+    "curvesWorstDeg": 0.0005952327152308154,
+    "curvesWorstDegBone": "ball_r"
+   },
+   "heli-fly": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "heli-fly"
+    ],
+    "frames": 241,
+    "glbKeys": 241,
+    "wantFrames": 241,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 1869516,
+    "rootStartCm": [
+     42.0,
+     133.5
+    ],
+    "rootTravelCm": 0.0,
+    "rootErrCm": 0.0,
+    "curvesWorstMm": 0.00809366107133138,
+    "curvesWorstMmBone": "ball_r",
+    "curvesWorstDeg": 0.0004365814762873262,
+    "curvesWorstDegBone": "calf_twist_01_r"
+   },
+   "heli-cyclic-f": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "heli-cyclic-f"
+    ],
+    "frames": 2,
+    "glbKeys": 1,
+    "wantFrames": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 529388,
+    "rootStartCm": [
+     42.0,
+     133.5
+    ],
+    "rootTravelCm": 0.0,
+    "rootErrCm": 0.0,
+    "curvesWorstMm": 0.007169157131239109,
+    "curvesWorstMmBone": "ball_l",
+    "curvesWorstDeg": 0.000410447629098333,
+    "curvesWorstDegBone": "calf_twist_02_r"
+   },
+   "heli-cyclic-b": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "heli-cyclic-b"
+    ],
+    "frames": 2,
+    "glbKeys": 1,
+    "wantFrames": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 529388,
+    "rootStartCm": [
+     42.0,
+     133.5
+    ],
+    "rootTravelCm": 0.0,
+    "rootErrCm": 0.0,
+    "curvesWorstMm": 0.007169157131239109,
+    "curvesWorstMmBone": "ball_l",
+    "curvesWorstDeg": 0.000410447629098333,
+    "curvesWorstDegBone": "calf_twist_02_r"
+   },
+   "heli-cyclic-l": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "heli-cyclic-l"
+    ],
+    "frames": 2,
+    "glbKeys": 1,
+    "wantFrames": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 529388,
+    "rootStartCm": [
+     42.0,
+     133.5
+    ],
+    "rootTravelCm": 0.0,
+    "rootErrCm": 0.0,
+    "curvesWorstMm": 0.007169157131239109,
+    "curvesWorstMmBone": "ball_l",
+    "curvesWorstDeg": 0.000410447629098333,
+    "curvesWorstDegBone": "calf_twist_02_r"
+   },
+   "heli-cyclic-r": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "heli-cyclic-r"
+    ],
+    "frames": 2,
+    "glbKeys": 1,
+    "wantFrames": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 529388,
+    "rootStartCm": [
+     42.0,
+     133.5
+    ],
+    "rootTravelCm": 0.0,
+    "rootErrCm": 0.0,
+    "curvesWorstMm": 0.007169157131239109,
+    "curvesWorstMmBone": "ball_l",
+    "curvesWorstDeg": 0.000410447629098333,
+    "curvesWorstDegBone": "calf_twist_02_r"
+   },
+   "heli-collective-up": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "heli-collective-up"
+    ],
+    "frames": 2,
+    "glbKeys": 1,
+    "wantFrames": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 529420,
+    "rootStartCm": [
+     42.0,
+     133.5
+    ],
+    "rootTravelCm": 0.0,
+    "rootErrCm": 0.0,
+    "curvesWorstMm": 0.007169157131239109,
+    "curvesWorstMmBone": "ball_l",
+    "curvesWorstDeg": 0.000410447629098333,
+    "curvesWorstDegBone": "calf_twist_02_r"
+   },
+   "heli-collective-down": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "heli-collective-down"
+    ],
+    "frames": 2,
+    "glbKeys": 1,
+    "wantFrames": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 529420,
+    "rootStartCm": [
+     42.0,
+     133.5
+    ],
+    "rootTravelCm": 0.0,
+    "rootErrCm": 0.0,
+    "curvesWorstMm": 0.0077508394390152415,
+    "curvesWorstMmBone": "ball_r",
+    "curvesWorstDeg": 0.0004252855556557202,
+    "curvesWorstDegBone": "calf_twist_02_r"
+   },
+   "heli-pedal-l": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "heli-pedal-l"
+    ],
+    "frames": 2,
+    "glbKeys": 1,
+    "wantFrames": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 529372,
+    "rootStartCm": [
+     42.0,
+     133.5
+    ],
+    "rootTravelCm": 0.0,
+    "rootErrCm": 0.0,
+    "curvesWorstMm": 0.007663151014531766,
+    "curvesWorstMmBone": "ball_l",
+    "curvesWorstDeg": 0.00041242127857643796,
+    "curvesWorstDegBone": "calf_twist_02_r"
+   },
+   "heli-pedal-r": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "heli-pedal-r"
+    ],
+    "frames": 2,
+    "glbKeys": 1,
+    "wantFrames": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 529372,
+    "rootStartCm": [
+     42.0,
+     133.5
+    ],
+    "rootTravelCm": 0.0,
+    "rootErrCm": 0.0,
+    "curvesWorstMm": 0.007901958047205808,
+    "curvesWorstMmBone": "ball_r",
+    "curvesWorstDeg": 0.00043290281017649955,
+    "curvesWorstDegBone": "calf_twist_02_r"
+   },
+   "car-enter": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "car-enter"
+    ],
+    "frames": 241,
+    "glbKeys": 241,
+    "wantFrames": 241,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 1930908,
+    "rootStartCm": [
+     -155.0,
+     25.0
+    ],
+    "rootTravelCm": 118.51160280748886,
+    "rootErrCm": 2.2766113289662826e-05,
+    "curvesWorstMm": 0.011105190351243426,
+    "curvesWorstMmBone": "ball_l",
+    "curvesWorstDeg": 0.0007561215306197503,
+    "curvesWorstDegBone": "ball_r"
+   },
+   "car-exit": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "car-exit"
+    ],
+    "frames": 236,
+    "glbKeys": 236,
+    "wantFrames": 236,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 1897900,
+    "rootStartCm": [
+     -37.0,
+     14.0
+    ],
+    "rootTravelCm": 118.51160280748886,
+    "rootErrCm": 2.8686523421583843e-05,
+    "curvesWorstMm": 0.011029046060117096,
+    "curvesWorstMmBone": "ball_l",
+    "curvesWorstDeg": 0.000976499105761981,
+    "curvesWorstDegBone": "foot_l"
+   },
+   "heli-enter": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "heli-enter"
+    ],
+    "frames": 284,
+    "glbKeys": 284,
+    "wantFrames": 284,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 2170860,
+    "rootStartCm": [
+     180.0,
+     155.0
+    ],
+    "rootTravelCm": 139.66477723463422,
+    "rootErrCm": 1.4526367181133537e-05,
+    "curvesWorstMm": 0.010277527296783053,
+    "curvesWorstMmBone": "ball_l",
+    "curvesWorstDeg": 0.001241089140852221,
+    "curvesWorstDegBone": "ball_l"
+   },
+   "heli-exit": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "heli-exit"
+    ],
+    "frames": 366,
+    "glbKeys": 366,
+    "wantFrames": 366,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 2604860,
+    "rootStartCm": [
+     42.0,
+     133.5
+    ],
+    "rootTravelCm": 137.6889610680537,
+    "rootErrCm": 3.125000000636646e-05,
+    "curvesWorstMm": 0.009149128139675975,
+    "curvesWorstMmBone": "ball_l",
+    "curvesWorstDeg": 0.0011081126806358323,
+    "curvesWorstDegBone": "ball_l"
+   }
+  },
+  "earthonline-vehicle": {
+   "car-drive": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "car-drive"
+    ],
+    "frames": 241,
+    "glbKeys": 241,
+    "wantFrames": 241,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 1951372,
+    "rootStartCm": [
+     -37.0,
+     14.0
+    ],
+    "rootTravelCm": 0.0,
+    "rootErrCm": 1.7763568394002505e-15,
+    "curvesWorstMm": 0.0008792299655667111,
+    "curvesWorstMmBone": "ball_l",
+    "curvesWorstDeg": 0.00012151211757299356,
+    "curvesWorstDegBone": "thumb_02_l"
+   },
+   "car-steer-l": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "car-steer-l"
+    ],
+    "frames": 2,
+    "glbKeys": 1,
+    "wantFrames": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 546604,
+    "rootStartCm": [
+     -37.0,
+     14.0
+    ],
+    "rootTravelCm": 0.0,
+    "rootErrCm": 1.7763568394002505e-15,
+    "curvesWorstMm": 0.0004386620391618694,
+    "curvesWorstMmBone": "ring_03_l",
+    "curvesWorstDeg": 7.972618583862678e-05,
+    "curvesWorstDegBone": "thumb_02_r"
+   },
+   "car-steer-r": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "car-steer-r"
+    ],
+    "frames": 2,
+    "glbKeys": 1,
+    "wantFrames": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 546604,
+    "rootStartCm": [
+     -37.0,
+     14.0
+    ],
+    "rootTravelCm": 0.0,
+    "rootErrCm": 1.7763568394002505e-15,
+    "curvesWorstMm": 0.0008283694194738448,
+    "curvesWorstMmBone": "middle_03_l",
+    "curvesWorstDeg": 0.00011651429900475343,
+    "curvesWorstDegBone": "thumb_02_l"
+   },
+   "car-look-back": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "car-look-back"
+    ],
+    "frames": 2,
+    "glbKeys": 1,
+    "wantFrames": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 546620,
+    "rootStartCm": [
+     -37.0,
+     14.0
+    ],
+    "rootTravelCm": 0.0,
+    "rootErrCm": 1.7763568394002505e-15,
+    "curvesWorstMm": 0.0004450359905512007,
+    "curvesWorstMmBone": "ball_l",
+    "curvesWorstDeg": 9.652552040642667e-05,
+    "curvesWorstDegBone": "thumb_02_l"
+   },
+   "heli-fly": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "heli-fly"
+    ],
+    "frames": 241,
+    "glbKeys": 241,
+    "wantFrames": 241,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 1950620,
+    "rootStartCm": [
+     42.0,
+     133.5
+    ],
+    "rootTravelCm": 0.0,
+    "rootErrCm": 0.0,
+    "curvesWorstMm": 0.004619859030798867,
+    "curvesWorstMmBone": "pinky_02_l",
+    "curvesWorstDeg": 0.0004527158408044779,
+    "curvesWorstDegBone": "thumb_03_l"
+   },
+   "heli-cyclic-f": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "heli-cyclic-f"
+    ],
+    "frames": 2,
+    "glbKeys": 1,
+    "wantFrames": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 546620,
+    "rootStartCm": [
+     42.0,
+     133.5
+    ],
+    "rootTravelCm": 0.0,
+    "rootErrCm": 0.0,
+    "curvesWorstMm": 0.0009028930083590726,
+    "curvesWorstMmBone": "ring_02_r",
+    "curvesWorstDeg": 0.00010091878973799712,
+    "curvesWorstDegBone": "thumb_02_l"
+   },
+   "heli-cyclic-b": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "heli-cyclic-b"
+    ],
+    "frames": 2,
+    "glbKeys": 1,
+    "wantFrames": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 546620,
+    "rootStartCm": [
+     42.0,
+     133.5
+    ],
+    "rootTravelCm": 0.0,
+    "rootErrCm": 0.0,
+    "curvesWorstMm": 0.0014361848202365515,
+    "curvesWorstMmBone": "ring_03_l",
+    "curvesWorstDeg": 0.00015995444135784713,
+    "curvesWorstDegBone": "thumb_02_l"
+   },
+   "heli-cyclic-l": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "heli-cyclic-l"
+    ],
+    "frames": 2,
+    "glbKeys": 1,
+    "wantFrames": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 546620,
+    "rootStartCm": [
+     42.0,
+     133.5
+    ],
+    "rootTravelCm": 0.0,
+    "rootErrCm": 0.0,
+    "curvesWorstMm": 0.0013948226823827146,
+    "curvesWorstMmBone": "thumb_03_l",
+    "curvesWorstDeg": 0.00019827410952014636,
+    "curvesWorstDegBone": "thumb_02_r"
+   },
+   "heli-cyclic-r": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "heli-cyclic-r"
+    ],
+    "frames": 2,
+    "glbKeys": 1,
+    "wantFrames": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 546620,
+    "rootStartCm": [
+     42.0,
+     133.5
+    ],
+    "rootTravelCm": 0.0,
+    "rootErrCm": 0.0,
+    "curvesWorstMm": 0.0011283043673854093,
+    "curvesWorstMmBone": "middle_03_r",
+    "curvesWorstDeg": 7.833344124821144e-05,
+    "curvesWorstDegBone": "thumb_02_r"
+   },
+   "heli-collective-up": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "heli-collective-up"
+    ],
+    "frames": 2,
+    "glbKeys": 1,
+    "wantFrames": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 546636,
+    "rootStartCm": [
+     42.0,
+     133.5
+    ],
+    "rootTravelCm": 0.0,
+    "rootErrCm": 0.0,
+    "curvesWorstMm": 0.0009004449580348999,
+    "curvesWorstMmBone": "ball_r",
+    "curvesWorstDeg": 0.00012207470438879405,
+    "curvesWorstDegBone": "thumb_02_r"
+   },
+   "heli-collective-down": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "heli-collective-down"
+    ],
+    "frames": 2,
+    "glbKeys": 1,
+    "wantFrames": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 546652,
+    "rootStartCm": [
+     42.0,
+     133.5
+    ],
+    "rootTravelCm": 0.0,
+    "rootErrCm": 0.0,
+    "curvesWorstMm": 0.001488735049621998,
+    "curvesWorstMmBone": "ring_02_r",
+    "curvesWorstDeg": 0.0001802332142562143,
+    "curvesWorstDegBone": "thumb_02_r"
+   },
+   "heli-pedal-l": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "heli-pedal-l"
+    ],
+    "frames": 2,
+    "glbKeys": 1,
+    "wantFrames": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 546604,
+    "rootStartCm": [
+     42.0,
+     133.5
+    ],
+    "rootTravelCm": 0.0,
+    "rootErrCm": 0.0,
+    "curvesWorstMm": 0.0007875414234559573,
+    "curvesWorstMmBone": "ball_r",
+    "curvesWorstDeg": 0.00012207470438879405,
+    "curvesWorstDegBone": "thumb_02_r"
+   },
+   "heli-pedal-r": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "heli-pedal-r"
+    ],
+    "frames": 2,
+    "glbKeys": 1,
+    "wantFrames": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 546604,
+    "rootStartCm": [
+     42.0,
+     133.5
+    ],
+    "rootTravelCm": 0.0,
+    "rootErrCm": 0.0,
+    "curvesWorstMm": 0.0007864520500903585,
+    "curvesWorstMmBone": "eye_l",
+    "curvesWorstDeg": 0.00012207470438879405,
+    "curvesWorstDegBone": "thumb_02_r"
+   },
+   "car-enter": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "car-enter"
+    ],
+    "frames": 241,
+    "glbKeys": 241,
+    "wantFrames": 241,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 1997932,
+    "rootStartCm": [
+     -155.0,
+     25.0
+    ],
+    "rootTravelCm": 118.51160280748886,
+    "rootErrCm": 1.6113281247953637e-05,
+    "curvesWorstMm": 0.4568725751930982,
+    "curvesWorstMmBone": "ring_03_l",
+    "curvesWorstDeg": 0.03963090818116921,
+    "curvesWorstDegBone": "thumb_02_l"
+   },
+   "car-exit": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "car-exit"
+    ],
+    "frames": 236,
+    "glbKeys": 236,
+    "wantFrames": 236,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 1964668,
+    "rootStartCm": [
+     -37.0,
+     14.0
+    ],
+    "rootTravelCm": 118.51160280748886,
+    "rootErrCm": 2.41699218577196e-05,
+    "curvesWorstMm": 0.8791739300447109,
+    "curvesWorstMmBone": "ring_03_l",
+    "curvesWorstDeg": 0.07887161942959155,
+    "curvesWorstDegBone": "thumb_02_l"
+   },
+   "heli-enter": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "heli-enter"
+    ],
+    "frames": 287,
+    "glbKeys": 287,
+    "wantFrames": 287,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 2262860,
+    "rootStartCm": [
+     180.0,
+     155.0
+    ],
+    "rootTravelCm": 139.66477723463422,
+    "rootErrCm": 1.464843751364242e-05,
+    "curvesWorstMm": 0.993448014116511,
+    "curvesWorstMmBone": "ring_03_l",
+    "curvesWorstDeg": 0.08896516832858195,
+    "curvesWorstDegBone": "upperarm_l"
+   },
+   "heli-exit": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "front": 1,
+    "frontSign": -1,
+    "takes": [
+     "heli-exit"
+    ],
+    "frames": 368,
+    "glbKeys": 368,
+    "wantFrames": 368,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 2710604,
+    "rootStartCm": [
+     42.0,
+     133.5
+    ],
+    "rootTravelCm": 137.6889610680537,
+    "rootErrCm": 3.173828125113687e-05,
+    "curvesWorstMm": 0.5910529860628503,
+    "curvesWorstMmBone": "ring_03_r",
+    "curvesWorstDeg": 0.05969917866223804,
+    "curvesWorstDegBone": "thumb_03_r"
+   }
+  }
+ },
+ "vehicles": {
+  "supercar": {
+   "version": 7400,
+   "unitScaleFactor": 1.0,
+   "upAxis": 2,
+   "upSign": 1,
+   "frontAxis": 1,
+   "frontSign": -1,
+   "coordAxis": 0,
+   "coordSign": 1,
+   "timeMode": 6,
+   "fps": 30.0,
+   "bytes": 10594236,
+   "limbNodes": 65,
+   "rootBones": [
+    "vehicle_root"
+   ],
+   "pivotsVsGlbMm": 4.76837158203125e-05,
+   "pivotsVsGlbDeg": 9.334667346492031e-06,
+   "armatureBone": false,
+   "bonesMatchGlb": true,
+   "parentsMatchGlb": true,
+   "meshModels": 46,
+   "partsInGlb": 46,
+   "nonBoneModels": [
+    "Mesh",
+    "Null"
+   ],
+   "boundsCm": [
+    [
+     -113.0,
+     -240.0,
+     0.0
+    ],
+    [
+     113.0,
+     240.0,
+     113.99
+    ]
+   ],
+   "vertices": 76813,
+   "embedded": [
+    [
+     "body_normal.png",
+     "supercar.fbm/body_normal.png",
+     21138
+    ],
+    [
+     "trim_basecolor.png",
+     "supercar.fbm/trim_basecolor.png",
+     1090938
+    ],
+    [
+     "trim_normal.png",
+     "supercar.fbm/trim_normal.png",
+     1380067
+    ],
+    [
+     "wheel_normal.png",
+     "supercar.fbm/wheel_normal.png",
+     607396
+    ],
+    [
+     "interior_normal.jpg",
+     "supercar.fbm/interior_normal.jpg",
+     661178
+    ],
+    [
+     "stitch_basecolor.png",
+     "supercar.fbm/stitch_basecolor.png",
+     470
+    ],
+    [
+     "display_emissive.png",
+     "supercar.fbm/display_emissive.png",
+     17763
+    ]
+   ]
+  },
+  "utility_helicopter": {
+   "version": 7400,
+   "unitScaleFactor": 1.0,
+   "upAxis": 2,
+   "upSign": 1,
+   "frontAxis": 1,
+   "frontSign": -1,
+   "coordAxis": 0,
+   "coordSign": 1,
+   "timeMode": 6,
+   "fps": 30.0,
+   "bytes": 16507660,
+   "limbNodes": 68,
+   "rootBones": [
+    "helicopter_root"
+   ],
+   "pivotsVsGlbMm": 0.0002675422590543912,
+   "pivotsVsGlbDeg": 0.00013829347128641172,
+   "armatureBone": false,
+   "bonesMatchGlb": true,
+   "parentsMatchGlb": true,
+   "meshModels": 50,
+   "partsInGlb": 50,
+   "nonBoneModels": [
+    "Mesh",
+    "Null"
+   ],
+   "boundsCm": [
+    [
+     -550.0,
+     -751.06,
+     -77.81
+    ],
+    [
+     550.0,
+     550.0,
+     320.0
+    ]
+   ],
+   "vertices": 95267,
+   "embedded": [
+    [
+     "ext_normal.png",
+     "utility_helicopter.fbm/ext_normal.png",
+     594824
+    ],
+    [
+     "mech_basecolor.png",
+     "utility_helicopter.fbm/mech_basecolor.png",
+     377917
+    ],
+    [
+     "mech_normal.png",
+     "utility_helicopter.fbm/mech_normal.png",
+     811164
+    ],
+    [
+     "int_basecolor.png",
+     "utility_helicopter.fbm/int_basecolor.png",
+     1840744
+    ],
+    [
+     "int_normal.png",
+     "utility_helicopter.fbm/int_normal.png",
+     4776514
+    ],
+    [
+     "lights_emissive.png",
+     "utility_helicopter.fbm/lights_emissive.png",
+     131
+    ],
+    [
+     "displays_emissive.png",
+     "utility_helicopter.fbm/displays_emissive.png",
+     394072
+    ],
+    [
+     "rotor_blur.png",
+     "utility_helicopter.fbm/rotor_blur.png",
+     124828
+    ]
+   ]
+  }
+ },
+ "vehicleSideAnimations": {
+  "earthonline-vehicle": {
+   "supercar_car-drive": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "supercar_car-drive"
+    ],
+    "frames": 241,
+    "wantFrames": 241,
+    "rootBones": [
+     "vehicle_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 1164364,
+    "curvesWorstMm": 4.76837158203125e-05,
+    "curvesWorstMmBone": "entry_driver_point",
+    "curvesWorstDeg": 2.769176357445497e-05,
+    "curvesWorstDegBone": "steering_wheel"
+   },
+   "supercar_car-enter": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "supercar_car-enter"
+    ],
+    "frames": 241,
+    "wantFrames": 241,
+    "rootBones": [
+     "vehicle_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 1164892,
+    "curvesWorstMm": 0.0002990369606800735,
+    "curvesWorstMmBone": "mirror_L",
+    "curvesWorstDeg": 1.9167170820781278e-05,
+    "curvesWorstDegBone": "door_glass_L"
+   },
+   "supercar_car-exit": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "supercar_car-exit"
+    ],
+    "frames": 236,
+    "wantFrames": 236,
+    "rootBones": [
+     "vehicle_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 1147708,
+    "curvesWorstMm": 0.0003112024372421922,
+    "curvesWorstMmBone": "mirror_L",
+    "curvesWorstDeg": 2.71870272589746e-05,
+    "curvesWorstDegBone": "door_glass_L"
+   },
+   "supercar_car-look-back": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "supercar_car-look-back"
+    ],
+    "frames": 2,
+    "wantFrames": 2,
+    "rootBones": [
+     "vehicle_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 391276,
+    "curvesWorstMm": 4.76837158203125e-05,
+    "curvesWorstMmBone": "entry_driver_point",
+    "curvesWorstDeg": 7.73124918760008e-06,
+    "curvesWorstDegBone": "camera_cockpit"
+   },
+   "supercar_car-steer-l": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "supercar_car-steer-l"
+    ],
+    "frames": 2,
+    "wantFrames": 2,
+    "rootBones": [
+     "vehicle_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 391260,
+    "curvesWorstMm": 4.76837158203125e-05,
+    "curvesWorstMmBone": "entry_driver_point",
+    "curvesWorstDeg": 3.737149722968962e-05,
+    "curvesWorstDegBone": "steering_wheel"
+   },
+   "supercar_car-steer-r": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "supercar_car-steer-r"
+    ],
+    "frames": 2,
+    "wantFrames": 2,
+    "rootBones": [
+     "vehicle_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 391260,
+    "curvesWorstMm": 4.76837158203125e-05,
+    "curvesWorstMmBone": "entry_driver_point",
+    "curvesWorstDeg": 3.737149722968962e-05,
+    "curvesWorstDegBone": "steering_wheel"
+   },
+   "supercar_fit": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "supercar_fit"
+    ],
+    "frames": 2,
+    "wantFrames": 2,
+    "rootBones": [
+     "vehicle_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 391212,
+    "curvesWorstMm": 4.76837158203125e-05,
+    "curvesWorstMmBone": "entry_driver_point",
+    "curvesWorstDeg": 7.73124918760008e-06,
+    "curvesWorstDegBone": "camera_cockpit"
+   },
+   "utility_helicopter_fit": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "utility_helicopter_fit"
+    ],
+    "frames": 2,
+    "wantFrames": 2,
+    "rootBones": [
+     "helicopter_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 408956,
+    "curvesWorstMm": 0.0002675422590281117,
+    "curvesWorstMmBone": "cockpit_door_L_glass",
+    "curvesWorstDeg": 0.0001393509248475533,
+    "curvesWorstDegBone": "tail_blade_02"
+   },
+   "utility_helicopter_heli-collective-down": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "utility_helicopter_heli-collective-down"
+    ],
+    "frames": 2,
+    "wantFrames": 2,
+    "rootBones": [
+     "helicopter_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 409068,
+    "curvesWorstMm": 0.0002675422590281117,
+    "curvesWorstMmBone": "cockpit_door_L_glass",
+    "curvesWorstDeg": 0.0001393509248475533,
+    "curvesWorstDegBone": "tail_blade_02"
+   },
+   "utility_helicopter_heli-collective-up": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "utility_helicopter_heli-collective-up"
+    ],
+    "frames": 2,
+    "wantFrames": 2,
+    "rootBones": [
+     "helicopter_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 409052,
+    "curvesWorstMm": 0.0002675422590281117,
+    "curvesWorstMmBone": "cockpit_door_L_glass",
+    "curvesWorstDeg": 0.0001393509248475533,
+    "curvesWorstDegBone": "tail_blade_02"
+   },
+   "utility_helicopter_heli-cyclic-b": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "utility_helicopter_heli-cyclic-b"
+    ],
+    "frames": 2,
+    "wantFrames": 2,
+    "rootBones": [
+     "helicopter_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 409020,
+    "curvesWorstMm": 0.0002675422590281117,
+    "curvesWorstMmBone": "cockpit_door_L_glass",
+    "curvesWorstDeg": 0.0001393509248475533,
+    "curvesWorstDegBone": "tail_blade_02"
+   },
+   "utility_helicopter_heli-cyclic-f": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "utility_helicopter_heli-cyclic-f"
+    ],
+    "frames": 2,
+    "wantFrames": 2,
+    "rootBones": [
+     "helicopter_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 409020,
+    "curvesWorstMm": 0.0002675422590281117,
+    "curvesWorstMmBone": "cockpit_door_L_glass",
+    "curvesWorstDeg": 0.0001393509248475533,
+    "curvesWorstDegBone": "tail_blade_02"
+   },
+   "utility_helicopter_heli-cyclic-l": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "utility_helicopter_heli-cyclic-l"
+    ],
+    "frames": 2,
+    "wantFrames": 2,
+    "rootBones": [
+     "helicopter_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 409020,
+    "curvesWorstMm": 0.0002675422590281117,
+    "curvesWorstMmBone": "cockpit_door_L_glass",
+    "curvesWorstDeg": 0.0001393509248475533,
+    "curvesWorstDegBone": "tail_blade_02"
+   },
+   "utility_helicopter_heli-cyclic-r": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "utility_helicopter_heli-cyclic-r"
+    ],
+    "frames": 2,
+    "wantFrames": 2,
+    "rootBones": [
+     "helicopter_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 409020,
+    "curvesWorstMm": 0.0002675422590281117,
+    "curvesWorstMmBone": "cockpit_door_L_glass",
+    "curvesWorstDeg": 0.0001393509248475533,
+    "curvesWorstDegBone": "tail_blade_02"
+   },
+   "utility_helicopter_heli-enter": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "utility_helicopter_heli-enter"
+    ],
+    "frames": 287,
+    "wantFrames": 287,
+    "rootBones": [
+     "helicopter_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 1367596,
+    "curvesWorstMm": 0.0004411201957438513,
+    "curvesWorstMmBone": "cockpit_door_R_glass",
+    "curvesWorstDeg": 0.0001393509248475533,
+    "curvesWorstDegBone": "tail_blade_02"
+   },
+   "utility_helicopter_heli-exit": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "utility_helicopter_heli-exit"
+    ],
+    "frames": 368,
+    "wantFrames": 368,
+    "rootBones": [
+     "helicopter_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 1630300,
+    "curvesWorstMm": 0.000409261584725963,
+    "curvesWorstMmBone": "cockpit_door_R_glass",
+    "curvesWorstDeg": 0.0001393509248475533,
+    "curvesWorstDegBone": "tail_blade_02"
+   },
+   "utility_helicopter_heli-fly": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "utility_helicopter_heli-fly"
+    ],
+    "frames": 241,
+    "wantFrames": 241,
+    "rootBones": [
+     "helicopter_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 1218924,
+    "curvesWorstMm": 0.0002675422590281117,
+    "curvesWorstMmBone": "cockpit_door_L_glass",
+    "curvesWorstDeg": 0.0001393509248475533,
+    "curvesWorstDegBone": "tail_blade_02"
+   },
+   "utility_helicopter_heli-pedal-l": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "utility_helicopter_heli-pedal-l"
+    ],
+    "frames": 2,
+    "wantFrames": 2,
+    "rootBones": [
+     "helicopter_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 409020,
+    "curvesWorstMm": 0.0002675422590281117,
+    "curvesWorstMmBone": "cockpit_door_L_glass",
+    "curvesWorstDeg": 0.0001393509248475533,
+    "curvesWorstDegBone": "tail_blade_02"
+   },
+   "utility_helicopter_heli-pedal-r": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "utility_helicopter_heli-pedal-r"
+    ],
+    "frames": 2,
+    "wantFrames": 2,
+    "rootBones": [
+     "helicopter_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 409020,
+    "curvesWorstMm": 0.0002675422590281117,
+    "curvesWorstMmBone": "cockpit_door_L_glass",
+    "curvesWorstDeg": 0.0001393509248475533,
+    "curvesWorstDegBone": "tail_blade_02"
+   }
+  },
+  "own": {
+   "supercar_doors_close": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "supercar_doors_close"
+    ],
+    "frames": 51,
+    "wantFrames": 51,
+    "rootBones": [
+     "vehicle_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 580924,
+    "curvesWorstMm": 0.0002680469171203829,
+    "curvesWorstMmBone": "mirror_L",
+    "curvesWorstDeg": 2.447815350237319e-05,
+    "curvesWorstDegBone": "door_glass_L"
+   },
+   "supercar_doors_open": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "supercar_doors_open"
+    ],
+    "frames": 51,
+    "wantFrames": 51,
+    "rootBones": [
+     "vehicle_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 580860,
+    "curvesWorstMm": 0.00030704985487863917,
+    "curvesWorstMmBone": "door_glass_L",
+    "curvesWorstDeg": 2.5584734437791434e-05,
+    "curvesWorstDegBone": "door_glass_L"
+   },
+   "supercar_steering_demo": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "supercar_steering_demo"
+    ],
+    "frames": 151,
+    "wantFrames": 151,
+    "rootBones": [
+     "vehicle_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 922556,
+    "curvesWorstMm": 0.00040008831928091637,
+    "curvesWorstMmBone": "brake_disc_FR",
+    "curvesWorstDeg": 4.4132748170698074e-05,
+    "curvesWorstDegBone": "steering_wheel"
+   },
+   "utility_helicopter_cabin_doors_open": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "utility_helicopter_cabin_doors_open"
+    ],
+    "frames": 41,
+    "wantFrames": 41,
+    "rootBones": [
+     "helicopter_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 564572,
+    "curvesWorstMm": 0.0002675422590281117,
+    "curvesWorstMmBone": "cockpit_door_L_glass",
+    "curvesWorstDeg": 0.0001393509248475533,
+    "curvesWorstDegBone": "tail_blade_02"
+   },
+   "utility_helicopter_cockpit_doors_open": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "utility_helicopter_cockpit_doors_open"
+    ],
+    "frames": 41,
+    "wantFrames": 41,
+    "rootBones": [
+     "helicopter_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 569020,
+    "curvesWorstMm": 0.0003499738671427992,
+    "curvesWorstMmBone": "cockpit_door_L_glass",
+    "curvesWorstDeg": 0.0001393509248475533,
+    "curvesWorstDegBone": "tail_blade_02"
+   },
+   "utility_helicopter_main_rotor_spin": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "utility_helicopter_main_rotor_spin"
+    ],
+    "frames": 31,
+    "wantFrames": 31,
+    "rootBones": [
+     "helicopter_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 593468,
+    "curvesWorstMm": 0.000324249267578125,
+    "curvesWorstMmBone": "main_blade_01",
+    "curvesWorstDeg": 0.0001393509248475533,
+    "curvesWorstDegBone": "tail_blade_02"
+   },
+   "utility_helicopter_tail_rotor_spin": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "utility_helicopter_tail_rotor_spin"
+    ],
+    "frames": 13,
+    "wantFrames": 13,
+    "rootBones": [
+     "helicopter_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 491004,
+    "curvesWorstMm": 0.004171264056645044,
+    "curvesWorstMmBone": "tail_rotor_blur",
+    "curvesWorstDeg": 0.00017335600050908542,
+    "curvesWorstDegBone": "tail_blade_03"
+   }
+  },
+  "tripo-vehicle": {
+   "supercar_car-drive": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "supercar_car-drive"
+    ],
+    "frames": 241,
+    "wantFrames": 241,
+    "rootBones": [
+     "vehicle_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 1164364,
+    "curvesWorstMm": 4.76837158203125e-05,
+    "curvesWorstMmBone": "entry_driver_point",
+    "curvesWorstDeg": 2.769176357445497e-05,
+    "curvesWorstDegBone": "steering_wheel"
+   },
+   "supercar_car-enter": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "supercar_car-enter"
+    ],
+    "frames": 241,
+    "wantFrames": 241,
+    "rootBones": [
+     "vehicle_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 1164892,
+    "curvesWorstMm": 0.0002990369606800735,
+    "curvesWorstMmBone": "mirror_L",
+    "curvesWorstDeg": 1.9167170820781278e-05,
+    "curvesWorstDegBone": "door_glass_L"
+   },
+   "supercar_car-exit": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "supercar_car-exit"
+    ],
+    "frames": 236,
+    "wantFrames": 236,
+    "rootBones": [
+     "vehicle_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 1147596,
+    "curvesWorstMm": 0.000250441776397827,
+    "curvesWorstMmBone": "door_glass_L",
+    "curvesWorstDeg": 1.862714183604302e-05,
+    "curvesWorstDegBone": "door_glass_L"
+   },
+   "supercar_car-look-back": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "supercar_car-look-back"
+    ],
+    "frames": 2,
+    "wantFrames": 2,
+    "rootBones": [
+     "vehicle_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 391276,
+    "curvesWorstMm": 4.76837158203125e-05,
+    "curvesWorstMmBone": "entry_driver_point",
+    "curvesWorstDeg": 7.73124918760008e-06,
+    "curvesWorstDegBone": "camera_cockpit"
+   },
+   "supercar_car-steer-l": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "supercar_car-steer-l"
+    ],
+    "frames": 2,
+    "wantFrames": 2,
+    "rootBones": [
+     "vehicle_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 391260,
+    "curvesWorstMm": 4.76837158203125e-05,
+    "curvesWorstMmBone": "entry_driver_point",
+    "curvesWorstDeg": 3.737149722968962e-05,
+    "curvesWorstDegBone": "steering_wheel"
+   },
+   "supercar_car-steer-r": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "supercar_car-steer-r"
+    ],
+    "frames": 2,
+    "wantFrames": 2,
+    "rootBones": [
+     "vehicle_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 391260,
+    "curvesWorstMm": 4.76837158203125e-05,
+    "curvesWorstMmBone": "entry_driver_point",
+    "curvesWorstDeg": 3.737149722968962e-05,
+    "curvesWorstDegBone": "steering_wheel"
+   },
+   "supercar_fit": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "supercar_fit"
+    ],
+    "frames": 2,
+    "wantFrames": 2,
+    "rootBones": [
+     "vehicle_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 391212,
+    "curvesWorstMm": 4.76837158203125e-05,
+    "curvesWorstMmBone": "entry_driver_point",
+    "curvesWorstDeg": 7.73124918760008e-06,
+    "curvesWorstDegBone": "camera_cockpit"
+   },
+   "utility_helicopter_fit": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "utility_helicopter_fit"
+    ],
+    "frames": 2,
+    "wantFrames": 2,
+    "rootBones": [
+     "helicopter_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 408956,
+    "curvesWorstMm": 0.0002675422590281117,
+    "curvesWorstMmBone": "cockpit_door_L_glass",
+    "curvesWorstDeg": 0.0001393509248475533,
+    "curvesWorstDegBone": "tail_blade_02"
+   },
+   "utility_helicopter_heli-collective-down": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "utility_helicopter_heli-collective-down"
+    ],
+    "frames": 2,
+    "wantFrames": 2,
+    "rootBones": [
+     "helicopter_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 409068,
+    "curvesWorstMm": 0.0002675422590281117,
+    "curvesWorstMmBone": "cockpit_door_L_glass",
+    "curvesWorstDeg": 0.0001393509248475533,
+    "curvesWorstDegBone": "tail_blade_02"
+   },
+   "utility_helicopter_heli-collective-up": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "utility_helicopter_heli-collective-up"
+    ],
+    "frames": 2,
+    "wantFrames": 2,
+    "rootBones": [
+     "helicopter_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 409052,
+    "curvesWorstMm": 0.0002675422590281117,
+    "curvesWorstMmBone": "cockpit_door_L_glass",
+    "curvesWorstDeg": 0.0001393509248475533,
+    "curvesWorstDegBone": "tail_blade_02"
+   },
+   "utility_helicopter_heli-cyclic-b": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "utility_helicopter_heli-cyclic-b"
+    ],
+    "frames": 2,
+    "wantFrames": 2,
+    "rootBones": [
+     "helicopter_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 409020,
+    "curvesWorstMm": 0.0002675422590281117,
+    "curvesWorstMmBone": "cockpit_door_L_glass",
+    "curvesWorstDeg": 0.0001393509248475533,
+    "curvesWorstDegBone": "tail_blade_02"
+   },
+   "utility_helicopter_heli-cyclic-f": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "utility_helicopter_heli-cyclic-f"
+    ],
+    "frames": 2,
+    "wantFrames": 2,
+    "rootBones": [
+     "helicopter_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 409020,
+    "curvesWorstMm": 0.0002675422590281117,
+    "curvesWorstMmBone": "cockpit_door_L_glass",
+    "curvesWorstDeg": 0.0001393509248475533,
+    "curvesWorstDegBone": "tail_blade_02"
+   },
+   "utility_helicopter_heli-cyclic-l": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "utility_helicopter_heli-cyclic-l"
+    ],
+    "frames": 2,
+    "wantFrames": 2,
+    "rootBones": [
+     "helicopter_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 409020,
+    "curvesWorstMm": 0.0002675422590281117,
+    "curvesWorstMmBone": "cockpit_door_L_glass",
+    "curvesWorstDeg": 0.0001393509248475533,
+    "curvesWorstDegBone": "tail_blade_02"
+   },
+   "utility_helicopter_heli-cyclic-r": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "utility_helicopter_heli-cyclic-r"
+    ],
+    "frames": 2,
+    "wantFrames": 2,
+    "rootBones": [
+     "helicopter_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 409020,
+    "curvesWorstMm": 0.0002675422590281117,
+    "curvesWorstMmBone": "cockpit_door_L_glass",
+    "curvesWorstDeg": 0.0001393509248475533,
+    "curvesWorstDegBone": "tail_blade_02"
+   },
+   "utility_helicopter_heli-enter": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "utility_helicopter_heli-enter"
+    ],
+    "frames": 284,
+    "wantFrames": 284,
+    "rootBones": [
+     "helicopter_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 1358172,
+    "curvesWorstMm": 0.00044639323954678183,
+    "curvesWorstMmBone": "cockpit_door_R_glass",
+    "curvesWorstDeg": 0.0001393509248475533,
+    "curvesWorstDegBone": "tail_blade_02"
+   },
+   "utility_helicopter_heli-exit": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "utility_helicopter_heli-exit"
+    ],
+    "frames": 366,
+    "wantFrames": 366,
+    "rootBones": [
+     "helicopter_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 1623468,
+    "curvesWorstMm": 0.00041206050216516786,
+    "curvesWorstMmBone": "cockpit_door_R_glass",
+    "curvesWorstDeg": 0.0001393509248475533,
+    "curvesWorstDegBone": "tail_blade_02"
+   },
+   "utility_helicopter_heli-fly": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "utility_helicopter_heli-fly"
+    ],
+    "frames": 241,
+    "wantFrames": 241,
+    "rootBones": [
+     "helicopter_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 1218924,
+    "curvesWorstMm": 0.0002675422590281117,
+    "curvesWorstMmBone": "cockpit_door_L_glass",
+    "curvesWorstDeg": 0.0001393509248475533,
+    "curvesWorstDegBone": "tail_blade_02"
+   },
+   "utility_helicopter_heli-pedal-l": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "utility_helicopter_heli-pedal-l"
+    ],
+    "frames": 2,
+    "wantFrames": 2,
+    "rootBones": [
+     "helicopter_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 409020,
+    "curvesWorstMm": 0.0002675422590281117,
+    "curvesWorstMmBone": "cockpit_door_L_glass",
+    "curvesWorstDeg": 0.0001393509248475533,
+    "curvesWorstDegBone": "tail_blade_02"
+   },
+   "utility_helicopter_heli-pedal-r": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "utility_helicopter_heli-pedal-r"
+    ],
+    "frames": 2,
+    "wantFrames": 2,
+    "rootBones": [
+     "helicopter_root"
+    ],
+    "bonesMatch": true,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bytes": 409020,
+    "curvesWorstMm": 0.0002675422590281117,
+    "curvesWorstMmBone": "cockpit_door_L_glass",
+    "curvesWorstDeg": 0.0001393509248475533,
+    "curvesWorstDegBone": "tail_blade_02"
+   }
+  }
+ },
+ "paths": {
+  "fbxFiles": 250,
+  "absoluteMediaPaths": 0,
+  "absoluteExamples": [],
+  "filesWithHomeFolder": 0,
+  "mediaFolders": [
+   "ar_rifle.fbm",
+   "civilian-f-02-hero-ue5.fbm",
+   "civilian-m-01-player-ue5.fbm",
+   "civilian-m-03-hero-ue5.fbm",
+   "civilian-police-m-hero-ue5.fbm",
+   "pump_shotgun.fbm",
+   "supercar.fbm",
+   "tripo-player-ue5.fbm",
+   "utility_helicopter.fbm"
+  ]
  }
 }

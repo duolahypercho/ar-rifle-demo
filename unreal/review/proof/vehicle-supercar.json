@@ -1,0 +1,43 @@
+{
+ "armatures": 1,
+ "meshes": 46,
+ "otherObjects": [],
+ "bones": 65,
+ "boneNamesEqual": true,
+ "parentsEqual": true,
+ "restPivotMm": 0.0002384185791015625,
+ "restDeg": 1.3401680243600327e-05,
+ "restRootIdentity": false,
+ "partsFound": 46,
+ "partsInGlb": 46,
+ "badParts": [],
+ "restVertexMm": 0.0001657309291936982,
+ "restVertexWorstPart": "engine_cover",
+ "vertices": 76813,
+ "images": [
+  "body_normal.png",
+  "display_emissive.png",
+  "interior_normal.jpg",
+  "stitch_basecolor.png",
+  "stitch_basecolor.png.001",
+  "stitch_basecolor.png.002",
+  "trim_basecolor.png",
+  "trim_basecolor.png.001",
+  "trim_basecolor.png.002",
+  "trim_basecolor.png.003",
+  "trim_normal.png",
+  "wheel_normal.png"
+ ],
+ "boundsM": [
+  [
+   -1.13,
+   -2.4,
+   0.0
+  ],
+  [
+   1.13,
+   2.4,
+   1.1399
+  ]
+ ]
+}

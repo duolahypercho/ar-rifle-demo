@@ -1,0 +1,24 @@
+{
+ "boneRestErrCm": [
+  4.76837158203125e-06,
+  1.8016167502299396e-07
+ ],
+ "clips": {
+  "doors_open": {
+   "frames": 51,
+   "bytes": 580860,
+   "s": 0.2
+  },
+  "doors_close": {
+   "frames": 51,
+   "bytes": 580924,
+   "s": 0.17
+  },
+  "steering_demo": {
+   "frames": 151,
+   "bytes": 922556,
+   "s": 0.42
+  }
+ },
+ "seconds": 0.8
+}

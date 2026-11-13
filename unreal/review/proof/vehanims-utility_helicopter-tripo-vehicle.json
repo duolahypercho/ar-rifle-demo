@@ -1,0 +1,146 @@
+{
+ "heli-fly": {
+  "frames": 241,
+  "fbxFrameRange": [
+   0,
+   240
+  ],
+  "sceneFps": 30.0,
+  "worstPosMm": 0.000476837158203125,
+  "worstPosBone": "tail_rotor_pivot",
+  "worstDeg": 0.021103210732343752,
+  "worstDegBone": "cockpit_door_L_glass"
+ },
+ "heli-cyclic-f": {
+  "frames": 2,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "worstPosMm": 0.000476837158203125,
+  "worstPosBone": "tail_rotor_pivot",
+  "worstDeg": 0.021103210732343752,
+  "worstDegBone": "cockpit_door_L_glass"
+ },
+ "heli-cyclic-b": {
+  "frames": 2,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "worstPosMm": 0.000476837158203125,
+  "worstPosBone": "tail_rotor_pivot",
+  "worstDeg": 0.021103210732343752,
+  "worstDegBone": "cockpit_door_L_glass"
+ },
+ "heli-cyclic-l": {
+  "frames": 2,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "worstPosMm": 0.000476837158203125,
+  "worstPosBone": "tail_rotor_pivot",
+  "worstDeg": 0.021103210732343752,
+  "worstDegBone": "cockpit_door_L_glass"
+ },
+ "heli-cyclic-r": {
+  "frames": 2,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "worstPosMm": 0.000476837158203125,
+  "worstPosBone": "tail_rotor_pivot",
+  "worstDeg": 0.021103210732343752,
+  "worstDegBone": "cockpit_door_L_glass"
+ },
+ "heli-collective-up": {
+  "frames": 2,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "worstPosMm": 0.000476837158203125,
+  "worstPosBone": "tail_rotor_pivot",
+  "worstDeg": 0.021103210732343752,
+  "worstDegBone": "cockpit_door_L_glass"
+ },
+ "heli-collective-down": {
+  "frames": 2,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "worstPosMm": 0.000476837158203125,
+  "worstPosBone": "tail_rotor_pivot",
+  "worstDeg": 0.021103210732343752,
+  "worstDegBone": "cockpit_door_L_glass"
+ },
+ "heli-pedal-l": {
+  "frames": 2,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "worstPosMm": 0.000476837158203125,
+  "worstPosBone": "tail_rotor_pivot",
+  "worstDeg": 0.021103210732343752,
+  "worstDegBone": "cockpit_door_L_glass"
+ },
+ "heli-pedal-r": {
+  "frames": 2,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "worstPosMm": 0.000476837158203125,
+  "worstPosBone": "tail_rotor_pivot",
+  "worstDeg": 0.021103210732343752,
+  "worstDegBone": "cockpit_door_L_glass"
+ },
+ "heli-enter": {
+  "frames": 284,
+  "fbxFrameRange": [
+   0,
+   283
+  ],
+  "sceneFps": 30.0,
+  "worstPosMm": 0.0005230286352272107,
+  "worstPosBone": "cockpit_door_R_glass",
+  "worstDeg": 0.021103389826070202,
+  "worstDegBone": "cockpit_door_R_glass"
+ },
+ "heli-exit": {
+  "frames": 366,
+  "fbxFrameRange": [
+   0,
+   365
+  ],
+  "sceneFps": 30.0,
+  "worstPosMm": 0.000607850493620966,
+  "worstPosBone": "cockpit_door_R_glass",
+  "worstDeg": 0.021103378965716162,
+  "worstDegBone": "cockpit_door_R_glass"
+ },
+ "fit": {
+  "frames": 2,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "worstPosMm": 0.000476837158203125,
+  "worstPosBone": "tail_rotor_pivot",
+  "worstDeg": 0.021103210732343752,
+  "worstDegBone": "cockpit_door_L_glass"
+ }
+}

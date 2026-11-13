@@ -1,0 +1,526 @@
+{
+ "vehicle": "utility_helicopter",
+ "source": "public/vehicles/utility_helicopter.glb",
+ "note": "glTF metallic-roughness: metallicRoughnessTexture G = roughness, B = metallic (the *_orm files: R = occlusion too); normal maps are OpenGL (+Y up): flip green in Unreal; colours linear, base colour textures sRGB",
+ "materials": [
+  {
+   "name": "glass_tinted",
+   "alphaMode": "BLEND",
+   "alphaCutoff": null,
+   "doubleSided": true,
+   "baseColorFactor": [
+    0.006000000052154064,
+    0.008999999612569809,
+    0.010999999940395355,
+    0.41999998688697815
+   ],
+   "baseColorTexture": null,
+   "metallicFactor": 0,
+   "roughnessFactor": 0.029999999329447746,
+   "metallicRoughnessTexture": null,
+   "normalTexture": null,
+   "occlusionTexture": null,
+   "emissiveFactor": null,
+   "emissiveTexture": null,
+   "emissiveStrength": null,
+   "clearcoat": null,
+   "parts": [
+    "cabin_door_L_glass",
+    "cabin_door_R_glass",
+    "cabin_window_L",
+    "cabin_window_R",
+    "cockpit_door_L_glass",
+    "cockpit_door_R_glass",
+    "windshield"
+   ]
+  },
+  {
+   "name": "metal_exposed",
+   "alphaMode": "OPAQUE",
+   "alphaCutoff": null,
+   "doubleSided": true,
+   "baseColorFactor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "baseColorTexture": {
+    "file": "mech_basecolor.png"
+   },
+   "metallicFactor": 1.0,
+   "roughnessFactor": 1.0,
+   "metallicRoughnessTexture": {
+    "file": "mech_orm.png"
+   },
+   "normalTexture": {
+    "file": "mech_normal.png"
+   },
+   "occlusionTexture": {
+    "file": "mech_orm.png"
+   },
+   "emissiveFactor": null,
+   "emissiveTexture": null,
+   "emissiveStrength": null,
+   "clearcoat": null,
+   "parts": [
+    "cabin_door_L",
+    "cabin_door_L_handle",
+    "cabin_door_R",
+    "cabin_door_R_handle",
+    "cockpit_door_L",
+    "cockpit_door_L_handle",
+    "cockpit_door_R",
+    "cockpit_door_R_handle",
+    "engine_housing",
+    "exhaust",
+    "fuselage",
+    "main_mast",
+    "main_rotor_hub",
+    "skid_supports",
+    "tail_boom",
+    "tail_rotor_hub",
+    "vertical_fin"
+   ]
+  },
+  {
+   "name": "body_paint_primary",
+   "alphaMode": "OPAQUE",
+   "alphaCutoff": null,
+   "doubleSided": false,
+   "baseColorFactor": [
+    0.8999999761581421,
+    0.8999999761581421,
+    0.8799999952316284,
+    1
+   ],
+   "baseColorTexture": null,
+   "metallicFactor": 0.11999999731779099,
+   "roughnessFactor": 0.4000000059604645,
+   "metallicRoughnessTexture": {
+    "file": "ext_orm.png"
+   },
+   "normalTexture": {
+    "file": "ext_normal.png"
+   },
+   "occlusionTexture": {
+    "file": "ext_orm.png"
+   },
+   "emissiveFactor": null,
+   "emissiveTexture": null,
+   "emissiveStrength": null,
+   "clearcoat": {
+    "clearcoatFactor": 1,
+    "clearcoatRoughnessFactor": 0.03999999910593033
+   },
+   "parts": [
+    "cabin_door_L",
+    "cabin_door_R",
+    "cockpit_door_L",
+    "cockpit_door_R",
+    "engine_housing",
+    "fuselage",
+    "stabilizer_L",
+    "stabilizer_R",
+    "tail_boom",
+    "vertical_fin"
+   ]
+  },
+  {
+   "name": "rubber_matte",
+   "alphaMode": "OPAQUE",
+   "alphaCutoff": null,
+   "doubleSided": true,
+   "baseColorFactor": [
+    0.012000000104308128,
+    0.012000000104308128,
+    0.013000000268220901,
+    1
+   ],
+   "baseColorTexture": null,
+   "metallicFactor": 0,
+   "roughnessFactor": 0.8500000238418579,
+   "metallicRoughnessTexture": null,
+   "normalTexture": null,
+   "occlusionTexture": null,
+   "emissiveFactor": null,
+   "emissiveTexture": null,
+   "emissiveStrength": null,
+   "clearcoat": null,
+   "parts": [
+    "cabin_door_L",
+    "cabin_door_R",
+    "cockpit_door_L",
+    "cockpit_door_R",
+    "fuselage",
+    "interior",
+    "main_rotor_hub"
+   ]
+  },
+  {
+   "name": "interior_trim",
+   "alphaMode": "OPAQUE",
+   "alphaCutoff": null,
+   "doubleSided": true,
+   "baseColorFactor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "baseColorTexture": {
+    "file": "int_basecolor.png"
+   },
+   "metallicFactor": 1.0,
+   "roughnessFactor": 1.0,
+   "metallicRoughnessTexture": {
+    "file": "int_orm.png"
+   },
+   "normalTexture": {
+    "file": "int_normal.png"
+   },
+   "occlusionTexture": {
+    "file": "int_orm.png"
+   },
+   "emissiveFactor": null,
+   "emissiveTexture": null,
+   "emissiveStrength": null,
+   "clearcoat": null,
+   "parts": [
+    "cabin_door_L",
+    "cabin_door_R",
+    "cockpit_door_L",
+    "cockpit_door_R",
+    "collective",
+    "cyclic",
+    "instrument_panel",
+    "interior",
+    "passenger_seat_01",
+    "passenger_seat_02",
+    "passenger_seat_03",
+    "passenger_seat_04",
+    "passenger_seat_05",
+    "pedal_L",
+    "pedal_R",
+    "pilot_seat"
+   ]
+  },
+  {
+   "name": "body_paint_secondary",
+   "alphaMode": "OPAQUE",
+   "alphaCutoff": null,
+   "doubleSided": false,
+   "baseColorFactor": [
+    0.006000000052154064,
+    0.017999999225139618,
+    0.0949999988079071,
+    1
+   ],
+   "baseColorTexture": null,
+   "metallicFactor": 0.15000000596046448,
+   "roughnessFactor": 0.3799999952316284,
+   "metallicRoughnessTexture": {
+    "file": "ext_orm.png"
+   },
+   "normalTexture": {
+    "file": "ext_normal.png"
+   },
+   "occlusionTexture": {
+    "file": "ext_orm.png"
+   },
+   "emissiveFactor": null,
+   "emissiveTexture": null,
+   "emissiveStrength": null,
+   "clearcoat": {
+    "clearcoatFactor": 1,
+    "clearcoatRoughnessFactor": 0.03999999910593033
+   },
+   "parts": [
+    "engine_housing",
+    "fuselage",
+    "stabilizer_L",
+    "stabilizer_R",
+    "tail_boom",
+    "vertical_fin"
+   ]
+  },
+  {
+   "name": "light_nav_emissive",
+   "alphaMode": "OPAQUE",
+   "alphaCutoff": null,
+   "doubleSided": true,
+   "baseColorFactor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "baseColorTexture": {
+    "file": "lights_emissive.png"
+   },
+   "metallicFactor": 0,
+   "roughnessFactor": 0.20000000298023224,
+   "metallicRoughnessTexture": null,
+   "normalTexture": null,
+   "occlusionTexture": null,
+   "emissiveFactor": [
+    1,
+    1,
+    1
+   ],
+   "emissiveTexture": {
+    "file": "lights_emissive.png"
+   },
+   "emissiveStrength": 4,
+   "clearcoat": null,
+   "parts": [
+    "fuselage",
+    "stabilizer_L",
+    "stabilizer_R",
+    "tail_boom",
+    "vertical_fin"
+   ]
+  },
+  {
+   "name": "light_landing_emissive",
+   "alphaMode": "OPAQUE",
+   "alphaCutoff": null,
+   "doubleSided": true,
+   "baseColorFactor": [
+    0.8999999761581421,
+    0.8999999761581421,
+    0.8799999952316284,
+    1
+   ],
+   "baseColorTexture": null,
+   "metallicFactor": 0,
+   "roughnessFactor": 0.15000000596046448,
+   "metallicRoughnessTexture": null,
+   "normalTexture": null,
+   "occlusionTexture": null,
+   "emissiveFactor": [
+    1,
+    0.9700000286102295,
+    0.8999999761581421
+   ],
+   "emissiveTexture": null,
+   "emissiveStrength": 6,
+   "clearcoat": null,
+   "parts": [
+    "fuselage"
+   ]
+  },
+  {
+   "name": "display_emissive",
+   "alphaMode": "OPAQUE",
+   "alphaCutoff": null,
+   "doubleSided": true,
+   "baseColorFactor": [
+    0.004999999888241291,
+    0.004999999888241291,
+    0.006000000052154064,
+    1
+   ],
+   "baseColorTexture": null,
+   "metallicFactor": 0,
+   "roughnessFactor": 0.18000000715255737,
+   "metallicRoughnessTexture": null,
+   "normalTexture": null,
+   "occlusionTexture": null,
+   "emissiveFactor": [
+    1,
+    1,
+    1
+   ],
+   "emissiveTexture": {
+    "file": "displays_emissive.png"
+   },
+   "emissiveStrength": 2,
+   "clearcoat": null,
+   "parts": [
+    "instrument_panel",
+    "interior"
+   ]
+  },
+  {
+   "name": "composite_blades",
+   "alphaMode": "OPAQUE",
+   "alphaCutoff": null,
+   "doubleSided": true,
+   "baseColorFactor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "baseColorTexture": {
+    "file": "mech_basecolor.png"
+   },
+   "metallicFactor": 1.0,
+   "roughnessFactor": 1.0,
+   "metallicRoughnessTexture": {
+    "file": "mech_orm.png"
+   },
+   "normalTexture": {
+    "file": "mech_normal.png"
+   },
+   "occlusionTexture": {
+    "file": "mech_orm.png"
+   },
+   "emissiveFactor": null,
+   "emissiveTexture": null,
+   "emissiveStrength": null,
+   "clearcoat": null,
+   "parts": [
+    "main_blade_01",
+    "main_blade_02",
+    "main_blade_03",
+    "main_blade_04",
+    "tail_blade_01",
+    "tail_blade_02",
+    "tail_blade_03",
+    "tail_blade_04"
+   ]
+  },
+  {
+   "name": "rotor_blur",
+   "alphaMode": "BLEND",
+   "alphaCutoff": null,
+   "doubleSided": true,
+   "baseColorFactor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "baseColorTexture": {
+    "file": "rotor_blur.png"
+   },
+   "metallicFactor": 0,
+   "roughnessFactor": 0.699999988079071,
+   "metallicRoughnessTexture": null,
+   "normalTexture": null,
+   "occlusionTexture": null,
+   "emissiveFactor": null,
+   "emissiveTexture": null,
+   "emissiveStrength": null,
+   "clearcoat": null,
+   "parts": [
+    "main_rotor_blur",
+    "tail_rotor_blur"
+   ]
+  },
+  {
+   "name": "leather_upholstery",
+   "alphaMode": "OPAQUE",
+   "alphaCutoff": null,
+   "doubleSided": true,
+   "baseColorFactor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "baseColorTexture": {
+    "file": "int_basecolor.png"
+   },
+   "metallicFactor": 1.0,
+   "roughnessFactor": 1.0,
+   "metallicRoughnessTexture": {
+    "file": "int_orm.png"
+   },
+   "normalTexture": {
+    "file": "int_normal.png"
+   },
+   "occlusionTexture": {
+    "file": "int_orm.png"
+   },
+   "emissiveFactor": null,
+   "emissiveTexture": null,
+   "emissiveStrength": null,
+   "clearcoat": null,
+   "parts": [
+    "passenger_seat_01",
+    "passenger_seat_02",
+    "passenger_seat_03",
+    "passenger_seat_04",
+    "passenger_seat_05",
+    "pilot_seat"
+   ]
+  },
+  {
+   "name": "fabric_upholstery",
+   "alphaMode": "OPAQUE",
+   "alphaCutoff": null,
+   "doubleSided": true,
+   "baseColorFactor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "baseColorTexture": {
+    "file": "int_basecolor.png"
+   },
+   "metallicFactor": 1.0,
+   "roughnessFactor": 1.0,
+   "metallicRoughnessTexture": {
+    "file": "int_orm.png"
+   },
+   "normalTexture": {
+    "file": "int_normal.png"
+   },
+   "occlusionTexture": {
+    "file": "int_orm.png"
+   },
+   "emissiveFactor": null,
+   "emissiveTexture": null,
+   "emissiveStrength": null,
+   "clearcoat": null,
+   "parts": [
+    "passenger_seat_01",
+    "passenger_seat_02",
+    "passenger_seat_03",
+    "passenger_seat_04",
+    "passenger_seat_05",
+    "pilot_seat"
+   ]
+  },
+  {
+   "name": "skid_black",
+   "alphaMode": "OPAQUE",
+   "alphaCutoff": null,
+   "doubleSided": true,
+   "baseColorFactor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "baseColorTexture": {
+    "file": "mech_basecolor.png"
+   },
+   "metallicFactor": 1.0,
+   "roughnessFactor": 1.0,
+   "metallicRoughnessTexture": {
+    "file": "mech_orm.png"
+   },
+   "normalTexture": {
+    "file": "mech_normal.png"
+   },
+   "occlusionTexture": {
+    "file": "mech_orm.png"
+   },
+   "emissiveFactor": null,
+   "emissiveTexture": null,
+   "emissiveStrength": null,
+   "clearcoat": null,
+   "parts": [
+    "skid_L",
+    "skid_R",
+    "skid_supports",
+    "vertical_fin"
+   ]
+  }
+ ]
+}

@@ -17,6 +17,7 @@ import numpy as np
 
 import config
 import fbxread as F
+import gltfio as G
 import skeleton as S
 
 
@@ -73,7 +74,8 @@ def main():
             # the geometry's model (connection Geometry -> Model)
             mid = next(pa for kind, ch, pa, _ in f.conn if kind == 'OO' and ch == gid)
             m = glob[mid]
-            w = v @ m[:3, :3].T + m[:3, 3]
+            with np.errstate(all='ignore'):   # (spurious BLAS warnings with this machine's numpy; values checked)
+                w = v @ m[:3, :3].T + m[:3, 3]
             zs.append((w[:, 2].min(), w[:, 2].max(), len(v)))
         out['bodies'][name] = dict(header(f), bytes=os.path.getsize(p), limbNodes=len(limbs), rootBones=roots,
                                    armatureBone='Armature' in limbs, nonBoneModels=others, bonesMatchGlb=names_ok,
@@ -129,10 +131,182 @@ def main():
             out['weapons'][g] = dict(header(f), models=[(n, t, pa) for _i, n, t, pa in f.models()],
                                      boundsCm=[vs.min(0).round(2).tolist(), vs.max(0).round(2).tolist()],
                                      embedded=len(f.embedded()), bytes=os.path.getsize(p))
+    check_vehicles(out, skels)
+    out['paths'] = check_paths()
     os.makedirs(os.path.join(config.OUT, 'review'), exist_ok=True)
     with open(os.path.join(config.OUT, 'review', 'fbx_check.json'), 'w') as fh:
         json.dump(out, fh, indent=1, default=float)
     return out
+
+
+# ------------------------------------------------------------------ pass U1
+
+def take_frames(f, fps):
+    stacks = f.anim_stacks()
+    stop = stacks[0][1].get('LocalStop', [0])[0] / F.KTIME if stacks else None
+    return (int(round(stop * fps)) + 1 if stop is not None else None), [s[0] for s in stacks]
+
+
+def curve_fk_err(f, nframes, skel, locals_):
+    """Every bone, every frame: the FBX's own curves (fbxread.anim_globals) against the truth (glTF locals ->
+    Blender axes, cm; world-aligned bones as bl_common.bl_worlds makes them). -> (worst mm, bone, worst deg, bone)"""
+    import vehicle as V
+    C4 = np.eye(4)
+    C4[:3, :3] = V.C3
+    wf = getattr(skel, 'world_frame', ('root', 'ik_foot_root', 'ik_hand_root'))
+    have = F.anim_globals(f, nframes)
+    worst = [0.0, None, 0.0, None]
+    for fr in range(nframes):
+        for n, w in skel.world(locals_[fr]).items():
+            m = C4 @ w @ (C4.T if n in wf else np.eye(4))
+            m[:3, 3] *= 100
+            h = have[n][fr]
+            dp = float(np.linalg.norm(h[:3, 3] - m[:3, 3])) * 10
+            r = h[:3, :3] / np.linalg.norm(h[:3, :3], axis=0)
+            c = np.clip((np.trace(r.T @ m[:3, :3]) - 1) / 2, -1, 1)
+            da = float(np.degrees(np.arccos(c)))
+            if dp > worst[0]:
+                worst[0], worst[1] = dp, n
+            if da > worst[2]:
+                worst[2], worst[3] = da, n
+    return worst
+
+
+def check_vehicles(out, skels):
+    """Vehicle clip FBX (frames, bones, root track from the FBX's own curves vs the notes' root, every bone every
+    frame from the curves), vehicle FBX (bones = GLB nodes, one root bone, parts, bounds, textures) and
+    vehicle-side animation FBX (bones, frames, every bone every frame from the curves)."""
+    import vehicle as V
+    out['vehicleAnimations'] = {}
+    for pk, pcfg in config.VEHICLE_PACKS.items():
+        sk = S.Skeleton(pcfg['skeleton'], pack=pk)
+        res = {}
+        for clip in sk.pack.names:
+            p = os.path.join(config.OUT, 'animations', pk, f'{clip}.fbx')
+            if not os.path.exists(p):
+                res[clip] = {'missing': True}
+                continue
+            f = F.read(p)
+            limbs, roots, others = tree(f)
+            names_ok, parents_ok = check_skeleton(limbs, sk)
+            h = header(f)
+            frames, takes = take_frames(f, h['fps'])
+            nc = sk.notes['clips'][clip]
+            keys = V.pack_keys(sk.pack, clip)
+            r = dict(fps=h['fps'], unit=h['unitScaleFactor'], up=h['upAxis'], front=h['frontAxis'], frontSign=h['frontSign'],
+                     takes=takes, frames=frames, glbKeys=keys, wantFrames=max(2, keys), rootBones=roots,
+                     armatureBone='Armature' in limbs, nonBoneModels=[o[0] for o in others], bonesMatch=names_ok,
+                     parentsMatch=parents_ok, bytes=os.path.getsize(p))
+            cv = curves_of(f, 'root')
+            root = nc['root']
+            n = frames or 0
+            want = np.array([[x * 100, -z * 100] for x, z, _y in
+                             [root[i % len(root)] if nc.get('loop') else root[min(i, len(root) - 1)] for i in range(n)]])
+            hx = np.interp(np.arange(n) / 30.0, *cv['X']) if 'X' in cv else np.zeros(n)
+            hy = np.interp(np.arange(n) / 30.0, *cv['Y']) if 'Y' in cv else np.zeros(n)
+            r['rootStartCm'] = [float(hx[0]), float(hy[0])]
+            r['rootTravelCm'] = float(np.hypot(*(want[-1] - want[0])))
+            r['rootErrCm'] = float(np.abs(np.c_[hx, hy] - want).max())
+            wp, wpb, wd, wdb = curve_fk_err(f, n, sk, sk.clip_locals(clip, min_frames=2))
+            r.update(curvesWorstMm=wp, curvesWorstMmBone=wpb, curvesWorstDeg=wd, curvesWorstDegBone=wdb)
+            res[clip] = r
+        out['vehicleAnimations'][pk] = res
+    out['vehicles'] = {}
+    for name in config.VEHICLES:
+        p = os.path.join(config.OUT, 'vehicles', f'{name}.fbx')
+        if not os.path.exists(p):
+            continue
+        veh = V.Vehicle(name)
+        f = F.read(p)
+        limbs, roots, others = tree(f)
+        par = {n: (None if limbs[n] == 'Armature' else limbs[n]) for n in limbs}
+        glob = F.model_globals(f)
+        vs = []
+        for gid, gname, v in f.geometries():
+            mid = next(pa for kind, ch, pa, _ in f.conn if kind == 'OO' and ch == gid)
+            m = glob[mid]
+            with np.errstate(all='ignore'):   # (spurious BLAS warnings on this machine's numpy; values checked)
+                vs.append(v @ m[:3, :3].T + m[:3, 3])
+        vs = np.vstack(vs)
+        # pivots: every bone's rest from the file's Lcl chain against the GLB node (world-aligned frames, cm)
+        C4 = np.eye(4)
+        C4[:3, :3] = V.C3
+        lglob = {nm: glob[i] for i, nm, typ, _p in f.models() if typ == 'LimbNode'}
+        piv_mm, piv_deg = 0.0, 0.0
+        for n, w in veh.rest_world().items():
+            m = C4 @ w @ C4.T
+            m[:3, 3] *= 100
+            h = lglob[n]
+            piv_mm = max(piv_mm, float(np.linalg.norm(h[:3, 3] - m[:3, 3])) * 10)
+            piv_deg = max(piv_deg, float(G.angle_deg(h[:3, :3] / np.linalg.norm(h[:3, :3], axis=0), m[:3, :3])))
+        out['vehicles'][name] = dict(header(f), bytes=os.path.getsize(p), limbNodes=len(limbs), rootBones=roots,
+                                     pivotsVsGlbMm=piv_mm, pivotsVsGlbDeg=piv_deg,
+                                     armatureBone='Armature' in limbs, bonesMatchGlb=sorted(limbs) == sorted(veh.bones),
+                                     parentsMatchGlb=all(par.get(n, '?') == veh.parent[n] for n in veh.bones),
+                                     meshModels=len([o for o in others if o[1] == 'Mesh']), partsInGlb=len(veh.mesh),
+                                     nonBoneModels=sorted(set(o[1] for o in others)),
+                                     boundsCm=[vs.min(0).round(2).tolist(), vs.max(0).round(2).tolist()],
+                                     vertices=len(vs), embedded=[(n_, r_, b_) for n_, r_, b_ in f.embedded()])
+    out['vehicleSideAnimations'] = {}
+    d = os.path.join(config.OUT, 'vehicles', 'animations')
+    vehs = {v: V.Vehicle(v) for v in config.VEHICLES}
+    for group in sorted(os.listdir(d)) if os.path.isdir(d) else []:
+        res = {}
+        notes = json.load(open(config.VEHICLE_PACKS[group]['notes'])) if group in config.VEHICLE_PACKS else None
+        pack = G.ClipPack(config.VEHICLE_PACKS[group]['pack']) if notes else None
+        for fn in sorted(os.listdir(os.path.join(d, group))):
+            if not fn.endswith('.fbx'):
+                continue
+            vname = next(v for v in config.VEHICLES if fn.startswith(v + '_'))
+            veh = vehs[vname]
+            clip = fn[len(vname) + 1:-4]
+            f = F.read(os.path.join(d, group, fn))
+            limbs, roots, others = tree(f)
+            h = header(f)
+            frames, takes = take_frames(f, h['fps'])
+            if notes is None:
+                L = veh.own_clip_locals(clip)
+            elif clip == 'fit':
+                L = [veh.pose({}, V.fit_of(notes, veh.kind))] * 2
+            else:
+                nf = max(2, V.pack_keys(pack, clip))
+                L = [veh.pose(c, V.fit_of(notes, veh.kind)) for c in V.clip_controls(veh.kind, clip, notes['clips'][clip], nf)]
+            wp, wpb, wd, wdb = curve_fk_err(f, min(frames, len(L)), veh, L)
+            res[fn[:-4]] = dict(fps=h['fps'], unit=h['unitScaleFactor'], up=h['upAxis'], takes=takes, frames=frames,
+                                wantFrames=len(L), rootBones=roots, bonesMatch=sorted(limbs) == sorted(veh.bones),
+                                nonBoneModels=[o[0] for o in others], bytes=os.path.getsize(os.path.join(d, group, fn)),
+                                curvesWorstMm=wp, curvesWorstMmBone=wpb, curvesWorstDeg=wd, curvesWorstDegBone=wdb)
+        out['vehicleSideAnimations'][group] = res
+
+
+def check_paths():
+    """Every FBX under unreal/: the strings that name files (Texture FileName / RelativeFilename, Video Filename /
+    RelativeFilename / Path, the SceneInfo's urls); absolute ones listed. Also a byte search for this machine's home
+    folder (read at run time, not stored; the result holds only counts)."""
+    home = os.path.expanduser('~').encode()
+    files, absolute, home_hits, names = 0, [], 0, set()
+    for dp, _dn, fns in os.walk(config.OUT):
+        for fn in fns:
+            if not fn.lower().endswith('.fbx'):
+                continue
+            p = os.path.join(dp, fn)
+            files += 1
+            raw = open(p, 'rb').read()
+            if home and home in raw:
+                home_hits += 1
+            f = F.read(p)
+            for n in f.objects.values():
+                if n.name not in ('Texture', 'Video'):
+                    continue
+                vals = [k.props[0] for k in n.kids if k.name in ('FileName', 'Filename', 'RelativeFilename') and k.props]
+                vals += [v[0] for k, v in F.p70(n).items() if k == 'Path' and v]
+                for s in vals:
+                    if isinstance(s, str) and s:
+                        names.add(s.split('/')[0] if '/' in s else '')
+                        if s.startswith('/') or (len(s) > 2 and s[1] == ':'):
+                            absolute.append((os.path.relpath(p, config.OUT), s[:3] + '...'))
+    return dict(fbxFiles=files, absoluteMediaPaths=len(absolute), absoluteExamples=absolute[:5],
+                filesWithHomeFolder=home_hits, mediaFolders=sorted(x for x in names if x))
 
 
 if __name__ == '__main__':

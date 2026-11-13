@@ -1,0 +1,8 @@
+Name,Vehicle,Bone,ParentBone,X_cm,Y_cm,Z_cm,GltfX_m,GltfY_m,GltfZ_m,Why
+supercar_seat_driver,supercar,seat_driver,vehicle_root,0,-20,-3,0,-0.03,-0.2,legs 0.78 m: seat slid fully forward on its rails (0.20 m) and down (0.03 m)
+supercar_seat_driver_point,supercar,seat_driver_point,vehicle_root,0,-20,-3,0,-0.03,-0.2,moves with the seat
+supercar_steering_wheel,supercar,steering_wheel,vehicle_root,0,2.782,1.124,0,0.01124,0.02782,wheel telescoped 0.03 m towards the driver along its column
+utility_helicopter_pedal_L,utility_helicopter,pedal_L,helicopter_root,0,25,0,0,0,0.25,"legs 0.78 m: pedal adjuster at its aft limit, 0.25 m"
+utility_helicopter_pedal_R,utility_helicopter,pedal_R,helicopter_root,0,25,0,0,0,0.25,"legs 0.78 m: pedal adjuster at its aft limit, 0.25 m"
+utility_helicopter_pilot_seat,utility_helicopter,pilot_seat,helicopter_root,0,-14.5,-6,0,-0.06,-0.145,seat 0.145 m forward: the backrest against the back as the hands hold the controls (pass A3); 0.060 m down: its thighs off the cushion's front (pass A3 round 2)
+utility_helicopter_seat_pilot_point,utility_helicopter,seat_pilot_point,helicopter_root,0,-14.5,-6,0,-0.06,-0.145,moves with the seat

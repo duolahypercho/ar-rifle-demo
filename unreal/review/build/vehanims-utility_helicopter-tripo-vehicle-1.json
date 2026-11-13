@@ -1,0 +1,69 @@
+{
+ "boneRestErrCm": [
+  9.5367431640625e-06,
+  1.7657054125486127e-06
+ ],
+ "clips": {
+  "heli-fly": {
+   "frames": 241,
+   "bytes": 1218924,
+   "s": 0.45
+  },
+  "heli-cyclic-f": {
+   "frames": 2,
+   "bytes": 409020,
+   "s": 0.04
+  },
+  "heli-cyclic-b": {
+   "frames": 2,
+   "bytes": 409020,
+   "s": 0.04
+  },
+  "heli-cyclic-l": {
+   "frames": 2,
+   "bytes": 409020,
+   "s": 0.05
+  },
+  "heli-cyclic-r": {
+   "frames": 2,
+   "bytes": 409020,
+   "s": 0.05
+  },
+  "heli-collective-up": {
+   "frames": 2,
+   "bytes": 409052,
+   "s": 0.05
+  },
+  "heli-collective-down": {
+   "frames": 2,
+   "bytes": 409068,
+   "s": 0.06
+  },
+  "heli-pedal-l": {
+   "frames": 2,
+   "bytes": 409020,
+   "s": 0.04
+  },
+  "heli-pedal-r": {
+   "frames": 2,
+   "bytes": 409020,
+   "s": 0.04
+  },
+  "heli-enter": {
+   "frames": 284,
+   "bytes": 1358172,
+   "s": 0.57
+  },
+  "heli-exit": {
+   "frames": 366,
+   "bytes": 1623468,
+   "s": 0.56
+  },
+  "fit": {
+   "frames": 2,
+   "bytes": 408956,
+   "s": 0.04
+  }
+ },
+ "seconds": 2.0
+}

@@ -1,0 +1,584 @@
+{
+ "vehicle": "supercar",
+ "source": "public/vehicles/supercar.glb",
+ "note": "glTF metallic-roughness: metallicRoughnessTexture G = roughness, B = metallic (the *_orm files: R = occlusion too); normal maps are OpenGL (+Y up): flip green in Unreal; colours linear, base colour textures sRGB",
+ "materials": [
+  {
+   "name": "body_paint",
+   "alphaMode": "OPAQUE",
+   "alphaCutoff": null,
+   "doubleSided": false,
+   "baseColorFactor": [
+    0.9049999713897705,
+    0.4950000047683716,
+    0.006000000052154064,
+    1
+   ],
+   "baseColorTexture": null,
+   "metallicFactor": 1.0,
+   "roughnessFactor": 1.0,
+   "metallicRoughnessTexture": {
+    "file": "body_orm.png"
+   },
+   "normalTexture": {
+    "file": "body_normal.png"
+   },
+   "occlusionTexture": {
+    "file": "body_orm.png"
+   },
+   "emissiveFactor": null,
+   "emissiveTexture": null,
+   "emissiveStrength": null,
+   "clearcoat": {
+    "clearcoatFactor": 1,
+    "clearcoatRoughnessFactor": 0.03999999910593033
+   },
+   "parts": [
+    "body_shell",
+    "door_L",
+    "door_R",
+    "front_bumper",
+    "hood",
+    "rear_bumper"
+   ]
+  },
+  {
+   "name": "carbon_fiber",
+   "alphaMode": "OPAQUE",
+   "alphaCutoff": null,
+   "doubleSided": false,
+   "baseColorFactor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "baseColorTexture": {
+    "file": "trim_basecolor.png"
+   },
+   "metallicFactor": 1.0,
+   "roughnessFactor": 1.0,
+   "metallicRoughnessTexture": {
+    "file": "trim_orm.png"
+   },
+   "normalTexture": {
+    "file": "trim_normal.png"
+   },
+   "occlusionTexture": {
+    "file": "trim_orm.png"
+   },
+   "emissiveFactor": null,
+   "emissiveTexture": null,
+   "emissiveStrength": null,
+   "clearcoat": {
+    "clearcoatFactor": 0.3499999940395355,
+    "clearcoatRoughnessFactor": 0.2199999988079071
+   },
+   "parts": [
+    "body_shell",
+    "door_L",
+    "door_R",
+    "engine_cover",
+    "front_bumper",
+    "front_splitter",
+    "interior",
+    "mirror_L",
+    "mirror_R",
+    "rear_diffuser",
+    "seat_driver",
+    "seat_passenger",
+    "steering_wheel"
+   ]
+  },
+  {
+   "name": "black_trim",
+   "alphaMode": "OPAQUE",
+   "alphaCutoff": null,
+   "doubleSided": false,
+   "baseColorFactor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "baseColorTexture": {
+    "file": "trim_basecolor.png"
+   },
+   "metallicFactor": 1.0,
+   "roughnessFactor": 1.0,
+   "metallicRoughnessTexture": {
+    "file": "trim_orm.png"
+   },
+   "normalTexture": {
+    "file": "trim_normal.png"
+   },
+   "occlusionTexture": {
+    "file": "trim_orm.png"
+   },
+   "emissiveFactor": null,
+   "emissiveTexture": null,
+   "emissiveStrength": null,
+   "clearcoat": null,
+   "parts": [
+    "body_shell",
+    "brake_disc_FL",
+    "brake_disc_FR",
+    "brake_disc_RL",
+    "brake_disc_RR",
+    "caliper_FL",
+    "caliper_FR",
+    "caliper_RL",
+    "caliper_RR",
+    "door_L",
+    "door_R",
+    "engine_cover",
+    "front_bumper",
+    "hood",
+    "interior",
+    "rear_bumper",
+    "rear_diffuser",
+    "seat_driver",
+    "seat_passenger"
+   ]
+  },
+  {
+   "name": "glass",
+   "alphaMode": "BLEND",
+   "alphaCutoff": null,
+   "doubleSided": true,
+   "baseColorFactor": [
+    0.04500000178813934,
+    0.05999999865889549,
+    0.06499999761581421,
+    0.3799999952316284
+   ],
+   "baseColorTexture": null,
+   "metallicFactor": 0,
+   "roughnessFactor": 0.029999999329447746,
+   "metallicRoughnessTexture": null,
+   "normalTexture": null,
+   "occlusionTexture": null,
+   "emissiveFactor": null,
+   "emissiveTexture": null,
+   "emissiveStrength": null,
+   "clearcoat": null,
+   "parts": [
+    "body_shell",
+    "door_glass_L",
+    "door_glass_R",
+    "front_bumper",
+    "rear_bumper",
+    "rear_glass",
+    "windshield"
+   ]
+  },
+  {
+   "name": "metal",
+   "alphaMode": "OPAQUE",
+   "alphaCutoff": null,
+   "doubleSided": false,
+   "baseColorFactor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "baseColorTexture": {
+    "file": "trim_basecolor.png"
+   },
+   "metallicFactor": 1.0,
+   "roughnessFactor": 1.0,
+   "metallicRoughnessTexture": {
+    "file": "trim_orm.png"
+   },
+   "normalTexture": {
+    "file": "trim_normal.png"
+   },
+   "occlusionTexture": {
+    "file": "trim_orm.png"
+   },
+   "emissiveFactor": null,
+   "emissiveTexture": null,
+   "emissiveStrength": null,
+   "clearcoat": null,
+   "parts": [
+    "brake_disc_FL",
+    "brake_disc_FR",
+    "brake_disc_RL",
+    "brake_disc_RR",
+    "door_L",
+    "door_R",
+    "interior",
+    "mirror_L",
+    "mirror_R",
+    "rear_diffuser",
+    "rim_FL",
+    "rim_FR",
+    "rim_RL",
+    "rim_RR"
+   ]
+  },
+  {
+   "name": "interior_leather",
+   "alphaMode": "OPAQUE",
+   "alphaCutoff": null,
+   "doubleSided": false,
+   "baseColorFactor": [
+    0.014000000432133675,
+    0.014000000432133675,
+    0.014999999664723873,
+    1
+   ],
+   "baseColorTexture": null,
+   "metallicFactor": 1.0,
+   "roughnessFactor": 1.0,
+   "metallicRoughnessTexture": {
+    "file": "interior_orm.jpg"
+   },
+   "normalTexture": {
+    "file": "interior_normal.jpg"
+   },
+   "occlusionTexture": {
+    "file": "interior_orm.jpg"
+   },
+   "emissiveFactor": null,
+   "emissiveTexture": null,
+   "emissiveStrength": null,
+   "clearcoat": null,
+   "parts": [
+    "door_L",
+    "door_R",
+    "interior",
+    "seat_driver",
+    "seat_passenger",
+    "steering_wheel"
+   ]
+  },
+  {
+   "name": "interior_stitching",
+   "alphaMode": "MASK",
+   "alphaCutoff": null,
+   "doubleSided": true,
+   "baseColorFactor": [
+    0.8999999761581421,
+    0.550000011920929,
+    0.019999999552965164,
+    1
+   ],
+   "baseColorTexture": {
+    "file": "stitch_basecolor.png"
+   },
+   "metallicFactor": 0,
+   "roughnessFactor": 0.800000011920929,
+   "metallicRoughnessTexture": null,
+   "normalTexture": null,
+   "occlusionTexture": null,
+   "emissiveFactor": null,
+   "emissiveTexture": null,
+   "emissiveStrength": null,
+   "clearcoat": null,
+   "parts": [
+    "door_L",
+    "door_R",
+    "interior",
+    "seat_driver",
+    "seat_passenger",
+    "steering_wheel"
+   ]
+  },
+  {
+   "name": "light_headlight",
+   "alphaMode": "OPAQUE",
+   "alphaCutoff": null,
+   "doubleSided": false,
+   "baseColorFactor": [
+    0.8999999761581421,
+    0.8999999761581421,
+    0.8999999761581421,
+    1
+   ],
+   "baseColorTexture": null,
+   "metallicFactor": 0,
+   "roughnessFactor": 0.20000000298023224,
+   "metallicRoughnessTexture": null,
+   "normalTexture": null,
+   "occlusionTexture": null,
+   "emissiveFactor": [
+    1,
+    0.9700000286102295,
+    0.9200000166893005
+   ],
+   "emissiveTexture": null,
+   "emissiveStrength": 8,
+   "clearcoat": null,
+   "parts": [
+    "headlight_L",
+    "headlight_R"
+   ]
+  },
+  {
+   "name": "light_indicator",
+   "alphaMode": "OPAQUE",
+   "alphaCutoff": null,
+   "doubleSided": false,
+   "baseColorFactor": [
+    0.3499999940395355,
+    0.1599999964237213,
+    0.019999999552965164,
+    1
+   ],
+   "baseColorTexture": null,
+   "metallicFactor": 0,
+   "roughnessFactor": 0.25,
+   "metallicRoughnessTexture": null,
+   "normalTexture": null,
+   "occlusionTexture": null,
+   "emissiveFactor": [
+    0.5,
+    0.22499999403953552,
+    0.009999999776482582
+   ],
+   "emissiveTexture": null,
+   "emissiveStrength": null,
+   "clearcoat": null,
+   "parts": [
+    "indicator_FL",
+    "indicator_FR",
+    "indicator_RL",
+    "indicator_RR"
+   ]
+  },
+  {
+   "name": "interior_microfiber",
+   "alphaMode": "OPAQUE",
+   "alphaCutoff": null,
+   "doubleSided": false,
+   "baseColorFactor": [
+    0.019999999552965164,
+    0.019999999552965164,
+    0.02199999988079071,
+    1
+   ],
+   "baseColorTexture": null,
+   "metallicFactor": 1.0,
+   "roughnessFactor": 1.0,
+   "metallicRoughnessTexture": {
+    "file": "interior_orm.jpg"
+   },
+   "normalTexture": {
+    "file": "interior_normal.jpg"
+   },
+   "occlusionTexture": {
+    "file": "interior_orm.jpg"
+   },
+   "emissiveFactor": null,
+   "emissiveTexture": null,
+   "emissiveStrength": null,
+   "clearcoat": null,
+   "parts": [
+    "interior",
+    "seat_driver",
+    "seat_passenger",
+    "steering_wheel"
+   ]
+  },
+  {
+   "name": "light_brake",
+   "alphaMode": "OPAQUE",
+   "alphaCutoff": null,
+   "doubleSided": false,
+   "baseColorFactor": [
+    0.2199999988079071,
+    0.009999999776482582,
+    0.009999999776482582,
+    1
+   ],
+   "baseColorTexture": null,
+   "metallicFactor": 0,
+   "roughnessFactor": 0.25,
+   "metallicRoughnessTexture": null,
+   "normalTexture": null,
+   "occlusionTexture": null,
+   "emissiveFactor": [
+    0.6000000238418579,
+    0.012000000208616246,
+    0.006000000104308123
+   ],
+   "emissiveTexture": null,
+   "emissiveStrength": null,
+   "clearcoat": null,
+   "parts": [
+    "brake_light_C",
+    "brake_light_L",
+    "brake_light_R",
+    "interior"
+   ]
+  },
+  {
+   "name": "display",
+   "alphaMode": "OPAQUE",
+   "alphaCutoff": null,
+   "doubleSided": false,
+   "baseColorFactor": [
+    0.009999999776482582,
+    0.009999999776482582,
+    0.012000000104308128,
+    1
+   ],
+   "baseColorTexture": null,
+   "metallicFactor": 0,
+   "roughnessFactor": 0.15000000596046448,
+   "metallicRoughnessTexture": null,
+   "normalTexture": null,
+   "occlusionTexture": null,
+   "emissiveFactor": [
+    1,
+    1,
+    1
+   ],
+   "emissiveTexture": {
+    "file": "display_emissive.png"
+   },
+   "emissiveStrength": 1.600000023841858,
+   "clearcoat": null,
+   "parts": [
+    "interior"
+   ]
+  },
+  {
+   "name": "light_tail",
+   "alphaMode": "OPAQUE",
+   "alphaCutoff": null,
+   "doubleSided": false,
+   "baseColorFactor": [
+    0.25,
+    0.009999999776482582,
+    0.009999999776482582,
+    1
+   ],
+   "baseColorTexture": null,
+   "metallicFactor": 0,
+   "roughnessFactor": 0.25,
+   "metallicRoughnessTexture": null,
+   "normalTexture": null,
+   "occlusionTexture": null,
+   "emissiveFactor": [
+    1,
+    0.029999999329447746,
+    0.019999999552965164
+   ],
+   "emissiveTexture": null,
+   "emissiveStrength": 3,
+   "clearcoat": null,
+   "parts": [
+    "rear_light_L",
+    "rear_light_R"
+   ]
+  },
+  {
+   "name": "caliper_paint",
+   "alphaMode": "OPAQUE",
+   "alphaCutoff": null,
+   "doubleSided": false,
+   "baseColorFactor": [
+    0.8999999761581421,
+    0.5199999809265137,
+    0.009999999776482582,
+    1
+   ],
+   "baseColorTexture": null,
+   "metallicFactor": 1.0,
+   "roughnessFactor": 1.0,
+   "metallicRoughnessTexture": {
+    "file": "wheel_orm.png"
+   },
+   "normalTexture": {
+    "file": "wheel_normal.png"
+   },
+   "occlusionTexture": {
+    "file": "wheel_orm.png"
+   },
+   "emissiveFactor": null,
+   "emissiveTexture": null,
+   "emissiveStrength": null,
+   "clearcoat": {
+    "clearcoatFactor": 1,
+    "clearcoatRoughnessFactor": 0.07999999821186066
+   },
+   "parts": [
+    "caliper_FL",
+    "caliper_FR",
+    "caliper_RL",
+    "caliper_RR"
+   ]
+  },
+  {
+   "name": "wheel_finish",
+   "alphaMode": "OPAQUE",
+   "alphaCutoff": null,
+   "doubleSided": false,
+   "baseColorFactor": [
+    0.01600000075995922,
+    0.01600000075995922,
+    0.017999999225139618,
+    1
+   ],
+   "baseColorTexture": null,
+   "metallicFactor": 1.0,
+   "roughnessFactor": 1.0,
+   "metallicRoughnessTexture": {
+    "file": "wheel_orm.png"
+   },
+   "normalTexture": {
+    "file": "wheel_normal.png"
+   },
+   "occlusionTexture": {
+    "file": "wheel_orm.png"
+   },
+   "emissiveFactor": null,
+   "emissiveTexture": null,
+   "emissiveStrength": null,
+   "clearcoat": null,
+   "parts": [
+    "rim_FL",
+    "rim_FR",
+    "rim_RL",
+    "rim_RR"
+   ]
+  },
+  {
+   "name": "tire_rubber",
+   "alphaMode": "OPAQUE",
+   "alphaCutoff": null,
+   "doubleSided": false,
+   "baseColorFactor": [
+    0.014000000432133675,
+    0.014000000432133675,
+    0.014999999664723873,
+    1
+   ],
+   "baseColorTexture": null,
+   "metallicFactor": 1.0,
+   "roughnessFactor": 1.0,
+   "metallicRoughnessTexture": {
+    "file": "wheel_orm.png"
+   },
+   "normalTexture": {
+    "file": "wheel_normal.png"
+   },
+   "occlusionTexture": {
+    "file": "wheel_orm.png"
+   },
+   "emissiveFactor": null,
+   "emissiveTexture": null,
+   "emissiveStrength": null,
+   "clearcoat": null,
+   "parts": [
+    "tire_FL",
+    "tire_FR",
+    "tire_RL",
+    "tire_RR"
+   ]
+  }
+ ]
+}

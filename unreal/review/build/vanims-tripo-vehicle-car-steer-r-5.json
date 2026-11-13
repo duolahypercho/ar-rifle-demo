@@ -1,0 +1,34 @@
+{
+ "boneRestErrCm": [
+  2.2082821374169725e-05,
+  1.3418153196165239e-05
+ ],
+ "clips": {
+  "car-steer-r": {
+   "frames": 2,
+   "bytes": 529372,
+   "s": 0.07
+  },
+  "heli-cyclic-f": {
+   "frames": 2,
+   "bytes": 529388,
+   "s": 0.05
+  },
+  "heli-cyclic-r": {
+   "frames": 2,
+   "bytes": 529388,
+   "s": 0.05
+  },
+  "heli-pedal-l": {
+   "frames": 2,
+   "bytes": 529372,
+   "s": 0.05
+  },
+  "car-exit": {
+   "frames": 236,
+   "bytes": 1897900,
+   "s": 0.82
+  }
+ },
+ "seconds": 1.1
+}

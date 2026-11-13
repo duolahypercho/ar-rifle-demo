@@ -1,0 +1,86 @@
+{
+ "car-drive": {
+  "frames": 241,
+  "fbxFrameRange": [
+   0,
+   240
+  ],
+  "sceneFps": 30.0,
+  "worstPosMm": 6.664001874625056e-05,
+  "worstPosBone": "suspension_RL",
+  "worstDeg": 2.8143654660823173e-05,
+  "worstDegBone": "steering_wheel"
+ },
+ "car-steer-l": {
+  "frames": 2,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "worstPosMm": 7.812925432663341e-05,
+  "worstPosBone": "steering_wheel",
+  "worstDeg": 3.539559954311124e-05,
+  "worstDegBone": "steering_wheel"
+ },
+ "car-steer-r": {
+  "frames": 2,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "worstPosMm": 9.803929584208195e-05,
+  "worstPosBone": "steering_wheel",
+  "worstDeg": 3.539559954311124e-05,
+  "worstDegBone": "steering_wheel"
+ },
+ "car-look-back": {
+  "frames": 2,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "worstPosMm": 6.664001874625056e-05,
+  "worstPosBone": "suspension_RL",
+  "worstDeg": 1.9746757814287386e-05,
+  "worstDegBone": "exhaust_L"
+ },
+ "car-enter": {
+  "frames": 241,
+  "fbxFrameRange": [
+   0,
+   240
+  ],
+  "sceneFps": 30.0,
+  "worstPosMm": 0.00037894291478694526,
+  "worstPosBone": "mirror_L",
+  "worstDeg": 2.576026733149815e-05,
+  "worstDegBone": "door_glass_L"
+ },
+ "car-exit": {
+  "frames": 236,
+  "fbxFrameRange": [
+   0,
+   235
+  ],
+  "sceneFps": 30.0,
+  "worstPosMm": 0.0002980232238769531,
+  "worstPosBone": "door_glass_L",
+  "worstDeg": 2.4439180136331166e-05,
+  "worstDegBone": "door_L"
+ },
+ "fit": {
+  "frames": 2,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "worstPosMm": 6.664001874625056e-05,
+  "worstPosBone": "suspension_RL",
+  "worstDeg": 1.9746757814287386e-05,
+  "worstDegBone": "exhaust_L"
+ }
+}

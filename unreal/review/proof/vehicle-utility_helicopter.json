@@ -1,0 +1,41 @@
+{
+ "armatures": 1,
+ "meshes": 50,
+ "otherObjects": [],
+ "bones": 68,
+ "boneNamesEqual": true,
+ "parentsEqual": true,
+ "restPivotMm": 0.0004842304232499576,
+ "restDeg": 0.021103290766886613,
+ "restRootIdentity": false,
+ "partsFound": 50,
+ "partsInGlb": 50,
+ "badParts": [],
+ "restVertexMm": 0.001382449726103266,
+ "restVertexWorstPart": "tail_blade_03",
+ "vertices": 95267,
+ "images": [
+  "displays_emissive.png",
+  "ext_normal.png",
+  "int_basecolor.png",
+  "int_normal.png",
+  "lights_emissive.png",
+  "mech_basecolor.png",
+  "mech_normal.png",
+  "rotor_blur.png",
+  "rotor_blur.png.001",
+  "rotor_blur.png.002"
+ ],
+ "boundsM": [
+  [
+   -5.5,
+   -7.5106,
+   -0.7781
+  ],
+  [
+   5.5,
+   5.5,
+   3.2
+  ]
+ ]
+}

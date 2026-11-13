@@ -22,7 +22,7 @@ rifle-sprint | 53 | [0, 52] | 30 | 0.0084 (ball_r) | 0.0012 (index_01_l) | 0.000
 rifle-aim-level | 2 | [0, 1] | 30 | 0.0024 (ball_r) | 0.0012 (thumb_02_r) | 0.0001 / 0.0000 | in place | 0.000
 reload-rifle-tac | 70 | [0, 69] | 30 | 0.0029 (ik_hand_l) | 0.0006 (ring_01_r) | 0.0009 / 0.0000 | in place | 0.000
 reload-rifle-empty | 89 | [0, 88] | 30 | 0.0031 (ik_hand_l) | 0.0017 (index_01_r) | 0.0009 / 0.0000 | in place | 0.000
-swap-rifle-shotgun | 41 | [0, 40] | 30 | 0.0055 (ik_hand_l) | 0.0007 (ring_01_r) | 0.0008 / 0.0001 | in place | 0.000
+swap-rifle-shotgun | 41 | [0, 40] | 30 | 0.0053 (ik_hand_l) | 0.0007 (ring_01_r) | 0.0008 / 0.0001 | in place | 0.000
 rifle-jog-start | 29 | [0, 28] | 30 | 0.0063 (ball_l) | 0.0007 (foot_r) | 0.0007 / 0.0000 | 0.00032 / 0.00000 | 2.160
 rifle-pivot-l180 | 37 | [0, 36] | 30 | 0.0050 (ball_r) | 0.0010 (index_01_r) | 0.0005 / 0.0001 | 0.00002 / 0.00003 | 0.144
 rifle-run-turn-l | 27 | [0, 26] | 30 | 0.0051 (ball_l) | 0.0011 (index_01_r) | 0.0004 / 0.0000 | 0.00016 / 0.00002 | 0.467
@@ -30,7 +30,7 @@ rifle-crouch-walk-f | 70 | [0, 69] | 30 | 0.0037 (calf_r) | 0.0010 (thumb_02_l) 
 hit-heavy-f | 28 | [0, 27] | 30 | 0.0025 (ball_r) | 0.0006 (thumb_02_l) | 0.0007 / 0.0001 | in place | 0.000
 shotgun-pump | 19 | [0, 18] | 30 | 0.0024 (ball_r) | 0.0006 (ring_03_l) | 0.0004 / 0.0000 | in place | 0.000
 rifle-idle | 241 | [0, 240] | 30 | 0.0026 (ball_l) | 0.0009 (thumb_02_l) | 0.0007 / 0.0000 | in place | 0.000
-swap-shotgun-rifle | 41 | [0, 40] | 30 | 0.0038 (ik_hand_l) | 0.0019 (index_01_r) | 0.0006 / 0.0001 | in place | 0.000
+swap-shotgun-rifle | 41 | [0, 40] | 30 | 0.0046 (ik_hand_l) | 0.0019 (index_01_r) | 0.0006 / 0.0001 | in place | 0.000
 -- earthonline --
 clip | frames | FBX range | fps | worst pos mm (bone) | worst deg (bone) | Gun mm / deg | root vs notes mm / deg | root travel m
 rifle-walk-f | 63 | [0, 62] | 30 | 0.0023 (foot_r) | 0.0012 (index_03_r) | 0.0006 / 0.0000 | in place | 0.000
@@ -82,3 +82,173 @@ civilian-m-03-hero-ue5 | rifle-aim-level | 1 | 0.0013 | 0.00026
 civilian-m-03-hero-ue5 | swap-rifle-shotgun | 0 | 0.0009 | 0.00025
 civilian-m-03-hero-ue5 | swap-rifle-shotgun | 20 | 0.0030 | 0.00045
 civilian-m-03-hero-ue5 | swap-rifle-shotgun | 40 | 0.0011 | 0.00025
+
+== Pass U1: vehicle clips (FBX as written: plain reader; every bone every frame from the FBX's own curves) ==
+pack | clip | frames (= max(2, GLB keys)) | fps | unit | root bones | bones / parents | root vs notes cm | curves worst mm (bone) | curves worst deg (bone) | MB
+tripo-vehicle | car-drive | 241 (241) | 30 | 1 | ['root'] | True / True | 0.000000 | 0.0105 (ball_l) | 0.0006 (ball_r) | 1.87
+tripo-vehicle | car-steer-l | 2 (2) | 30 | 1 | ['root'] | True / True | 0.000000 | 0.0103 (ball_l) | 0.0006 (ball_r) | 0.53
+tripo-vehicle | car-steer-r | 2 (2) | 30 | 1 | ['root'] | True / True | 0.000000 | 0.0103 (ball_l) | 0.0006 (ball_r) | 0.53
+tripo-vehicle | car-look-back | 2 (2) | 30 | 1 | ['root'] | True / True | 0.000000 | 0.0107 (ball_l) | 0.0006 (ball_r) | 0.53
+tripo-vehicle | heli-fly | 241 (241) | 30 | 1 | ['root'] | True / True | 0.000000 | 0.0081 (ball_r) | 0.0004 (calf_twist_01_r) | 1.87
+tripo-vehicle | heli-cyclic-f | 2 (2) | 30 | 1 | ['root'] | True / True | 0.000000 | 0.0072 (ball_l) | 0.0004 (calf_twist_02_r) | 0.53
+tripo-vehicle | heli-cyclic-b | 2 (2) | 30 | 1 | ['root'] | True / True | 0.000000 | 0.0072 (ball_l) | 0.0004 (calf_twist_02_r) | 0.53
+tripo-vehicle | heli-cyclic-l | 2 (2) | 30 | 1 | ['root'] | True / True | 0.000000 | 0.0072 (ball_l) | 0.0004 (calf_twist_02_r) | 0.53
+tripo-vehicle | heli-cyclic-r | 2 (2) | 30 | 1 | ['root'] | True / True | 0.000000 | 0.0072 (ball_l) | 0.0004 (calf_twist_02_r) | 0.53
+tripo-vehicle | heli-collective-up | 2 (2) | 30 | 1 | ['root'] | True / True | 0.000000 | 0.0072 (ball_l) | 0.0004 (calf_twist_02_r) | 0.53
+tripo-vehicle | heli-collective-down | 2 (2) | 30 | 1 | ['root'] | True / True | 0.000000 | 0.0078 (ball_r) | 0.0004 (calf_twist_02_r) | 0.53
+tripo-vehicle | heli-pedal-l | 2 (2) | 30 | 1 | ['root'] | True / True | 0.000000 | 0.0077 (ball_l) | 0.0004 (calf_twist_02_r) | 0.53
+tripo-vehicle | heli-pedal-r | 2 (2) | 30 | 1 | ['root'] | True / True | 0.000000 | 0.0079 (ball_r) | 0.0004 (calf_twist_02_r) | 0.53
+tripo-vehicle | car-enter | 241 (241) | 30 | 1 | ['root'] | True / True | 0.000023 | 0.0111 (ball_l) | 0.0008 (ball_r) | 1.93
+tripo-vehicle | car-exit | 236 (236) | 30 | 1 | ['root'] | True / True | 0.000029 | 0.0110 (ball_l) | 0.0010 (foot_l) | 1.90
+tripo-vehicle | heli-enter | 284 (284) | 30 | 1 | ['root'] | True / True | 0.000015 | 0.0103 (ball_l) | 0.0012 (ball_l) | 2.17
+tripo-vehicle | heli-exit | 366 (366) | 30 | 1 | ['root'] | True / True | 0.000031 | 0.0091 (ball_l) | 0.0011 (ball_l) | 2.60
+earthonline-vehicle | car-drive | 241 (241) | 30 | 1 | ['root'] | True / True | 0.000000 | 0.0009 (ball_l) | 0.0001 (thumb_02_l) | 1.95
+earthonline-vehicle | car-steer-l | 2 (2) | 30 | 1 | ['root'] | True / True | 0.000000 | 0.0004 (ring_03_l) | 0.0001 (thumb_02_r) | 0.55
+earthonline-vehicle | car-steer-r | 2 (2) | 30 | 1 | ['root'] | True / True | 0.000000 | 0.0008 (middle_03_l) | 0.0001 (thumb_02_l) | 0.55
+earthonline-vehicle | car-look-back | 2 (2) | 30 | 1 | ['root'] | True / True | 0.000000 | 0.0004 (ball_l) | 0.0001 (thumb_02_l) | 0.55
+earthonline-vehicle | heli-fly | 241 (241) | 30 | 1 | ['root'] | True / True | 0.000000 | 0.0046 (pinky_02_l) | 0.0005 (thumb_03_l) | 1.95
+earthonline-vehicle | heli-cyclic-f | 2 (2) | 30 | 1 | ['root'] | True / True | 0.000000 | 0.0009 (ring_02_r) | 0.0001 (thumb_02_l) | 0.55
+earthonline-vehicle | heli-cyclic-b | 2 (2) | 30 | 1 | ['root'] | True / True | 0.000000 | 0.0014 (ring_03_l) | 0.0002 (thumb_02_l) | 0.55
+earthonline-vehicle | heli-cyclic-l | 2 (2) | 30 | 1 | ['root'] | True / True | 0.000000 | 0.0014 (thumb_03_l) | 0.0002 (thumb_02_r) | 0.55
+earthonline-vehicle | heli-cyclic-r | 2 (2) | 30 | 1 | ['root'] | True / True | 0.000000 | 0.0011 (middle_03_r) | 0.0001 (thumb_02_r) | 0.55
+earthonline-vehicle | heli-collective-up | 2 (2) | 30 | 1 | ['root'] | True / True | 0.000000 | 0.0009 (ball_r) | 0.0001 (thumb_02_r) | 0.55
+earthonline-vehicle | heli-collective-down | 2 (2) | 30 | 1 | ['root'] | True / True | 0.000000 | 0.0015 (ring_02_r) | 0.0002 (thumb_02_r) | 0.55
+earthonline-vehicle | heli-pedal-l | 2 (2) | 30 | 1 | ['root'] | True / True | 0.000000 | 0.0008 (ball_r) | 0.0001 (thumb_02_r) | 0.55
+earthonline-vehicle | heli-pedal-r | 2 (2) | 30 | 1 | ['root'] | True / True | 0.000000 | 0.0008 (eye_l) | 0.0001 (thumb_02_r) | 0.55
+earthonline-vehicle | car-enter | 241 (241) | 30 | 1 | ['root'] | True / True | 0.000016 | 0.4569 (ring_03_l) | 0.0396 (thumb_02_l) | 2.00
+earthonline-vehicle | car-exit | 236 (236) | 30 | 1 | ['root'] | True / True | 0.000024 | 0.8792 (ring_03_l) | 0.0789 (thumb_02_l) | 1.96
+earthonline-vehicle | heli-enter | 287 (287) | 30 | 1 | ['root'] | True / True | 0.000015 | 0.9934 (ring_03_l) | 0.0890 (upperarm_l) | 2.26
+earthonline-vehicle | heli-exit | 368 (368) | 30 | 1 | ['root'] | True / True | 0.000032 | 0.5911 (ring_03_r) | 0.0597 (thumb_03_r) | 2.71
+-- tripo-vehicle: Blender re-import vs the GLB pack (numpy FK), every bone, every frame --
+clip | frames | FBX range | fps | worst pos mm (bone) | worst deg (bone) | root vs notes mm / deg | root start -> end [x, z, yaw]
+car-drive | 241 | [0, 240] | 30 | 0.0045 (foot_l) | 0.0033 (ring_03_r) | 0.0000 / 0.00002 | [-0.37, -0.14, 3.14159] -> [-0.37, -0.14, 3.14159]
+car-steer-l | 2 | [0, 1] | 30 | 0.0046 (foot_l) | 0.0028 (index_03_r) | 0.0000 / 0.00002 | [-0.37, -0.14, 3.14159] -> [-0.37, -0.14, 3.14159]
+car-steer-r | 2 | [0, 1] | 30 | 0.0046 (foot_l) | 0.0026 (ring_03_l) | 0.0000 / 0.00002 | [-0.37, -0.14, 3.14159] -> [-0.37, -0.14, 3.14159]
+car-look-back | 2 | [0, 1] | 30 | 0.0036 (foot_r) | 0.0018 (ring_03_l) | 0.0000 / 0.00002 | [-0.37, -0.14, 3.14159] -> [-0.37, -0.14, 3.14159]
+heli-fly | 241 | [0, 240] | 30 | 0.0035 (ball_l) | 0.0025 (index_03_r) | 0.0001 / 0.00002 | [0.42, -1.335, 3.14159] -> [0.42, -1.335, 3.14159]
+heli-cyclic-f | 2 | [0, 1] | 30 | 0.0030 (foot_l) | 0.0021 (index_02_r) | 0.0001 / 0.00002 | [0.42, -1.335, 3.14159] -> [0.42, -1.335, 3.14159]
+heli-cyclic-b | 2 | [0, 1] | 30 | 0.0030 (foot_l) | 0.0027 (index_03_r) | 0.0001 / 0.00002 | [0.42, -1.335, 3.14159] -> [0.42, -1.335, 3.14159]
+heli-cyclic-l | 2 | [0, 1] | 30 | 0.0030 (foot_l) | 0.0024 (pinky_02_r) | 0.0001 / 0.00002 | [0.42, -1.335, 3.14159] -> [0.42, -1.335, 3.14159]
+heli-cyclic-r | 2 | [0, 1] | 30 | 0.0030 (foot_l) | 0.0013 (index_03_r) | 0.0001 / 0.00002 | [0.42, -1.335, 3.14159] -> [0.42, -1.335, 3.14159]
+heli-collective-up | 2 | [0, 1] | 30 | 0.0030 (foot_l) | 0.0020 (index_03_r) | 0.0001 / 0.00002 | [0.42, -1.335, 3.14159] -> [0.42, -1.335, 3.14159]
+heli-collective-down | 2 | [0, 1] | 30 | 0.0031 (ball_l) | 0.0025 (index_03_r) | 0.0001 / 0.00002 | [0.42, -1.335, 3.14159] -> [0.42, -1.335, 3.14159]
+heli-pedal-l | 2 | [0, 1] | 30 | 0.0034 (foot_l) | 0.0020 (index_03_r) | 0.0001 / 0.00002 | [0.42, -1.335, 3.14159] -> [0.42, -1.335, 3.14159]
+heli-pedal-r | 2 | [0, 1] | 30 | 0.0029 (ball_l) | 0.0020 (index_03_r) | 0.0001 / 0.00002 | [0.42, -1.335, 3.14159] -> [0.42, -1.335, 3.14159]
+car-enter | 241 | [0, 240] | 30 | 0.1543 (ik_hand_l) | 0.0067 (root) | 0.1391 / 0.00674 | [-1.55, -0.25, 3.14159] -> [-0.37, -0.14, 3.14159]
+car-exit | 236 | [0, 235] | 30 | 0.0308 (ik_hand_gun) | 0.0033 (ring_03_r) | 0.0006 / 0.00009 | [-0.37, -0.14, 3.14159] -> [-1.55, -0.25, 3.14159]
+heli-enter | 284 | [0, 283] | 30 | 0.0113 (ball_l) | 0.0029 (pinky_03_r) | 0.0007 / 0.00004 | [1.8, -1.55, -1.5708] -> [0.42, -1.335, 3.14159]
+heli-exit | 366 | [0, 365] | 30 | 0.0319 (ik_foot_r) | 0.0033 (index_03_r) | 0.0012 / 0.00011 | [0.42, -1.335, 3.14159] -> [1.78, -1.55, 4.67748]
+-- earthonline-vehicle: Blender re-import vs the GLB pack (numpy FK), every bone, every frame --
+clip | frames | FBX range | fps | worst pos mm (bone) | worst deg (bone) | root vs notes mm / deg | root start -> end [x, z, yaw]
+car-drive | 241 | [0, 240] | 30 | 0.0009 (pinky_02_r) | 0.0010 (middle_03_r) | 0.0000 / 0.00002 | [-0.37, -0.14, 3.14159] -> [-0.37, -0.14, 3.14159]
+car-steer-l | 2 | [0, 1] | 30 | 0.0005 (ring_03_l) | 0.0011 (ring_03_r) | 0.0000 / 0.00002 | [-0.37, -0.14, 3.14159] -> [-0.37, -0.14, 3.14159]
+car-steer-r | 2 | [0, 1] | 30 | 0.0008 (middle_03_l) | 0.0011 (ring_03_l) | 0.0000 / 0.00002 | [-0.37, -0.14, 3.14159] -> [-0.37, -0.14, 3.14159]
+car-look-back | 2 | [0, 1] | 30 | 0.0004 (ball_l) | 0.0003 (ring_03_l) | 0.0000 / 0.00002 | [-0.37, -0.14, 3.14159] -> [-0.37, -0.14, 3.14159]
+heli-fly | 241 | [0, 240] | 30 | 0.0048 (pinky_02_l) | 0.0021 (pinky_02_r) | 0.0001 / 0.00002 | [0.42, -1.335, 3.14159] -> [0.42, -1.335, 3.14159]
+heli-cyclic-f | 2 | [0, 1] | 30 | 0.0013 (pinky_03_r) | 0.0019 (middle_02_r) | 0.0001 / 0.00002 | [0.42, -1.335, 3.14159] -> [0.42, -1.335, 3.14159]
+heli-cyclic-b | 2 | [0, 1] | 30 | 0.0014 (pinky_03_l) | 0.0034 (pinky_02_r) | 0.0001 / 0.00002 | [0.42, -1.335, 3.14159] -> [0.42, -1.335, 3.14159]
+heli-cyclic-l | 2 | [0, 1] | 30 | 0.0014 (pinky_03_l) | 0.0044 (index_02_r) | 0.0001 / 0.00002 | [0.42, -1.335, 3.14159] -> [0.42, -1.335, 3.14159]
+heli-cyclic-r | 2 | [0, 1] | 30 | 0.0011 (thumb_03_r) | 0.0009 (index_02_r) | 0.0001 / 0.00002 | [0.42, -1.335, 3.14159] -> [0.42, -1.335, 3.14159]
+heli-collective-up | 2 | [0, 1] | 30 | 0.0011 (index_03_r) | 0.0011 (ring_02_r) | 0.0001 / 0.00002 | [0.42, -1.335, 3.14159] -> [0.42, -1.335, 3.14159]
+heli-collective-down | 2 | [0, 1] | 30 | 0.0013 (index_03_r) | 0.0012 (middle_02_r) | 0.0001 / 0.00002 | [0.42, -1.335, 3.14159] -> [0.42, -1.335, 3.14159]
+heli-pedal-l | 2 | [0, 1] | 30 | 0.0011 (thumb_03_l) | 0.0011 (ring_02_r) | 0.0001 / 0.00002 | [0.42, -1.335, 3.14159] -> [0.42, -1.335, 3.14159]
+heli-pedal-r | 2 | [0, 1] | 30 | 0.0011 (thumb_03_l) | 0.0011 (ring_02_r) | 0.0001 / 0.00002 | [0.42, -1.335, 3.14159] -> [0.42, -1.335, 3.14159]
+car-enter | 241 | [0, 240] | 30 | 0.4897 (ring_03_l) | 0.0401 (ring_02_l) | 0.1391 / 0.00674 | [-1.55, -0.25, 3.14159] -> [-0.37, -0.14, 3.14159]
+car-exit | 236 | [0, 235] | 30 | 0.8799 (ring_03_l) | 0.0792 (ring_02_l) | 0.0006 / 0.00009 | [-0.37, -0.14, 3.14159] -> [-1.55, -0.25, 3.14159]
+heli-enter | 287 | [0, 286] | 30 | 0.9932 (ring_03_l) | 0.0894 (clavicle_l) | 0.0004 / 0.00004 | [1.8, -1.55, -1.5708] -> [0.42, -1.335, 3.14159]
+heli-exit | 368 | [0, 367] | 30 | 0.5918 (ring_03_r) | 0.0598 (pinky_01_r) | 0.0012 / 0.00012 | [0.42, -1.335, 3.14159] -> [1.78, -1.55, 4.67748]
+
+== Pass U1: vehicles ==
+vehicle | unit | up | root bones | bones = GLB nodes / parents | mesh parts / GLB parts | pivots vs GLB mm / deg | bounds cm | verts | embedded | MB
+supercar | 1.0 | Z | ['vehicle_root'] | 65 True / True | 46 / 46 | 0.00005 / 0.00001 | [[-113.0, -240.0, 0.0], [113.0, 240.0, 113.99]] | 76813 | 7 | 10.6
+utility_helicopter | 1.0 | Z | ['helicopter_root'] | 68 True / True | 50 / 50 | 0.00027 / 0.00014 | [[-550.0, -751.06, -77.81], [550.0, 550.0, 320.0]] | 95267 | 8 | 16.5
+supercar re-imported: 1 armature, 46 meshes [], bones 65 names / parents = GLB True / True, rest pivots 0.00024 mm / 0.0000 deg, parts bound to their own bone only (weight 1) 46 / 46 , rest vertices vs GLB 0.00017 mm (engine_cover), 76813 vertices
+utility_helicopter re-imported: 1 armature, 50 meshes [], bones 68 names / parents = GLB True / True, rest pivots 0.00048 mm / 0.0211 deg, parts bound to their own bone only (weight 1) 50 / 50 , rest vertices vs GLB 0.00138 mm (tail_blade_03), 95267 vertices
+
+-- vehicle-side clips (vehicles/animations/<group>/<vehicle>_<clip>.fbx): frames, every bone every frame from the curves; Blender re-import --
+group | file | frames (want) | bones = vehicle | curves worst mm / deg | re-import worst mm / deg
+earthonline-vehicle | supercar_car-drive | 241 (241) | True | 0.00005 / 0.00003 | 0.0004 / 0.0000
+earthonline-vehicle | supercar_car-enter | 241 (241) | True | 0.00030 / 0.00002 | 0.0005 / 0.0000
+earthonline-vehicle | supercar_car-exit | 236 (236) | True | 0.00031 / 0.00003 | 0.0004 / 0.0000
+earthonline-vehicle | supercar_car-look-back | 2 (2) | True | 0.00005 / 0.00001 | 0.0004 / 0.0000
+earthonline-vehicle | supercar_car-steer-l | 2 (2) | True | 0.00005 / 0.00004 | 0.0004 / 0.0000
+earthonline-vehicle | supercar_car-steer-r | 2 (2) | True | 0.00005 / 0.00004 | 0.0004 / 0.0000
+earthonline-vehicle | supercar_fit | 2 (2) | True | 0.00005 / 0.00001 | 0.0004 / 0.0000
+earthonline-vehicle | utility_helicopter_fit | 2 (2) | True | 0.00027 / 0.00014 | 0.0005 / 0.0211
+earthonline-vehicle | utility_helicopter_heli-collective-down | 2 (2) | True | 0.00027 / 0.00014 | 0.0005 / 0.0211
+earthonline-vehicle | utility_helicopter_heli-collective-up | 2 (2) | True | 0.00027 / 0.00014 | 0.0005 / 0.0211
+earthonline-vehicle | utility_helicopter_heli-cyclic-b | 2 (2) | True | 0.00027 / 0.00014 | 0.0005 / 0.0211
+earthonline-vehicle | utility_helicopter_heli-cyclic-f | 2 (2) | True | 0.00027 / 0.00014 | 0.0005 / 0.0211
+earthonline-vehicle | utility_helicopter_heli-cyclic-l | 2 (2) | True | 0.00027 / 0.00014 | 0.0005 / 0.0211
+earthonline-vehicle | utility_helicopter_heli-cyclic-r | 2 (2) | True | 0.00027 / 0.00014 | 0.0005 / 0.0211
+earthonline-vehicle | utility_helicopter_heli-enter | 287 (287) | True | 0.00044 / 0.00014 | 0.0006 / 0.0211
+earthonline-vehicle | utility_helicopter_heli-exit | 368 (368) | True | 0.00041 / 0.00014 | 0.0006 / 0.0211
+earthonline-vehicle | utility_helicopter_heli-fly | 241 (241) | True | 0.00027 / 0.00014 | 0.0005 / 0.0211
+earthonline-vehicle | utility_helicopter_heli-pedal-l | 2 (2) | True | 0.00027 / 0.00014 | 0.0005 / 0.0211
+earthonline-vehicle | utility_helicopter_heli-pedal-r | 2 (2) | True | 0.00027 / 0.00014 | 0.0005 / 0.0211
+own | supercar_doors_close | 51 (51) | True | 0.00027 / 0.00002 | 0.0004 / 0.0000
+own | supercar_doors_open | 51 (51) | True | 0.00031 / 0.00003 | 0.0003 / 0.0000
+own | supercar_steering_demo | 151 (151) | True | 0.00040 / 0.00004 | 0.0004 / 0.0166
+own | utility_helicopter_cabin_doors_open | 41 (41) | True | 0.00027 / 0.00014 | 0.0005 / 0.0211
+own | utility_helicopter_cockpit_doors_open | 41 (41) | True | 0.00035 / 0.00014 | 0.0005 / 0.0219
+own | utility_helicopter_main_rotor_spin | 31 (31) | True | 0.00032 / 0.00014 | 0.0006 / 0.0211
+own | utility_helicopter_tail_rotor_spin | 13 (13) | True | 0.00417 / 0.00017 | 0.0030 / 0.0211
+tripo-vehicle | supercar_car-drive | 241 (241) | True | 0.00005 / 0.00003 | 0.0001 / 0.0000
+tripo-vehicle | supercar_car-enter | 241 (241) | True | 0.00030 / 0.00002 | 0.0004 / 0.0000
+tripo-vehicle | supercar_car-exit | 236 (236) | True | 0.00025 / 0.00002 | 0.0003 / 0.0000
+tripo-vehicle | supercar_car-look-back | 2 (2) | True | 0.00005 / 0.00001 | 0.0001 / 0.0000
+tripo-vehicle | supercar_car-steer-l | 2 (2) | True | 0.00005 / 0.00004 | 0.0001 / 0.0000
+tripo-vehicle | supercar_car-steer-r | 2 (2) | True | 0.00005 / 0.00004 | 0.0001 / 0.0000
+tripo-vehicle | supercar_fit | 2 (2) | True | 0.00005 / 0.00001 | 0.0001 / 0.0000
+tripo-vehicle | utility_helicopter_fit | 2 (2) | True | 0.00027 / 0.00014 | 0.0005 / 0.0211
+tripo-vehicle | utility_helicopter_heli-collective-down | 2 (2) | True | 0.00027 / 0.00014 | 0.0005 / 0.0211
+tripo-vehicle | utility_helicopter_heli-collective-up | 2 (2) | True | 0.00027 / 0.00014 | 0.0005 / 0.0211
+tripo-vehicle | utility_helicopter_heli-cyclic-b | 2 (2) | True | 0.00027 / 0.00014 | 0.0005 / 0.0211
+tripo-vehicle | utility_helicopter_heli-cyclic-f | 2 (2) | True | 0.00027 / 0.00014 | 0.0005 / 0.0211
+tripo-vehicle | utility_helicopter_heli-cyclic-l | 2 (2) | True | 0.00027 / 0.00014 | 0.0005 / 0.0211
+tripo-vehicle | utility_helicopter_heli-cyclic-r | 2 (2) | True | 0.00027 / 0.00014 | 0.0005 / 0.0211
+tripo-vehicle | utility_helicopter_heli-enter | 284 (284) | True | 0.00045 / 0.00014 | 0.0005 / 0.0211
+tripo-vehicle | utility_helicopter_heli-exit | 366 (366) | True | 0.00041 / 0.00014 | 0.0006 / 0.0211
+tripo-vehicle | utility_helicopter_heli-fly | 241 (241) | True | 0.00027 / 0.00014 | 0.0005 / 0.0211
+tripo-vehicle | utility_helicopter_heli-pedal-l | 2 (2) | True | 0.00027 / 0.00014 | 0.0005 / 0.0211
+tripo-vehicle | utility_helicopter_heli-pedal-r | 2 (2) | True | 0.00027 / 0.00014 | 0.0005 / 0.0211
+
+-- alignment: character clip FBX + vehicle-side FBX re-imported together, no offset; each contact's character bone in its vehicle bone's frame vs the GLB pack + vehicle formula (every frame of every contact span) --
+pack | clip | contacts | frames | worst mm (at) | worst deg | contact spread in the GLB pack cm / deg (vehicle_data_check.json)
+tripo-vehicle | car-drive | 4 | 240 | 0.0045 (foot_l on interior f32) | 0.0004 | 0.003 / 0.00 (foot_r on interior)
+tripo-vehicle | car-steer-l | 4 | 1 | 0.0046 (foot_l on interior f0) | 0.0004 | 0.000 / 0.00 (foot_l on interior)
+tripo-vehicle | car-steer-r | 4 | 1 | 0.0046 (foot_l on interior f0) | 0.0004 | 0.000 / 0.00 (foot_l on interior)
+tripo-vehicle | car-look-back | 3 | 1 | 0.0036 (foot_r on interior f0) | 0.0004 | 0.000 / 0.00 (foot_l on interior)
+tripo-vehicle | heli-fly | 4 | 240 | 0.0034 (foot_l on pedal_L f40) | 0.0004 | 0.554 / 2.78 (hand_l on collective)
+tripo-vehicle | heli-cyclic-f | 4 | 1 | 0.0029 (foot_l on pedal_L f0) | 0.0003 | 0.000 / 0.00 (hand_l on collective)
+tripo-vehicle | heli-cyclic-b | 4 | 1 | 0.0029 (foot_l on pedal_L f0) | 0.0003 | 0.000 / 0.00 (hand_l on collective)
+tripo-vehicle | heli-cyclic-l | 4 | 1 | 0.0029 (foot_l on pedal_L f0) | 0.0003 | 0.000 / 0.00 (hand_l on collective)
+tripo-vehicle | heli-cyclic-r | 4 | 1 | 0.0029 (foot_l on pedal_L f0) | 0.0003 | 0.000 / 0.00 (hand_l on collective)
+tripo-vehicle | heli-collective-up | 4 | 1 | 0.0029 (foot_l on pedal_L f0) | 0.0003 | 0.000 / 0.00 (hand_l on collective)
+tripo-vehicle | heli-collective-down | 4 | 1 | 0.0029 (foot_l on pedal_L f0) | 0.0003 | 0.000 / 0.00 (hand_l on collective)
+tripo-vehicle | heli-pedal-l | 4 | 1 | 0.0034 (foot_l on pedal_L f0) | 0.0004 | 0.000 / 0.00 (hand_l on collective)
+tripo-vehicle | heli-pedal-r | 4 | 1 | 0.0026 (foot_l on pedal_L f0) | 0.0004 | 0.000 / 0.00 (hand_l on collective)
+tripo-vehicle | car-enter | 18 | 234 | 0.1523 (foot_r on interior f176) | 0.0008 | 0.812 / 0.73 (foot_l on interior)
+tripo-vehicle | car-exit | 17 | 227 | 0.0063 (foot_l on vehicle_root f171) | 0.0009 | 0.945 / 5.32 (foot_r on interior)
+tripo-vehicle | heli-enter | 16 | 277 | 0.3929 (hand_r on cockpit_door_R_handle f46) | 0.0213 | 0.920 / 5.25 (foot_l on pedal_L)
+tripo-vehicle | heli-exit | 22 | 364 | 0.3946 (hand_r on cockpit_door_R_glass f27) | 0.0212 | 0.797 / 4.81 (foot_l on pedal_L)
+earthonline-vehicle | car-drive | 4 | 240 | 0.0007 (hand_r on steering_wheel f195) | 0.0001 | 0.002 / 0.00 (hand_l on steering_wheel)
+earthonline-vehicle | car-steer-l | 4 | 1 | 0.0003 (foot_l on interior f0) | 0.0001 | 0.000 / 0.00 (foot_l on interior)
+earthonline-vehicle | car-steer-r | 4 | 1 | 0.0003 (hand_l on steering_wheel f0) | 0.0001 | 0.000 / 0.00 (foot_l on interior)
+earthonline-vehicle | car-look-back | 3 | 1 | 0.0004 (foot_l on interior f0) | 0.0000 | 0.000 / 0.00 (foot_l on interior)
+earthonline-vehicle | heli-fly | 4 | 240 | 0.0042 (hand_l on collective f46) | 0.0004 | 0.465 / 2.82 (hand_l on collective)
+earthonline-vehicle | heli-cyclic-f | 4 | 1 | 0.0009 (foot_r on pedal_R f0) | 0.0001 | 0.000 / 0.00 (hand_l on collective)
+earthonline-vehicle | heli-cyclic-b | 4 | 1 | 0.0011 (hand_l on collective f0) | 0.0001 | 0.000 / 0.00 (hand_l on collective)
+earthonline-vehicle | heli-cyclic-l | 4 | 1 | 0.0013 (hand_l on collective f0) | 0.0002 | 0.000 / 0.00 (hand_l on collective)
+earthonline-vehicle | heli-cyclic-r | 4 | 1 | 0.0010 (hand_r on cyclic f0) | 0.0001 | 0.000 / 0.00 (hand_l on collective)
+earthonline-vehicle | heli-collective-up | 4 | 1 | 0.0009 (foot_r on pedal_R f0) | 0.0001 | 0.000 / 0.00 (hand_l on collective)
+earthonline-vehicle | heli-collective-down | 4 | 1 | 0.0010 (hand_r on cyclic f0) | 0.0003 | 0.000 / 0.00 (hand_l on collective)
+earthonline-vehicle | heli-pedal-l | 4 | 1 | 0.0010 (hand_l on collective f0) | 0.0001 | 0.000 / 0.00 (hand_l on collective)
+earthonline-vehicle | heli-pedal-r | 4 | 1 | 0.0010 (hand_l on collective f0) | 0.0001 | 0.000 / 0.00 (hand_l on collective)
+earthonline-vehicle | car-enter | 18 | 237 | 0.1506 (foot_l on body_shell f164) | 0.0003 | 1.510 / 2.64 (foot_l on interior)
+earthonline-vehicle | car-exit | 17 | 227 | 0.0011 (foot_l on vehicle_root f176) | 0.0001 | 1.549 / 5.32 (foot_l on interior)
+earthonline-vehicle | heli-enter | 16 | 280 | 0.3907 (hand_r on cockpit_door_R_handle f46) | 0.0212 | 0.271 / 1.77 (foot_l on pedal_L)
+earthonline-vehicle | heli-exit | 22 | 366 | 0.3757 (hand_r on cockpit_door_R_glass f27) | 0.0212 | 0.719 / 4.81 (foot_l on pedal_L)
+
+== Paths in the FBX (every file under unreal/) ==
+250 FBX; absolute texture / video paths: 0; files containing this machine's home folder: 0; media folders named: ['ar_rifle.fbm', 'civilian-f-02-hero-ue5.fbm', 'civilian-m-01-player-ue5.fbm', 'civilian-m-03-hero-ue5.fbm', 'civilian-police-m-hero-ue5.fbm', 'pump_shotgun.fbm', 'supercar.fbm', 'tripo-player-ue5.fbm', 'utility_helicopter.fbm']

@@ -1,0 +1,2 @@
+Re-imported FBX: body civilian-m-01-player-ue5.fbx posed by animations/earthonline-vehicle/<clip>.fbx (Unreal's rule), vehicles/<vehicle>.fbx posed by vehicles/animations/earthonline-vehicle/<vehicle>_<clip>.fbx, both at the origin with no offset. Workbench, texture colour.
+Tiles, left to right, top to bottom: car-enter f66, car-enter f141, car-drive f0, car-steer-l f0, car-exit f120, car-exit f181, heli-enter f91, heli-enter f184, heli-fly f0, heli-cyclic-f f0, heli-pedal-l f0, heli-exit f103, heli-exit f262, heli-collective-up f0

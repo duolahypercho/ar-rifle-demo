@@ -1,0 +1,39 @@
+{
+ "boneRestErrCm": [
+  2.2082821374169725e-05,
+  1.3418153196165239e-05
+ ],
+ "clips": {
+  "car-steer-l": {
+   "frames": 2,
+   "bytes": 529372,
+   "s": 0.07
+  },
+  "heli-fly": {
+   "frames": 241,
+   "bytes": 1869516,
+   "s": 0.81
+  },
+  "heli-cyclic-l": {
+   "frames": 2,
+   "bytes": 529388,
+   "s": 0.06
+  },
+  "heli-collective-down": {
+   "frames": 2,
+   "bytes": 529420,
+   "s": 0.05
+  },
+  "car-enter": {
+   "frames": 241,
+   "bytes": 1930908,
+   "s": 0.85
+  },
+  "heli-exit": {
+   "frames": 366,
+   "bytes": 2604860,
+   "s": 1.29
+  }
+ },
+ "seconds": 3.2
+}

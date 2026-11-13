@@ -1,0 +1,478 @@
+{
+ "car-drive": {
+  "frames": 241,
+  "glbKeys": 241,
+  "fbxFrameRange": [
+   0,
+   240
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 92,
+  "worstPosMm": 0.0009165001665058832,
+  "worstPosBone": "pinky_02_r",
+  "worstDeg": 0.0009775336982144104,
+  "worstDegBone": "middle_03_r",
+  "rootErrMm": 4.805480094503882e-06,
+  "rootErrDeg": 1.9847842819546455e-05,
+  "rootStart": [
+   -0.37,
+   -0.14,
+   3.14159
+  ],
+  "rootEnd": [
+   -0.37,
+   -0.14,
+   3.14159
+  ]
+ },
+ "car-steer-l": {
+  "frames": 2,
+  "glbKeys": 1,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 92,
+  "worstPosMm": 0.0004535393714601834,
+  "worstPosBone": "ring_03_l",
+  "worstDeg": 0.0010692865600760901,
+  "worstDegBone": "ring_03_r",
+  "rootErrMm": 4.805480094503882e-06,
+  "rootErrDeg": 1.9847842819546455e-05,
+  "rootStart": [
+   -0.37,
+   -0.14,
+   3.14159
+  ],
+  "rootEnd": [
+   -0.37,
+   -0.14,
+   3.14159
+  ]
+ },
+ "car-steer-r": {
+  "frames": 2,
+  "glbKeys": 1,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 92,
+  "worstPosMm": 0.0007807287460298142,
+  "worstPosBone": "middle_03_l",
+  "worstDeg": 0.0011433080812325222,
+  "worstDegBone": "ring_03_l",
+  "rootErrMm": 4.805480094503882e-06,
+  "rootErrDeg": 1.9847842819546455e-05,
+  "rootStart": [
+   -0.37,
+   -0.14,
+   3.14159
+  ],
+  "rootEnd": [
+   -0.37,
+   -0.14,
+   3.14159
+  ]
+ },
+ "car-look-back": {
+  "frames": 2,
+  "glbKeys": 1,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 92,
+  "worstPosMm": 0.0003639691775407157,
+  "worstPosBone": "ball_l",
+  "worstDeg": 0.0003257595357881477,
+  "worstDegBone": "ring_03_l",
+  "rootErrMm": 4.805480094503882e-06,
+  "rootErrDeg": 1.9847842819546455e-05,
+  "rootStart": [
+   -0.37,
+   -0.14,
+   3.14159
+  ],
+  "rootEnd": [
+   -0.37,
+   -0.14,
+   3.14159
+  ]
+ },
+ "heli-fly": {
+  "frames": 241,
+  "glbKeys": 241,
+  "fbxFrameRange": [
+   0,
+   240
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 92,
+  "worstPosMm": 0.004769940959037053,
+  "worstPosBone": "pinky_02_l",
+  "worstDeg": 0.002073164251728532,
+  "worstDegBone": "pinky_02_r",
+  "rootErrMm": 8.211607976636423e-05,
+  "rootErrDeg": 1.9847842819546455e-05,
+  "rootStart": [
+   0.42,
+   -1.335,
+   3.14159
+  ],
+  "rootEnd": [
+   0.42,
+   -1.335,
+   3.14159
+  ]
+ },
+ "heli-cyclic-f": {
+  "frames": 2,
+  "glbKeys": 1,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 92,
+  "worstPosMm": 0.0012877769379612291,
+  "worstPosBone": "pinky_03_r",
+  "worstDeg": 0.0019030467806302764,
+  "worstDegBone": "middle_02_r",
+  "rootErrMm": 8.211607976636423e-05,
+  "rootErrDeg": 1.9847842819546455e-05,
+  "rootStart": [
+   0.42,
+   -1.335,
+   3.14159
+  ],
+  "rootEnd": [
+   0.42,
+   -1.335,
+   3.14159
+  ]
+ },
+ "heli-cyclic-b": {
+  "frames": 2,
+  "glbKeys": 1,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 92,
+  "worstPosMm": 0.001403282399084537,
+  "worstPosBone": "pinky_03_l",
+  "worstDeg": 0.0033850290892500235,
+  "worstDegBone": "pinky_02_r",
+  "rootErrMm": 8.211607976636423e-05,
+  "rootErrDeg": 1.9847842819546455e-05,
+  "rootStart": [
+   0.42,
+   -1.335,
+   3.14159
+  ],
+  "rootEnd": [
+   0.42,
+   -1.335,
+   3.14159
+  ]
+ },
+ "heli-cyclic-l": {
+  "frames": 2,
+  "glbKeys": 1,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 92,
+  "worstPosMm": 0.0014293645076090325,
+  "worstPosBone": "pinky_03_l",
+  "worstDeg": 0.0044306002943450265,
+  "worstDegBone": "index_02_r",
+  "rootErrMm": 8.211607976636423e-05,
+  "rootErrDeg": 1.9847842819546455e-05,
+  "rootStart": [
+   0.42,
+   -1.335,
+   3.14159
+  ],
+  "rootEnd": [
+   0.42,
+   -1.335,
+   3.14159
+  ]
+ },
+ "heli-cyclic-r": {
+  "frames": 2,
+  "glbKeys": 1,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 92,
+  "worstPosMm": 0.0010794370552039139,
+  "worstPosBone": "thumb_03_r",
+  "worstDeg": 0.0008630226864759141,
+  "worstDegBone": "index_02_r",
+  "rootErrMm": 8.211607976636423e-05,
+  "rootErrDeg": 1.9847842819546455e-05,
+  "rootStart": [
+   0.42,
+   -1.335,
+   3.14159
+  ],
+  "rootEnd": [
+   0.42,
+   -1.335,
+   3.14159
+  ]
+ },
+ "heli-collective-up": {
+  "frames": 2,
+  "glbKeys": 1,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 92,
+  "worstPosMm": 0.0010687385152890704,
+  "worstPosBone": "index_03_r",
+  "worstDeg": 0.0011192550600244403,
+  "worstDegBone": "ring_02_r",
+  "rootErrMm": 8.211607976636423e-05,
+  "rootErrDeg": 1.9847842819546455e-05,
+  "rootStart": [
+   0.42,
+   -1.335,
+   3.14159
+  ],
+  "rootEnd": [
+   0.42,
+   -1.335,
+   3.14159
+  ]
+ },
+ "heli-collective-down": {
+  "frames": 2,
+  "glbKeys": 1,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 92,
+  "worstPosMm": 0.0013159777378129252,
+  "worstPosBone": "index_03_r",
+  "worstDeg": 0.0011645372502157982,
+  "worstDegBone": "middle_02_r",
+  "rootErrMm": 8.211607976636423e-05,
+  "rootErrDeg": 1.9847842819546455e-05,
+  "rootStart": [
+   0.42,
+   -1.335,
+   3.14159
+  ],
+  "rootEnd": [
+   0.42,
+   -1.335,
+   3.14159
+  ]
+ },
+ "heli-pedal-l": {
+  "frames": 2,
+  "glbKeys": 1,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 92,
+  "worstPosMm": 0.001143840111541768,
+  "worstPosBone": "thumb_03_l",
+  "worstDeg": 0.0011192550600244403,
+  "worstDegBone": "ring_02_r",
+  "rootErrMm": 8.211607976636423e-05,
+  "rootErrDeg": 1.9847842819546455e-05,
+  "rootStart": [
+   0.42,
+   -1.335,
+   3.14159
+  ],
+  "rootEnd": [
+   0.42,
+   -1.335,
+   3.14159
+  ]
+ },
+ "heli-pedal-r": {
+  "frames": 2,
+  "glbKeys": 1,
+  "fbxFrameRange": [
+   0,
+   1
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 92,
+  "worstPosMm": 0.001143840111541768,
+  "worstPosBone": "thumb_03_l",
+  "worstDeg": 0.0011192550600244403,
+  "worstDegBone": "ring_02_r",
+  "rootErrMm": 8.211607976636423e-05,
+  "rootErrDeg": 1.9847842819546455e-05,
+  "rootStart": [
+   0.42,
+   -1.335,
+   3.14159
+  ],
+  "rootEnd": [
+   0.42,
+   -1.335,
+   3.14159
+  ]
+ },
+ "car-enter": {
+  "frames": 241,
+  "glbKeys": 241,
+  "fbxFrameRange": [
+   0,
+   240
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 92,
+  "worstPosMm": 0.48974505036962945,
+  "worstPosBone": "ring_03_l",
+  "worstDeg": 0.04013278615111491,
+  "worstDegBone": "ring_02_l",
+  "rootErrMm": 0.13905526206992488,
+  "rootErrDeg": 0.006735541911555957,
+  "rootStart": [
+   -1.55,
+   -0.25,
+   3.14159
+  ],
+  "rootEnd": [
+   -0.37,
+   -0.14,
+   3.14159
+  ]
+ },
+ "car-exit": {
+  "frames": 236,
+  "glbKeys": 236,
+  "fbxFrameRange": [
+   0,
+   235
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 92,
+  "worstPosMm": 0.8798818702034757,
+  "worstPosBone": "ring_03_l",
+  "worstDeg": 0.07922151029560265,
+  "worstDegBone": "ring_02_l",
+  "rootErrMm": 0.000643492416610372,
+  "rootErrDeg": 8.841483933043481e-05,
+  "rootStart": [
+   -0.37,
+   -0.14,
+   3.14159
+  ],
+  "rootEnd": [
+   -1.55,
+   -0.25,
+   3.14159
+  ]
+ },
+ "heli-enter": {
+  "frames": 287,
+  "glbKeys": 287,
+  "fbxFrameRange": [
+   0,
+   286
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 92,
+  "worstPosMm": 0.9931861025220898,
+  "worstPosBone": "ring_03_l",
+  "worstDeg": 0.0893931584644892,
+  "worstDegBone": "clavicle_l",
+  "rootErrMm": 0.0003653383389121876,
+  "rootErrDeg": 4.370373535322001e-05,
+  "rootStart": [
+   1.8,
+   -1.55,
+   -1.5708
+  ],
+  "rootEnd": [
+   0.42,
+   -1.335,
+   3.14159
+  ]
+ },
+ "heli-exit": {
+  "frames": 368,
+  "glbKeys": 368,
+  "fbxFrameRange": [
+   0,
+   367
+  ],
+  "sceneFps": 30.0,
+  "importedArmatures": 1,
+  "otherObjects": [],
+  "bones": 92,
+  "worstPosMm": 0.5917697338999847,
+  "worstPosBone": "ring_03_r",
+  "worstDeg": 0.059789127620036124,
+  "worstDegBone": "pinky_01_r",
+  "rootErrMm": 0.001151695817014998,
+  "rootErrDeg": 0.00011563980072633656,
+  "rootStart": [
+   0.42,
+   -1.335,
+   3.14159
+  ],
+  "rootEnd": [
+   1.78,
+   -1.55,
+   4.67748
+  ]
+ }
+}

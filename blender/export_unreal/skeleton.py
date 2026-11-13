@@ -25,13 +25,20 @@ def _R(body, frames_path):
 
 
 class Skeleton:
-    def __init__(self, key, body_name=None):
+    def __init__(self, key, body_name=None, pack=None):
+        """`key` = the skeleton (config.PACKS key); `pack` = the clip pack read for clips and notes (default the
+        skeleton's rifle pack; pass U1: a config.VEHICLE_PACKS key on the same skeleton). Gun / GunIn rests come
+        from the rifle pack in every case, so every pack's FBX has the bodies' bone set and rests."""
         self.key = key
         cfg = config.PACKS[key]
+        self.pack_key = pack or key
+        pc = config.pack_cfg(self.pack_key)
+        assert pc['skeleton'] == key, (key, pack)
         self.body_name = body_name or cfg['body']
         self.body = G.Body(config.body_glb(self.body_name))
-        self.pack = G.ClipPack(cfg['pack'])
-        self.notes = json.load(open(cfg['notes']))
+        self.pack = G.ClipPack(pc['pack'])
+        self.rest_pack = self.pack if pc['pack'] == cfg['pack'] else G.ClipPack(cfg['pack'])
+        self.notes = json.load(open(pc['notes']))
         self.R = _R(G.Body(config.body_glb(cfg['body'])) if body_name else self.body, cfg['frames'])
         b = self.body
         self.bones = list(b.order) + list(config.EXTRA_BONES)
@@ -43,7 +50,7 @@ class Skeleton:
         self.extra_fix = rinv   # bone local = extra_fix @ track local
         self.rest_local = {n: G.trs_to_m(*b.rest[n]) for n in b.order}
         for e, (clip, f) in config.EXTRA_BONES.items():
-            s, _ = self.pack.sample(clip)
+            s, _ = self.rest_pack.sample(clip)
             self.rest_local[e] = rinv @ G.trs_to_m(s[e]['translation'][f], s[e]['rotation'][f])
         self.deform = self._deform()
 
@@ -64,8 +71,10 @@ class Skeleton:
     def rest_world(self):
         return self.world(self.rest_local)
 
-    def clip_locals(self, clip):
-        """[frame] -> {bone: 4x4 local, glTF metres}, every key of the clip (frames 0..n-1)."""
+    def clip_locals(self, clip, min_frames=1):
+        """[frame] -> {bone: 4x4 local, glTF metres}, every key of the clip (frames 0..n-1). `min_frames` 2 repeats
+        a one-key clip's pose (pass U1: the vehicle packs' one-pose clips have one key; the FBX gets two frames,
+        as the rifle packs' one-pose clips have)."""
         s, nf = self.pack.sample(clip)
         out = []
         for f in range(nf):
@@ -91,6 +100,8 @@ class Skeleton:
                     sc = ch['scale'][f]
                 loc[n] = G.trs_to_m(t, r, sc)
             out.append(loc)
+        while len(out) < min_frames:
+            out.append(out[-1])
         return out
 
     def apose_locals(self):

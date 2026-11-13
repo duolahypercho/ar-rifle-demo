@@ -195,6 +195,43 @@ def euler_xyz_deg_to_m(r):
     return Rz @ Ry @ Rx
 
 
+def anim_globals(fbx, nframes, fps=30.0):
+    """Pass U1: global 4x4 per Model per frame, from the take's own curves (Lcl Translation / Rotation / Scaling,
+    linear between keys; static Lcl where a channel has no curve), PreRotation honoured, file units. What Unreal's
+    importer samples, without Blender's importer in between. -> {name: (nframes, 4, 4)}"""
+    ts = np.arange(nframes) / fps
+    ms = fbx.models()
+    loc = {}
+    for i, name, typ, _ in ms:
+        t, r, s, pre, _p = fbx.lcl(i)
+        ch = {'Lcl Translation': np.tile(t, (nframes, 1)), 'Lcl Rotation': np.tile(r, (nframes, 1)),
+              'Lcl Scaling': np.tile(s, (nframes, 1))}
+        for kind, cn, pa, pr in fbx.conn:
+            if kind == 'OP' and pa == i and pr in ch:
+                for k2, c2, p2, axis in fbx.conn:
+                    if k2 == 'OP' and p2 == cn and c2 in fbx.objects and fbx.objects[c2].name == 'AnimationCurve':
+                        c = fbx.objects[c2]
+                        kt = c.first('KeyTime').props[0].astype(float) / KTIME
+                        kv = c.first('KeyValueFloat').props[0].astype(float)
+                        j = 'XYZ'.index(axis.split('|')[-1])
+                        ch[pr][:, j] = np.interp(ts, kt, kv)
+        P = euler_xyz_deg_to_m(pre)
+        m = np.zeros((nframes, 4, 4))
+        for f in range(nframes):
+            m[f, :3, :3] = P @ euler_xyz_deg_to_m(ch['Lcl Rotation'][f]) @ np.diag(ch['Lcl Scaling'][f])
+            m[f, :3, 3] = ch['Lcl Translation'][f]
+            m[f, 3, 3] = 1
+        loc[i] = (name, m)
+    glob = {}
+
+    def g(i):
+        if i not in glob:
+            pa = fbx.parent.get(i, 0)
+            glob[i] = (g(pa) if pa in loc else np.eye(4)) @ loc[i][1]
+        return glob[i]
+    return {loc[i][0]: g(i) for i in loc}
+
+
 def model_globals(fbx):
     """Global rest 4x4 of every Model from the Lcl TRS chain (PreRotation honoured), file units."""
     loc = {}

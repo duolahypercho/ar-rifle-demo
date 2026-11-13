@@ -7,103 +7,103 @@
   "reload-shotgun-start": {
    "frames": 13,
    "bytes": 636348,
-   "s": 0.17
+   "s": 0.1
   },
   "shotgun-pump": {
    "frames": 19,
    "bytes": 671132,
-   "s": 0.25
+   "s": 0.1
   },
   "rifle-idle": {
    "frames": 241,
    "bytes": 1868892,
-   "s": 1.4
+   "s": 0.78
   },
   "rifle-walk-fl": {
    "frames": 47,
    "bytes": 834444,
-   "s": 0.36
+   "s": 0.22
   },
   "rifle-walk-br": {
    "frames": 52,
    "bytes": 866732,
-   "s": 0.7
+   "s": 0.25
   },
   "rifle-jog-fl": {
    "frames": 49,
    "bytes": 847964,
-   "s": 0.58
+   "s": 0.23
   },
   "rifle-jog-br": {
    "frames": 47,
    "bytes": 835004,
-   "s": 0.38
+   "s": 0.25
   },
   "rifle-pivot-l45": {
    "frames": 20,
    "bytes": 679244,
-   "s": 0.2
+   "s": 0.13
   },
   "rifle-pivot-r45": {
    "frames": 20,
    "bytes": 679244,
-   "s": 0.19
+   "s": 0.13
   },
   "rifle-walk-start": {
    "frames": 25,
    "bytes": 720556,
-   "s": 0.22
+   "s": 0.14
   },
   "rifle-walk-stop-2": {
    "frames": 27,
    "bytes": 737580,
-   "s": 0.23
+   "s": 0.15
   },
   "rifle-walk-stop-6": {
    "frames": 27,
    "bytes": 737580,
-   "s": 0.29
+   "s": 0.16
   },
   "rifle-jog-stop-2": {
    "frames": 30,
    "bytes": 761868,
-   "s": 0.25
+   "s": 0.17
   },
   "rifle-jog-stop-6": {
    "frames": 30,
    "bytes": 761868,
-   "s": 0.57
+   "s": 0.16
   },
   "rifle-crouch-idle": {
    "frames": 271,
    "bytes": 2027996,
-   "s": 2.61
+   "s": 0.93
   },
   "rifle-crouch-walk-bl": {
    "frames": 61,
    "bytes": 913308,
-   "s": 0.49
+   "s": 0.28
   },
   "rifle-crouch-walk-fr": {
    "frames": 57,
    "bytes": 891052,
-   "s": 0.43
+   "s": 0.26
   },
   "reload-rifle-tac": {
    "frames": 70,
    "bytes": 976556,
-   "s": 0.52
+   "s": 0.29
   },
   "rifle-aim-down": {
    "frames": 2,
    "bytes": 529388,
-   "s": 0.12
+   "s": 0.08
   },
   "hit-light-r": {
    "frames": 13,
    "bytes": 636300,
-   "s": 0.15
+   "s": 0.1
   }
  },
- "seconds": 10.2
+ "seconds": 4.9
 }

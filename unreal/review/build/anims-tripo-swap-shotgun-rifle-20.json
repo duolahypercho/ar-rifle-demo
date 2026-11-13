@@ -6,104 +6,104 @@
  "clips": {
   "swap-shotgun-rifle": {
    "frames": 41,
-   "bytes": 802012,
-   "s": 0.41
+   "bytes": 802044,
+   "s": 0.19
   },
   "reload-shotgun-end-pump": {
    "frames": 30,
    "bytes": 761916,
-   "s": 0.28
+   "s": 0.13
   },
   "shotgun-aim-down": {
    "frames": 2,
    "bytes": 529404,
-   "s": 0.11
+   "s": 0.05
   },
   "rifle-walk-f": {
    "frames": 63,
    "bytes": 923260,
-   "s": 0.48
+   "s": 0.25
   },
   "rifle-walk-b": {
    "frames": 67,
    "bytes": 944988,
-   "s": 0.45
+   "s": 0.29
   },
   "rifle-jog-f": {
    "frames": 57,
    "bytes": 892972,
-   "s": 0.38
+   "s": 0.24
   },
   "rifle-jog-b": {
    "frames": 47,
    "bytes": 834908,
-   "s": 0.57
+   "s": 0.21
   },
   "rifle-sprint": {
    "frames": 53,
    "bytes": 872092,
-   "s": 0.76
+   "s": 0.24
   },
   "rifle-pivot-l180": {
    "frames": 37,
    "bytes": 771148,
-   "s": 0.36
+   "s": 0.19
   },
   "rifle-pivot-r180": {
    "frames": 37,
    "bytes": 770972,
-   "s": 0.3
+   "s": 0.2
   },
   "rifle-walk-stop-1": {
    "frames": 27,
    "bytes": 737580,
-   "s": 0.24
+   "s": 0.15
   },
   "rifle-walk-stop-5": {
    "frames": 27,
    "bytes": 737580,
-   "s": 0.26
+   "s": 0.17
   },
   "rifle-jog-stop-1": {
    "frames": 32,
    "bytes": 778876,
-   "s": 0.29
+   "s": 0.19
   },
   "rifle-jog-stop-5": {
    "frames": 27,
    "bytes": 737580,
-   "s": 0.24
+   "s": 0.15
   },
   "rifle-run-turn-r": {
    "frames": 27,
    "bytes": 737580,
-   "s": 0.24
+   "s": 0.15
   },
   "rifle-crouch-walk-l": {
    "frames": 46,
    "bytes": 827948,
-   "s": 0.86
+   "s": 0.23
   },
   "rifle-crouch-walk-r": {
    "frames": 46,
    "bytes": 827996,
-   "s": 1.14
+   "s": 0.22
   },
   "swap-rifle-shotgun": {
    "frames": 41,
-   "bytes": 801740,
-   "s": 0.33
+   "bytes": 802268,
+   "s": 0.2
   },
   "rifle-aim-up": {
    "frames": 2,
    "bytes": 529372,
-   "s": 0.16
+   "s": 0.08
   },
   "hit-light-l": {
    "frames": 13,
    "bytes": 636300,
-   "s": 0.19
+   "s": 0.09
   }
  },
- "seconds": 8.1
+ "seconds": 3.7
 }

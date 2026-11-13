@@ -4,9 +4,13 @@
   Blender -b --factory-startup --python build_unreal.py -- anims <tripo|earthonline> [clip ...]
   Blender -b --factory-startup --python build_unreal.py -- apose <tripo|earthonline>
   Blender -b --factory-startup --python build_unreal.py -- gun <ar_rifle|pump_shotgun>
+  (pass U1)
+  Blender -b --factory-startup --python build_unreal.py -- vanims <tripo-vehicle|earthonline-vehicle> [clip ...]
+  Blender -b --factory-startup --python build_unreal.py -- vehicle <supercar|utility_helicopter>
+  Blender -b --factory-startup --python build_unreal.py -- vehanims <vehicle> <own|tripo-vehicle|earthonline-vehicle> [clip ...]
 
-Reads only public/characters/*.glb, the frames / mapping JSON and the gun GLBs; writes only under
-unreal/. See unreal/README.md.
+Reads only public/characters/*.glb, the frames / mapping JSON, the gun GLBs and public/vehicles/*.glb;
+writes only under unreal/. See unreal/README.md.
 """
 import json
 import os
@@ -165,18 +169,21 @@ def do_body(name):
 
 # ------------------------------------------------------------------ animations
 
-def do_anims(key, only):
-    sk = S.Skeleton(key)
+def do_anims(key, only, pack=None):
+    """Clips of a pack on skeleton `key`: the rifle pack (pack None) or, pass U1, a vehicle pack
+    (config.VEHICLE_PACKS key; its clips' root bone carries the place in the vehicle root's frame, converted
+    like every other bone: glTF (x, 0, z) m -> FBX (100 x, -100 z, 0) cm, yaw about Z)."""
+    sk = S.Skeleton(key, pack=pack)
     B.reset_scene('anims')
     arm, rw, err = B.build_armature(sk)
-    outdir = os.path.join(config.OUT, 'animations', key)
+    outdir = os.path.join(config.OUT, 'animations', pack or key)
     os.makedirs(outdir, exist_ok=True)
     clips = only or sk.pack.names
     LOG['boneRestErrCm'] = err
     LOG['clips'] = {}
     for clip in clips:
         t = time.time()
-        L = sk.clip_locals(clip)
+        L = sk.clip_locals(clip, min_frames=2 if pack else 1)
         act = B.key_action(arm, sk, L, clip)
         bpy.context.scene.name = clip    # the FBX take is named after the scene
         fbx = os.path.join(outdir, f'{clip}.fbx')
@@ -301,10 +308,172 @@ def do_gun(name):
     LOG['bytes'] = os.path.getsize(fbx)
 
 
+# ------------------------------------------------------------------ pass U1: vehicles
+
+def do_vehicle(name):
+    """The vehicle as a skeletal mesh: one bone per GLB node (world-aligned frames, vehicle.py), every part
+    with a mesh a separate mesh object rigidly bound (weight 1) to its own node's bone, vertices in the
+    vehicle root's space (Blender axes, cm). Pivots = the bones' rests = the GLB's node transforms."""
+    import vehicle as V
+    veh = V.Vehicle(name)
+    B.reset_scene(name)
+    before = set(bpy.data.objects)
+    bpy.ops.import_scene.gltf(filepath=veh.glb)
+    objs = [o for o in bpy.data.objects if o not in before]
+    by = {o.name: o for o in objs}
+    parts = {}
+    for n in veh.mesh:
+        o = by.get(n)
+        assert o is not None and o.type == 'MESH', (n, o and o.type)
+        parts[n] = o
+    for o in objs:
+        o.hide_set(False)
+        o.hide_viewport = False
+        o.hide_render = False
+    # Each part's world from the GLB's rest (numpy), not from the importer's object: the importer leaves the
+    # objects posed by the GLB's own clips at the scene frame (a door 1/30 s open). Importer mesh data are
+    # node-local in Blender axes (C @ p), its object frames C @ G @ C^-1, so world = C @ G @ p.
+    rw_gl = veh.rest_world()
+    mws = {n: B.M(B.C4 @ rw_gl[n] @ B.C4.T) for n in parts}
+    nrm_err = 0.0
+    vtx_err = 0.0
+    LOG['parts'] = {}
+    for n, o in parts.items():
+        if o.data.users > 1:
+            o.data = o.data.copy()
+        me = o.data
+        n0 = np.empty(len(me.loops) * 3)
+        me.corner_normals.foreach_get('vector', n0)
+        o.parent = None
+        for md in list(o.modifiers):
+            o.modifiers.remove(md)
+        me.transform(Matrix.Scale(B.CM, 4) @ mws[n])
+        o.matrix_world = Matrix.Identity(4)
+        n1 = np.empty(len(me.loops) * 3)
+        me.corner_normals.foreach_get('vector', n1)
+        R = np.array(mws[n])[:3, :3]
+        want = n0.reshape(-1, 3) @ R.T
+        want /= np.linalg.norm(want, axis=1, keepdims=True) + 1e-12
+        ne = np.abs(n1.reshape(-1, 3) - want).max(1)
+        nrm_err = max(nrm_err, float(ne.max()))
+        # vertices against the GLB (numpy): same count and order expected from the importer
+        have = np.empty(len(me.vertices) * 3)
+        me.vertices.foreach_get('co', have)
+        have = have.reshape(-1, 3)
+        gl = (B.C3 @ veh.part_vertices(n).T).T * B.CM
+        if have.shape == gl.shape:
+            d = float(np.abs(have - gl).max())
+        else:
+            d = None
+        if d is not None:
+            vtx_err = max(vtx_err, d)
+        LOG['parts'][n] = dict(vertices=len(me.vertices), glbVertices=len(gl), vsGlbCm=d, normalErr=float(ne.max()),
+                               cornersOff=int((ne > 1e-3).sum()), corners=len(ne), materials=[m.name for m in me.materials if m])
+        me.name = f'{name}_{n}'
+        o.name = f'{name}_{n}'
+    LOG['normalErr'] = nrm_err
+    LOG['vertexVsGlbCm'] = vtx_err
+    for o in objs:
+        if o.name not in [p.name for p in parts.values()]:
+            data = o.data
+            bpy.data.objects.remove(o)
+            if data is not None and getattr(data, 'users', 1) == 0 and isinstance(data, bpy.types.Mesh):
+                bpy.data.meshes.remove(data)
+    for coll in list(bpy.data.collections):
+        if not coll.objects:
+            bpy.data.collections.remove(coll)
+    for o in parts.values():
+        if o.name not in bpy.context.scene.collection.objects:
+            for c in list(o.users_collection):
+                c.objects.unlink(o)
+            bpy.context.scene.collection.objects.link(o)
+    # textures as files beside, materials relinked so the exporter embeds base colour and normal
+    outdir = os.path.join(config.OUT, 'vehicles')
+    files = textures_beside(veh.g, os.path.join(outdir, 'textures', name))
+    gmats = {m.get('name'): m for m in veh.g.json['materials']}
+    LOG['materials'] = []
+    for m in bpy.data.materials:
+        if m.users and m.node_tree and any(nd.type == 'BSDF_PRINCIPLED' for nd in m.node_tree.nodes):
+            gm = gmats.get(m.name, {})
+            nt = m.node_tree
+            linked = any(nd.type == 'BSDF_PRINCIPLED' and any(l.to_node == nd for l in nt.links) for nd in nt.nodes)
+            # (a material of factors only, e.g. glass, has nothing to relink: its colour goes out as DiffuseColor)
+            info = simplify_material(m, files, gm.get('alphaMode', 'OPAQUE') == 'OPAQUE') if linked else {'baseColor': None}
+            LOG['materials'].append(dict(name=m.name, alphaMode=gm.get('alphaMode', 'OPAQUE'), **info))
+    LOG['textures'] = {k: os.path.relpath(p, outdir) for k, p in files.items()}
+    arm, rw, err = B.build_armature(veh)
+    LOG['boneRestErrCm'] = err
+    LOG['bones'] = len(arm.data.bones)
+    for n, o in parts.items():
+        o.parent = arm
+        md = o.modifiers.new('Armature', 'ARMATURE')
+        md.object = arm
+        vg = o.vertex_groups.new(name=n)
+        vg.add(list(range(len(o.data.vertices))), 1.0, 'REPLACE')
+    LOG['hiddenInGlb'] = veh.hidden
+    fbx = os.path.join(outdir, f'{name}.fbx')
+    B.export_fbx(fbx, [arm] + list(parts.values()), anim=False, mesh_smooth_type='FACE', use_mesh_modifiers=False,
+                 use_tspace=False, path_mode='COPY', embed_textures=True)
+    LOG['fbx'] = config.rel(fbx)
+    LOG['bytes'] = os.path.getsize(fbx)
+    LOG['vertices'] = sum(len(o.data.vertices) for o in parts.values())
+
+
+def do_vehicle_anims(name, group, only):
+    """Animations on the vehicle skeleton (Armature null + the vehicle's bones, no mesh), 30 fps, every frame:
+    group `own` = the vehicle GLB's own clips (doors_open, main_rotor_spin, ...); group = a vehicle pack key =
+    the vehicle side of each of that pack's clips for this vehicle (the door per frame from the notes, the
+    controls the clip was authored with, the pack's vehicleFit on its nodes), plus `fit` (the fit alone, door
+    shut, controls at rest, 2 frames). Files vehicles/animations/<group>/<vehicle>_<clip>.fbx."""
+    import vehicle as V
+    veh = V.Vehicle(name)
+    B.reset_scene('vehicle_anims')
+    arm, rw, err = B.build_armature(veh)
+    outdir = os.path.join(config.OUT, 'vehicles', 'animations', group)
+    os.makedirs(outdir, exist_ok=True)
+    LOG['boneRestErrCm'] = err
+    LOG['clips'] = {}
+    jobs = []
+    if group == 'own':
+        for clip in only or veh.own_clips():
+            jobs.append((clip, lambda clip=clip: veh.own_clip_locals(clip)))
+    else:
+        cfg = config.VEHICLE_PACKS[group]
+        notes = json.load(open(cfg['notes']))
+        fit = V.fit_of(notes, veh.kind)
+        pack = G.ClipPack(cfg['pack'])
+        names = [c for c, v in notes['clips'].items() if v['vehicle'] == veh.kind] + ['fit']
+        for clip in only or names:
+            if clip == 'fit':
+                jobs.append((clip, lambda: [veh.pose({}, fit)] * 2))
+                continue
+            nf = max(2, V.pack_keys(pack, clip))
+            ctls = V.clip_controls(veh.kind, clip, notes['clips'][clip], nf)
+            jobs.append((clip, lambda ctls=ctls: [veh.pose(c, fit) for c in ctls]))
+    for clip, make in jobs:
+        t = time.time()
+        L = make()
+        take = f'{name}_{clip}'
+        act = B.key_action(arm, veh, L, take)
+        bpy.context.scene.name = take
+        fbx = os.path.join(outdir, f'{take}.fbx')
+        B.export_fbx(fbx, [arm], anim=True)
+        arm.animation_data.action = None
+        bpy.data.actions.remove(act)
+        LOG['clips'][clip] = dict(frames=len(L), bytes=os.path.getsize(fbx), s=round(time.time() - t, 2))
+        say(take, len(L), 'frames', round(time.time() - t, 2), 's')
+
+
 if mode == 'body':
     do_body(arg)
 elif mode == 'anims':
     do_anims(arg, rest)
+elif mode == 'vanims':        # pass U1: a vehicle clip pack (config.VEHICLE_PACKS key)
+    do_anims(config.VEHICLE_PACKS[arg]['skeleton'], rest, pack=arg)
+elif mode == 'vehicle':
+    do_vehicle(arg)
+elif mode == 'vehanims':      # vehanims <vehicle> <own | vehicle pack key> [clip ...]
+    do_vehicle_anims(arg, rest[0], rest[1:])
 elif mode == 'apose':
     do_apose(arg)
 elif mode == 'gun':

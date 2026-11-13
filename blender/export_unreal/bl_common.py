@@ -36,10 +36,12 @@ K4[:3, :3] = C3.T
 
 
 def bl_worlds(skel, local):
-    """Blender armature-space 4x4 (cm) per bone from glTF locals: C @ W @ K."""
+    """Blender armature-space 4x4 (cm) per bone from glTF locals: C @ W @ K. A skeleton may name its own
+    world-aligned bones (`world_frame`: the vehicles, pass U1, take it for every bone)."""
+    wf = getattr(skel, 'world_frame', WORLD_FRAME_BONES)
     out = {}
     for n, w in skel.world(local).items():
-        out[n] = to_bl(w @ K4) if n in WORLD_FRAME_BONES else to_bl(w)
+        out[n] = to_bl(w @ K4) if n in wf else to_bl(w)
     return out
 
 
@@ -195,7 +197,32 @@ FBX_COMMON = dict(
 )
 
 
+def relative_media_paths():
+    """Pass U1: the repository is public. Blender's FBX exporter writes every texture's FileName / Filename /
+    Path as an absolute path (os.path.abspath of the output folder + the relative name, whatever path_mode
+    is), which put this machine's home folder into the FBX. Write the relative name there too (with
+    embed_textures it is `<fbx name>.fbm/<image file>`, the FBX SDK's own folder for extracted media), so no
+    FBX holds an absolute path. The SceneInfo's DocumentUrl stays the exporter's fixed placeholder."""
+    import os
+    from io_scene_fbx import export_fbx_bin as E
+    if getattr(E, '_u1_relative_paths', False):
+        return
+    orig = E._gen_vid_path
+
+    def gen(img, scene_data):
+        _abs, rel = orig(img, scene_data)
+        rel = rel.replace('\\', '/')
+        if rel.startswith('//'):
+            rel = rel[2:]
+        if os.path.isabs(rel):
+            rel = os.path.basename(rel)
+        return rel, rel
+    E._gen_vid_path = gen
+    E._u1_relative_paths = True
+
+
 def export_fbx(path, objects, anim=False, **extra):
+    relative_media_paths()
     for o in bpy.context.scene.objects:
         o.select_set(o in objects)
     bpy.context.view_layer.objects.active = objects[0]

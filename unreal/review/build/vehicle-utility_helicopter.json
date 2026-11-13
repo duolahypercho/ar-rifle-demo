@@ -1,0 +1,701 @@
+{
+ "parts": {
+  "cabin_door_L": {
+   "vertices": 2381,
+   "glbVertices": 2381,
+   "vsGlbCm": 1.811981201171875e-05,
+   "normalErr": 4.044148597692754e-05,
+   "cornersOff": 0,
+   "corners": 8532,
+   "materials": [
+    "body_paint_primary",
+    "rubber_matte",
+    "metal_exposed",
+    "interior_trim"
+   ]
+  },
+  "cabin_door_L_glass": {
+   "vertices": 520,
+   "glbVertices": 520,
+   "vsGlbCm": 1.8835067749023438e-05,
+   "normalErr": 8.598172569482428e-06,
+   "cornersOff": 0,
+   "corners": 2667,
+   "materials": [
+    "glass_tinted"
+   ]
+  },
+  "cabin_door_L_handle": {
+   "vertices": 108,
+   "glbVertices": 108,
+   "vsGlbCm": 1.1444091796875e-05,
+   "normalErr": 7.790197436509166e-05,
+   "cornersOff": 0,
+   "corners": 276,
+   "materials": [
+    "metal_exposed"
+   ]
+  },
+  "cabin_door_R": {
+   "vertices": 2381,
+   "glbVertices": 2381,
+   "vsGlbCm": 1.811981201171875e-05,
+   "normalErr": 3.2939433878165225e-05,
+   "cornersOff": 0,
+   "corners": 8532,
+   "materials": [
+    "body_paint_primary",
+    "rubber_matte",
+    "metal_exposed",
+    "interior_trim"
+   ]
+  },
+  "cabin_door_R_glass": {
+   "vertices": 520,
+   "glbVertices": 520,
+   "vsGlbCm": 1.8835067749023438e-05,
+   "normalErr": 1.1282817056147178e-05,
+   "cornersOff": 0,
+   "corners": 2667,
+   "materials": [
+    "glass_tinted"
+   ]
+  },
+  "cabin_door_R_handle": {
+   "vertices": 108,
+   "glbVertices": 108,
+   "vsGlbCm": 1.1444091796875e-05,
+   "normalErr": 7.289534676104578e-05,
+   "cornersOff": 0,
+   "corners": 276,
+   "materials": [
+    "metal_exposed"
+   ]
+  },
+  "cabin_window_L": {
+   "vertices": 409,
+   "glbVertices": 409,
+   "vsGlbCm": 7.62939453125e-06,
+   "normalErr": 1.1900147919558924e-05,
+   "cornersOff": 0,
+   "corners": 2061,
+   "materials": [
+    "glass_tinted"
+   ]
+  },
+  "cabin_window_R": {
+   "vertices": 409,
+   "glbVertices": 409,
+   "vsGlbCm": 7.62939453125e-06,
+   "normalErr": 1.0134214798799112e-05,
+   "cornersOff": 0,
+   "corners": 2061,
+   "materials": [
+    "glass_tinted"
+   ]
+  },
+  "cockpit_door_L": {
+   "vertices": 2555,
+   "glbVertices": 2555,
+   "vsGlbCm": 1.8781759990815772e-05,
+   "normalErr": 4.163579534120593e-05,
+   "cornersOff": 0,
+   "corners": 8736,
+   "materials": [
+    "body_paint_primary",
+    "rubber_matte",
+    "metal_exposed",
+    "interior_trim"
+   ]
+  },
+  "cockpit_door_L_glass": {
+   "vertices": 393,
+   "glbVertices": 393,
+   "vsGlbCm": 1.643914055193818e-05,
+   "normalErr": 7.359103718518334e-06,
+   "cornersOff": 0,
+   "corners": 1965,
+   "materials": [
+    "glass_tinted"
+   ]
+  },
+  "cockpit_door_L_handle": {
+   "vertices": 108,
+   "glbVertices": 108,
+   "vsGlbCm": 1.0985617109326995e-05,
+   "normalErr": 8.398068025691763e-05,
+   "cornersOff": 0,
+   "corners": 276,
+   "materials": [
+    "metal_exposed"
+   ]
+  },
+  "cockpit_door_R": {
+   "vertices": 2555,
+   "glbVertices": 2555,
+   "vsGlbCm": 1.8781759990815772e-05,
+   "normalErr": 9.181145097206253e-05,
+   "cornersOff": 0,
+   "corners": 8736,
+   "materials": [
+    "body_paint_primary",
+    "rubber_matte",
+    "metal_exposed",
+    "interior_trim"
+   ]
+  },
+  "cockpit_door_R_glass": {
+   "vertices": 393,
+   "glbVertices": 393,
+   "vsGlbCm": 1.643914055193818e-05,
+   "normalErr": 1.0688821036386464e-05,
+   "cornersOff": 0,
+   "corners": 1965,
+   "materials": [
+    "glass_tinted"
+   ]
+  },
+  "cockpit_door_R_handle": {
+   "vertices": 108,
+   "glbVertices": 108,
+   "vsGlbCm": 1.0985617109326995e-05,
+   "normalErr": 8.922685753134929e-05,
+   "cornersOff": 0,
+   "corners": 276,
+   "materials": [
+    "metal_exposed"
+   ]
+  },
+  "collective": {
+   "vertices": 693,
+   "glbVertices": 693,
+   "vsGlbCm": 1.049041748046875e-05,
+   "normalErr": 0.00022023513791955598,
+   "cornersOff": 0,
+   "corners": 1692,
+   "materials": [
+    "interior_trim"
+   ]
+  },
+  "cyclic": {
+   "vertices": 545,
+   "glbVertices": 545,
+   "vsGlbCm": 1.1920928955078125e-05,
+   "normalErr": 0.0001920347307827891,
+   "cornersOff": 0,
+   "corners": 1947,
+   "materials": [
+    "interior_trim"
+   ]
+  },
+  "engine_housing": {
+   "vertices": 5251,
+   "glbVertices": 5251,
+   "vsGlbCm": 1.52587890625e-05,
+   "normalErr": 0.001280409399645456,
+   "cornersOff": 12,
+   "corners": 24894,
+   "materials": [
+    "body_paint_primary",
+    "body_paint_secondary",
+    "metal_exposed"
+   ]
+  },
+  "exhaust": {
+   "vertices": 830,
+   "glbVertices": 830,
+   "vsGlbCm": 7.62939453125e-06,
+   "normalErr": 0.00017234325357019797,
+   "cornersOff": 0,
+   "corners": 2406,
+   "materials": [
+    "metal_exposed"
+   ]
+  },
+  "fuselage": {
+   "vertices": 15934,
+   "glbVertices": 15934,
+   "vsGlbCm": 1.52587890625e-05,
+   "normalErr": 0.01318694260044104,
+   "cornersOff": 3,
+   "corners": 67473,
+   "materials": [
+    "body_paint_primary",
+    "body_paint_secondary",
+    "rubber_matte",
+    "metal_exposed",
+    "light_nav_emissive",
+    "light_landing_emissive"
+   ]
+  },
+  "instrument_panel": {
+   "vertices": 4203,
+   "glbVertices": 4203,
+   "vsGlbCm": 7.62939453125e-06,
+   "normalErr": 0.0004809839233630431,
+   "cornersOff": 0,
+   "corners": 9402,
+   "materials": [
+    "interior_trim",
+    "display_emissive"
+   ]
+  },
+  "interior": {
+   "vertices": 10282,
+   "glbVertices": 10282,
+   "vsGlbCm": 1.52587890625e-05,
+   "normalErr": 0.010054296464922194,
+   "cornersOff": 6,
+   "corners": 40956,
+   "materials": [
+    "rubber_matte",
+    "interior_trim",
+    "display_emissive"
+   ]
+  },
+  "main_mast": {
+   "vertices": 796,
+   "glbVertices": 796,
+   "vsGlbCm": 1.430511474609375e-05,
+   "normalErr": 0.00017882475320013636,
+   "cornersOff": 0,
+   "corners": 2598,
+   "materials": [
+    "metal_exposed"
+   ]
+  },
+  "main_blade_01": {
+   "vertices": 1132,
+   "glbVertices": 1132,
+   "vsGlbCm": 5.200236444125039e-05,
+   "normalErr": 0.001252493667418253,
+   "cornersOff": 1,
+   "corners": 5790,
+   "materials": [
+    "composite_blades"
+   ]
+  },
+  "main_blade_02": {
+   "vertices": 1132,
+   "glbVertices": 1132,
+   "vsGlbCm": 5.025591053708922e-05,
+   "normalErr": 0.0017884597184088524,
+   "cornersOff": 3,
+   "corners": 5790,
+   "materials": [
+    "composite_blades"
+   ]
+  },
+  "main_blade_03": {
+   "vertices": 1132,
+   "glbVertices": 1132,
+   "vsGlbCm": 5.200236421387672e-05,
+   "normalErr": 0.001252493667418253,
+   "cornersOff": 1,
+   "corners": 5790,
+   "materials": [
+    "composite_blades"
+   ]
+  },
+  "main_blade_04": {
+   "vertices": 1132,
+   "glbVertices": 1132,
+   "vsGlbCm": 5.02559107644629e-05,
+   "normalErr": 0.0017884597184088524,
+   "cornersOff": 3,
+   "corners": 5790,
+   "materials": [
+    "composite_blades"
+   ]
+  },
+  "main_rotor_blur": {
+   "vertices": 272,
+   "glbVertices": 272,
+   "vsGlbCm": 1.52587890625e-05,
+   "normalErr": 1.0728103961091251e-07,
+   "cornersOff": 0,
+   "corners": 1224,
+   "materials": [
+    "rotor_blur"
+   ]
+  },
+  "main_rotor_hub": {
+   "vertices": 5633,
+   "glbVertices": 5633,
+   "vsGlbCm": 1.7151236534118652e-05,
+   "normalErr": 0.002276766109388786,
+   "cornersOff": 54,
+   "corners": 16518,
+   "materials": [
+    "rubber_matte",
+    "metal_exposed"
+   ]
+  },
+  "passenger_seat_01": {
+   "vertices": 3147,
+   "glbVertices": 3147,
+   "vsGlbCm": 1.3828277587890625e-05,
+   "normalErr": 6.955320715301e-05,
+   "cornersOff": 0,
+   "corners": 11631,
+   "materials": [
+    "leather_upholstery",
+    "fabric_upholstery",
+    "interior_trim"
+   ]
+  },
+  "passenger_seat_02": {
+   "vertices": 3147,
+   "glbVertices": 3147,
+   "vsGlbCm": 1.3828277587890625e-05,
+   "normalErr": 4.086481021145505e-05,
+   "cornersOff": 0,
+   "corners": 11631,
+   "materials": [
+    "leather_upholstery",
+    "fabric_upholstery",
+    "interior_trim"
+   ]
+  },
+  "passenger_seat_03": {
+   "vertices": 3147,
+   "glbVertices": 3147,
+   "vsGlbCm": 1.3828277587890625e-05,
+   "normalErr": 4.086481021145505e-05,
+   "cornersOff": 0,
+   "corners": 11631,
+   "materials": [
+    "leather_upholstery",
+    "fabric_upholstery",
+    "interior_trim"
+   ]
+  },
+  "passenger_seat_04": {
+   "vertices": 3147,
+   "glbVertices": 3147,
+   "vsGlbCm": 1.3828277587890625e-05,
+   "normalErr": 6.949173986308538e-05,
+   "cornersOff": 0,
+   "corners": 11631,
+   "materials": [
+    "leather_upholstery",
+    "fabric_upholstery",
+    "interior_trim"
+   ]
+  },
+  "passenger_seat_05": {
+   "vertices": 3147,
+   "glbVertices": 3147,
+   "vsGlbCm": 1.3828277587890625e-05,
+   "normalErr": 6.948801457278692e-05,
+   "cornersOff": 0,
+   "corners": 11631,
+   "materials": [
+    "leather_upholstery",
+    "fabric_upholstery",
+    "interior_trim"
+   ]
+  },
+  "pedal_L": {
+   "vertices": 96,
+   "glbVertices": 96,
+   "vsGlbCm": 9.715557098388672e-06,
+   "normalErr": 1.0706159307649621e-05,
+   "cornersOff": 0,
+   "corners": 174,
+   "materials": [
+    "interior_trim"
+   ]
+  },
+  "pedal_R": {
+   "vertices": 96,
+   "glbVertices": 96,
+   "vsGlbCm": 9.715557098388672e-06,
+   "normalErr": 2.0115421307308647e-05,
+   "cornersOff": 0,
+   "corners": 174,
+   "materials": [
+    "interior_trim"
+   ]
+  },
+  "pilot_seat": {
+   "vertices": 3147,
+   "glbVertices": 3147,
+   "vsGlbCm": 1.3828277587890625e-05,
+   "normalErr": 6.954948186271154e-05,
+   "cornersOff": 0,
+   "corners": 11631,
+   "materials": [
+    "leather_upholstery",
+    "fabric_upholstery",
+    "interior_trim"
+   ]
+  },
+  "skid_L": {
+   "vertices": 557,
+   "glbVertices": 557,
+   "vsGlbCm": 7.62939453125e-06,
+   "normalErr": 0.00010016616109109755,
+   "cornersOff": 0,
+   "corners": 2484,
+   "materials": [
+    "skid_black"
+   ]
+  },
+  "skid_R": {
+   "vertices": 557,
+   "glbVertices": 557,
+   "vsGlbCm": 7.62939453125e-06,
+   "normalErr": 0.00010015552093511904,
+   "cornersOff": 0,
+   "corners": 2484,
+   "materials": [
+    "skid_black"
+   ]
+  },
+  "skid_supports": {
+   "vertices": 2080,
+   "glbVertices": 2080,
+   "vsGlbCm": 7.62939453125e-06,
+   "normalErr": 0.0001944862081729594,
+   "cornersOff": 0,
+   "corners": 8496,
+   "materials": [
+    "metal_exposed",
+    "skid_black"
+   ]
+  },
+  "stabilizer_L": {
+   "vertices": 702,
+   "glbVertices": 702,
+   "vsGlbCm": 3.0517578125e-05,
+   "normalErr": 0.0005909135498195495,
+   "cornersOff": 0,
+   "corners": 3333,
+   "materials": [
+    "body_paint_primary",
+    "body_paint_secondary",
+    "light_nav_emissive"
+   ]
+  },
+  "stabilizer_R": {
+   "vertices": 700,
+   "glbVertices": 700,
+   "vsGlbCm": 3.0517578125e-05,
+   "normalErr": 0.0008776909021958046,
+   "cornersOff": 0,
+   "corners": 3333,
+   "materials": [
+    "body_paint_primary",
+    "body_paint_secondary",
+    "light_nav_emissive"
+   ]
+  },
+  "tail_boom": {
+   "vertices": 3643,
+   "glbVertices": 3643,
+   "vsGlbCm": 3.0517578125e-05,
+   "normalErr": 0.0004500434733955906,
+   "cornersOff": 0,
+   "corners": 16128,
+   "materials": [
+    "body_paint_primary",
+    "body_paint_secondary",
+    "metal_exposed",
+    "light_nav_emissive"
+   ]
+  },
+  "tail_blade_01": {
+   "vertices": 378,
+   "glbVertices": 378,
+   "vsGlbCm": 4.034032372146612e-05,
+   "normalErr": 0.0011896566259869124,
+   "cornersOff": 1,
+   "corners": 1752,
+   "materials": [
+    "composite_blades"
+   ]
+  },
+  "tail_blade_02": {
+   "vertices": 378,
+   "glbVertices": 378,
+   "vsGlbCm": 4.097190799257078e-05,
+   "normalErr": 0.0007676254879759592,
+   "cornersOff": 0,
+   "corners": 1752,
+   "materials": [
+    "composite_blades"
+   ]
+  },
+  "tail_blade_03": {
+   "vertices": 378,
+   "glbVertices": 378,
+   "vsGlbCm": 4.4208489043739974e-05,
+   "normalErr": 0.0009857385897753647,
+   "cornersOff": 0,
+   "corners": 1752,
+   "materials": [
+    "composite_blades"
+   ]
+  },
+  "tail_blade_04": {
+   "vertices": 378,
+   "glbVertices": 378,
+   "vsGlbCm": 4.227879117024713e-05,
+   "normalErr": 0.0011014976669390941,
+   "cornersOff": 6,
+   "corners": 1752,
+   "materials": [
+    "composite_blades"
+   ]
+  },
+  "tail_rotor_blur": {
+   "vertices": 180,
+   "glbVertices": 180,
+   "vsGlbCm": 3.5762786865234375e-06,
+   "normalErr": 5.9603644797512345e-08,
+   "cornersOff": 0,
+   "corners": 810,
+   "materials": [
+    "rotor_blur"
+   ]
+  },
+  "tail_rotor_hub": {
+   "vertices": 1020,
+   "glbVertices": 1020,
+   "vsGlbCm": 3.956258296966553e-05,
+   "normalErr": 0.0008789719674683338,
+   "cornersOff": 0,
+   "corners": 2316,
+   "materials": [
+    "metal_exposed"
+   ]
+  },
+  "vertical_fin": {
+   "vertices": 1554,
+   "glbVertices": 1554,
+   "vsGlbCm": 3.0517578125e-05,
+   "normalErr": 0.0007633566858905013,
+   "cornersOff": 0,
+   "corners": 7146,
+   "materials": [
+    "body_paint_primary",
+    "body_paint_secondary",
+    "metal_exposed",
+    "skid_black",
+    "light_nav_emissive"
+   ]
+  },
+  "windshield": {
+   "vertices": 1773,
+   "glbVertices": 1773,
+   "vsGlbCm": 1.52587890625e-05,
+   "normalErr": 0.00021791639895085702,
+   "cornersOff": 0,
+   "corners": 8754,
+   "materials": [
+    "glass_tinted"
+   ]
+  }
+ },
+ "normalErr": 0.01318694260044104,
+ "vertexVsGlbCm": 5.200236444125039e-05,
+ "materials": [
+  {
+   "name": "body_paint_primary",
+   "alphaMode": "OPAQUE",
+   "baseColor": null
+  },
+  {
+   "name": "body_paint_secondary",
+   "alphaMode": "OPAQUE",
+   "baseColor": null
+  },
+  {
+   "name": "composite_blades",
+   "alphaMode": "OPAQUE",
+   "baseColor": "mech_basecolor.png"
+  },
+  {
+   "name": "display_emissive",
+   "alphaMode": "OPAQUE",
+   "baseColor": null
+  },
+  {
+   "name": "fabric_upholstery",
+   "alphaMode": "OPAQUE",
+   "baseColor": "int_basecolor.png"
+  },
+  {
+   "name": "glass_tinted",
+   "alphaMode": "BLEND",
+   "baseColor": null
+  },
+  {
+   "name": "interior_trim",
+   "alphaMode": "OPAQUE",
+   "baseColor": "int_basecolor.png"
+  },
+  {
+   "name": "leather_upholstery",
+   "alphaMode": "OPAQUE",
+   "baseColor": "int_basecolor.png"
+  },
+  {
+   "name": "light_landing_emissive",
+   "alphaMode": "OPAQUE",
+   "baseColor": null
+  },
+  {
+   "name": "light_nav_emissive",
+   "alphaMode": "OPAQUE",
+   "baseColor": "lights_emissive.png"
+  },
+  {
+   "name": "metal_exposed",
+   "alphaMode": "OPAQUE",
+   "baseColor": "mech_basecolor.png"
+  },
+  {
+   "name": "rotor_blur",
+   "alphaMode": "BLEND",
+   "baseColor": "rotor_blur.png"
+  },
+  {
+   "name": "rubber_matte",
+   "alphaMode": "OPAQUE",
+   "baseColor": null
+  },
+  {
+   "name": "skid_black",
+   "alphaMode": "OPAQUE",
+   "baseColor": "mech_basecolor.png"
+  }
+ ],
+ "textures": {
+  "mech_normal": "textures/utility_helicopter/mech_normal.png",
+  "mech_orm": "textures/utility_helicopter/mech_orm.png",
+  "mech_basecolor": "textures/utility_helicopter/mech_basecolor.png",
+  "ext_normal": "textures/utility_helicopter/ext_normal.png",
+  "ext_orm": "textures/utility_helicopter/ext_orm.png",
+  "int_normal": "textures/utility_helicopter/int_normal.png",
+  "int_orm": "textures/utility_helicopter/int_orm.png",
+  "int_basecolor": "textures/utility_helicopter/int_basecolor.png",
+  "lights_emissive": "textures/utility_helicopter/lights_emissive.png",
+  "displays_emissive": "textures/utility_helicopter/displays_emissive.png",
+  "rotor_blur": "textures/utility_helicopter/rotor_blur.png"
+ },
+ "boneRestErrCm": [
+  9.5367431640625e-06,
+  1.7657054125486127e-06
+ ],
+ "bones": 68,
+ "hiddenInGlb": [
+  "main_rotor_blur",
+  "tail_rotor_blur"
+ ],
+ "fbx": "unreal/vehicles/utility_helicopter.fbx",
+ "bytes": 16507660,
+ "vertices": 95267,
+ "seconds": 0.7
+}

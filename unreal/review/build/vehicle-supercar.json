@@ -1,0 +1,671 @@
+{
+ "parts": {
+  "body_shell": {
+   "vertices": 15637,
+   "glbVertices": 15637,
+   "vsGlbCm": 7.62939453125e-06,
+   "normalErr": 0.01192946368501202,
+   "cornersOff": 159,
+   "corners": 69744,
+   "materials": [
+    "body_paint",
+    "carbon_fiber",
+    "black_trim",
+    "glass"
+   ]
+  },
+  "door_L": {
+   "vertices": 1516,
+   "glbVertices": 1516,
+   "vsGlbCm": 8.106231689453125e-06,
+   "normalErr": 0.0016442315851991282,
+   "cornersOff": 10,
+   "corners": 6330,
+   "materials": [
+    "body_paint",
+    "carbon_fiber",
+    "black_trim",
+    "metal",
+    "interior_leather",
+    "interior_stitching"
+   ]
+  },
+  "door_glass_L": {
+   "vertices": 719,
+   "glbVertices": 719,
+   "vsGlbCm": 7.6403456148455e-06,
+   "normalErr": 0.0015503324552763598,
+   "cornersOff": 3,
+   "corners": 3276,
+   "materials": [
+    "glass"
+   ]
+  },
+  "mirror_L": {
+   "vertices": 106,
+   "glbVertices": 106,
+   "vsGlbCm": 6.6045794397950885e-06,
+   "normalErr": 8.551646328347484e-06,
+   "cornersOff": 0,
+   "corners": 222,
+   "materials": [
+    "carbon_fiber",
+    "metal"
+   ]
+  },
+  "door_R": {
+   "vertices": 1509,
+   "glbVertices": 1509,
+   "vsGlbCm": 8.106231689453125e-06,
+   "normalErr": 0.001426695765513776,
+   "cornersOff": 10,
+   "corners": 6330,
+   "materials": [
+    "body_paint",
+    "carbon_fiber",
+    "black_trim",
+    "metal",
+    "interior_leather",
+    "interior_stitching"
+   ]
+  },
+  "door_glass_R": {
+   "vertices": 720,
+   "glbVertices": 720,
+   "vsGlbCm": 7.6403456148455e-06,
+   "normalErr": 0.0008135472402180932,
+   "cornersOff": 0,
+   "corners": 3276,
+   "materials": [
+    "glass"
+   ]
+  },
+  "mirror_R": {
+   "vertices": 106,
+   "glbVertices": 106,
+   "vsGlbCm": 6.6045794397950885e-06,
+   "normalErr": 8.8026514759032e-06,
+   "cornersOff": 0,
+   "corners": 222,
+   "materials": [
+    "carbon_fiber",
+    "metal"
+   ]
+  },
+  "engine_cover": {
+   "vertices": 2800,
+   "glbVertices": 2800,
+   "vsGlbCm": 1.1444091796875e-05,
+   "normalErr": 0.4082482904634548,
+   "cornersOff": 3,
+   "corners": 10860,
+   "materials": [
+    "carbon_fiber",
+    "black_trim"
+   ]
+  },
+  "front_bumper": {
+   "vertices": 6959,
+   "glbVertices": 6959,
+   "vsGlbCm": 7.62939453125e-06,
+   "normalErr": 0.02288113516669052,
+   "cornersOff": 122,
+   "corners": 31206,
+   "materials": [
+    "body_paint",
+    "carbon_fiber",
+    "black_trim",
+    "glass"
+   ]
+  },
+  "headlight_L": {
+   "vertices": 194,
+   "glbVertices": 194,
+   "vsGlbCm": 7.62939453125e-06,
+   "normalErr": 3.47002635499305e-05,
+   "cornersOff": 0,
+   "corners": 420,
+   "materials": [
+    "light_headlight"
+   ]
+  },
+  "headlight_R": {
+   "vertices": 194,
+   "glbVertices": 194,
+   "vsGlbCm": 7.62939453125e-06,
+   "normalErr": 3.866747738168197e-05,
+   "cornersOff": 0,
+   "corners": 420,
+   "materials": [
+    "light_headlight"
+   ]
+  },
+  "indicator_FL": {
+   "vertices": 46,
+   "glbVertices": 46,
+   "vsGlbCm": 7.152557373046875e-06,
+   "normalErr": 2.1173831500909124e-05,
+   "cornersOff": 0,
+   "corners": 102,
+   "materials": [
+    "light_indicator"
+   ]
+  },
+  "indicator_FR": {
+   "vertices": 46,
+   "glbVertices": 46,
+   "vsGlbCm": 7.152557373046875e-06,
+   "normalErr": 5.358932852073117e-05,
+   "cornersOff": 0,
+   "corners": 102,
+   "materials": [
+    "light_indicator"
+   ]
+  },
+  "front_splitter": {
+   "vertices": 950,
+   "glbVertices": 950,
+   "vsGlbCm": 7.62939453125e-06,
+   "normalErr": 0.00026476081520211865,
+   "cornersOff": 0,
+   "corners": 2988,
+   "materials": [
+    "carbon_fiber"
+   ]
+  },
+  "hood": {
+   "vertices": 1727,
+   "glbVertices": 1727,
+   "vsGlbCm": 1.430511474609375e-05,
+   "normalErr": 0.0001163367962015438,
+   "cornersOff": 0,
+   "corners": 8658,
+   "materials": [
+    "body_paint",
+    "black_trim"
+   ]
+  },
+  "interior": {
+   "vertices": 2431,
+   "glbVertices": 2431,
+   "vsGlbCm": 5.7220458984375e-06,
+   "normalErr": 0.00025091246453085025,
+   "cornersOff": 0,
+   "corners": 8505,
+   "materials": [
+    "carbon_fiber",
+    "black_trim",
+    "metal",
+    "interior_leather",
+    "interior_microfiber",
+    "interior_stitching",
+    "light_brake",
+    "display"
+   ]
+  },
+  "rear_bumper": {
+   "vertices": 7450,
+   "glbVertices": 7450,
+   "vsGlbCm": 7.62939453125e-06,
+   "normalErr": 0.005529791086740615,
+   "cornersOff": 48,
+   "corners": 33657,
+   "materials": [
+    "body_paint",
+    "black_trim",
+    "glass"
+   ]
+  },
+  "brake_light_C": {
+   "vertices": 110,
+   "glbVertices": 110,
+   "vsGlbCm": 7.62939453125e-06,
+   "normalErr": 3.024608318906441e-05,
+   "cornersOff": 0,
+   "corners": 300,
+   "materials": [
+    "light_brake"
+   ]
+  },
+  "brake_light_L": {
+   "vertices": 68,
+   "glbVertices": 68,
+   "vsGlbCm": 6.67572021484375e-06,
+   "normalErr": 4.536529518305715e-05,
+   "cornersOff": 0,
+   "corners": 174,
+   "materials": [
+    "light_brake"
+   ]
+  },
+  "brake_light_R": {
+   "vertices": 68,
+   "glbVertices": 68,
+   "vsGlbCm": 7.62939453125e-06,
+   "normalErr": 3.512827633834516e-05,
+   "cornersOff": 0,
+   "corners": 174,
+   "materials": [
+    "light_brake"
+   ]
+  },
+  "indicator_RL": {
+   "vertices": 74,
+   "glbVertices": 74,
+   "vsGlbCm": 7.62939453125e-06,
+   "normalErr": 6.153285622064082e-05,
+   "cornersOff": 0,
+   "corners": 192,
+   "materials": [
+    "light_indicator"
+   ]
+  },
+  "indicator_RR": {
+   "vertices": 74,
+   "glbVertices": 74,
+   "vsGlbCm": 7.62939453125e-06,
+   "normalErr": 6.58480639205818e-05,
+   "cornersOff": 0,
+   "corners": 192,
+   "materials": [
+    "light_indicator"
+   ]
+  },
+  "rear_light_L": {
+   "vertices": 121,
+   "glbVertices": 121,
+   "vsGlbCm": 7.62939453125e-06,
+   "normalErr": 3.698134038709888e-05,
+   "cornersOff": 0,
+   "corners": 309,
+   "materials": [
+    "light_tail"
+   ]
+  },
+  "rear_light_R": {
+   "vertices": 121,
+   "glbVertices": 121,
+   "vsGlbCm": 7.62939453125e-06,
+   "normalErr": 3.605583798838019e-05,
+   "cornersOff": 0,
+   "corners": 309,
+   "materials": [
+    "light_tail"
+   ]
+  },
+  "rear_diffuser": {
+   "vertices": 934,
+   "glbVertices": 934,
+   "vsGlbCm": 7.62939453125e-06,
+   "normalErr": 5.32703852513805e-05,
+   "cornersOff": 0,
+   "corners": 3030,
+   "materials": [
+    "carbon_fiber",
+    "black_trim",
+    "metal"
+   ]
+  },
+  "rear_glass": {
+   "vertices": 569,
+   "glbVertices": 569,
+   "vsGlbCm": 3.814697265625e-06,
+   "normalErr": 0.0009976476826032976,
+   "cornersOff": 0,
+   "corners": 1836,
+   "materials": [
+    "glass"
+   ]
+  },
+  "seat_driver": {
+   "vertices": 2792,
+   "glbVertices": 2792,
+   "vsGlbCm": 6.139278411865234e-06,
+   "normalErr": 4.064747627430254e-05,
+   "cornersOff": 0,
+   "corners": 13368,
+   "materials": [
+    "carbon_fiber",
+    "black_trim",
+    "interior_leather",
+    "interior_microfiber",
+    "interior_stitching"
+   ]
+  },
+  "seat_passenger": {
+   "vertices": 2792,
+   "glbVertices": 2792,
+   "vsGlbCm": 6.139278411865234e-06,
+   "normalErr": 4.1124313432505666e-05,
+   "cornersOff": 0,
+   "corners": 13368,
+   "materials": [
+    "carbon_fiber",
+    "black_trim",
+    "interior_leather",
+    "interior_microfiber",
+    "interior_stitching"
+   ]
+  },
+  "steering_wheel": {
+   "vertices": 948,
+   "glbVertices": 948,
+   "vsGlbCm": 6.398497021109506e-06,
+   "normalErr": 2.5925351850919487e-05,
+   "cornersOff": 0,
+   "corners": 2952,
+   "materials": [
+    "carbon_fiber",
+    "interior_leather",
+    "interior_microfiber",
+    "interior_stitching"
+   ]
+  },
+  "caliper_FL": {
+   "vertices": 322,
+   "glbVertices": 322,
+   "vsGlbCm": 6.9141387939453125e-06,
+   "normalErr": 1.398105679872863e-05,
+   "cornersOff": 0,
+   "corners": 888,
+   "materials": [
+    "black_trim",
+    "caliper_paint"
+   ]
+  },
+  "brake_disc_FL": {
+   "vertices": 796,
+   "glbVertices": 796,
+   "vsGlbCm": 9.715557098388672e-06,
+   "normalErr": 2.7674076443662265e-05,
+   "cornersOff": 0,
+   "corners": 2304,
+   "materials": [
+    "black_trim",
+    "metal"
+   ]
+  },
+  "rim_FL": {
+   "vertices": 1868,
+   "glbVertices": 1868,
+   "vsGlbCm": 1.0788440704345703e-05,
+   "normalErr": 2.538390891376645e-05,
+   "cornersOff": 0,
+   "corners": 5844,
+   "materials": [
+    "metal",
+    "wheel_finish"
+   ]
+  },
+  "tire_FL": {
+   "vertices": 2552,
+   "glbVertices": 2552,
+   "vsGlbCm": 1.1086463928222656e-05,
+   "normalErr": 2.7910988267931813e-05,
+   "cornersOff": 0,
+   "corners": 9072,
+   "materials": [
+    "tire_rubber"
+   ]
+  },
+  "caliper_FR": {
+   "vertices": 322,
+   "glbVertices": 322,
+   "vsGlbCm": 6.9141387939453125e-06,
+   "normalErr": 1.2059039256495652e-05,
+   "cornersOff": 0,
+   "corners": 888,
+   "materials": [
+    "black_trim",
+    "caliper_paint"
+   ]
+  },
+  "brake_disc_FR": {
+   "vertices": 796,
+   "glbVertices": 796,
+   "vsGlbCm": 9.715557098388672e-06,
+   "normalErr": 2.762581229209804e-05,
+   "cornersOff": 0,
+   "corners": 2304,
+   "materials": [
+    "black_trim",
+    "metal"
+   ]
+  },
+  "rim_FR": {
+   "vertices": 1855,
+   "glbVertices": 1855,
+   "vsGlbCm": 1.0788440704345703e-05,
+   "normalErr": 2.5431112590013072e-05,
+   "cornersOff": 0,
+   "corners": 5844,
+   "materials": [
+    "metal",
+    "wheel_finish"
+   ]
+  },
+  "tire_FR": {
+   "vertices": 2552,
+   "glbVertices": 2552,
+   "vsGlbCm": 1.1086463928222656e-05,
+   "normalErr": 2.887214634275659e-05,
+   "cornersOff": 0,
+   "corners": 9072,
+   "materials": [
+    "tire_rubber"
+   ]
+  },
+  "caliper_RL": {
+   "vertices": 324,
+   "glbVertices": 324,
+   "vsGlbCm": 6.9141387939453125e-06,
+   "normalErr": 1.1120427530486587e-05,
+   "cornersOff": 0,
+   "corners": 888,
+   "materials": [
+    "black_trim",
+    "caliper_paint"
+   ]
+  },
+  "brake_disc_RL": {
+   "vertices": 796,
+   "glbVertices": 796,
+   "vsGlbCm": 9.715557098388672e-06,
+   "normalErr": 2.948502798749697e-05,
+   "cornersOff": 0,
+   "corners": 2304,
+   "materials": [
+    "black_trim",
+    "metal"
+   ]
+  },
+  "rim_RL": {
+   "vertices": 1868,
+   "glbVertices": 1868,
+   "vsGlbCm": 1.0728836059570312e-05,
+   "normalErr": 4.1416754527289625e-05,
+   "cornersOff": 0,
+   "corners": 5844,
+   "materials": [
+    "metal",
+    "wheel_finish"
+   ]
+  },
+  "tire_RL": {
+   "vertices": 3016,
+   "glbVertices": 3016,
+   "vsGlbCm": 1.1205673217773438e-05,
+   "normalErr": 2.9809863089924615e-05,
+   "cornersOff": 0,
+   "corners": 10416,
+   "materials": [
+    "tire_rubber"
+   ]
+  },
+  "caliper_RR": {
+   "vertices": 324,
+   "glbVertices": 324,
+   "vsGlbCm": 6.9141387939453125e-06,
+   "normalErr": 9.383455383346308e-06,
+   "cornersOff": 0,
+   "corners": 888,
+   "materials": [
+    "black_trim",
+    "caliper_paint"
+   ]
+  },
+  "brake_disc_RR": {
+   "vertices": 796,
+   "glbVertices": 796,
+   "vsGlbCm": 9.715557098388672e-06,
+   "normalErr": 3.423586078338259e-05,
+   "cornersOff": 0,
+   "corners": 2304,
+   "materials": [
+    "black_trim",
+    "metal"
+   ]
+  },
+  "rim_RR": {
+   "vertices": 1853,
+   "glbVertices": 1853,
+   "vsGlbCm": 1.0728836059570312e-05,
+   "normalErr": 4.1416754527289625e-05,
+   "cornersOff": 0,
+   "corners": 5844,
+   "materials": [
+    "metal",
+    "wheel_finish"
+   ]
+  },
+  "tire_RR": {
+   "vertices": 3016,
+   "glbVertices": 3016,
+   "vsGlbCm": 1.1205673217773438e-05,
+   "normalErr": 3.490819583240601e-05,
+   "cornersOff": 0,
+   "corners": 10416,
+   "materials": [
+    "tire_rubber"
+   ]
+  },
+  "windshield": {
+   "vertices": 1976,
+   "glbVertices": 1976,
+   "vsGlbCm": 3.814697265625e-06,
+   "normalErr": 0.000911336466449364,
+   "cornersOff": 0,
+   "corners": 10104,
+   "materials": [
+    "glass"
+   ]
+  }
+ },
+ "normalErr": 0.4082482904634548,
+ "vertexVsGlbCm": 1.430511474609375e-05,
+ "materials": [
+  {
+   "name": "black_trim",
+   "alphaMode": "OPAQUE",
+   "baseColor": "trim_basecolor.png"
+  },
+  {
+   "name": "body_paint",
+   "alphaMode": "OPAQUE",
+   "baseColor": null
+  },
+  {
+   "name": "caliper_paint",
+   "alphaMode": "OPAQUE",
+   "baseColor": null
+  },
+  {
+   "name": "carbon_fiber",
+   "alphaMode": "OPAQUE",
+   "baseColor": "trim_basecolor.png"
+  },
+  {
+   "name": "display",
+   "alphaMode": "OPAQUE",
+   "baseColor": null
+  },
+  {
+   "name": "glass",
+   "alphaMode": "BLEND",
+   "baseColor": null
+  },
+  {
+   "name": "interior_leather",
+   "alphaMode": "OPAQUE",
+   "baseColor": null
+  },
+  {
+   "name": "interior_microfiber",
+   "alphaMode": "OPAQUE",
+   "baseColor": null
+  },
+  {
+   "name": "interior_stitching",
+   "alphaMode": "MASK",
+   "baseColor": "stitch_basecolor.png"
+  },
+  {
+   "name": "light_brake",
+   "alphaMode": "OPAQUE",
+   "baseColor": null
+  },
+  {
+   "name": "light_headlight",
+   "alphaMode": "OPAQUE",
+   "baseColor": null
+  },
+  {
+   "name": "light_indicator",
+   "alphaMode": "OPAQUE",
+   "baseColor": null
+  },
+  {
+   "name": "light_tail",
+   "alphaMode": "OPAQUE",
+   "baseColor": null
+  },
+  {
+   "name": "metal",
+   "alphaMode": "OPAQUE",
+   "baseColor": "trim_basecolor.png"
+  },
+  {
+   "name": "tire_rubber",
+   "alphaMode": "OPAQUE",
+   "baseColor": null
+  },
+  {
+   "name": "wheel_finish",
+   "alphaMode": "OPAQUE",
+   "baseColor": null
+  }
+ ],
+ "textures": {
+  "body_normal": "textures/supercar/body_normal.png",
+  "body_orm": "textures/supercar/body_orm.png",
+  "trim_normal": "textures/supercar/trim_normal.png",
+  "trim_orm": "textures/supercar/trim_orm.png",
+  "trim_basecolor": "textures/supercar/trim_basecolor.png",
+  "interior_normal": "textures/supercar/interior_normal.jpg",
+  "interior_orm": "textures/supercar/interior_orm.jpg",
+  "stitch_basecolor": "textures/supercar/stitch_basecolor.png",
+  "display_emissive": "textures/supercar/display_emissive.png",
+  "wheel_normal": "textures/supercar/wheel_normal.png",
+  "wheel_orm": "textures/supercar/wheel_orm.png"
+ },
+ "boneRestErrCm": [
+  4.76837158203125e-06,
+  1.8016167502299396e-07
+ ],
+ "bones": 65,
+ "hiddenInGlb": [],
+ "fbx": "unreal/vehicles/supercar.fbx",
+ "bytes": 10594236,
+ "vertices": 76813,
+ "seconds": 0.7
+}

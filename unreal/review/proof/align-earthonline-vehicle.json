@@ -1,0 +1,121 @@
+{
+ "car-drive": {
+  "contacts": 4,
+  "framesChecked": 240,
+  "worstRelPosMm": 0.0007185134732779396,
+  "worstRelDeg": 0.00011743949665527734,
+  "worstAt": "hand_r on steering_wheel f195"
+ },
+ "car-steer-l": {
+  "contacts": 4,
+  "framesChecked": 1,
+  "worstRelPosMm": 0.00025197392458902514,
+  "worstRelDeg": 9.035209819699641e-05,
+  "worstAt": "foot_l on interior f0"
+ },
+ "car-steer-r": {
+  "contacts": 4,
+  "framesChecked": 1,
+  "worstRelPosMm": 0.0003159947005617378,
+  "worstRelDeg": 7.844505585652958e-05,
+  "worstAt": "hand_l on steering_wheel f0"
+ },
+ "car-look-back": {
+  "contacts": 3,
+  "framesChecked": 1,
+  "worstRelPosMm": 0.00036662316308309884,
+  "worstRelDeg": 4.6836066887016505e-05,
+  "worstAt": "foot_l on interior f0"
+ },
+ "heli-fly": {
+  "contacts": 4,
+  "framesChecked": 240,
+  "worstRelPosMm": 0.0042062268864319985,
+  "worstRelDeg": 0.0004132900389776454,
+  "worstAt": "hand_l on collective f46"
+ },
+ "heli-cyclic-f": {
+  "contacts": 4,
+  "framesChecked": 1,
+  "worstRelPosMm": 0.000866521115699449,
+  "worstRelDeg": 5.977901683582625e-05,
+  "worstAt": "foot_r on pedal_R f0"
+ },
+ "heli-cyclic-b": {
+  "contacts": 4,
+  "framesChecked": 1,
+  "worstRelPosMm": 0.001133030574299861,
+  "worstRelDeg": 0.00011421796890728719,
+  "worstAt": "hand_l on collective f0"
+ },
+ "heli-cyclic-l": {
+  "contacts": 4,
+  "framesChecked": 1,
+  "worstRelPosMm": 0.0012644573710089227,
+  "worstRelDeg": 0.0001781138924342954,
+  "worstAt": "hand_l on collective f0"
+ },
+ "heli-cyclic-r": {
+  "contacts": 4,
+  "framesChecked": 1,
+  "worstRelPosMm": 0.0009579500046317314,
+  "worstRelDeg": 7.963205055481618e-05,
+  "worstAt": "hand_r on cyclic f0"
+ },
+ "heli-collective-up": {
+  "contacts": 4,
+  "framesChecked": 1,
+  "worstRelPosMm": 0.000866521115699449,
+  "worstRelDeg": 0.00014384187526529673,
+  "worstAt": "foot_r on pedal_R f0"
+ },
+ "heli-collective-down": {
+  "contacts": 4,
+  "framesChecked": 1,
+  "worstRelPosMm": 0.0009728988808112432,
+  "worstRelDeg": 0.0002835450221382887,
+  "worstAt": "hand_r on cyclic f0"
+ },
+ "heli-pedal-l": {
+  "contacts": 4,
+  "framesChecked": 1,
+  "worstRelPosMm": 0.0009715724270609336,
+  "worstRelDeg": 0.00012571342993713576,
+  "worstAt": "hand_l on collective f0"
+ },
+ "heli-pedal-r": {
+  "contacts": 4,
+  "framesChecked": 1,
+  "worstRelPosMm": 0.000988535167645414,
+  "worstRelDeg": 0.00012716810870214265,
+  "worstAt": "hand_l on collective f0"
+ },
+ "car-enter": {
+  "contacts": 18,
+  "framesChecked": 237,
+  "worstRelPosMm": 0.15055077306140152,
+  "worstRelDeg": 0.00026051647001097965,
+  "worstAt": "foot_l on body_shell f164"
+ },
+ "car-exit": {
+  "contacts": 17,
+  "framesChecked": 227,
+  "worstRelPosMm": 0.001119927566689931,
+  "worstRelDeg": 0.0001399572164646363,
+  "worstAt": "foot_l on vehicle_root f176"
+ },
+ "heli-enter": {
+  "contacts": 16,
+  "framesChecked": 280,
+  "worstRelPosMm": 0.39065699822755734,
+  "worstRelDeg": 0.021178648928918232,
+  "worstAt": "hand_r on cockpit_door_R_handle f46"
+ },
+ "heli-exit": {
+  "contacts": 22,
+  "framesChecked": 366,
+  "worstRelPosMm": 0.3757204386160594,
+  "worstRelDeg": 0.02118706836088454,
+  "worstAt": "hand_r on cockpit_door_R_glass f27"
+ }
+}

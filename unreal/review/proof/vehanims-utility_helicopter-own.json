@@ -1,0 +1,50 @@
+{
+ "cabin_doors_open": {
+  "frames": 41,
+  "fbxFrameRange": [
+   0,
+   40
+  ],
+  "sceneFps": 30.0,
+  "worstPosMm": 0.000476837158203125,
+  "worstPosBone": "tail_rotor_pivot",
+  "worstDeg": 0.021103210732343752,
+  "worstDegBone": "cockpit_door_L_glass"
+ },
+ "cockpit_doors_open": {
+  "frames": 41,
+  "fbxFrameRange": [
+   0,
+   40
+  ],
+  "sceneFps": 30.0,
+  "worstPosMm": 0.0005230286352272107,
+  "worstPosBone": "cockpit_door_L_glass",
+  "worstDeg": 0.02189798687483561,
+  "worstDegBone": "cockpit_door_L"
+ },
+ "main_rotor_spin": {
+  "frames": 31,
+  "fbxFrameRange": [
+   0,
+   30
+  ],
+  "sceneFps": 30.0,
+  "worstPosMm": 0.000610426050115473,
+  "worstPosBone": "main_rotor_blur",
+  "worstDeg": 0.021103210732343752,
+  "worstDegBone": "cockpit_door_L_glass"
+ },
+ "tail_rotor_spin": {
+  "frames": 13,
+  "fbxFrameRange": [
+   0,
+   12
+  ],
+  "sceneFps": 30.0,
+  "worstPosMm": 0.002973675442150432,
+  "worstPosBone": "tail_rotor_blur",
+  "worstDeg": 0.021103210732343752,
+  "worstDegBone": "cockpit_door_L_glass"
+ }
+}
