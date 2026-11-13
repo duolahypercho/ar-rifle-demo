@@ -77,7 +77,9 @@ const ui = {
 };
 
 const CAMERAS = ['Third person', 'First person'];
-const CHARACTER_BASE = '/characters/';
+// (the site's base path: '/' on the dev server, '/ar-rifle-demo/' on GitHub Pages; see tools/deploy_pages.sh)
+const SITE_BASE = import.meta.env.BASE_URL;
+const CHARACTER_BASE = SITE_BASE + 'characters/';
 // m, the weld's eye from the sight's, gun frame, and the more for each 45 degrees aimed down
 // (handling.py AimPose EYE_BACK and EYE_DOWN: per body, its table's cheek.back / cheek.down)
 const CHEEK = new THREE.Vector3(0, 0.045, 0.06);
@@ -129,7 +131,7 @@ async function main() {
   player.bounds = { minX: -2500, maxX: 2500, minZ: -2500, maxZ: 2500 };
   const car = new Car(scene);
   car.groundAt = (x, z) => groundAt(x, z);
-  const carLoaded = car.load('/vehicles/supercar.glb', '/vehicles/supercar_specs.json').then(() => {
+  const carLoaded = car.load(SITE_BASE + 'vehicles/supercar.glb', SITE_BASE + 'vehicles/supercar_specs.json').then(() => {
     car.place(CAR_HOME.x, CAR_HOME.z, CAR_HOME.yaw);
     car.dash = new CarDash(car); // (V5) the live cluster and centre screen
     // (V7) the rear-view and door mirrors, rendered from their virtual eyes before each picture
@@ -147,7 +149,7 @@ async function main() {
   look.sun.shadow.camera.layers.enable(SHADOW_LAYER); // (the spinning blades: shadow only)
   look.sun.shadow.camera.layers.enable(NEAR_LAYER); // ((V4) batch.js's shadow proxies; look.js picks per cascade)
   look.sun.shadow.camera.layers.enable(FAR_LAYER);
-  const heliLoaded = heli.load('/vehicles/utility_helicopter.glb', '/vehicles/utility_helicopter_specs.json').then(() => {
+  const heliLoaded = heli.load(SITE_BASE + 'vehicles/utility_helicopter.glb', SITE_BASE + 'vehicles/utility_helicopter_specs.json').then(() => {
     heli.place(HELIPAD.x, HELIPAD.z, 0);
     heli.panel = new HeliPanel(heli); // (V5) the live displays
     heli.damage = new HeliDamage(heli); // (V7) bent skids, tail strikes
@@ -168,7 +170,7 @@ async function main() {
   let motion = null;
   const rifle = new Weapon();
   const shotgun = new Shotgun();
-  [motion] = await Promise.all([motionFor(ROSTER[0]), rifle.load('/ar_rifle.glb'), shotgun.load('/pump_shotgun.glb'), carLoaded, heliLoaded]);
+  [motion] = await Promise.all([motionFor(ROSTER[0]), rifle.load(SITE_BASE + 'ar_rifle.glb'), shotgun.load(SITE_BASE + 'pump_shotgun.glb'), carLoaded, heliLoaded]);
   performance.mark('load:pack+guns');
   rifle.clips = shotgun.clips = motion.actions; // the reloads and the pump
   // (V4) each gun's parts merged per material except what moves (batch.js): 24 draws a pass -> 10

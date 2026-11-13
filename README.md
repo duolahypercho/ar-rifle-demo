@@ -18,6 +18,17 @@ npm run dev
 Then open the address Vite prints. The page falls back to WebGL 2 where WebGPU is not
 available; the badge at the top left says which one is running.
 
+## Play online
+
+A build is hosted on GitHub Pages: https://duolahypercho.github.io/ar-rifle-demo/ (about 150 MB of
+models load on the first visit). It is published by hand, from the last commit:
+
+```bash
+sh tools/deploy_pages.sh
+```
+
+Pushing to `main` does not change the site; only that script does.
+
 ## Controls
 
 Click the view once to capture the mouse; `Esc` frees it again. Where the browser refuses to
