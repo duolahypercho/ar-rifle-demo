@@ -206,7 +206,7 @@ export class PoseInertia {
 
   /**
    * Feet on the ground in the new pose: on the blend's first frame those also within 2 cm of where the old pose's
-   * last frame had them are chosen; after that, those of them the new pose still has down. Their ankles and turns.
+   * last frame had them are chosen; after that, the same feet, wherever the new pose has them. Their ankles and turns.
    */
   _planted() {
     const ch = this.ch;
@@ -217,7 +217,10 @@ export class PoseInertia {
     for (const side of ['Left', 'Right']) {
       const foot = b[side + 'Foot'];
       const now = foot.getWorldPosition(new THREE.Vector3());
-      if (now.y - groundAt(now.x, now.z) > ANKLE_HEIGHT + 0.03) continue;
+      // ((V9) a foot chosen on the first frame is held where the new pose has it for the whole blend, lifting into a step
+      // too: V6-V8 let it go once it was 3 cm up, and it jumped to where the offset had it in one frame (the right foot
+      // after heli-exit, 2.5 to 2.8 m/s of change once the clip stood on the real ground))
+      if (first && now.y - groundAt(now.x, now.z) > ANKLE_HEIGHT + 0.03) continue;
       if (first) this.pin[side] = !!(this._oldAnkle && this._oldAnkle[side].distanceTo(now) <= 0.02);
       if (!this.pin[side]) continue;
       out.push({ side, ankle: now, quat: foot.getWorldQuaternion(new THREE.Quaternion()) });

@@ -54,6 +54,7 @@ capture it, drag on the view to look around instead.
 | `9` | (V7) Time of day: midday, late afternoon, dusk, night (also in the vehicles) |
 | `8` | (V7) Wind: calm, 3, 6, 10 m/s with gusts (also in the vehicles) |
 | `0` | (V7) Both vehicles back to new (dents, scrapes, glass, lamps, mirrors, steering, the helicopter's skids) |
+| `` ` `` | (V9) Frame-time readout on or off: fps, frame interval, CPU and GPU ms, render scale (every mode) |
 
 At the tactical walk and the jog the character always faces the view and steps forward, back,
 sideways or on a diagonal: sideways is 60 percent of the forward pace, backing up 75 percent,
@@ -1008,3 +1009,35 @@ the frame you keep (one step after the last).
 - `demo.gunsCabin = true` in the console brings back the earlier way for comparison: the stow onto the back, the
   guns across the passenger seat or in the helicopter's footwell (`CABIN_GUNS` in `src/main.js`), and a clip's
   `guns` track where a pack has one.
+
+## Vehicles, pass V9 (frame time, the draw, the feet, the far trees)
+
+- **No stall when turning round:** the loading screen now draws one frame with nothing culled (every mesh in every pass
+  and cascade, each car mirror, the effects' pools, the wheels' blur, the helicopter's blades opaque and faded), so the
+  WebGPU pipelines and shaders the world needs are built before play instead of the first time each thing comes into
+  view. Before, the first turn of the view after loading built about 100 pipelines on the way (frames of 25 to 350 ms
+  at the full-window size); now no frame over 22 ms on the first turn at 90 or 360 degrees a second or a flick, on foot
+  or in the car. Loading takes about 1.5 s longer. `?perf=-warm` leaves it out.
+- **Adaptive render scale** (`src/adapt.js`; `?perf=-adapt` or `demo.adapt.enabled = false` turns it off): the picture
+  is drawn at 1.5 device pixels per CSS pixel, and when the GPU is what holds the frame back (over 13.5 ms, or frames
+  slower than 54 a second) the scale steps down by 0.1 at most once a second, to 1.0 at the lowest, and steps back up
+  every 3 s once the GPU has room again. A CPU-bound frame never lowers it. On an M5 Pro at the full-window size it stays
+  at 1.5 (the GPU needs 4 to 5 ms a frame).
+- **Frame-time readout:** the `` ` `` key (left of 1; every mode) shows fps, the frame interval (mean and worst over the last
+  second), CPU and GPU ms, the render scale and the canvas size in the top-right panel. Press it again to hide it.
+- **Buffers:** the trees' instance buffers, the skid marks, the effects' clouds and the cones are uploaded only when they
+  change (three's WebGPU renderer re-uploads a buffer marked dynamic in every pass of every frame: 332 kB a frame).
+- **The draw after getting out:** the gun follows the swap clip's own track all the way onto or off the back (it goes on
+  settling for 0.1 s after the hand lets go), and the right elbow turns smoothly from the clip's bend to the empty hand's:
+  the hand's 4.1 m/s jolt and a 14 cm elbow jump are gone.
+- **The helicopter's ground:** at rest it sits 5.5 cm lower than the ground under it, and its entry and exit clips stood
+  the character on its own ground plane: the feet were 5 cm in the ground beside it and sank there at the start of the
+  entry. While the feet are on the ground the clips now stand on the real ground (eased off as he steps onto the skid,
+  and back on as he steps down), and a foot the hand-over blend holds planted stays held for the whole blend.
+- **Far trees and ground** (`?perf=-fartrees` or `demo.perf.fartrees = false; demo.applyPerf()` for V8's): past 110 m a fir
+  is its tiers as jagged skirts over a dark core (not a cone) and a broadleaf the near crown's own clusters on its boughs;
+  each tree has its own shade and hue; the far ground has a 17 m and 61 m mottle, darker shade round trees and copses, and
+  each crown's shadow on the ground past the reach of the real shadows, cast away from the sun. Costs 0.1 to 0.4 ms.
+- **Tools:** `/tools/v9_cost.js` (`turn` the view while tracing every frame's CPU, GPU and what was built or uploaded;
+  `blocks`; `real` for the game's own loop; `trace` for any scripted action; `table`), `/tools/v9_shots.js` (`farTrees`,
+  `farAB`, `nearFar`).

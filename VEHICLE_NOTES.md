@@ -1759,3 +1759,12 @@ Contract extensions decided for this round (both sides must follow them):
   hands.test.js passes; pictures `a3check/hands_wheel_fixed.jpg`, `hands_close_fixed.jpg`. Every review
   since V2 measured where the palms were, never which way the hands faced. Seen: the fingers hook rather
   than wrap the tube tightly (both hands alike).
+
+- Main session's check of V9 (2026-11-13, about 11:30; load 3.7; pane shown, the game's own loop at
+  120 Hz, viewport 1512 x 900 at DPR 2 = canvas 2268 x 1350, fresh page loads): turning on foot right
+  after load (360 deg/s for 1 s, a 150 ms flick, then another turn) median 8.3 ms, worst 10.4, no frame
+  over 22; getting into the car and out again by key T in real time, 2874 frames, median 8.3, worst
+  10.4, none over 22; the helicopter in and out, 3510 frames, median 8.3, p99 10.4, worst 18.6, none
+  over 22. Looked at `v9_trees_ab4_midday.jpg`: the far firs read as tiered firs, the ground's broad
+  bands are broken into mottle. Node tests 8 / 4 pass; the build is clean. Not checked by me: the
+  live site on a cold browser cache (next), a 60 Hz display, adaptive scale under real GPU load.

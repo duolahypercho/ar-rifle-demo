@@ -132,7 +132,8 @@ export class Grass {
     this.RMAX = uniform(46);
     this.EXP = 1.5;
     this.pos = new THREE.InstancedBufferAttribute(new Float32Array(MAX_CLUMPS * 4), 4);
-    this.pos.setUsage(THREE.DynamicDrawUsage);
+    // ((V9) not DynamicDrawUsage: three's WebGPU renderer re-uploads a dynamic buffer in every pass that draws it, every
+    // frame; this one changes only on a refill, which sets needsUpdate)
     this.cache = new Map();
     const mat = new THREE.MeshStandardNodeMaterial({ vertexColors: true, roughness: 0.88, metalness: 0, side: THREE.DoubleSide });
     const ip = instancedBufferAttribute(this.pos);
@@ -501,14 +502,26 @@ function broadleaf(seed, tall) {
     pts.push([p, 0.6 + R() * 0.5]);
   }
   for (const [p, r] of pts) near.push(leafy(p, r * 1.15, crownC, leaf, R));
-  // the far version: seven blobs over the crown's mass
+  // the far version (V8): seven blobs over the crown's mass
   const Rf = rng(seed + 7);
   for (let k = 0; k < 7; k++) {
     const a = (k / 6) * Math.PI * 2;
     const p = k === 6 ? crownC.clone().add(new THREE.Vector3(0, rad.y * 0.35, 0)) : crownC.clone().add(new THREE.Vector3(Math.cos(a) * rad.x * 0.5, (Rf() - 0.5) * rad.y * 0.6, Math.sin(a) * rad.z * 0.5));
     far.push(cluster(p, Math.min(rad.x, rad.y) * 0.62, crownC, leaf, Rf, 0, 0.9));
   }
-  return { near: merge(near), far: merge(far), height: H };
+  // ((V9) the far version: the near crown's own clusters, fifteen of the outer ones (they make the outline) and three
+  // inner ones, each a lumpy blob half again as big as the near spray (the leaves round it), some darker, on the trunk and
+  // the boughs' first halves: the near tree's outline, its gaps and its dark inside, about 400 triangles (V8: 150))
+  const far9 = [limb(t0, t2, 0.28, 0.12, 5, bark)];
+  for (let b = 0; b < ends.length; b += 2) far9.push(limb(new THREE.Vector3(0, trunkH * 0.85, 0), new THREE.Vector3(0, trunkH * 0.85, 0).lerp(ends[b], 0.6), 0.1, 0.06, 3, bark));
+  const Rg = rng(seed + 9);
+  const byOut = pts.map(([p, r]) => [p, r, Math.hypot((p.x - crownC.x) / rad.x, (p.y - crownC.y) / rad.y, (p.z - crownC.z) / rad.z)]).sort((a, b) => b[2] - a[2]);
+  const pick = [...byOut.filter((_, i) => i % Math.max(1, Math.floor(byOut.length / 15)) === 0).slice(0, 15), ...byOut.slice(-3)];
+  for (const [p, r] of pick) {
+    const dark = Rg() < 0.35 ? 0.72 : 0.92;
+    far9.push(cluster(p, r * 1.55, crownC, [leaf[0] * dark, leaf[1] * dark, leaf[2] * dark], Rg, 0, 0.85));
+  }
+  return { near: merge(near), far: merge(far9), farOld: merge(far), height: H };
 }
 
 /**
@@ -570,7 +583,58 @@ function conifer(seed) {
   g.setAttribute('normal', new THREE.Float32BufferAttribute(nrm, 3));
   g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3));
   near.push(g);
-  // far: one jagged cone
+  // (V9) far: the near tree's tiers as eight jagged, drooping skirts over its dark inner cone (dark inside, lighter at the
+  // tips, each branch's tint), 89 triangles; V8's one jagged cone (58) stays as `farOld` (PERF.fartrees off), the shadow
+  // proxy's shape
+  const farTiers = [];
+  {
+    const Rf = rng(seed + 3);
+    const pos2 = [];
+    const nrm2 = [];
+    const col2 = [];
+    const segs = 9;
+    for (let k = 0; k < tiers; k++) {
+      const f = k / (tiers - 1);
+      const y = 1.7 + f * (H - 2.6);
+      const len = (3.3 * (1 - f) + 0.6) * 0.8;
+      const droop = 0.42 * len;
+      const top = y + 0.55 + (k === tiers - 1 ? 1.0 : 0);
+      const turn = k * 0.7 + Rf() * 0.5;
+      const ring = [];
+      for (let b = 0; b < segs; b++) {
+        const a = turn + (b / segs) * Math.PI * 2;
+        const r = len * (b % 2 ? 0.8 + Rf() * 0.1 : 0.96 + Rf() * 0.12); // (a branch tip, then the gap between two)
+        ring.push([Math.cos(a), Math.sin(a), r, b % 2 ? 0.45 : 0.6 + Rf() * 0.12]);
+      }
+      for (let b = 0; b < segs; b++) {
+        const [c0, s0, r0, l0] = ring[b];
+        const [c1, s1, r1, l1] = ring[(b + 1) % segs];
+        // (each skirt segment: the tier's top at the trunk, two tips out and down)
+        const P = [[0, top, 0], [c0 * r0, y - droop * (r0 / len), s0 * r0], [c1 * r1, y - droop * (r1 / len), s1 * r1]];
+        // (normals out and up as a cone's, not up as a branch's: from above a tier's face caught the high sun and the
+        // far fir read pale against the near one)
+        _s.set((c0 + c1) * 0.45, 0.55, (s0 + s1) * 0.45).normalize();
+        const tint = 0.85 + Rf() * 0.3;
+        const dark = 0.42;
+        const tipK = (l) => tint * l * (1 + f * 0.3);
+        const C = [[leaf[0] * dark, leaf[1] * dark, leaf[2] * dark], [leaf[0] * tipK(l0), leaf[1] * tipK(l0), leaf[2] * tipK(l0) * 0.95], [leaf[0] * tipK(l1), leaf[1] * tipK(l1), leaf[2] * tipK(l1) * 0.95]];
+        for (const i of [0, 1, 2]) {
+          pos2.push(...P[i]);
+          nrm2.push(_s.x, _s.y, _s.z);
+          col2.push(...C[i]);
+        }
+      }
+    }
+    const g2 = new THREE.BufferGeometry();
+    g2.setAttribute('position', new THREE.Float32BufferAttribute(pos2, 3));
+    g2.setAttribute('normal', new THREE.Float32BufferAttribute(nrm2, 3));
+    g2.setAttribute('color', new THREE.Float32BufferAttribute(col2, 3));
+    // (and the near tree's dark inner cone, so the gaps between the tips read dark from a distance, not as the ground)
+    const innerFar = new THREE.ConeGeometry(1.45, H - 2.4, 7, 1, true).translate(0, 2.0 + (H - 2.4) / 2, 0);
+    colorAll(innerFar, () => [leaf[0] * 0.45, leaf[1] * 0.45, leaf[2] * 0.45]);
+    farTiers.push(limb(new THREE.Vector3(0, -0.3, 0), new THREE.Vector3(0, H * 0.5, 0), 0.24, 0.1, 5, bark), innerFar, g2);
+  }
+  // far (V8): one jagged cone
   const fc = new THREE.ConeGeometry(3.0, H - 1.3, 8, 3, false).translate(0, 1.3 + (H - 1.3) / 2, 0);
   const fp = fc.attributes.position;
   for (let i = 0; i < fp.count; i++) {
@@ -588,7 +652,7 @@ function conifer(seed) {
     return [leaf[0] * kk, leaf[1] * kk, leaf[2] * kk];
   });
   far.push(fc);
-  return { near: merge(near), far: merge(far), height: H };
+  return { near: merge(near), far: merge(farTiers), farOld: merge(far), height: H };
 }
 
 function bush(seed) {
@@ -663,15 +727,23 @@ export class Trees {
     this.bushItems = bushes.map(([x, z, r]) => ({ x, z, r, s: 3, sc: 0.6 + r * 0.8, y: deps.groundY(x, z) - 0.05 }));
     // ((V8) one draw per version: the three shapes merged, each instance picking its own; was one per shape and
     // version, 22 draws a frame for the trees, now 10)
-    const mk = (geo, n, height, amp, { shadow = false } = {}) => {
-      const inst = new THREE.InstancedBufferAttribute(new Float32Array(Math.max(1, n) * 2), 2);
-      inst.setUsage(THREE.DynamicDrawUsage);
+    const mk = (geo, n, height, amp, { shadow = false, share = null } = {}) => {
+      const inst = share ? share.userData.inst : new THREE.InstancedBufferAttribute(new Float32Array(Math.max(1, n) * 2), 2);
       if (!geo.attributes.shape) geo.setAttribute('shape', new THREE.BufferAttribute(new Float32Array(geo.attributes.position.count), 1));
       const mat = new THREE.MeshStandardNodeMaterial({ vertexColors: true, roughness: 0.95, metalness: 0, side: THREE.DoubleSide });
       mat.normalNode = normalViewGeometry; // (leaves lit by their crown-outward normals on both faces)
       mat.positionNode = swayNode(inst, height, amp, deps);
+      // ((V9) each tree its own shade and hue from its hash, the same for its near and far versions: a stand of one
+      // shape read as copies of one colour from a distance)
+      if (!shadow) {
+        const r = instancedBufferAttribute(inst, 'vec2').x;
+        const bright = fract(r.mul(7.13)).mul(0.3).add(0.85);
+        const warm = fract(r.mul(3.31)).sub(0.5);
+        mat.colorNode = vec3(warm.mul(0.2).add(1), float(1), warm.mul(-0.24).add(1)).mul(bright);
+      }
       const im = new THREE.InstancedMesh(geo, mat, Math.max(1, n));
-      im.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+      // ((V9) static usage: re-uploaded only on a re-sort (needsUpdate), not in every pass of every frame (3 x 47 kB))
+      if (share) im.instanceMatrix = share.instanceMatrix;
       im.count = 0;
       im.frustumCulled = false;
       im.userData.inst = inst;
@@ -693,7 +765,11 @@ export class Trees {
     const bushGeo = bush(51);
     this.nearIM = mk(mergeShapes(shapes.map((s) => s.near)), n, 10, 1.0);
     this.farIM = mk(mergeShapes([...shapes.map((s) => s.far), bushGeo]), n + nb, 10, 1.0);
-    this.shadowIM = mk(mergeShapes([...shapes.map((s) => s.far), bushGeo]), n + nb, 10, 1.0, { shadow: true });
+    // ((V9) V8's far versions, drawn instead while PERF.fartrees is off: the same instances, one of the two drawn)
+    this.farOldIM = mk(mergeShapes([...shapes.map((s) => s.farOld || s.far), bushGeo]), n + nb, 10, 1.0, { share: this.farIM });
+    this.farOldIM.name = 'trees far (V8) and bushes';
+    this.farNew = true;
+    this.shadowIM = mk(mergeShapes([...shapes.map((s) => s.farOld || s.far), bushGeo]), n + nb, 10, 1.0, { shadow: true });
     this.nearIM.name = 'trees near';
     this.farIM.name = 'trees far and bushes';
     this.shadowIM.name = 'trees and bushes shadow';
@@ -758,6 +834,8 @@ export class Trees {
       im.instanceMatrix.needsUpdate = true;
       im.userData.inst.needsUpdate = true;
     }
+    this.farOldIM.count = nf;
+    this._showFar();
     this.fills++;
     this.counts = { near: nn, far: nf, shadow: ns, bushes: nb };
     return true;
@@ -766,5 +844,13 @@ export class Trees {
   set visible(v) {
     this._vis = v;
     for (const m of [this.nearIM, this.farIM, this.shadowIM]) m.visible = v && m.count > 0;
+    this._showFar();
+  }
+
+  /** (V9) The far set drawn: the tiered versions (farNew) or V8's. */
+  _showFar() {
+    const on = this._vis && this.farIM.count > 0;
+    this.farIM.visible = on && this.farNew;
+    this.farOldIM.visible = on && !this.farNew;
   }
 }

@@ -29,6 +29,7 @@ import { Seated, emptyHands, CAR_POINTS } from './seated.js';
 import { Smooth, damp, wrapAngle, PALM_LOCAL } from './character.js';
 import { HeliSeated } from './heli/seat.js';
 import { HeliCameras } from './heli/heli.js';
+import { groundAt } from './ground.js';
 
 const REACH = 2.6; // m from the entry point that T gets in
 const SOLE = new THREE.Vector3();
@@ -45,6 +46,22 @@ const ease = (x) => {
   const t = THREE.MathUtils.clamp(x, 0, 1);
   return t * t * (3 - 2 * t);
 };
+const _v3 = new THREE.Vector3();
+const LIFT_FADE = 15; // frames (30 fps), (V9) the clip onto the real ground and off it
+
+/**
+ * (V9) An entry or exit clip's ground phase: the span of its feet's ground contacts (kind 'ground', on no node), at the
+ * clip's start (an entry: { start: true, to }) or its end (an exit: { start: false, from }); null if it has none.
+ */
+function groundSpan(clip) {
+  const g = ((clip.note && clip.note.contacts) || []).filter((c) => c.part.startsWith('foot') && !c.node && c.kind === 'ground');
+  if (!g.length) return null;
+  const from = Math.min(...g.map((c) => c.from));
+  const to = Math.max(...g.map((c) => c.to));
+  if (from <= 0) return { start: true, to };
+  if (to >= clip.frames - 1) return { start: false, from };
+  return null;
+}
 
 /**
  * The vehicle clip pack, baked to the proxy skeleton's old joints (all of them, arms and fingers too):
@@ -539,6 +556,7 @@ export class Vehicles {
     const quat = ch.root.quaternion.clone();
     const r = this.pack.root(clip, 0, {});
     ch.root.position.copy(V.localToWorld(_v.set(r.x, 0, r.z)));
+    this._lift(ch.root.position, clip, 0);
     ch.root.quaternion.copy(V.getWorldQuaternion(_q)).multiply(_q2.setFromAxisAngle(THREE.Object3D.DEFAULT_UP, r.yaw - Math.PI));
     ch.root.updateMatrixWorld(true);
     this.pack.apply(ch.bones, clip, 0, 1);
@@ -643,6 +661,7 @@ export class Vehicles {
       const r = this.pack.root(clip, t, this._root || (this._root = {}));
       if (r) {
         ch.root.position.copy(V.localToWorld(_v.set(r.x, 0, r.z)));
+        this._lift(ch.root.position, clip, t);
         ch.root.quaternion.copy(V.getWorldQuaternion(_q)).multiply(_q2.setFromAxisAngle(THREE.Object3D.DEFAULT_UP, r.yaw - Math.PI));
       }
       ch.root.updateMatrixWorld(true);
@@ -932,6 +951,40 @@ export class Vehicles {
     ch.root.updateMatrixWorld(true);
   }
 
+  /**
+   * (V9) How far onto the real ground the clip stands at t (0..1): 1 through its ground phase, eased to 0 over
+   * LIFT_FADE frames once both feet are on the vehicle (an entry) or from 0 before the first foot reaches the ground
+   * (an exit). The clips' ground is the vehicle's ground plane (its root's y = 0); the helicopter at rest sits 5.5 cm
+   * lower than the ground under it (its skids settle), so its clips pinned the feet 5.5 cm into the ground and, at
+   * the start of heli-enter, sank the feet there from where the walk had planted them (2 to 3 cm off their contacts
+   * for 0.15 s); the car sits on the plane (no change).
+   */
+  _groundW(clip, t) {
+    if (clip._groundSpan === undefined) clip._groundSpan = groundSpan(clip);
+    const g = clip._groundSpan;
+    if (!g) return 0;
+    const f = t * PACK_FPS;
+    if (g.start) return f <= g.to ? 1 : 1 - ease((f - g.to) / LIFT_FADE);
+    return f >= g.from ? 1 : ease(1 - (g.from - f) / LIFT_FADE);
+  }
+
+  /** (V9) A point on the vehicle's ground plane (world) raised or lowered onto the real ground by the clip's weight. */
+  _lift(p, clip, t) {
+    const w = this._groundW(clip, t);
+    if (w > 0) p.y += w * (groundAt(p.x, p.z) - p.y);
+    return p;
+  }
+
+  /** (V9) A contact's world point: a ground contact (on no node) follows the clip onto the real ground. */
+  _groundAt(at, c, node, clip, t) {
+    if (c.node || c.kind !== 'ground') return at;
+    const w = this._groundW(clip, t);
+    if (w <= 0) return at;
+    const plane = node.localToWorld(_v3.set(c.at[0], 0, c.at[2])).y;
+    at.y += w * (groundAt(at.x, at.z) - plane);
+    return at;
+  }
+
   _pinContacts(clip, t) {
     const ch = this.character;
     const veh = this.v;
@@ -944,7 +997,7 @@ export class Vehicles {
     for (const c of this.pack.contacts(clip, t)) {
       const node = c.node ? veh.nodes[c.node] : veh.root;
       if (!node) continue;
-      const at = node.localToWorld(_v.fromArray(c.at)).clone();
+      const at = this._groundAt(node.localToWorld(_v.fromArray(c.at)).clone(), c, node, clip, t);
       const side = c.part.endsWith('_l') ? 'Left' : 'Right';
       const easeIn = c.from <= 0 ? 1 : (f - c.from + 1) / PIN_EASE;
       const easeOut = c.to >= last ? 1 : (c.to - f + 1) / PIN_EASE;
@@ -986,7 +1039,7 @@ export class Vehicles {
       if (!node) continue;
       // (only while the pin is at full weight: in its ease frames the limb is meant to be between)
       if ((c.from > 0 && f - c.from + 1 < PIN_EASE) || (c.to < last && c.to - f + 1 < PIN_EASE)) continue;
-      const at = node.localToWorld(_v.fromArray(c.at));
+      const at = this._groundAt(node.localToWorld(_v.fromArray(c.at)), c, node, clip, t);
       const side = c.part.endsWith('_l') ? 'Left' : 'Right';
       let p;
       if (c.part.startsWith('hand')) {

@@ -32,4 +32,12 @@ export const PERF = {
   flora: all && !off.has('flora'),
   sky: all && !off.has('sky'),
   furniture: all && !off.has('furniture'),
+  // (V9) warm   every pipeline and buffer made under the loading veil (main.js): no first-time stalls on turning
+  warm: !off.has('warm'),
+  // (V9) adapt  the render scale steps between 1.5 and 1.0 device pixels per CSS pixel to hold 60 frames a second
+  //            when the GPU is the limit (adapt.js); off: always the top scale. At run time: demo.adapt.enabled
+  adapt: !off.has('adapt'),
+  // (V9) fartrees  the far trees' tiered firs and per-tree shade, the far ground's variation and the trees' shade on
+  //                it (flora.js, terrain.js); off: V8's far versions and ground. At run time: demo.perf + applyPerf()
+  fartrees: all && !off.has('fartrees'),
 };

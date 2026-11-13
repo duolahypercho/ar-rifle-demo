@@ -10,9 +10,11 @@ export class SpriteCloud {
   constructor(scene, max, map, { renderOrder = 0 } = {}) {
     this.max = max;
     this.items = [];
-    this.offset = new THREE.InstancedBufferAttribute(new Float32Array(max * 3), 3).setUsage(THREE.DynamicDrawUsage);
-    this.size = new THREE.InstancedBufferAttribute(new Float32Array(max), 1).setUsage(THREE.DynamicDrawUsage);
-    this.tint = new THREE.InstancedBufferAttribute(new Float32Array(max * 4), 4).setUsage(THREE.DynamicDrawUsage);
+    // ((V9) static usage, uploaded through needsUpdate while anything is live: as dynamic buffers three's WebGPU renderer
+    // uploaded them every frame, with nothing to show too)
+    this.offset = new THREE.InstancedBufferAttribute(new Float32Array(max * 3), 3);
+    this.size = new THREE.InstancedBufferAttribute(new Float32Array(max), 1);
+    this.tint = new THREE.InstancedBufferAttribute(new Float32Array(max * 4), 4);
     const mat = new THREE.SpriteNodeMaterial({ transparent: true, depthWrite: false });
     const tint = instancedBufferAttribute(this.tint);
     const tex = texture(map, uv());
@@ -54,7 +56,7 @@ export class SpriteCloud {
       if (on) live++;
     }
     this.sprite.visible = live > 0;
-    this.offset.needsUpdate = this.size.needsUpdate = this.tint.needsUpdate = true;
+    if (live > 0 || this.live > 0) this.offset.needsUpdate = this.size.needsUpdate = this.tint.needsUpdate = true;
     this.live = live;
   }
 }

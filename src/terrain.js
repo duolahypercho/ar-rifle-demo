@@ -12,7 +12,7 @@
 // exactly as flat as before (V1 to V6 scenarios and the yard unchanged), and the ground starts to roll out beyond them.
 // ?perf=-terrain (or demo.perf.terrain = false) puts back the flat plane.
 import * as THREE from 'three/webgpu';
-import { uniform, attribute, positionLocal, positionWorld, vec3, float, sin, cos, mix, smoothstep, time, max, length, instancedBufferAttribute } from 'three/tsl';
+import { uniform, attribute, positionLocal, positionWorld, vec2, vec3, float, sin, cos, mix, smoothstep, time, max, min, length, instancedBufferAttribute, texture, cameraPosition } from 'three/tsl';
 import { PERF } from './perf.js';
 import { APRON, SKIDPAD, HELIPAD, nearTrack, LINE, TRACK_WIDTH, KERB_WIDTH, CAR_OBSTACLES } from './track.js';
 import { SpriteCloud } from './cloud.js';
@@ -180,6 +180,8 @@ export const WEATHER = {
 };
 
 // ------------------------------------------------------------------------------------------------- building it
+const TREE_MAP_SIZE = 1024; // (V9) texels a side
+const TREE_MAP_EXTENT = 1024; // m, +- (the trees are within 864 m)
 const _m = new THREE.Matrix4();
 const _v = new THREE.Vector3();
 const hash = (i, j, k = 0) => {
@@ -201,6 +203,7 @@ export class Terrain {
     this.carU = { pos: uniform(new THREE.Vector3(0, -1000, 0)), v: uniform(new THREE.Vector3()), dir: uniform(new THREE.Vector3(0, 0, -1)) };
     this.lamps = uniform(0); // the edge lights' glow (time of day)
     this.show = { grass: true, trees: true }; // (V8) for ablation (tools/v8_cost.js): within flora, each part on its own
+    this._farGround();
     this._ground(groundMesh.material);
     this._hills();
     this._clouds();
@@ -233,6 +236,22 @@ export class Terrain {
       const pw = positionWorld;
       const bare = sin(pw.x.mul(0.043).add(1.1)).mul(cos(pw.z.mul(0.037).sub(0.6))).mul(0.45).add(sin(pw.x.sub(pw.z).mul(0.11).add(0.3)).mul(0.15)).add(0.2).clamp(0, 1);
       own.colorNode = own.colorNode.mul(mix(vec3(0.42, 0.55, 0.26), vec3(0.85, 0.85, 0.72), bare));
+      // ((V9) the far ground broken up (PERF.fartrees): two octaves of a value noise, 61 m and 17 m across, from greener
+      // and darker to drier and lighter (-25 to +15 %), and the trees' shade: darker under and round each crown and copse (the
+      // tree map, a soft footprint 1.6 x the crown), and past the near cascades' reach (60 to 110 m from the camera:
+      // nearer, the trees' own shadows are drawn) a shadow of each crown cast away from the sun, so the far trees stand on
+      // the ground instead of floating over it)
+      const G = this.farG;
+      const n1 = texture(G.noise, pw.xz.div(61)).r;
+      const n2 = texture(G.noise, pw.xz.div(17.3).add(vec2(0.37, 0.71))).g;
+      const nz = smoothstep(0.2, 0.8, n1.mul(0.55).add(n2.mul(0.45)));
+      const vary = mix(vec3(0.72, 0.86, 0.68), vec3(1.18, 1.1, 0.96), nz);
+      const uvT = pw.xz.add(TREE_MAP_EXTENT).div(2 * TREE_MAP_EXTENT);
+      const ao = texture(G.trees, uvT).r;
+      const cast = texture(G.trees, uvT.add(G.sunOff.div(2 * TREE_MAP_EXTENT))).g;
+      const farK = smoothstep(60, 110, length(pw.xz.sub(cameraPosition.xz)));
+      const shade = float(1).sub(ao.mul(0.32)).sub(cast.mul(farK).mul(G.shadeK).mul(0.6)).max(0.3);
+      own.colorNode = own.colorNode.mul(mix(vec3(1, 1, 1), vary.mul(shade), G.on));
     }
     mat = own;
     const mesh = new THREE.Mesh(geo, mat);
@@ -251,6 +270,91 @@ export class Terrain {
     outer.name = 'terrain outer plane';
     this.outerMesh = outer;
     this.group.add(outer);
+  }
+
+  /**
+   * (V9) For the far ground: a value-noise texture (256 x 256, tiling: two octaves in R and G) and the tree map (1024 x
+   * 1024 over +-1024 m, 2 m a texel: R a soft footprint 1.6 x each crown for the shade round trees and copses, G the
+   * crown's own footprint for its cast shadow), drawn once the trees are placed (_treeMap); uniforms for the sun's shadow
+   * offset (m) and strength, and the switch (PERF.fartrees).
+   */
+  _farGround() {
+    const S = 256;
+    const c = document.createElement('canvas');
+    c.width = c.height = S;
+    const g = c.getContext('2d');
+    const img = g.createImageData(S, S);
+    const lattice = (cell, ch) => {
+      const n = S / cell;
+      return (x, y) => {
+        const fx = x / cell;
+        const fy = y / cell;
+        const x0 = Math.floor(fx);
+        const y0 = Math.floor(fy);
+        const tx = fx - x0;
+        const ty = fy - y0;
+        const sx = tx * tx * (3 - 2 * tx);
+        const sy = ty * ty * (3 - 2 * ty);
+        const h = (i, j) => hash(((i % n) + n) % n, ((j % n) + n) % n, ch);
+        const a = h(x0, y0) + (h(x0 + 1, y0) - h(x0, y0)) * sx;
+        const b = h(x0, y0 + 1) + (h(x0 + 1, y0 + 1) - h(x0, y0 + 1)) * sx;
+        return a + (b - a) * sy;
+      };
+    };
+    const r1 = lattice(32, 91);
+    const r2 = lattice(8, 92);
+    const g1 = lattice(32, 93);
+    const g2 = lattice(8, 94);
+    for (let y = 0; y < S; y++) {
+      for (let x = 0; x < S; x++) {
+        const k = (y * S + x) * 4;
+        img.data[k] = Math.round(255 * (0.7 * r1(x, y) + 0.3 * r2(x, y)));
+        img.data[k + 1] = Math.round(255 * (0.7 * g1(x, y) + 0.3 * g2(x, y)));
+        img.data[k + 2] = 0;
+        img.data[k + 3] = 255;
+      }
+    }
+    g.putImageData(img, 0, 0);
+    const noise = new THREE.CanvasTexture(c);
+    noise.wrapS = noise.wrapT = THREE.RepeatWrapping;
+    noise.colorSpace = THREE.NoColorSpace;
+    const tc = document.createElement('canvas');
+    tc.width = tc.height = TREE_MAP_SIZE;
+    const trees = new THREE.CanvasTexture(tc);
+    trees.colorSpace = THREE.NoColorSpace;
+    trees.flipY = false;
+    // (the default afternoon sun: elevation 29, azimuth 68 degrees; light() sets it with the time of day)
+    this.farG = { noise, trees, canvas: tc, on: uniform(PERF.fartrees ? 1 : 0), sunOff: uniform(new THREE.Vector2(8.4, 3.4)), shadeK: uniform(1) };
+  }
+
+  /** (V9) The tree map from the trees and bushes as placed: R the soft shade round each, G its crown. */
+  _treeMap(items, bushItems) {
+    const G = this.farG;
+    const g = G.canvas.getContext('2d');
+    g.fillStyle = 'rgb(0,0,0)';
+    g.fillRect(0, 0, TREE_MAP_SIZE, TREE_MAP_SIZE);
+    const px = TREE_MAP_SIZE / (2 * TREE_MAP_EXTENT);
+    const crown = [3.3, 2.1, 3.0, 0.9]; // m: round broadleaf, tall broadleaf, fir (its lower tiers), bush
+    g.globalCompositeOperation = 'lighter';
+    for (const pass of ['r', 'g']) {
+      for (const it of [...items, ...bushItems]) {
+        const r = crown[it.s] * it.sc * (pass === 'r' ? 1.6 : 1.0) * px;
+        const x = (it.x + TREE_MAP_EXTENT) * px;
+        const y = (it.z + TREE_MAP_EXTENT) * px;
+        const grad = g.createRadialGradient(x, y, 0, x, y, Math.max(1, r));
+        const a = pass === 'r' ? (it.s === 3 ? 0.35 : 0.6) : it.s === 3 ? 0.4 : 0.85;
+        const col = (k) => (pass === 'r' ? `rgba(${Math.round(255 * k)},0,0,1)` : `rgba(0,${Math.round(255 * k)},0,1)`);
+        grad.addColorStop(0, col(a));
+        grad.addColorStop(pass === 'r' ? 0.3 : 0.6, col(a * 0.8));
+        grad.addColorStop(1, col(0));
+        g.fillStyle = grad;
+        g.beginPath();
+        g.arc(x, y, Math.max(1, r), 0, Math.PI * 2);
+        g.fill();
+      }
+    }
+    g.globalCompositeOperation = 'source-over';
+    G.trees.needsUpdate = true;
   }
 
   /** Hills on the horizon: a ring from 1.9 to 3.2 km, 60 to 260 m high, in the haze's colour (not fogged out). */
@@ -367,6 +471,8 @@ export class Terrain {
     // ((V8) flora.js: three tree shapes with near and far versions, shadow proxies, bushes; the grass)
     const deps = { fieldAt, terrainAt, groundY: (x, z) => (PERF.terrain ? terrainAt(x, z) : 0), wind: WEATHER.u, wash: this.wash, car: this.carU, layer: DETAIL_LAYER };
     this.flora = new Trees(this.group, trees, bushes, deps);
+    this.flora.farNew = PERF.fartrees;
+    this._treeMap(this.flora.items, this.flora.bushItems);
     this.trees = this.flora;
     this.bushes = this.flora.bushIM;
     this._floraDeps = deps;
@@ -553,7 +659,14 @@ export class Terrain {
       s.visible = PERF.sky;
     }
     this.cloud.update();
-    void sunDir;
+    // ((V9) the far trees' cast shadow on the ground: away from the sun by a 5 m crown height's worth (at most 25 m), weaker
+    // as the sun gets low)
+    if (sunDir && this.farG) {
+      const k = 5 / Math.max(0.2, sunDir.y);
+      const o = this.farG.sunOff.value.set(sunDir.x * k, sunDir.z * k);
+      if (o.length() > 25) o.setLength(25);
+      this.farG.shadeK.value = THREE.MathUtils.clamp((sunDir.y - 0.03) / 0.25, 0, 1);
+    }
   }
 
   /** The clouds drift with the wind (slowly: they are 1 km up), wrapped round the world. */
@@ -588,6 +701,10 @@ export class Terrain {
     for (const s of this.puffs) s.visible = PERF.sky;
     this.cloud.update();
     this.lights.visible = this.tyres.visible = this.boards.visible = this.mast.visible = PERF.furniture;
+    // ((V9) the far trees' tiered versions and the far ground's variation and shade, or V8's)
+    this.flora.farNew = PERF.fartrees;
+    this.flora._showFar();
+    this.farG.on.value = PERF.fartrees ? 1 : 0;
     for (const o of this.tyreWalls || []) o.off = !PERF.furniture;
   }
 }

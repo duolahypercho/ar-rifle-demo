@@ -193,8 +193,10 @@ export class Car {
     this._skid = { max: SEG, n: 0, pos: new Float32Array(SEG * 4 * 3), alpha: new Float32Array(SEG * 4), idx: [] };
     for (let i = 0; i < SEG; i++) this._skid.idx.push(i * 4, i * 4 + 2, i * 4 + 1, i * 4 + 1, i * 4 + 2, i * 4 + 3);
     const geo = new THREE.BufferGeometry();
-    geo.setAttribute('position', new THREE.BufferAttribute(this._skid.pos, 3).setUsage(THREE.DynamicDrawUsage));
-    geo.setAttribute('alpha', new THREE.BufferAttribute(this._skid.alpha, 1).setUsage(THREE.DynamicDrawUsage));
+    // ((V9) static usage: uploaded when a mark is laid (needsUpdate); as dynamic buffers three's WebGPU renderer uploaded
+    // all 192 kB every frame)
+    geo.setAttribute('position', new THREE.BufferAttribute(this._skid.pos, 3));
+    geo.setAttribute('alpha', new THREE.BufferAttribute(this._skid.alpha, 1));
     geo.setIndex(this._skid.idx);
     const { attribute, vec3: tv3, float } = await import('three/tsl');
     const skidMat = new THREE.MeshBasicNodeMaterial({ transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -4, polygonOffsetUnits: -4 });

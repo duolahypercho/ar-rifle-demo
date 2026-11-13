@@ -31,6 +31,7 @@ import { CarMirrors } from './mirrors.js';
 import { CarDamage, HeliDamage } from './damage.js';
 import { Terrain, WEATHER, DETAIL_LAYER, GRASS_LAYER } from './terrain.js';
 import { LIGHT, TIME_NAMES } from './look.js';
+import { FrameMeter } from './adapt.js';
 
 const $ = (id) => document.getElementById(id);
 const ui = {
@@ -102,9 +103,12 @@ async function main() {
   const renderer = new THREE.WebGPURenderer({ canvas: ui.canvas, antialias: true, trackTimestamp: new URLSearchParams(location.search).has('gputime') });
   // (V4) render scale: at most 1.5 device pixels per CSS pixel (2048 x 1536 -> 1536 x 1152 in the 1024 x 768 pane, 1.78 x
   // fewer pixels; the GPU's share of a frame 6.2 -> 3.7 ms); a display at 1 or 1.5 is drawn at its own resolution
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, PERF.scale ? 1.5 : 2));
+  const maxScale = Math.min(window.devicePixelRatio, PERF.scale ? 1.5 : 2);
+  renderer.setPixelRatio(maxScale);
   renderer.setSize(Math.max(1, ui.canvas.clientWidth), Math.max(1, ui.canvas.clientHeight), false);
   await renderer.init();
+  // ((V9) adaptive render scale between 1.5 and 1.0 device pixels per CSS pixel, and the ` key's frame-time readout)
+  const meter = new FrameMeter(renderer, { max: maxScale, floor: 1.0, enabled: PERF.adapt, el: $('perf') });
   performance.mark('load:renderer');
   const webgpu = renderer.backend.isWebGPUBackend === true;
   ui.backend.textContent = webgpu ? 'WebGPU' : 'WebGL 2 fallback';
@@ -595,6 +599,12 @@ async function main() {
   window.addEventListener('keydown', (ev) => {
     sound.unlock(); // browsers only allow sound after a click or a key
     if (ev.repeat || ev.metaKey || ev.ctrlKey || ev.altKey) return;
+    // ((V9) ` (the key left of 1), in every mode: the frame-time readout (adapt.js)
+    if (ev.code === 'Backquote') {
+      meter.toggle();
+      ev.preventDefault();
+      return;
+    }
     if (press(ev.code, true)) ev.preventDefault();
   });
   window.addEventListener('keyup', (ev) => {
@@ -896,7 +906,7 @@ async function main() {
     look.setTime(name);
     terrain.lamps.value = LIGHT.lamps;
     terrain.haze.value.setRGB(...LIGHT.haze);
-    terrain.light(LIGHT.cloudSun, LIGHT.cloudSky);
+    terrain.light(LIGHT.cloudSun, LIGHT.cloudSky, look.sunDir); // ((V9) the sun's way: the far trees' shadow on the ground)
     // (the headlamps come on by themselves at dusk and at night, as an automatic headlamp switch does)
     if (LIGHT.lamps > 0) car.headlights = true;
     return name;
@@ -928,6 +938,10 @@ async function main() {
   let stow = null; // { clip, t, dir }
   let handsFree = false; // both guns on the back
   const emptyOut = {};
+  const stowShoulder = new THREE.Vector3(); // ((V9) the draw's elbow pole, blended)
+  const stowPole = new THREE.Vector3();
+  const stowPoleTo = new THREE.Vector3();
+  const stowElbow = new THREE.Vector3();
   const standBody = {};
   let revHold = 0;
   let lastDoor = 0;
@@ -1520,8 +1534,11 @@ async function main() {
       slung.gunPos.copy(inPos);
       slung.gunQuat.copy(inQuat);
       swap.in.place(slung);
-    } else if (stow && !handsFree) {
-      // the gun on its way to or from the back, as the clip's Gun track has it
+    } else if (stow) {
+      // the gun on its way to or from the back, as the clip's Gun track has it, for the whole half: (V9) the clip's
+      // gun goes on settling into its place on the back for 0.1 s after the hand lets go at `slung` (7 cm), and the
+      // track ends exactly at the stow place; V1-V8 put it at the stow place from `slung` on, and the gun (with the
+      // hand that reaches for it) jumped those 7 cm in one frame: the draw's 4.09 m/s, the old stow's 4.08
       slung.gunPos.copy(character.gunPos);
       slung.gunQuat.copy(character.gunQuat);
       weapon.place(slung);
@@ -1593,7 +1610,15 @@ async function main() {
         empty.rPalm.lerpVectors(held.rPalm, empty.rPalm, kr);
         empty.rQuat.slerpQuaternions(held.rQuat, empty.rQuat, kr);
         empty.rCurl = THREE.MathUtils.lerp(held.rCurl, 0.35, kr);
-        empty.rElbow = kr < 0.5 ? held.rElbow : null;
+        // ((V9) the elbow's pole turned from the clip's elbow to the empty hand's with the hand: V1-V8 switched it at
+        // kr 0.5, the elbow jumped about 14 cm in one frame, 17 m/s of velocity change at lowerarm_r)
+        if (held.rElbow && kr < 1) {
+          character.bones.RightArm.getWorldPosition(stowShoulder);
+          stowPole.subVectors(held.rElbow, stowShoulder).normalize();
+          stowPoleTo.copy(empty.rPole).applyQuaternion(character.chestQuat).normalize();
+          stowPole.lerp(stowPoleTo, kr).normalize();
+          empty.rElbow = stowElbow.copy(stowShoulder).add(stowPole);
+        } else empty.rElbow = null;
         empty.lPalm.lerpVectors(weapon.hands.lPalm, empty.lPalm, kl);
         empty.lQuat.slerpQuaternions(weapon.hands.lQuat, empty.lQuat, kl);
       }
@@ -1667,6 +1692,7 @@ async function main() {
     }
   };
 
+
   const afterRender = []; // callbacks for the end of the next frame, while the canvas still holds it
   let last = performance.now();
   let frames = 0;
@@ -1675,14 +1701,14 @@ async function main() {
     const dt = THREE.MathUtils.clamp((now - last) / 1000, 0, 0.05) * timeScale; // the first timestamp can predate `last`
     last = now;
     if (frames < 2) performance.mark(`load:frame${frames + 1}-start`);
+    meter.begin(now);
     step(dt);
     if (viewW > 0 && viewH > 0) look.render();
+    meter.end(); // ((V9) frame times, the adaptive render scale, the readout: adapt.js)
     if (frames < 2) performance.mark(`load:frame${frames + 1}-end`);
     frames++;
     if (afterRender.length) for (const done of afterRender.splice(0)) done();
   });
-
-  ui.loading.classList.add('done');
 
   // Handy from the browser console:
   //   demo.input.forward = true; demo.advance(2)     walk for two seconds of simulation
@@ -1712,6 +1738,7 @@ async function main() {
     heliKeys,
     THREE, // (V5: for the tools)
     perf: PERF, // (V7: the features' switches, for before / after in one page)
+    adapt: meter, // ((V9) the frame meter: .enabled (adaptive render scale), .scale, .changes, .text(), .toggle())
     repair: () => repair(),
     terrain,
     weather: WEATHER,
@@ -1788,6 +1815,87 @@ async function main() {
     },
   });
   Object.assign(demo, makeReview(demo));
+
+  // (V9) Every pipeline, shader and buffer the world needs is made under the loading veil: one frame drawn with nothing
+  // culled (every mesh in every pass: the pre-pass, the lit pass, the four cascades), and each car mirror once. WebGPU
+  // builds a material's shaders and pipeline the first time something with it is drawn; before this, turning round
+  // for the first time after loading built 104 pipelines and 157 shader modules on the way (frames of 25 to 104 ms
+  // at 2268 x 1350: the lag on turning the view). Costs about 1.5 s of loading. ?perf=-warm leaves it out.
+  // Also drawn for that frame: what the game shows later (the effects' pools, the wheels' blur, anything hidden that is
+  // not a merged original and holds no light: a light joining the scene would rebuild every material), and the
+  // helicopter's blades both opaque and faded (the spin-up turns their material transparent: 31 to 580 ms the first
+  // time, the GPU compiling the new pipeline).
+  if (PERF.warm && viewW > 0 && viewH > 0) {
+    performance.mark('load:warm-start');
+    const culled = [];
+    const shown = [];
+    const hasLight = (o) => {
+      let l = false;
+      o.traverse((c) => (l = l || !!c.isLight));
+      return l;
+    };
+    scene.traverse((o) => {
+      if (o.frustumCulled && (o.isMesh || o.isPoints || o.isLine || o.isSprite)) {
+        culled.push(o);
+        o.frustumCulled = false;
+      }
+    });
+    const reveal = (o) => {
+      if (o.isLight || (o.userData && o.userData.batchedInto)) return;
+      if (!o.visible) {
+        if (hasLight(o)) return;
+        shown.push(o);
+        o.visible = true;
+      }
+      for (const c of o.children) reveal(c);
+    };
+    const blades = [...(heli.mainBlades || []), ...(heli.tailBlades || [])];
+    const bladeLayers = [];
+    const bladeMats = [heli.mainBlades && heli.mainBlades.mat, heli.tailBlades && heli.tailBlades.mat].filter(Boolean);
+    try {
+      // (the game's step first: it sets what is shown, the blades' layers and the blur discs, every frame)
+      step(1 / 60);
+      reveal(scene);
+      for (const o of blades) {
+        bladeLayers.push(o.layers.mask);
+        o.layers.enable(0);
+      }
+      look.render(true);
+      if (car.mirrors && car.mirrors.list) {
+        for (const m of car.mirrors.list) {
+          const seen = m.seen.value;
+          car.mirrors._render(m, camera, look);
+          m.seen.value = seen;
+        }
+      }
+      await renderer.backend.device.queue.onSubmittedWorkDone();
+      // (the blades faded: their transparent variant)
+      if (bladeMats.length) {
+        const was = bladeMats.map((m) => [m.transparent, m.depthWrite, m.opacity]);
+        for (const m of bladeMats) {
+          m.transparent = true;
+          m.depthWrite = false;
+          m.opacity = 0.5;
+          m.needsUpdate = true;
+        }
+        look.render(true);
+        await renderer.backend.device.queue.onSubmittedWorkDone();
+        bladeMats.forEach((m, i) => {
+          [m.transparent, m.depthWrite, m.opacity] = was[i];
+          m.needsUpdate = true;
+        });
+      }
+    } catch (err) {
+      console.warn('warm-up', err);
+    } finally {
+      for (const o of culled) o.frustumCulled = true;
+      for (const o of shown) o.visible = false;
+      bladeLayers.forEach((mask, i) => (blades[i].layers.mask = mask));
+    }
+    performance.mark('load:warm-end');
+  }
+
+  ui.loading.classList.add('done');
 }
 
 main().catch((err) => {

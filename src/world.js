@@ -288,7 +288,7 @@ export class World {
       this.cones.push({ pos: new THREE.Vector3(x, 0, z), home: new THREE.Vector3(x, 0, z), vel: new THREE.Vector3(), quat: new THREE.Quaternion(), spin: new THREE.Vector3(), moving: false, i });
       this.coneMesh.setMatrixAt(i, _m.makeTranslation(x, 0, z));
     });
-    this.coneMesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+    // ((V9) static usage: uploaded when a cone moves (needsUpdate), not in every pass of every frame)
     add(this.coneMesh);
     this.coneMesh.userData.staticInstances = false; // (knocked flying: not batched)
     this.coneMesh.layers.enable(SHADOW_LAYER); // ((V4) the far cascades draw SHADOW_LAYER only)
