@@ -1768,3 +1768,12 @@ Contract extensions decided for this round (both sides must follow them):
   over 22. Looked at `v9_trees_ab4_midday.jpg`: the far firs read as tiered firs, the ground's broad
   bands are broken into mottle. Node tests 8 / 4 pass; the build is clean. Not checked by me: the
   live site on a cold browser cache (next), a 60 Hz display, adaptive scale under real GPU load.
+
+- Live site after V9 (2026-11-13, about 12:00; viewport 1512 x 900, the game's own loop): the first visit
+  after the deploy loaded in about 45 s (assets 14 s, then 31 s of pipeline compiles under the loading
+  screen, `load:warm-start` 14.1 to `load:warm-end` 45.1); a second visit was ready in 8.3 s (warm-up
+  1.7 s). Turning right after load: 120 fps, worst frame 10.4 ms, none over 22. Car in and out by key T:
+  2887 frames, median 8.3, worst 25.5 (two single frames of 23 and 26 ms). The loading screen now says
+  "Preparing shaders… (slow only on the first visit)" during the warm-up (commit ae041ad). Seen once:
+  a page loaded while GitHub Pages was switching deployments got a 503 for supercar.glb and showed
+  "Could not start the demo"; a reload a minute later worked (the loader does not retry).
