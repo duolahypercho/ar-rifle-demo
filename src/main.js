@@ -1827,6 +1827,9 @@ async function main() {
   // time, the GPU compiling the new pipeline).
   if (PERF.warm && viewW > 0 && viewH > 0) {
     performance.mark('load:warm-start');
+    // (on a browser's first visit the GPU compiles every pipeline here: 31 s measured on the live site, 1.7 s once the
+    // browser has them cached; say so, so a long first load does not read as a hang)
+    ui.loading.textContent = 'Preparing shaders… (slow only on the first visit)';
     const culled = [];
     const shown = [];
     const hasLight = (o) => {
