@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AR rifle range — Three.js WebGPU</title>
+    <script type="module" crossorigin src="/ar-rifle-demo/assets/index-B2g6o7DH.js"></script>
+    <link rel="stylesheet" crossorigin href="/ar-rifle-demo/assets/index-BuadCEns.css">
+  </head>
+  <body>
+    <canvas id="view"></canvas>
+
+    <div id="hud">
+      <div id="crosshair"><i></i><i></i><i></i><i></i><b></b></div>
+
+      <div class="panel top-left">
+        <div class="title">AR rifle range</div>
+        <div class="sub"><span id="backend" class="badge">starting…</span> <span id="who"></span></div>
+        <div class="keys">
+          <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> move · <kbd>Shift</kbd> run, hold to sprint · <kbd>X</kbd> jog<br />
+          mouse look · left button or <kbd>Space</kbd> fire · right button or <kbd>Q</kbd> aim<br />
+          <kbd>R</kbd> reload · <kbd>E</kbd> swap weapon · <kbd>C</kbd> crouch · <kbd>V</kbd> camera · <kbd>N</kbd> next character<br />
+          <kbd>G</kbd> picture: full / plain (no post-processing) · <kbd>`</kbd> frame time<br />
+          <kbd>T</kbd> get in / out of the car (at its driver's door) or the helicopter (at the pilot's door, right front)<br />
+          parachute: walk into a pack (on the crate at the helipad's edge or by the hangar doors) to put it on
+        </div>
+        <div id="car-keys" class="keys" hidden>
+          In the car: <kbd>W</kbd> throttle · <kbd>S</kbd> brake, reverse · <kbd>A</kbd><kbd>D</kbd> steer · <kbd>Space</kbd> handbrake<br />
+          <kbd>E</kbd> / <kbd>Q</kbd> shift up / down · <kbd>M</kbd> auto / manual · <kbd>L</kbd> headlights · <kbd>P</kbd> paint · <kbd>V</kbd> camera · <kbd>T</kbd> get out (slow: stops first; fast: bails)
+        </div>
+        <div id="heli-keys" class="keys" hidden>
+          In the helicopter: <kbd>W</kbd><kbd>S</kbd> cyclic fore / aft · <kbd>A</kbd><kbd>D</kbd> cyclic left / right · <kbd>Q</kbd><kbd>E</kbd> pedals<br />
+          <kbd>R</kbd> / <kbd>F</kbd> collective up / down (stays where put) · <kbd>I</kbd> engine start · <kbd>U</kbd> quick start (game option) · <kbd>O</kbd> engine cut<br />
+          <kbd>J</kbd> assist on / off · <kbd>H</kbd> hover hold · <kbd>K</kbd> mouse flies the cyclic · <kbd>L</kbd> landing light · <kbd>V</kbd> camera · <kbd>T</kbd> get out (in the air: jump)
+        </div>
+        <div id="prompt" class="keys" hidden></div>
+        <div id="para-keys" class="keys para-keys" hidden></div>
+        <div id="mouse" class="keys">Click the view to capture the mouse</div>
+      </div>
+
+      <div class="panel top-right">
+        <div><span class="label">Hits</span> <span id="hits">0</span></div>
+        <div><span class="label">Weapon</span> <span id="weapon">Rifle</span></div>
+        <div><span class="label">Camera</span> <span id="camname">Third person</span></div>
+        <div><span class="label">Picture</span> <span id="picture">Full</span></div>
+        <div id="perf-row" hidden><span class="label">Frame</span> <span id="perf"></span></div>
+        <div id="para-row" hidden><span class="label">Parachute</span> <svg class="chute" viewBox="0 0 24 18" width="22" height="16" aria-label="parachute worn"><path d="M2 8 Q12 -2 22 8 Q19 6.5 17 8 Q14.5 6 12 8 Q9.5 6 7 8 Q5 6.5 2 8Z" fill="#e2602a"/><path d="M2.5 8 L11 16 M7 8 L11.5 16 M12 8 L12 16 M17 8 L12.5 16 M21.5 8 L13 16" stroke="#ddd" stroke-width="0.8" fill="none"/><rect x="10.5" y="15" width="3" height="3" rx="0.8" fill="#ddd"/></svg></div>
+      </div>
+
+      <div class="panel bottom-left">
+        <div class="buttons">
+          <button id="btn-fire" type="button">Fire</button>
+          <button id="btn-aim" type="button">Aim</button>
+          <button id="btn-reload" type="button">Reload</button>
+          <button id="btn-swap" type="button">Swap weapon</button>
+          <button id="btn-camera" type="button">Camera</button>
+          <button id="btn-new" type="button">Next character</button>
+        </div>
+      </div>
+
+      <div id="car-hud" class="panel bottom-right car-hud" hidden>
+        <canvas id="gmeter" width="96" height="96"></canvas>
+        <div class="car-read">
+          <div><span id="kmh" class="kmh">0</span><span class="unit"> km/h</span></div>
+          <div class="rpmbar"><i id="rpmfill"></i><b></b></div>
+          <div><span class="label">rpm</span> <span id="rpm">0</span> · <span class="label">gear</span> <span id="gear" class="gear">N</span> <span id="box" class="label">auto</span></div>
+        </div>
+      </div>
+
+      <div id="heli-hud" class="panel bottom-right heli-hud" hidden>
+        <canvas id="adi" width="96" height="96"></canvas>
+        <div class="car-read">
+          <div><span id="h-ias" class="kmh">0</span><span class="unit"> km/h IAS</span></div>
+          <div><span class="label">radar</span> <span id="h-alt">0</span> m · <span class="label">vs</span> <span id="h-vs">0</span> m/s</div>
+          <div><span class="label">Nr</span> <span id="h-nr">0</span> % · <span class="label">torque</span> <span id="h-tq">0</span> % · <span class="label">Ng</span> <span id="h-ng">0</span> %</div>
+          <div id="h-engine" class="label">engine off</div>
+          <div id="h-assist" class="label">assist</div>
+          <div id="h-flags" class="flags"></div>
+        </div>
+      </div>
+
+      <div id="foot-hud" class="panel bottom-right">
+        <div class="ammo"><span id="ammo">30</span><span class="reserve"> / ∞</span></div>
+        <div id="status" class="status">Ready</div>
+      </div>
+    </div>
+
+    <div id="wasted" hidden><span>WASTED</span></div>
+
+    <div id="loading">Loading…</div>
+
+  </body>
+</html>

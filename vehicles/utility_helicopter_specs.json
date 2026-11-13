@@ -1,0 +1,1653 @@
+{
+  "asset": "utility_helicopter",
+  "description": "Unbranded civilian utility helicopter concept for an open-world game: exterior, first-person cockpit, finished cabin, animated rotors and doors. Asset package only; flight physics, rotor-speed control and entry/exit logic are separate integration work.",
+  "units": "metres (1 Blender unit = 1 m)",
+  "axes": {
+    "blender": {
+      "forward": "+Y",
+      "up": "+Z",
+      "right": "+X",
+      "left": "-X (the seated pilot's left)"
+    },
+    "gltf": {
+      "forward": "-Z",
+      "up": "+Y",
+      "right": "+X",
+      "conversion": "standard Blender Z-up to glTF Y-up export: (x, y, z) -> (x, z, -y)"
+    },
+    "helicopter_root": "ground level, directly below the main rotor mast",
+    "helper_convention": "Every helper empty has local +Y = forward (facing / view / beam direction) and local +Z = up in Blender. The exporter converts node axes with the positions, so in the GLB the same helper has local -Z = forward and local +Y = up, which is the glTF camera and KHR_lights_punctual convention: a camera or spot light parented to camera_cockpit or landing_light_point with an identity transform points the right way."
+  },
+  "dimensions_m": {
+    "targets": {
+      "fuselage_length_excluding_main_rotor": 10.5,
+      "main_rotor_diameter": 11.0,
+      "overall_stationary_height": 3.2,
+      "cabin_exterior_width": 1.8,
+      "skid_track_between_centre_lines": 2.2
+    },
+    "measured": {
+      "fuselage_length_excluding_main_rotor": 10.5,
+      "main_rotor_diameter": 11.0,
+      "overall_stationary_height": 3.2,
+      "cabin_exterior_width": 1.8,
+      "skid_track_between_centre_lines": 2.2,
+      "tail_rotor_diameter": 1.5689,
+      "nose_tip_y": 3.2,
+      "fin_trailing_edge_y": -7.3,
+      "lowest_point_z": 0.0
+    },
+    "notes": "Fuselage length runs from the nose tip to the fin trailing-edge tip (fixed structure; the tail rotor disc reaches 0.39 m further aft). Height is to the top of the rotor-head cap. Cabin width is the body skin; door rails and handles stand up to 25 mm proud of it.",
+    "cabin_floor_z": 0.72
+  },
+  "concept_specs": {
+    "role": "civilian utility",
+    "capacity": "1 pilot + 5 passengers",
+    "engine_concept": "single turboshaft",
+    "main_rotor_blades": 4,
+    "cruise_speed_target_kmh": 220,
+    "range_target_km": 600,
+    "max_takeoff_mass_target_kg": 2500,
+    "landing_gear": "twin skids",
+    "note": "Design targets for game tuning, not verified aircraft performance. Edit freely."
+  },
+  "seats": {
+    "layout": "three rows of two, all facing forward; pilot front right",
+    "nodes": {
+      "pilot_seat": {
+        "position_blender": [
+          0.42,
+          1.22,
+          0.72
+        ],
+        "position_gltf": [
+          0.42,
+          0.72,
+          -1.22
+        ]
+      },
+      "passenger_seat_01": {
+        "position_blender": [
+          -0.42,
+          1.22,
+          0.72
+        ],
+        "position_gltf": [
+          -0.42,
+          0.72,
+          -1.22
+        ]
+      },
+      "passenger_seat_02": {
+        "position_blender": [
+          -0.42,
+          0.26,
+          0.72
+        ],
+        "position_gltf": [
+          -0.42,
+          0.72,
+          -0.26
+        ]
+      },
+      "passenger_seat_03": {
+        "position_blender": [
+          0.42,
+          0.26,
+          0.72
+        ],
+        "position_gltf": [
+          0.42,
+          0.72,
+          -0.26
+        ]
+      },
+      "passenger_seat_04": {
+        "position_blender": [
+          -0.42,
+          -0.7,
+          0.72
+        ],
+        "position_gltf": [
+          -0.42,
+          0.72,
+          0.7
+        ]
+      },
+      "passenger_seat_05": {
+        "position_blender": [
+          0.42,
+          -0.7,
+          0.72
+        ],
+        "position_gltf": [
+          0.42,
+          0.72,
+          0.7
+        ]
+      }
+    },
+    "seat_points": {
+      "seat_pilot_point": {
+        "position_blender": [
+          0.42,
+          1.19,
+          1.175
+        ],
+        "position_gltf": [
+          0.42,
+          1.175,
+          -1.19
+        ],
+        "forward_blender": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "up_blender": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "forward_gltf": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "up_gltf": [
+          0.0,
+          1.0,
+          -0.0
+        ]
+      },
+      "seat_passenger_01": {
+        "position_blender": [
+          -0.42,
+          1.19,
+          1.175
+        ],
+        "position_gltf": [
+          -0.42,
+          1.175,
+          -1.19
+        ],
+        "forward_blender": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "up_blender": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "forward_gltf": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "up_gltf": [
+          0.0,
+          1.0,
+          -0.0
+        ]
+      },
+      "seat_passenger_02": {
+        "position_blender": [
+          -0.42,
+          0.23,
+          1.175
+        ],
+        "position_gltf": [
+          -0.42,
+          1.175,
+          -0.23
+        ],
+        "forward_blender": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "up_blender": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "forward_gltf": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "up_gltf": [
+          0.0,
+          1.0,
+          -0.0
+        ]
+      },
+      "seat_passenger_03": {
+        "position_blender": [
+          0.42,
+          0.23,
+          1.175
+        ],
+        "position_gltf": [
+          0.42,
+          1.175,
+          -0.23
+        ],
+        "forward_blender": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "up_blender": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "forward_gltf": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "up_gltf": [
+          0.0,
+          1.0,
+          -0.0
+        ]
+      },
+      "seat_passenger_04": {
+        "position_blender": [
+          -0.42,
+          -0.73,
+          1.175
+        ],
+        "position_gltf": [
+          -0.42,
+          1.175,
+          0.73
+        ],
+        "forward_blender": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "up_blender": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "forward_gltf": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "up_gltf": [
+          0.0,
+          1.0,
+          -0.0
+        ]
+      },
+      "seat_passenger_05": {
+        "position_blender": [
+          0.42,
+          -0.73,
+          1.175
+        ],
+        "position_gltf": [
+          0.42,
+          1.175,
+          0.73
+        ],
+        "forward_blender": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "up_blender": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "forward_gltf": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "up_gltf": [
+          0.0,
+          1.0,
+          -0.0
+        ]
+      }
+    }
+  },
+  "paint": {
+    "materials": {
+      "primary": "body_paint_primary",
+      "secondary": "body_paint_secondary"
+    },
+    "how_to_recolour": "Set baseColorFactor (and optionally metallicFactor / roughnessFactor) on the two paint materials. Their textures are colour-neutral: normal map (seams, rivets) and an ORM map whose roughness and metallic channels are multipliers. Clear-coat (KHR_materials_clearcoat) is unaffected.",
+    "clearcoat": {
+      "weight": 1.0,
+      "roughness": 0.04,
+      "ior": 1.5
+    },
+    "default": {
+      "primary": "white",
+      "secondary": "navy"
+    },
+    "presets": {
+      "white": {
+        "base_color_linear": [
+          0.9,
+          0.9,
+          0.88
+        ],
+        "base_color_srgb_hex": "#f3f3f1",
+        "metallic_factor": 0.12,
+        "roughness_factor": 0.4
+      },
+      "navy": {
+        "base_color_linear": [
+          0.006,
+          0.018,
+          0.095
+        ],
+        "base_color_srgb_hex": "#122457",
+        "metallic_factor": 0.15,
+        "roughness_factor": 0.38
+      },
+      "red": {
+        "base_color_linear": [
+          0.56,
+          0.012,
+          0.01
+        ],
+        "base_color_srgb_hex": "#c51d19",
+        "metallic_factor": 0.15,
+        "roughness_factor": 0.38
+      },
+      "yellow": {
+        "base_color_linear": [
+          0.9,
+          0.56,
+          0.01
+        ],
+        "base_color_srgb_hex": "#f3c519",
+        "metallic_factor": 0.12,
+        "roughness_factor": 0.4
+      },
+      "silver": {
+        "base_color_linear": [
+          0.56,
+          0.575,
+          0.6
+        ],
+        "base_color_srgb_hex": "#c5c8cb",
+        "metallic_factor": 0.85,
+        "roughness_factor": 0.34
+      },
+      "black": {
+        "base_color_linear": [
+          0.012,
+          0.012,
+          0.014
+        ],
+        "base_color_srgb_hex": "#1d1d1f",
+        "metallic_factor": 0.25,
+        "roughness_factor": 0.36
+      }
+    },
+    "tested_combinations": [
+      "white / navy",
+      "red / black",
+      "yellow / black",
+      "silver / navy"
+    ]
+  },
+  "materials": {
+    "body_paint_primary": "main painted body; texture set ext (normal + ORM, colour-neutral); clear-coat",
+    "body_paint_secondary": "accent stripe and coloured panels; same texture set; clear-coat",
+    "glass_tinted": "lightly tinted glazing; alpha-blended, double-sided, no textures",
+    "rubber_matte": "window seals and elastomer parts; no textures",
+    "composite_blades": "main and tail rotor blades; texture set mech",
+    "metal_exposed": "rotor head, mast, exhausts, hinges, handles, rails; texture set mech",
+    "skid_black": "landing skids and cross-tubes; texture set mech",
+    "leather_upholstery": "seat leather; texture set int",
+    "fabric_upholstery": "seat inserts and harness webbing; texture set int",
+    "interior_trim": "cabin liner, floor, instrument panel, controls; texture set int",
+    "display_emissive": "cockpit screens and backlit gauges; displays_emissive.png; own emissive strength",
+    "light_nav_emissive": "navigation / anti-collision lights (red, green, white from lights_emissive.png); own emissive strength",
+    "light_landing_emissive": "landing light lens; own emissive strength",
+    "rotor_blur": "optional blur discs (main_rotor_blur, tail_rotor_blur); alpha-blended; hidden by default"
+  },
+  "emissive_strength_defaults": {
+    "display_emissive": 2.0,
+    "light_nav_emissive": 4.0,
+    "light_landing_emissive": 6.0
+  },
+  "textures": {
+    "ext": {
+      "size": 4096,
+      "files": [
+        "ext_normal.png",
+        "ext_orm.png"
+      ],
+      "used_by": [
+        "body_paint_primary",
+        "body_paint_secondary"
+      ]
+    },
+    "int": {
+      "size": 4096,
+      "files": [
+        "int_basecolor.png",
+        "int_normal.png",
+        "int_orm.png"
+      ],
+      "used_by": [
+        "interior_trim",
+        "leather_upholstery",
+        "fabric_upholstery"
+      ]
+    },
+    "mech": {
+      "size": 2048,
+      "files": [
+        "mech_basecolor.png",
+        "mech_normal.png",
+        "mech_orm.png"
+      ],
+      "used_by": [
+        "metal_exposed",
+        "composite_blades",
+        "skid_black"
+      ]
+    },
+    "displays": {
+      "size": [
+        2048,
+        1024
+      ],
+      "files": [
+        "displays_emissive.png"
+      ],
+      "used_by": [
+        "display_emissive"
+      ]
+    },
+    "lights": {
+      "size": [
+        64,
+        16
+      ],
+      "files": [
+        "lights_emissive.png"
+      ],
+      "used_by": [
+        "light_nav_emissive"
+      ]
+    },
+    "blur": {
+      "size": [
+        1024,
+        512
+      ],
+      "files": [
+        "rotor_blur.png"
+      ],
+      "used_by": [
+        "rotor_blur"
+      ]
+    },
+    "packing": "ORM = occlusion (R), roughness (G), metallic (B), the glTF layout. Normal maps are OpenGL (+Y). Left / right mirrored parts share texels; mirrored halves sit one UV tile to the right (u + 1)."
+  },
+  "rotors": {
+    "main": {
+      "position_blender": [
+        0.0,
+        0.0,
+        3.02
+      ],
+      "position_gltf": [
+        0.0,
+        3.02,
+        -0.0
+      ],
+      "pivot": "main_rotor_pivot",
+      "spin_axis_blender_local": "+Z",
+      "spin_axis_gltf_local": "+Y",
+      "direction": "counter-clockwise seen from above (positive rotation about the axis)",
+      "blades": 4,
+      "radius_m": 5.5,
+      "blade_plane_z": 3.02,
+      "static_tip_droop_m": 0.2,
+      "rotating_children": [
+        "main_rotor_hub",
+        "main_blade_01",
+        "main_blade_02",
+        "main_blade_03",
+        "main_blade_04",
+        "main_rotor_blur"
+      ],
+      "stationary": [
+        "main_mast (mast housing, lower swashplate, servos)",
+        "engine_housing"
+      ],
+      "demo_animation": "main_rotor_spin",
+      "frames_per_revolution": 30
+    },
+    "tail": {
+      "position_blender": [
+        -0.265,
+        -6.9,
+        1.86
+      ],
+      "position_gltf": [
+        -0.265,
+        1.86,
+        6.9
+      ],
+      "pivot": "tail_rotor_pivot",
+      "spin_axis_blender_local": "+X",
+      "spin_axis_gltf_local": "+X",
+      "shaft": "runs across the tail; hub on the left side of the fin",
+      "blades": 4,
+      "radius_m": 0.78,
+      "rotating_children": [
+        "tail_rotor_hub",
+        "tail_blade_01",
+        "tail_blade_02",
+        "tail_blade_03",
+        "tail_blade_04",
+        "tail_rotor_blur"
+      ],
+      "demo_animation": "tail_rotor_spin",
+      "frames_per_revolution": 12
+    },
+    "swept_volumes": {
+      "nodes": [
+        "main_rotor_swept_volume",
+        "tail_rotor_swept_volume"
+      ],
+      "file": "utility_helicopter_collision.glb",
+      "main": "lathe about the mast: radius 5.5 m, from static droop (tip 0.33 m below the blade plane) to full coning (tip 0.50 m above it), plus the rotor head",
+      "tail": "disc of radius 0.79 m, 0.15 m thick, centred on the tail rotor hub",
+      "clearances_m": {
+        "main_rotor_static_vertices_inside_swept_volume": 0,
+        "main_rotor_min_vertical_clearance_m": 0.265,
+        "main_rotor_closest_part": [
+          "engine_housing",
+          [
+            0.0,
+            -0.865,
+            2.68
+          ]
+        ],
+        "tail_rotor_static_vertices_inside_swept_volume": 0,
+        "tail_rotor_min_axial_clearance_m": 0.02,
+        "tail_rotor_closest_part": [
+          "tail_boom",
+          [
+            -0.17,
+            -6.936,
+            1.855
+          ]
+        ],
+        "main_to_tail_rotor_plan_gap_m": 0.6157,
+        "tail_rotor_ground_clearance_m": 1.07
+      }
+    },
+    "blur": "main_rotor_blur and tail_rotor_blur are children of the pivots, hidden in the .blend and flagged hidden_by_default in glTF extras; show one and hide the hub blades to present a spinning rotor."
+  },
+  "doors": {
+    "cockpit": {
+      "nodes": [
+        "cockpit_door_L",
+        "cockpit_door_R"
+      ],
+      "pivot": "node origin on the hinge line at the forward edge",
+      "hinge_axis_blender_local": "+Z",
+      "hinge_axis_gltf_local": "+Y",
+      "open_angle_deg": {
+        "cockpit_door_R": 68.0,
+        "cockpit_door_L": -68.0
+      },
+      "hinge_origin_R": {
+        "position_blender": [
+          0.83579,
+          2.19199,
+          0.97
+        ],
+        "position_gltf": [
+          0.83579,
+          0.97,
+          -2.19199
+        ]
+      },
+      "children": "glass and handle are children of each door",
+      "demo_animation": "cockpit_doors_open"
+    },
+    "cabin": {
+      "nodes": [
+        "cabin_door_L",
+        "cabin_door_R"
+      ],
+      "motion": "pop out sideways, then slide aft along straight fore-aft rails",
+      "pop_out_m": 0.075,
+      "slide_aft_m": 1.19,
+      "track_axis_blender": "-Y of helicopter_root",
+      "track_axis_gltf": "+Z of helicopter_root",
+      "pop_out_axis": "+X for cabin_door_R, -X for cabin_door_L",
+      "demo_animation": "cabin_doors_open"
+    },
+    "clearance_check": "door meshes (with glass and handles) tested against every fixed mesh on every frame of both animations: no intersections"
+  },
+  "flight_controls": {
+    "cyclic": {
+      "position_blender": [
+        0.42,
+        1.635,
+        0.732
+      ],
+      "position_gltf": [
+        0.42,
+        0.732,
+        -1.635
+      ]
+    },
+    "collective": {
+      "position_blender": [
+        0.125,
+        0.985,
+        0.79
+      ],
+      "position_gltf": [
+        0.125,
+        0.79,
+        -0.985
+      ]
+    },
+    "pedal_L": {
+      "position_blender": [
+        0.305,
+        2.105,
+        0.742
+      ],
+      "position_gltf": [
+        0.305,
+        0.742,
+        -2.105
+      ]
+    },
+    "pedal_R": {
+      "position_blender": [
+        0.535,
+        2.105,
+        0.742
+      ],
+      "position_gltf": [
+        0.535,
+        0.742,
+        -2.105
+      ]
+    }
+  },
+  "helpers": {
+    "entry_cockpit_L": {
+      "position_blender": [
+        -1.8,
+        1.55,
+        0.0
+      ],
+      "position_gltf": [
+        -1.8,
+        0.0,
+        -1.55
+      ],
+      "forward_blender": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "up_blender": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "forward_gltf": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "up_gltf": [
+        0.0,
+        1.0,
+        -0.0
+      ]
+    },
+    "entry_cockpit_R": {
+      "position_blender": [
+        1.8,
+        1.55,
+        0.0
+      ],
+      "position_gltf": [
+        1.8,
+        0.0,
+        -1.55
+      ],
+      "forward_blender": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "up_blender": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "forward_gltf": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "up_gltf": [
+        0.0,
+        1.0,
+        -0.0
+      ]
+    },
+    "entry_cabin_L": {
+      "position_blender": [
+        -1.8,
+        0.35,
+        0.0
+      ],
+      "position_gltf": [
+        -1.8,
+        0.0,
+        -0.35
+      ],
+      "forward_blender": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "up_blender": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "forward_gltf": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "up_gltf": [
+        0.0,
+        1.0,
+        -0.0
+      ]
+    },
+    "entry_cabin_R": {
+      "position_blender": [
+        1.8,
+        0.35,
+        0.0
+      ],
+      "position_gltf": [
+        1.8,
+        0.0,
+        -0.35
+      ],
+      "forward_blender": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "up_blender": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "forward_gltf": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "up_gltf": [
+        0.0,
+        1.0,
+        -0.0
+      ]
+    },
+    "camera_cockpit": {
+      "position_blender": [
+        0.42,
+        1.06,
+        1.93
+      ],
+      "position_gltf": [
+        0.42,
+        1.93,
+        -1.06
+      ],
+      "forward_blender": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "up_blender": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "forward_gltf": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "up_gltf": [
+        0.0,
+        1.0,
+        -0.0
+      ]
+    },
+    "camera_chase_target": {
+      "position_blender": [
+        0.0,
+        -0.6,
+        1.75
+      ],
+      "position_gltf": [
+        0.0,
+        1.75,
+        0.6
+      ],
+      "forward_blender": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "up_blender": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "forward_gltf": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "up_gltf": [
+        0.0,
+        1.0,
+        -0.0
+      ]
+    },
+    "engine_audio_point": {
+      "position_blender": [
+        0.0,
+        -1.3,
+        2.42
+      ],
+      "position_gltf": [
+        0.0,
+        2.42,
+        1.3
+      ],
+      "forward_blender": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "up_blender": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "forward_gltf": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "up_gltf": [
+        0.0,
+        1.0,
+        -0.0
+      ]
+    },
+    "rotor_audio_point": {
+      "position_blender": [
+        0.0,
+        0.0,
+        3.02
+      ],
+      "position_gltf": [
+        0.0,
+        3.02,
+        -0.0
+      ],
+      "forward_blender": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "up_blender": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "forward_gltf": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "up_gltf": [
+        0.0,
+        1.0,
+        -0.0
+      ]
+    },
+    "landing_light_point": {
+      "position_blender": [
+        0.0,
+        2.41812,
+        0.55752
+      ],
+      "position_gltf": [
+        0.0,
+        0.55752,
+        -2.41812
+      ],
+      "forward_blender": [
+        0.0,
+        0.90618,
+        -0.42289
+      ],
+      "up_blender": [
+        0.0,
+        0.42289,
+        0.90618
+      ],
+      "forward_gltf": [
+        0.0,
+        -0.42289,
+        -0.90618
+      ],
+      "up_gltf": [
+        0.0,
+        0.90618,
+        -0.42289
+      ]
+    }
+  },
+  "animations": {
+    "fps": 30,
+    "main_rotor_spin": {
+      "frames": [
+        0,
+        30
+      ],
+      "loop": true,
+      "interpolation": "linear"
+    },
+    "tail_rotor_spin": {
+      "frames": [
+        0,
+        12
+      ],
+      "loop": true,
+      "interpolation": "linear"
+    },
+    "cockpit_doors_open": {
+      "frames": [
+        0,
+        40
+      ],
+      "loop": false
+    },
+    "cabin_doors_open": {
+      "frames": [
+        0,
+        40
+      ],
+      "loop": false
+    },
+    "note": "In the .blend each glTF animation is an NLA track of the same name; rest poses of animated nodes are stored in delta transforms so that muting a track returns the part to rest."
+  },
+  "lods": {
+    "LOD0": {
+      "file": "utility_helicopter.glb",
+      "collection": "LOD0",
+      "triangles_in_glb": 124574,
+      "megabytes": 46.0,
+      "textures": {
+        "mech_normal": [
+          2048,
+          2048
+        ],
+        "mech_orm": [
+          2048,
+          2048
+        ],
+        "mech_basecolor": [
+          2048,
+          2048
+        ],
+        "ext_normal": [
+          4096,
+          4096
+        ],
+        "ext_orm": [
+          4096,
+          4096
+        ],
+        "int_normal": [
+          4096,
+          4096
+        ],
+        "int_orm": [
+          4096,
+          4096
+        ],
+        "int_basecolor": [
+          4096,
+          4096
+        ],
+        "lights_emissive": [
+          64,
+          16
+        ],
+        "displays_emissive": [
+          2048,
+          1024
+        ],
+        "rotor_blur": [
+          1024,
+          512
+        ]
+      },
+      "materials": 14
+    },
+    "LOD1": {
+      "file": "utility_helicopter_lod1.glb",
+      "collection": "LOD1",
+      "textures": {
+        "mech_normal": [
+          1024,
+          1024
+        ],
+        "mech_orm": [
+          1024,
+          1024
+        ],
+        "mech_basecolor": [
+          1024,
+          1024
+        ],
+        "ext_normal": [
+          2048,
+          2048
+        ],
+        "ext_orm": [
+          2048,
+          2048
+        ],
+        "int_normal": [
+          2048,
+          2048
+        ],
+        "int_orm": [
+          2048,
+          2048
+        ],
+        "int_basecolor": [
+          2048,
+          2048
+        ],
+        "lights_emissive": [
+          64,
+          16
+        ],
+        "displays_emissive": [
+          2048,
+          1024
+        ],
+        "rotor_blur": [
+          512,
+          256
+        ]
+      },
+      "triangles_in_glb": 73760,
+      "megabytes": 16.6,
+      "materials": 14
+    },
+    "LOD2": {
+      "file": "utility_helicopter_lod2.glb",
+      "collection": "LOD2",
+      "textures": {
+        "mech_normal": [
+          512,
+          512
+        ],
+        "mech_orm": [
+          512,
+          512
+        ],
+        "mech_basecolor": [
+          512,
+          512
+        ],
+        "ext_normal": [
+          1024,
+          1024
+        ],
+        "ext_orm": [
+          1024,
+          1024
+        ],
+        "int_normal": [
+          1024,
+          1024
+        ],
+        "int_orm": [
+          1024,
+          1024
+        ],
+        "int_basecolor": [
+          1024,
+          1024
+        ],
+        "lights_emissive": [
+          64,
+          16
+        ],
+        "displays_emissive": [
+          1024,
+          512
+        ],
+        "rotor_blur": [
+          256,
+          128
+        ]
+      },
+      "triangles_in_glb": 23695,
+      "megabytes": 4.7,
+      "materials": 13,
+      "note": "seat fabric inserts and harnesses are dropped, so fabric_upholstery is unused at this level"
+    },
+    "triangles": {
+      "LOD0": 124575,
+      "LOD1": 73761,
+      "LOD2": 23697
+    },
+    "note": "All LODs share node names, pivots, helper nodes, animations and UV layout."
+  },
+  "collision": {
+    "file": "utility_helicopter_collision.glb",
+    "collection": "collision",
+    "root": "collision_root",
+    "proxies": [
+      "collision_engine_housing",
+      "collision_fuselage",
+      "collision_skid_L",
+      "collision_skid_R",
+      "collision_skid_support_front",
+      "collision_skid_support_rear",
+      "collision_stabilizers",
+      "collision_tail_boom",
+      "collision_vertical_fin"
+    ],
+    "note": "convex hulls; excluded from rendering in the .blend"
+  },
+  "verification": {
+    "method": "checks run in the build scene, then every GLB re-imported into an empty factory-settings Blender scene",
+    "dimensions_after_reimport_m": {
+      "fuselage_length_m": 10.5,
+      "main_rotor_diameter_m": 11.0,
+      "overall_height_m": 3.2,
+      "skid_track_m": 2.2,
+      "ground_z": 0.0
+    },
+    "pivots_after_reimport": {
+      "main_rotor_pivot": [
+        0.0,
+        0.0,
+        3.02
+      ],
+      "tail_rotor_pivot": [
+        -0.265,
+        -6.9,
+        1.86
+      ],
+      "main_hub_centre_offset_from_pivot_xy": [
+        0.0,
+        0.0
+      ],
+      "tail_hub_centre_offset_from_pivot_yz": [
+        0.0,
+        0.0
+      ]
+    },
+    "required_names_missing": [],
+    "rotor_loops": {
+      "main_rotor_spin": {
+        "keys": 31,
+        "step_deg": [
+          11.9998,
+          12.0001
+        ],
+        "total_deg": 360.0,
+        "first_vs_last_key_deg": 0.0,
+        "seconds": [
+          0.0,
+          1.0
+        ],
+        "interpolation": "LINEAR"
+      },
+      "tail_rotor_spin": {
+        "keys": 13,
+        "step_deg": [
+          30.0,
+          30.0001
+        ],
+        "total_deg": 360.0,
+        "first_vs_last_key_deg": 0.0,
+        "seconds": [
+          0.0,
+          0.4000000059604645
+        ],
+        "interpolation": "LINEAR"
+      }
+    },
+    "door_clearance": {
+      "frames_tested": [
+        0,
+        40,
+        1
+      ],
+      "intersections": {
+        "cockpit_doors_open": {
+          "cockpit_door_R": "none",
+          "cockpit_door_L": "none"
+        },
+        "cabin_doors_open": {
+          "cabin_door_R": "none",
+          "cabin_door_L": "none"
+        }
+      }
+    },
+    "rotor_envelopes": {
+      "main_rotor_static_vertices_inside_swept_volume": 0,
+      "main_rotor_min_vertical_clearance_m": 0.265,
+      "tail_rotor_static_vertices_inside_swept_volume": 0,
+      "tail_rotor_min_axial_clearance_m": 0.02,
+      "main_to_tail_rotor_plan_gap_m": 0.6157,
+      "tail_rotor_ground_clearance_m": 1.07
+    },
+    "repaint": {
+      "non_paint_materials_unchanged": {
+        "white/navy": true,
+        "red/black": true,
+        "yellow/black": true,
+        "silver/navy": true
+      },
+      "checked": [
+        "composite_blades",
+        "display_emissive",
+        "fabric_upholstery",
+        "glass_tinted",
+        "interior_trim",
+        "leather_upholstery",
+        "light_landing_emissive",
+        "light_nav_emissive",
+        "metal_exposed",
+        "rotor_blur",
+        "rubber_matte",
+        "skid_black"
+      ]
+    },
+    "glass": {
+      "blend": "BLENDED",
+      "backface_culling": false,
+      "alpha": 0.42,
+      "coat": 0.0,
+      "base": [
+        0.006,
+        0.009,
+        0.011
+      ],
+      "emission_strength": 0.0,
+      "images": []
+    },
+    "files": {
+      "LOD0": {
+        "file": "utility_helicopter.glb",
+        "megabytes": 46.0,
+        "triangles": 124574,
+        "nodes": 68,
+        "mesh_nodes": 50,
+        "unique_meshes": 39,
+        "materials": 14,
+        "textures": {
+          "mech_normal": [
+            2048,
+            2048
+          ],
+          "mech_orm": [
+            2048,
+            2048
+          ],
+          "mech_basecolor": [
+            2048,
+            2048
+          ],
+          "ext_normal": [
+            4096,
+            4096
+          ],
+          "ext_orm": [
+            4096,
+            4096
+          ],
+          "int_normal": [
+            4096,
+            4096
+          ],
+          "int_orm": [
+            4096,
+            4096
+          ],
+          "int_basecolor": [
+            4096,
+            4096
+          ],
+          "lights_emissive": [
+            64,
+            16
+          ],
+          "displays_emissive": [
+            2048,
+            1024
+          ],
+          "rotor_blur": [
+            1024,
+            512
+          ]
+        },
+        "extensions": [
+          "KHR_materials_clearcoat",
+          "KHR_materials_emissive_strength",
+          "KHR_node_visibility"
+        ],
+        "animations": {
+          "cabin_doors_open": {
+            "seconds": [
+              0.0,
+              1.3333
+            ],
+            "keys": 41,
+            "nodes": [
+              "cabin_door_L",
+              "cabin_door_R"
+            ]
+          },
+          "cockpit_doors_open": {
+            "seconds": [
+              0.0,
+              1.3333
+            ],
+            "keys": 41,
+            "nodes": [
+              "cockpit_door_L",
+              "cockpit_door_R"
+            ]
+          },
+          "main_rotor_spin": {
+            "seconds": [
+              0.0,
+              1.0
+            ],
+            "keys": 31,
+            "nodes": [
+              "main_rotor_pivot"
+            ]
+          },
+          "tail_rotor_spin": {
+            "seconds": [
+              0.0,
+              0.4
+            ],
+            "keys": 13,
+            "nodes": [
+              "tail_rotor_pivot"
+            ]
+          }
+        }
+      },
+      "LOD1": {
+        "file": "utility_helicopter_lod1.glb",
+        "megabytes": 16.6,
+        "triangles": 73760,
+        "nodes": 68,
+        "mesh_nodes": 50,
+        "unique_meshes": 39,
+        "materials": 14,
+        "textures": {
+          "mech_normal": [
+            1024,
+            1024
+          ],
+          "mech_orm": [
+            1024,
+            1024
+          ],
+          "mech_basecolor": [
+            1024,
+            1024
+          ],
+          "ext_normal": [
+            2048,
+            2048
+          ],
+          "ext_orm": [
+            2048,
+            2048
+          ],
+          "int_normal": [
+            2048,
+            2048
+          ],
+          "int_orm": [
+            2048,
+            2048
+          ],
+          "int_basecolor": [
+            2048,
+            2048
+          ],
+          "lights_emissive": [
+            64,
+            16
+          ],
+          "displays_emissive": [
+            2048,
+            1024
+          ],
+          "rotor_blur": [
+            512,
+            256
+          ]
+        },
+        "extensions": [
+          "KHR_materials_clearcoat",
+          "KHR_materials_emissive_strength",
+          "KHR_node_visibility"
+        ],
+        "animations": {
+          "cabin_doors_open": {
+            "seconds": [
+              0.0,
+              1.3333
+            ],
+            "keys": 41,
+            "nodes": [
+              "cabin_door_L",
+              "cabin_door_R"
+            ]
+          },
+          "cockpit_doors_open": {
+            "seconds": [
+              0.0,
+              1.3333
+            ],
+            "keys": 41,
+            "nodes": [
+              "cockpit_door_L",
+              "cockpit_door_R"
+            ]
+          },
+          "main_rotor_spin": {
+            "seconds": [
+              0.0,
+              1.0
+            ],
+            "keys": 31,
+            "nodes": [
+              "main_rotor_pivot"
+            ]
+          },
+          "tail_rotor_spin": {
+            "seconds": [
+              0.0,
+              0.4
+            ],
+            "keys": 13,
+            "nodes": [
+              "tail_rotor_pivot"
+            ]
+          }
+        }
+      },
+      "LOD2": {
+        "file": "utility_helicopter_lod2.glb",
+        "megabytes": 4.7,
+        "triangles": 23695,
+        "nodes": 68,
+        "mesh_nodes": 50,
+        "unique_meshes": 39,
+        "materials": 13,
+        "textures": {
+          "mech_normal": [
+            512,
+            512
+          ],
+          "mech_orm": [
+            512,
+            512
+          ],
+          "mech_basecolor": [
+            512,
+            512
+          ],
+          "ext_normal": [
+            1024,
+            1024
+          ],
+          "ext_orm": [
+            1024,
+            1024
+          ],
+          "int_normal": [
+            1024,
+            1024
+          ],
+          "int_orm": [
+            1024,
+            1024
+          ],
+          "int_basecolor": [
+            1024,
+            1024
+          ],
+          "lights_emissive": [
+            64,
+            16
+          ],
+          "displays_emissive": [
+            1024,
+            512
+          ],
+          "rotor_blur": [
+            256,
+            128
+          ]
+        },
+        "extensions": [
+          "KHR_materials_clearcoat",
+          "KHR_materials_emissive_strength",
+          "KHR_node_visibility"
+        ],
+        "animations": {
+          "cabin_doors_open": {
+            "seconds": [
+              0.0,
+              1.3333
+            ],
+            "keys": 41,
+            "nodes": [
+              "cabin_door_L",
+              "cabin_door_R"
+            ]
+          },
+          "cockpit_doors_open": {
+            "seconds": [
+              0.0,
+              1.3333
+            ],
+            "keys": 41,
+            "nodes": [
+              "cockpit_door_L",
+              "cockpit_door_R"
+            ]
+          },
+          "main_rotor_spin": {
+            "seconds": [
+              0.0,
+              1.0
+            ],
+            "keys": 31,
+            "nodes": [
+              "main_rotor_pivot"
+            ]
+          },
+          "tail_rotor_spin": {
+            "seconds": [
+              0.0,
+              0.4
+            ],
+            "keys": 13,
+            "nodes": [
+              "tail_rotor_pivot"
+            ]
+          }
+        }
+      },
+      "collision": {
+        "file": "utility_helicopter_collision.glb",
+        "megabytes": 0.1,
+        "triangles": 1976,
+        "nodes": 12,
+        "mesh_nodes": 11,
+        "unique_meshes": 11,
+        "materials": 0,
+        "textures": {},
+        "extensions": [],
+        "animations": {}
+      }
+    }
+  }
+}

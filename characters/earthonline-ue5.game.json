@@ -1,0 +1,178 @@
+{
+ "name": "earthonline-ue5",
+ "note": "The four EarthOnline -ue5 bodies (civilian-m-01-player, civilian-police-m-hero, civilian-f-02-hero, civilian-m-03-hero): one table, as they share joints and frames. Values are the ones src/ had hard-coded before pass R3. Written by blender/bodies/game_tables.py from blender/rifle_motion/bodies/civilian-m-01-player-ue5.json.",
+ "label": "EarthOnline",
+ "frames": null,
+ "twistBones": {
+  "upperarm_twist_01_{s}": {
+   "parent": "upperarm_{s}",
+   "share": -0.5,
+   "measure": "self",
+   "source": "upperarm_{s}"
+  },
+  "upperarm_twist_02_{s}": {
+   "parent": "upperarm_{s}",
+   "share": -0.25,
+   "measure": "self",
+   "source": "upperarm_{s}"
+  },
+  "lowerarm_twist_02_{s}": {
+   "parent": "lowerarm_{s}",
+   "share": 0.47,
+   "measure": "child",
+   "source": "hand_{s}"
+  },
+  "lowerarm_twist_01_{s}": {
+   "parent": "lowerarm_{s}",
+   "share": 0.88,
+   "measure": "child",
+   "source": "hand_{s}"
+  },
+  "thigh_twist_01_{s}": {
+   "parent": "thigh_{s}",
+   "share": -0.3,
+   "measure": "self",
+   "source": "thigh_{s}"
+  },
+  "thigh_twist_02_{s}": {
+   "parent": "thigh_{s}",
+   "share": -0.15,
+   "measure": "self",
+   "source": "thigh_{s}"
+  },
+  "calf_twist_02_{s}": {
+   "parent": "calf_{s}",
+   "share": 0.24,
+   "measure": "child",
+   "source": "foot_{s}"
+  },
+  "calf_twist_01_{s}": {
+   "parent": "calf_{s}",
+   "share": 0.44,
+   "measure": "child",
+   "source": "foot_{s}"
+  }
+ },
+ "face": true,
+ "atlas": true,
+ "palm": [
+  0,
+  -0.075,
+  0.028
+ ],
+ "foot": {
+  "ankle": 0.08,
+  "heel": [
+   0,
+   -0.07,
+   -0.05
+  ],
+  "heelSole": [
+   [
+    0,
+    -0.08,
+    -0.05
+   ],
+   [
+    0.04,
+    -0.08,
+    -0.030000000000000002
+   ],
+   [
+    -0.04,
+    -0.08,
+    -0.030000000000000002
+   ]
+  ],
+  "ballSole": [
+   [
+    0,
+    -0.025,
+    0
+   ],
+   [
+    0.045,
+    -0.025,
+    0
+   ],
+   [
+    -0.045,
+    -0.025,
+    0
+   ],
+   [
+    0,
+    -0.022000000000000002,
+    0.07
+   ]
+  ],
+  "arch": [
+   0,
+   -0.08,
+   0.03
+  ]
+ },
+ "stanceOut": 0.0,
+ "index": {
+  "tip": [
+   0,
+   -0.022,
+   0
+  ],
+  "pad": [
+   0,
+   -0.013,
+   0.006
+  ]
+ },
+ "eye": {
+  "sight": [
+   -0.032,
+   0.125,
+   0.082
+  ],
+  "surface": null
+ },
+ "cheek": {
+  "back": [
+   0,
+   0.045,
+   0.06
+  ],
+  "down": [
+   0,
+   0.012,
+   0.01
+  ]
+ },
+ "pocket": {
+  "x": -0.125,
+  "y": 0.19,
+  "press": 0.02
+ },
+ "guns": {
+  "rifle": {
+   "carrySlide": 0.06,
+   "slideMax": 0.08,
+   "supportPole": [
+    0.28,
+    -0.95,
+    -0.1
+   ]
+  },
+  "shotgun": {
+   "carrySlide": 0.12,
+   "slideMax": 0.13,
+   "supportPole": [
+    0.28,
+    -0.95,
+    -0.1
+   ]
+  }
+ },
+ "aimSupportPole": [
+  0.28,
+  -0.95,
+  -0.1
+ ]
+}
