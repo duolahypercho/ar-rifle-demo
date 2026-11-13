@@ -1,0 +1,134 @@
+H1 utility helicopter flight model: scenario report
+generated 2026-11-12T19:06:07.501Z by node tools/heli/run.js (Node v24.16.0); model src/heli/flight.js, 480 Hz sub-steps, 60 Hz frames
+mass 2200 kg unless stated, ISA sea level, no wind, flat ground at y = 0. PASS/MISS against the target column; "-" = reported only.
+
+group         item                                                                           value      unit    target                         result notes / real reference
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+engine        normal start: light-off after starter                                          4.02       s                                      -      real: Ng 12-15 % in 3-6 s
+engine        normal start: ground idle stable                                               29.47      s                                      -      real: 25-45 s to idle
+engine        normal start: rotor rpm at ground idle                                         214.6      rpm                                    -      55 % Nr, Ng 60 %
+engine        normal start: start to 99 % Nr (flight)                                        35.82      s       20-40 s                        PASS   notes target
+engine        normal start: rotor overshoot on reaching flight rpm                           101.4      % Nr    <= 103                         PASS   
+engine        flight idle (governed, collective down): rotor                                 390.0      rpm     385-395                        PASS   Bell 407 413, H125 386-394
+engine        flight idle: torque / Ng                                                       20.54      %                                      -      Ng 68.8 %
+engine        flight idle: airframe sliding on the ground                                    0.001      mm/s    < 1                            PASS   
+engine        fuel off on the ground: rotor to 50 % (no brake)                               21.73      s                                      -      real: 30-60 s coast
+engine        quick start (labelled game option): light-off after starter                    0.683      s                                      -      real: Ng 12-15 % in 3-6 s
+engine        quick start (labelled game option): ground idle stable                         6.68       s                                      -      real: 25-45 s to idle
+engine        quick start (labelled game option): rotor rpm at ground idle                   213.2      rpm                                    -      55 % Nr, Ng 60 %
+engine        quick start (labelled game option): start to 99 % Nr (flight)                  8.67       s       labelled, < 20 s               PASS   notes target
+engine        quick start (labelled game option): rotor overshoot on reaching flight rpm     101.5      % Nr    <= 103                         PASS   
+
+governor      droop on a 0.2 collective pull in 0.4 s (hover to climb)                       2.11       % Nr    2-6 %                          PASS   hydromechanical 3-6 %, FADEC 1-2 %
+governor      droop: recovery to 99.5 % Nr                                                   2.55       s       < 5                            PASS   
+governor      droop: peak torque in the pull                                                 119.2      %                                      -      overtorque flag above 100
+governor      overshoot on a 0.3 collective dump in 0.4 s                                    3.17       % Nr    < 5                            PASS   
+
+hover OGE     2200 kg: power used / available (520 kW)                                       70.75      %       60-75                          PASS   368 kW (main 324, tail 25); H125 class hover OGE ~65-80 % TQ
+hover OGE     2200 kg: collective                                                            0.473      0..1                                   -      blade pitch 0.75R 7.4 deg
+hover OGE     2200 kg: pedal                                                                 -0.381     -1..1   left of centre                 PASS   real: some left pedal in the hover
+hover OGE     2200 kg: bank (left skid low = negative)                                       -3.00      deg     -1 to -4                       PASS   US-rotation singles hang 1-3 deg left skid low
+hover OGE     2200 kg: pitch attitude                                                        3.46       deg     +1 to +6                       PASS   class: 2-5 nose up
+hover OGE     2200 kg: cyclic pitch / roll trim                                              -0.051                                            -      roll -0.009
+hover OGE     2200 kg: thrust / weight (fuselage download)                                   1.03               1.02-1.06                      PASS   class 3-6 % download
+hover OGE     2200 kg: tail rotor thrust                                                     1150       N                                      -      
+hover OGE     2200 kg: coning                                                                2.33       deg     2-5                            PASS   class 2-4 deg
+hover OGE     2200 kg: induced velocity                                                      9.86       m/s     9-11                           PASS   momentum vh 9.63
+hover OGE     2500 kg: power used / available (520 kW)                                       81.83      %                                      -      425 kW (main 375, tail 30); H125 class hover OGE ~65-80 % TQ
+hover OGE     2500 kg: collective                                                            0.523      0..1                                   -      blade pitch 0.75R 8.1 deg
+hover OGE     2500 kg: pedal                                                                 -0.488     -1..1   left of centre                 PASS   real: some left pedal in the hover
+hover OGE     2500 kg: bank (left skid low = negative)                                       -3.04      deg     -1 to -4                       PASS   US-rotation singles hang 1-3 deg left skid low
+hover OGE     2500 kg: pitch attitude                                                        3.40       deg     +1 to +6                       PASS   class: 2-5 nose up
+
+hover IGE     skid height 0.3 m (z/D 0.30): power                                            61.13      %                                      -      OGE 70.7 %, 13.6 % less; collective 0.418, pedal -0.281, bank -2.6
+hover IGE     skid height 1 m (z/D 0.37): power                                              64.09      %       clearly below OGE              PASS   OGE 70.7 %, 9.4 % less; collective 0.433, pedal -0.308, bank -2.7
+hover IGE     skid height 2 m (z/D 0.46): power                                              66.40      %                                      -      OGE 70.7 %, 6.1 % less; collective 0.445, pedal -0.329, bank -2.8
+hover IGE     skid height 4 m (z/D 0.64): power                                              68.44      %                                      -      OGE 70.7 %, 3.3 % less; collective 0.455, pedal -0.347, bank -2.9
+hover IGE     skid height 6 m (z/D 0.82): power                                              69.28      %                                      -      OGE 70.7 %, 2.1 % less; collective 0.459, pedal -0.355, bank -2.9
+hover IGE     skid height 11 m (z/D 1.27): power                                             70.05      %                                      -      OGE 70.7 %, 1.0 % less; collective 0.463, pedal -0.362, bank -3.0
+hover IGE     skid height 20 m (z/D 2.09): power                                             70.40      %                                      PASS   OGE 70.7 %, 0.5 % less; collective 0.465, pedal -0.366, bank -3.0
+
+climb         left-pedal margin at 100 % torque (vertical climb), 2200 kg                    27.76      % trav~ >= 25 (H1 27.8)                PASS   pedal -0.722
+climb         vertical climb at 100 % torque, 2200 kg                                        9.36       m/s     8-10                           PASS   torque 100 %, Nr 100.0 %, collective 0.64; class vertical ROC 5-8 m/s, forward ROC ~10
+climb         left-pedal margin at 100 % torque (vertical climb), 2500 kg                    30.02      % trav~                                -      pedal -0.700
+climb         vertical climb at 100 % torque, 2500 kg                                        5.73       m/s                                    -      torque 100 %, Nr 100.0 %, collective 0.62; class vertical ROC 5-8 m/s, forward ROC ~10
+climb         forward climb at 108 km/h, 100 % torque, 2200 kg                               11.79      m/s     9-13                           PASS   H125 max ROC 10.3 m/s, Bell 407 ~8.4 m/s
+
+level flight  0 km/h: power                                                                  70.84      %                                      -      collective 0.476, cyclic -0.05/-0.01, pedal -0.39, pitch 3.5, bank -3.0, sideslip 0.1, flapping -0.6/-0.1 deg, tip M 0.662
+level flight  40 km/h: power                                                                 57.36      %                                      -      collective 0.408, cyclic 0.03/-0.17, pedal -0.21, pitch 3.4, bank -2.5, sideslip -0.1, flapping -0.3/-0.1 deg, tip M 0.695
+level flight  70 km/h: power                                                                 44.48      %                                      -      collective 0.340, cyclic 0.09/-0.18, pedal 0.02, pitch 3.2, bank -1.9, sideslip 0.5, flapping 0.0/-0.0 deg, tip M 0.720
+level flight  90 km/h: power                                                                 41.14      %                                      -      collective 0.319, cyclic 0.11/-0.17, pedal 0.17, pitch 2.5, bank -1.7, sideslip 0.3, flapping 0.0/-0.0 deg, tip M 0.736
+level flight  100 km/h: power                                                                40.53      %                                      -      collective 0.314, cyclic 0.11/-0.16, pedal 0.23, pitch 2.1, bank -1.8, sideslip 0.3, flapping -0.0/-0.0 deg, tip M 0.744
+level flight  110 km/h: power                                                                40.35      %                                      -      collective 0.311, cyclic 0.11/-0.16, pedal 0.26, pitch 1.5, bank -1.7, sideslip 0.3, flapping -0.2/-0.0 deg, tip M 0.752
+level flight  120 km/h: power                                                                40.87      %                                      -      collective 0.311, cyclic 0.12/-0.16, pedal 0.29, pitch 1.1, bank -1.7, sideslip 0.3, flapping -0.2/-0.0 deg, tip M 0.761
+level flight  130 km/h: power                                                                41.86      %                                      -      collective 0.314, cyclic 0.14/-0.16, pedal 0.30, pitch 0.7, bank -1.7, sideslip 0.3, flapping -0.1/-0.1 deg, tip M 0.769
+level flight  140 km/h: power                                                                43.27      %                                      -      collective 0.319, cyclic 0.15/-0.16, pedal 0.31, pitch 0.3, bank -1.8, sideslip 0.3, flapping 0.0/-0.1 deg, tip M 0.777
+level flight  160 km/h: power                                                                46.62      %                                      -      collective 0.330, cyclic 0.19/-0.16, pedal 0.31, pitch -0.3, bank -1.8, sideslip 0.4, flapping 0.2/-0.1 deg, tip M 0.793
+level flight  180 km/h: power                                                                52.50      %                                      -      collective 0.353, cyclic 0.25/-0.16, pedal 0.27, pitch -1.0, bank -2.0, sideslip 0.4, flapping 0.6/-0.1 deg, tip M 0.810
+level flight  200 km/h: power                                                                60.34      %                                      -      collective 0.385, cyclic 0.32/-0.17, pedal 0.22, pitch -1.7, bank -2.3, sideslip 0.5, flapping 1.1/-0.1 deg, tip M 0.825
+level flight  220 km/h: power                                                                69.99      %                                      -      collective 0.422, cyclic 0.40/-0.18, pedal 0.14, pitch -2.3, bank -2.6, sideslip 0.6, flapping 1.8/-0.1 deg, tip M 0.841
+level flight  240 km/h: power                                                                81.12      %                                      -      collective 0.463, cyclic 0.49/-0.19, pedal 0.03, pitch -2.8, bank -3.0, sideslip 0.6, flapping 2.4/-0.1 deg, tip M 0.857
+level flight  245 km/h: power                                                                87.91      %                                      -      collective 0.492, cyclic 0.53/-0.19, pedal -0.00, pitch -3.3, bank -3.5, sideslip 0.5, flapping 2.8/-0.1 deg, tip M 0.861
+level flight  250 km/h: power                                                                93.32      %                                      -      collective 0.512, cyclic 0.57/-0.20, pedal -0.03, pitch -3.5, bank -3.8, sideslip 0.4, flapping 3.1/-0.1 deg, tip M 0.864
+level flight  255 km/h: power                                                                98.22      %                                      -      collective 0.527, cyclic 0.59/-0.20, pedal -0.06, pitch -3.7, bank -4.0, sideslip 0.4, flapping 3.3/-0.1 deg, tip M 0.868
+level flight  260 km/h: power                                                                104.1      %                                      -      collective 0.542, cyclic 0.62/-0.20, pedal -0.09, pitch -3.9, bank -4.3, sideslip 0.4, flapping 3.6/-0.1 deg, tip M 0.872
+level flight  minimum-power speed (bucket)                                                   110.0      km/h    110-130 (60-70 kt)             PASS   power 40.4 %; class Vy 55-65 kt
+level flight  cruise 220 km/h: power                                                         69.99      %       <= 90 (max continuous)         PASS   pitch -2.3 deg; class cruise at 75-90 % TQ
+level flight  cruise 220 km/h: pitch attitude                                                -2.26      deg     -1 to -6                       PASS   class cruise 2-5 nose down
+level flight  max level speed at 90 % torque (trimmed power curve)                           247.1      km/h                                   -      Bell 407 Vh ~250, H125 ~260; 
+level flight  max level speed at 100 % torque (trimmed power curve)                          256.4      km/h    245-265                        PASS   Bell 407 Vh ~250, H125 ~260; 
+
+never-exceed  shallow dive (5 m/s) to 260 km/h IAS: reached                                  259.1      km/h    ~260                           PASS   forward cyclic 0.21 of 1.0, tip M 0.873, CT/sigma 0.055
+never-exceed  at 260 km/h: advancing tip Mach (drag rise from 0.86)                          0.873              0.86-0.90                      PASS   Vne set where tip Mach ~0.87 and the stall margin at 1.5 g closes
+never-exceed  pull-up from 260 km/h: load factor at first retreating-blade-stall flag        2.01       g       1.3-2.0                        PASS   peak load factor 2.69 g in the pull
+
+yaw           vertical speed -3 m/s at zero airspeed: pedal                                  -0.379     -1..1                                  -      collective 0.470, torque 71 %
+yaw           vertical speed 0 m/s at zero airspeed: pedal                                   -0.388     -1..1                                  -      collective 0.476, torque 71 %
+yaw           vertical speed 3 m/s at zero airspeed: pedal                                   -0.471     -1..1                                  -      collective 0.524, torque 79 %
+yaw           vertical speed 6 m/s at zero airspeed: pedal                                   -0.578     -1..1                                  -      collective 0.577, torque 88 %
+yaw           pedal per unit collective in the hover (left = negative)                       -1.86              < 0 (more collective, more le~ PASS   real: a few cm of pedal per cm of collective
+yaw           full right pedal in the hover: yaw rate after 8 s                              122.6      deg/s   90-120 (V2)                    PASS   torque 67 %; class spot-turn limits 60-90 deg/s
+yaw           full left pedal in the hover: yaw rate after 8 s                               -91.51     deg/s   90-120 (V2)                    PASS   torque 76 %; class spot-turn limits 60-90 deg/s
+yaw           pedal turn 30 deg/s, 360 deg: max height error                                 0.006      m       < 1                            PASS   max drift 0.25 m/s, pedal -0.27 to -0.05
+yaw           directional stability at 150 km/h: sideslip from +0.15 pedal step              -1.26      deg     steady, |beta| < 10            PASS   fin + tail rotor weathercock
+
+turn          30 deg bank, 150 km/h level: load factor                                       1.18       g       1.155                          PASS   bank 30.0, vs -0.00, speed 150 km/h, turn rate 7.3 deg/s
+turn          30 deg bank, 150 km/h: torque                                                  49.86      %                                      -      straight 45 %; collective 0.369, CT/sigma 0.070
+turn          45 deg bank, 150 km/h level: load factor                                       1.45       g       1.414                          PASS   bank 44.9, vs 0.01, speed 152 km/h, turn rate 9.9 deg/s
+turn          45 deg bank, 150 km/h: torque                                                  53.96      %                                      -      straight 45 %; collective 0.416, CT/sigma 0.084
+
+autorotation  entry: lowest rotor speed with a 1 s pilot delay at 120 km/h                   88.13      % Nr    85-95 (low-rotor horn at 95)   PASS   decay ~9 %/s at cruise power; real light singles reach the horn in 1-2 s
+autorotation  steady descent at 120 km/h, engine off                                         10.30      m/s     8-12                           PASS   collective 0.000, pedal 0.92 (right of hover trim), speed 121 km/h; H125 ~8.5, Bell 206 ~8-10
+autorotation  rotor speed in the steady descent                                              102.1      % Nr    95-107                         PASS   range after entry 97.0-103.8 %
+autorotation  collective fully down: rotor speed                                             105.6      % Nr    100-110                        PASS   descent 10.4 m/s; low-pitch stop rigged for this
+autorotation  flare: touchdown vertical speed                                                1.24       m/s     < 1.5                          PASS   ground speed 43 km/h (real: 0-40 km/h run-on), Nr 84 %, max pitch 26 deg, peak 2.35 g in the flare
+autorotation  after touchdown: upright and stopped                                           0.003      deg ba~ < 10, no contact loss          PASS   contact lost after first touch: false; final speed 0 mm/s
+
+vortex ring   vertical descent 2.5 m/s, zero airspeed: collective vs hover                   -0.007             < 0 (less than hover)          PASS   ring 0.04, achieved -2.5 m/s, hover collective 0.523 (1500 m)
+vortex ring   asked for 6 m/s vertical descent: achieved sink (thrust lost, cannot hold it)  15.66      m/s     > 6 (runs away)                PASS   ring 0.87 flagged after 0.6 s, collective 0.856 (hover 0.523), torque 123 %, re-ingested inflow 12.4 m/s
+vortex ring   in the ring, hover collective, 8 s: sink                                       12.94      m/s     > 5                            PASS   thrust 1.04 W (thrust/weight at the hover collective, 3 s average), ring 1.00, torque 77 %
+vortex ring   then 100 % torque, zero airspeed, 8 s: sink                                    14.70      m/s     >= 12.9 (power makes it no be~ PASS   ring 0.97, torque 100 %
+vortex ring   then forward cyclic to 72 km/h: time to recover (ring gone, sink < 2 m/s)      6.12       s       < 10                           PASS   after 15 s: vertical speed 11.7 m/s (climbing at 100 % torque), ring 0.00, speed 70 km/h; real: 15-20 kt forward recovers
+
+landing       gentle: touchdown sink                                                         0.317      m/s     < 1                            PASS   
+landing       gentle: bounce (contact lost after first touch)                                0.000      flag    0                              PASS   touch-downs 1; peak skid load 0.99 W; settled speed 0.07 mm/s
+landing       firm 2.5 m/s: touchdown sink                                                   2.82       m/s     ~2.5                           PASS   
+landing       firm 2.5 m/s: max bank (no tip)                                                3.66       deg     < 10                           PASS   peak skid load 2.98 W (real skid gear designed for ~2.5-3 g at 2.4-3 m/s), contact lost: true
+landing       6 deg cross-slope: final bank                                                  -6.15      deg     ~ -6 / +6 (sits on the slope)  PASS   max bank 6.5, settled speed 0.07 mm/s, contact lost false
+landing       run-on at 40 km/h: upright, max pitch                                          3.76       deg     < 10                           PASS   touchdown 40 km/h, sink 0.58 m/s; stopped 0.000 m/s; max bank 3.8
+landing       side drift at touchdown, hard ground: lowest drift that rolls it over          > 6        m/s     slides, no tip                 PASS   max bank: 1 m/s: 3 deg (td drift 0.9), 2 m/s: 3 deg (td drift 1.9), 3 m/s: 3 deg (td drift 2.9), 4 m/s: 3 deg (td drift 3.9), 5 m/s: 3 deg (td drift 5.0), 6 m/s: 3 deg (td drift 6.0)
+landing       side drift at touchdown, soft (skid digs in) ground: lowest drift that rolls ~ 3.00       m/s     2-5 (tips when it should)      PASS   max bank: 1 m/s: 3 deg (td drift 0.9), 2 m/s: 9 deg (td drift 1.9), 3 m/s: 104 deg (td drift 2.9)
+
+stability     cruise 220 km/h, assist off, controls frozen 20 s: time to 10 deg attitude ch~ 20.00      s       diverges slowly (> 2 s), no N~ PASS   max pitch change 1.2, bank 5.7, heading 12.1 deg; real helicopters are unstable hands-off
+stability     cruise 220 km/h, assist on (attitude, heading, altitude hold), sticks centred~ 0.253      deg     < 3                            PASS   max pitch error 1.6 deg, height error 0.3 m; channels: attitude: pitch 3.0 deg, bank 0.0 deg; heading hold -0.0 deg; altitude hold 299.9 m (vs cmd 0.0)
+stability     hover, assist off, controls frozen 20 s: time to 10 deg attitude change        15.45      s       diverges slowly (> 2 s), no N~ PASS   max pitch change 12.9, bank 50.8, heading 82.4 deg; real helicopters are unstable hands-off
+stability     hover, assist on (attitude, heading, hover hold), sticks centred 30 s: max ba~ 0.382      deg     < 3                            PASS   max pitch error 0.2 deg, height error 0.0 m, drift 0.28 m/s; channels: hover hold: fwd -0.00 m/s, right 0.00 m/s; attitude: pitch 3.5 deg, bank -3.0 deg; heading hold -0.0 deg; altitude hold 300.0 m (vs cmd -0.0)
+
+numerics      20 s at 144 km/h: position difference 480 Hz vs 960 Hz sub-steps               0.001      m       < 2                            PASS   240 Hz vs 480: 0.00 m; 30 Hz frames vs 60: 0.01 m; all finite: true
+numerics      single 0.5 s frame (clipped to 0.1 s): state finite                            1.00       flag    1                              PASS   
+numerics      on the ground 60 s (engine off): max airframe speed                            0.032      mm/s    < 1                            PASS   body kinetic energy 3.06e-6 J at 10 s -> 6.40e-27 J at 70 s
+numerics      on the ground 60 s (rotor at flight idle): max airframe speed                  0.001      mm/s    < 1                            PASS   body kinetic energy 1.16e-8 J at 10 s -> 3.19e-24 J at 70 s
+
+65 PASS, 0 MISS, 46 reported only.
+
+run time: engineStart 23.9 s, governorDroop 2.8 s, hover 16.2 s, verticalClimb 11.1 s, levelSpeed 86.2 s, yaw 12.8 s, levelTurn 8.1 s, autorotation 10.5 s, vortexRing 16.0 s, landings 43.3 s, stability 39.1 s

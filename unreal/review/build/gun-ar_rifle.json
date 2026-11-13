@@ -1,0 +1,41 @@
+{
+ "buttGltfM": [
+  0.0,
+  0.05447,
+  0.32256
+ ],
+ "normalErr": 0.001192525734910091,
+ "parts": [
+  "ar_rifle_barrel",
+  "ar_rifle_charging_handle",
+  "ar_rifle_ejection_cover",
+  "ar_rifle_front_sight",
+  "ar_rifle_handguard",
+  "ar_rifle_magazine",
+  "ar_rifle_pistol_grip",
+  "ar_rifle_rear_sight",
+  "ar_rifle_receiver",
+  "ar_rifle_stock",
+  "ar_rifle_trigger"
+ ],
+ "sockets": [
+  "SOCKET_eject_point",
+  "SOCKET_grip_main",
+  "SOCKET_grip_support",
+  "SOCKET_muzzle_point"
+ ],
+ "boundsCm": [
+  [
+   -3.2100000381469727,
+   -21.139999389648438,
+   -80.0199966430664
+  ],
+  [
+   3.2100000381469727,
+   12.460000038146973,
+   0.0
+  ]
+ ],
+ "bytes": 13791196,
+ "seconds": 2.5
+}

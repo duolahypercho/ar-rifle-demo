@@ -1,0 +1,27 @@
+{
+ "meshVsGlbCm": 0.00012540817260742188,
+ "materials": [
+  {
+   "name": "tripo_mat_3acbb7f8-b190-4192-8e7a-3a38ba80bc03",
+   "alphaMode": "OPAQUE",
+   "alphaCutoff": null,
+   "doubleSided": false,
+   "baseColor": "human_figure_3d_model_basecolor.jpg"
+  }
+ ],
+ "textures": {
+  "human_figure_3d_model_normal": "textures/tripo-player-ue5/human_figure_3d_model_normal.png",
+  "human_figure_3d_model_basecolor": "textures/tripo-player-ue5/human_figure_3d_model_basecolor.jpg",
+  "human_figure_3d_model_rm": "textures/tripo-player-ue5/human_figure_3d_model_rm.jpg"
+ },
+ "boneRestErrCm": [
+  2.2082821374169725e-05,
+  1.3418153196165239e-05
+ ],
+ "shapeKeys": [],
+ "bones": 89,
+ "vertices": 11990,
+ "fbx": "unreal/bodies/tripo-player-ue5.fbx",
+ "bytes": 11521164,
+ "seconds": 0.5
+}

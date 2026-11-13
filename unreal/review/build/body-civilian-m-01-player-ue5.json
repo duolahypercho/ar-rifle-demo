@@ -1,0 +1,44 @@
+{
+ "meshVsGlbCm": 3.9577484130859375e-05,
+ "materials": [
+  {
+   "name": "EO Original Civilian PBR Atlas",
+   "alphaMode": "MASK",
+   "alphaCutoff": 0.5,
+   "doubleSided": true,
+   "baseColor": "basecolor-2048.png"
+  }
+ ],
+ "textures": {
+  "normal-2048": "textures/civilian-m-01-player-ue5/normal-2048.png",
+  "orm-2048": "textures/civilian-m-01-player-ue5/orm-2048.png",
+  "basecolor-2048": "textures/civilian-m-01-player-ue5/basecolor-2048.png"
+ },
+ "boneRestErrCm": [
+  6.854534149169922e-06,
+  5.240909909387526e-07
+ ],
+ "shapeKeys": [
+  "jawOpen",
+  "mouthSmileLeft",
+  "mouthSmileRight",
+  "mouthFrownLeft",
+  "mouthFrownRight",
+  "browInnerUp",
+  "browDownLeft",
+  "browDownRight",
+  "eyeBlinkLeft",
+  "eyeBlinkRight",
+  "eyeWideLeft",
+  "eyeWideRight",
+  "cheekPuff",
+  "viseme_aa",
+  "viseme_PP",
+  "viseme_O"
+ ],
+ "bones": 92,
+ "vertices": 14316,
+ "fbx": "unreal/bodies/civilian-m-01-player-ue5.fbx",
+ "bytes": 8023996,
+ "seconds": 6.1
+}

@@ -1,0 +1,646 @@
+{
+ "name": "tripo-player-ue5",
+ "note": "Per-body table for the Tripo main character (blender/bodies/tripo, pass T1a; fitted in pass T1b). Measured from tripo_metrics.json and in Blender. Same frames and units as civilian-m-01-player-ue5.json.",
+ "palm": [
+  0.0,
+  -0.079,
+  0.0365
+ ],
+ "legs": {
+  "thigh": 0.4149,
+  "shin": 0.4016,
+  "ankleY": 0.088,
+  "hipDrop": 0.0357,
+  "ankle": [
+   0,
+   0.088,
+   0
+  ],
+  "heel": [
+   0,
+   0.01,
+   -0.062
+  ],
+  "ball": [
+   0,
+   0.0,
+   0.1142
+  ],
+  "hip": {
+   "Left": [
+    0.0928,
+    -0.0357,
+    -0.0071
+   ],
+   "Right": [
+    -0.0928,
+    -0.0357,
+    -0.0071
+   ]
+  },
+  "reach": 0.978,
+  "reachSwing": 0.7903,
+  "widthAdd": 0.0176,
+  "soleY": -0.0045
+ },
+ "rig": {
+  "toeTip": 0.081,
+  "heelPivot": [
+   0,
+   0.062,
+   0.01
+  ],
+  "prebend": 0.005,
+  "ballPivotDrop": 0.0166
+ },
+ "review": {
+  "heel": [
+   0,
+   -0.078,
+   -0.062
+  ],
+  "heelY": 0.01,
+  "ballY": 0.0166
+ },
+ "stance": {
+  "Left": [
+   [
+    0.1168,
+    0,
+    0.0849
+   ],
+   0.112
+  ],
+  "Right": [
+   [
+    -0.1368,
+    0,
+    -0.1251
+   ],
+   -0.358
+  ]
+ },
+ "crouch": {
+  "stance": {
+   "Left": [
+    [
+     0.1168,
+     0,
+     0.0849
+    ],
+    0.112,
+    0.0
+   ],
+   "Right": [
+    [
+     -0.1568,
+     0,
+     -0.2451
+    ],
+    -0.42,
+    -24
+   ]
+  },
+  "drop": 0.325
+ },
+ "holds": {
+  "low": {
+   "at": [
+    -0.15,
+    0.17,
+    0.115
+   ],
+   "yaw": 46,
+   "pitch": 31,
+   "roll": -8
+  },
+  "high": {
+   "at": [
+    -0.14,
+    0.16,
+    0.095
+   ],
+   "yaw": 40,
+   "pitch": 9,
+   "roll": -18
+  },
+  "sprint": {
+   "at": [
+    -0.18,
+    0.14,
+    0.095
+   ],
+   "yaw": 50,
+   "pitch": 35,
+   "roll": 0
+  }
+ },
+ "guns": {
+  "rifle": {
+   "palm": {
+    "Right": [
+     "grip_main",
+     [
+      0.016,
+      0,
+      0.004
+     ]
+    ],
+    "Left": [
+     "grip_support",
+     [
+      0,
+      0.004,
+      0
+     ]
+    ]
+   },
+   "hand": {
+    "Right": [
+     [
+      -1,
+      0,
+      0
+     ],
+     [
+      0,
+      0.35,
+      -0.94
+     ]
+    ],
+    "Left": [
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      0.82,
+      0,
+      -0.57
+     ]
+    ]
+   },
+   "pole": {
+    "Right": [
+     -0.45,
+     -0.85,
+     -0.25
+    ],
+    "Left": [
+     0.42,
+     -0.9,
+     -0.1
+    ]
+   },
+   "carrySlide": 0.045,
+   "shift": [
+    0,
+    0,
+    0
+   ],
+   "drawShift": 0.0
+  },
+  "shotgun": {
+   "palm": {
+    "Right": [
+     "grip_main",
+     [
+      0.04,
+      0.004,
+      0
+     ]
+    ],
+    "Left": [
+     "grip_support",
+     [
+      0,
+      -0.002,
+      0
+     ]
+    ]
+   },
+   "hand": {
+    "Right": [
+     [
+      -1,
+      0,
+      0
+     ],
+     [
+      0,
+      0.3,
+      -0.95
+     ]
+    ],
+    "Left": [
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      0.82,
+      0,
+      -0.57
+     ]
+    ]
+   },
+   "pole": {
+    "Right": [
+     -1.0,
+     -0.3,
+     -0.2
+    ],
+    "Left": [
+     0.28,
+     -0.95,
+     -0.1
+    ]
+   },
+   "carrySlide": 0.16,
+   "shift": [
+    0.015,
+    -0.01,
+    0.02
+   ]
+  }
+ },
+ "stow": {
+  "rifle": {
+   "at": [
+    -0.17,
+    0.25,
+    -0.2
+   ],
+   "muzzle": [
+    0.507,
+    -0.862,
+    0
+   ],
+   "top": [
+    0.862,
+    0.507,
+    0
+   ]
+  },
+  "shotgun": {
+   "at": [
+    -0.17,
+    0.25,
+    -0.19
+   ],
+   "muzzle": [
+    0.507,
+    -0.862,
+    0
+   ],
+   "top": [
+    0.862,
+    0.507,
+    0
+   ]
+  }
+ },
+ "magPalm": [
+  -0.0165,
+  -0.062,
+  -0.011
+ ],
+ "aim": {
+  "pocket": [
+   -0.15,
+   0.17,
+   0.07
+  ],
+  "grip": {
+   "rifle": [
+    [
+     0.016,
+     0,
+     0.004
+    ],
+    [
+     [
+      -1,
+      0,
+      0
+     ],
+     [
+      0,
+      0.35,
+      -0.94
+     ]
+    ]
+   ],
+   "shotgun": [
+    [
+     0.02,
+     0.004,
+     0
+    ],
+    [
+     [
+      -1,
+      0,
+      0
+     ],
+     [
+      0,
+      0.71,
+      -0.71
+     ]
+    ]
+   ]
+  },
+  "support": {
+   "rifle": [
+    0,
+    0.004,
+    0
+   ],
+   "shotgun": [
+    0,
+    -0.002,
+    0.1
+   ]
+  },
+  "pole": {
+   "Right": [
+    -0.45,
+    -0.85,
+    -0.25
+   ],
+   "Left": [
+    0.28,
+    -0.95,
+    -0.1
+   ]
+  },
+  "eyeBack": [
+   0,
+   0.05,
+   0.13
+  ],
+  "eyeDown": [
+   0,
+   0.012,
+   0.01
+  ],
+  "cant": {
+   "rifle": 12.0,
+   "shotgun": 12.0
+  },
+  "lift": [
+   0,
+   0,
+   0
+  ],
+  "toFace": 6,
+  "lean": 6.0,
+  "downSlide": 0.05
+ },
+ "sightEye": {
+  "Left": [
+   0.034,
+   0.0949,
+   0.0439
+  ],
+  "Right": [
+   -0.036,
+   0.0934,
+   0.0438
+  ]
+ },
+ "grip": null,
+ "pouch": {
+  "note": "A webbing belt over the T-shirt hem at the hips (the body has no belt), an ellipse fitted to the torso girth at pelvis height (tripo_metrics torsoProfile y 0.92..0.96: half-width 0.171, front 0.1025, back -0.1575) plus 6 mm, and the pouch / loops on it turned to its surface (yaw, degrees about the pelvis y). band: at = (0, y, centre z), size = (inner half-width, inner half-depth, height, thickness).",
+  "shapes": [
+   [
+    "band",
+    [
+     0.0,
+     0.01,
+     -0.0275
+    ],
+    [
+     0.177,
+     0.136,
+     0.045,
+     0.006
+    ],
+    "STRAP",
+    "belt"
+   ],
+   [
+    "box",
+    [
+     0.1936,
+     -0.03,
+     0.0187
+    ],
+    [
+     0.034,
+     0.115,
+     0.082
+    ],
+    "OLIVE",
+    "pouch",
+    -20.47
+   ],
+   [
+    "box",
+    [
+     0.2001,
+     0.034,
+     0.0163
+    ],
+    [
+     0.02,
+     0.012,
+     0.084
+    ],
+    "OLIVE",
+    "pouch_lip",
+    -20.47
+   ],
+   [
+    "box",
+    [
+     0.1936,
+     0.04,
+     0.0187
+    ],
+    [
+     0.026,
+     0.03,
+     0.062
+    ],
+    [
+     0.08,
+     0.08,
+     0.08
+    ],
+    "pouch_mag",
+    -20.47
+   ],
+   [
+    "box",
+    [
+     0.1823,
+     0.045,
+     0.0229
+    ],
+    [
+     0.012,
+     0.05,
+     0.04
+    ],
+    "STRAP",
+    "pouch_strap",
+    -20.47
+   ],
+   [
+    "box",
+    [
+     0.1822,
+     -0.005,
+     -0.0754
+    ],
+    [
+     0.016,
+     0.04,
+     0.11
+    ],
+    "STRAP",
+    "loops",
+    22.92
+   ],
+   [
+    "cyl",
+    [
+     0.1795,
+     0.0,
+     -0.0331
+    ],
+    [
+     0.0102,
+     0.062
+    ],
+    "SHELL",
+    "shell_1",
+    22.92
+   ],
+   [
+    "cyl",
+    [
+     0.1896,
+     0.0,
+     -0.057
+    ],
+    [
+     0.0102,
+     0.062
+    ],
+    "SHELL",
+    "shell_2",
+    22.92
+   ],
+   [
+    "cyl",
+    [
+     0.1997,
+     0.0,
+     -0.081
+    ],
+    [
+     0.0102,
+     0.062
+    ],
+    "SHELL",
+    "shell_3",
+    22.92
+   ],
+   [
+    "cyl",
+    [
+     0.2098,
+     0.0,
+     -0.1049
+    ],
+    [
+     0.0102,
+     0.062
+    ],
+    "SHELL",
+    "shell_4",
+    22.92
+   ]
+  ],
+  "draw": {
+   "rifle": [
+    0.2254,
+    0.05,
+    0.0068
+   ],
+   "shotgun": [
+    0.2053,
+    0.03,
+    -0.0222
+   ]
+  },
+  "drawYaw": {
+   "rifle": -20.47,
+   "shotgun": 22.92
+  },
+  "placed": {
+   "pouchDeg": 74.0,
+   "loopsDeg": 108.0,
+   "note": "angles round the belt from the front, towards the left"
+  }
+ },
+ "unwind": true,
+ "unwindRolls": [
+  -360.0,
+  360.0
+ ],
+ "swapShift": [
+  0.0,
+  0.0,
+  -0.04
+ ],
+ "bonesNote": "Every clip keys the rotation of all 87 bones of this body (tripo-player-ue5: the UE5 names less jaw, eye_l and eye_r) as real glTF local rotations (rest included: a bone at rest holds its node rotation, which here is Tripo's T-pose bind, not the canonical pose), and the translation of root, pelvis, ik_foot_l, ik_foot_r, ik_hand_gun, ik_hand_l, ik_hand_r. Authored in canonical frames: local[b] = R[p]^-1 * canonicalLocal[b] * R[b] with R from tripo-player-ue5.frames.json. Exact mapping from the old skeleton: spine_02 / spine_04 / neck_02 and the metacarpals at their canonical locals. Twist bones keyed with this body's refit shares (frames file twistBones): local = canonicalLocal * twistY(share * a), canonicalLocal including the forearm's pre-turn; lowerarm_twist_02 / _01 = 0.834 / 0.879 of the hand's twist about the forearm, calf_twist_02 / _01 = 0.411 / 0.393 of the foot's about the shin, upperarm_twist_01 / _02 = -0.501 / -0.100 and thigh_twist_01 / _02 = -0.304 / -0.026 of the bone's own twist (swing-twist about +Y measured from the canonical local, unwrapped frame to frame; no clip winds a whole turn). IK bones: ik_foot_l/r = the feet's transforms in the root's space (ik_foot_root at rest), ik_hand_gun = hand_r (ik_hand_root at rest), ik_hand_l = hand_l in ik_hand_gun's frame, ik_hand_r = identity (ik_hand_gun's twin).",
+ "swapSolve": {
+  "note": "Pass F3 (handling.Swap.F3): the firing hand's free move from the let-go back over the shoulder to the new gun's grip eased RELATIVE TO ITS FOREARM (twist about the forearm and wrist bend each on their own, the twist on its nearest branch), so it needs no whole-turn roll (swapRoll 0, unwindRolls no longer used by the swaps), through a first way point further out from the shoulder (`via`, chest frame); the rifle coming in has its support-hand regrip later (`regrip`, T units: from the fore-end to its place while the gun comes down, not while it is still upright). `solve` (the outgoing gun's whole way given forearm-relative) is off: tried, it put the stock along the forearm and the receiver through the head (F3 log). `timeWarp` (pass F3b, per outgoing gun, seconds): handling.warp_time on every key time, [a, b] (port to over the shoulder) up to 1 + k slower, the time taken back from [c, e]; rifle only (on the shotgun it put the forearm through the stock).",
+  "solve": false,
+  "swapRoll": 0.0,
+  "freeForearm": true,
+  "via": [
+   [
+    -0.48,
+    0.46,
+    -0.06
+   ],
+   [
+    -0.18,
+    0.18,
+    0.3
+   ]
+  ],
+  "rifle": {
+   "regrip": [
+    0.72,
+    1.1
+   ]
+  },
+  "timeWarp": {
+   "rifle": {
+    "a": 0.3,
+    "b": 0.66,
+    "k": 0.7,
+    "c": 1.08,
+    "e": 1.35
+   }
+  }
+ }
+}

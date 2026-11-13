@@ -1,0 +1,109 @@
+{
+ "boneRestErrCm": [
+  2.2082821374169725e-05,
+  1.3418153196165239e-05
+ ],
+ "clips": {
+  "reload-shotgun-end": {
+   "frames": 14,
+   "bytes": 646060,
+   "s": 0.16
+  },
+  "shotgun-aim-up": {
+   "frames": 2,
+   "bytes": 529388,
+   "s": 0.09
+  },
+  "rifle-hold-high": {
+   "frames": 2,
+   "bytes": 529404,
+   "s": 0.09
+  },
+  "rifle-walk-bl": {
+   "frames": 52,
+   "bytes": 866268,
+   "s": 0.35
+  },
+  "rifle-walk-fr": {
+   "frames": 47,
+   "bytes": 834268,
+   "s": 0.59
+  },
+  "rifle-jog-bl": {
+   "frames": 47,
+   "bytes": 834860,
+   "s": 0.68
+  },
+  "rifle-jog-fr": {
+   "frames": 49,
+   "bytes": 848204,
+   "s": 0.47
+  },
+  "rifle-pivot-l135": {
+   "frames": 32,
+   "bytes": 778876,
+   "s": 0.25
+  },
+  "rifle-pivot-r135": {
+   "frames": 32,
+   "bytes": 778876,
+   "s": 0.26
+  },
+  "rifle-walk-stop-0": {
+   "frames": 27,
+   "bytes": 737580,
+   "s": 0.24
+  },
+  "rifle-walk-stop-4": {
+   "frames": 28,
+   "bytes": 745676,
+   "s": 0.29
+  },
+  "rifle-jog-stop-0": {
+   "frames": 27,
+   "bytes": 737580,
+   "s": 0.26
+  },
+  "rifle-jog-stop-4": {
+   "frames": 27,
+   "bytes": 737580,
+   "s": 0.33
+  },
+  "rifle-run-turn-l": {
+   "frames": 27,
+   "bytes": 737580,
+   "s": 0.75
+  },
+  "rifle-crouch-walk-fl": {
+   "frames": 57,
+   "bytes": 891324,
+   "s": 1.21
+  },
+  "rifle-crouch-walk-br": {
+   "frames": 61,
+   "bytes": 913660,
+   "s": 0.47
+  },
+  "rifle-crouch-up": {
+   "frames": 14,
+   "bytes": 646044,
+   "s": 0.17
+  },
+  "rifle-aim-level": {
+   "frames": 2,
+   "bytes": 529404,
+   "s": 0.11
+  },
+  "hit-light-b": {
+   "frames": 13,
+   "bytes": 636300,
+   "s": 0.18
+  },
+  "hit-heavy-b": {
+   "frames": 28,
+   "bytes": 745644,
+   "s": 0.26
+  }
+ },
+ "seconds": 7.3
+}

@@ -1,0 +1,340 @@
+:root {
+  color-scheme: dark;
+  --panel: rgba(16, 18, 22, 0.62);
+  --line: rgba(255, 255, 255, 0.14);
+  --text: #eef1f4;
+  --dim: #aab2bb;
+  --accent: #ffb454;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #a9b9c9;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text);
+}
+
+#view {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+}
+
+#hud {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Four ticks and a dot in the middle of the view; --gap opens with the cone of fire. */
+#crosshair {
+  --gap: 8px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  opacity: 0.25;
+  transition: opacity 0.12s linear;
+}
+
+#crosshair i,
+#crosshair b {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.45);
+}
+
+#crosshair b {
+  width: 2px;
+  height: 2px;
+  left: -1px;
+  top: -1px;
+}
+
+#crosshair i:nth-child(1),
+#crosshair i:nth-child(2) {
+  width: 9px;
+  height: 2px;
+  top: -1px;
+}
+
+#crosshair i:nth-child(3),
+#crosshair i:nth-child(4) {
+  width: 2px;
+  height: 9px;
+  left: -1px;
+}
+
+#crosshair i:nth-child(1) {
+  right: var(--gap);
+}
+
+#crosshair i:nth-child(2) {
+  left: var(--gap);
+}
+
+#crosshair i:nth-child(3) {
+  bottom: var(--gap);
+}
+
+#crosshair i:nth-child(4) {
+  top: var(--gap);
+}
+
+.panel {
+  position: absolute;
+  padding: 10px 14px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  backdrop-filter: blur(6px);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.top-left {
+  top: 14px;
+  left: 14px;
+}
+
+.top-right {
+  top: 14px;
+  right: 14px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.bottom-left {
+  bottom: 14px;
+  left: 14px;
+  max-width: min(560px, calc(100vw - 200px));
+}
+
+.bottom-right {
+  bottom: 14px;
+  right: 14px;
+  text-align: right;
+  min-width: 132px;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+}
+
+.sub,
+.keys,
+.label {
+  color: var(--dim);
+}
+
+.badge {
+  display: inline-block;
+  padding: 0 7px;
+  margin-right: 6px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.badge.webgpu {
+  border-color: rgba(110, 231, 150, 0.6);
+  color: #8ff0ae;
+}
+
+.badge.fallback {
+  border-color: rgba(255, 180, 84, 0.6);
+  color: var(--accent);
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.keys {
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+#mouse {
+  color: var(--accent);
+}
+
+button {
+  pointer-events: auto;
+  font: inherit;
+  font-weight: 600;
+  color: var(--text);
+  padding: 7px 13px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+button:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+button:active,
+button.down {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #1b1408;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+kbd {
+  display: inline-block;
+  min-width: 1.5em;
+  padding: 0 5px;
+  margin: 0 1px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--text);
+  font: inherit;
+  font-size: 12px;
+}
+
+.ammo {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.ammo.low {
+  color: var(--accent);
+}
+
+.ammo.empty {
+  color: #ff6b5e;
+}
+
+.reserve {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--dim);
+}
+
+.status {
+  margin-top: 4px;
+  color: var(--dim);
+}
+
+.status.busy {
+  color: var(--accent);
+}
+
+#loading {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #1a1d21;
+  color: var(--text);
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  transition: opacity 0.4s ease;
+  white-space: pre-wrap;
+  text-align: center;
+  padding: 24px;
+}
+
+#loading.done {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .keys {
+    display: none;
+  }
+  .bottom-left {
+    max-width: calc(100vw - 170px);
+  }
+}
+
+/* pass V1: the car's HUD (speed, rpm, gear, g-meter) */
+.car-hud {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  text-align: left;
+  min-width: 250px;
+}
+.car-hud[hidden],
+#foot-hud[hidden] {
+  display: none;
+}
+.kmh {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.unit {
+  color: var(--dim);
+}
+.gear {
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--accent);
+}
+.rpmbar {
+  position: relative;
+  height: 6px;
+  margin: 6px 0 4px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.rpmbar i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0;
+  background: var(--accent);
+}
+.rpmbar b {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 94.4%;
+  width: 2px;
+  background: #ff6b5e;
+}
+#gmeter {
+  width: 96px;
+  height: 96px;
+}
+
+/* (pass V2) the helicopter's HUD */
+.heli-hud { display: flex; gap: 12px; align-items: center; max-width: 430px; }
+.heli-hud[hidden] { display: none; }
+.heli-hud .flags { color: #ff6b5a; font-weight: 600; min-height: 1em; }
+.heli-hud .label { font-size: 12px; }

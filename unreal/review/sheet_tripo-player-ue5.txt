@@ -1,0 +1,3 @@
+Re-imported FBX (body + animation FBX + weapons FBX on Gun / GunIn), Workbench, texture colour.
+Top row: walk f0, walk f10, walk f21, walk f31, walk f41, walk f52, A-pose (retarget) front (walk camera 35 deg to the character's left of the front)
+Bottom row: aim az0, aim az40, aim az90, aim az180, aim hands, swap f20, A-pose side

@@ -1,0 +1,6657 @@
+{
+ "skeleton": "earthonline-ue5-v1 (bone names); this body's own bind pose and bone axes",
+ "body": "tripo-player-ue5",
+ "source": "blender/bodies/tripo/source/tripo_main_character.glb",
+ "frames": "Bones run along local +Y (as delivered). Bone axes are the delivered ones, NOT R1's. The canonical relation is boneWorld = canonicalWorld[old joint] * R[b], with R[b] = A[b] * bindWorld[b]. Equivalently boneWorld = R1boneWorld * O[b] with O[b] = R1restWorld[b]^-1 * R[b] (so a pose made for R1's skeleton converts as local[b] = O[parent]^-1 * R1local[b] * O[b]).",
+ "conventions": {
+  "space": "glTF: Y up, facing +Z, left +X, metres",
+  "quaternions": "x, y, z, w",
+  "canonicalPose": "old skeleton rest: arms straight down, palms forward, fingers as the old body, legs straight, feet forward"
+ },
+ "derivation": {
+  "root": "trunk: facing correction only (modelled posture kept)",
+  "pelvis": "trunk: facing correction only (modelled posture kept)",
+  "spine_01": "trunk: facing correction only (modelled posture kept)",
+  "spine_02": "trunk: facing correction only (modelled posture kept)",
+  "spine_03": "trunk: facing correction only (modelled posture kept)",
+  "spine_04": "trunk: facing correction only (modelled posture kept)",
+  "spine_05": "trunk: facing correction only (modelled posture kept)",
+  "neck_01": "trunk: facing correction only (modelled posture kept)",
+  "neck_02": "trunk: facing correction only (modelled posture kept)",
+  "head": "trunk: facing correction only (modelled posture kept)",
+  "clavicle_l": "clavicle: facing correction only (modelled posture kept; Tripo's points 12 deg back)",
+  "upperarm_l": "y along the bone, z elbow flex side (hint, elbow bent 1.3 deg)",
+  "lowerarm_l": "y along the bone, z elbow flex side (hint, elbow bent 1.3 deg)",
+  "hand_l": "y wrist->middle knuckle, z palm normal (knuckle row x hand line)",
+  "index_01_l": "y along the finger, z curl side (hint, bent 6 deg at 02; else palm normal)",
+  "index_02_l": "y along the finger, z curl side (hint, bent 6 deg at 02; else palm normal)",
+  "index_03_l": "y along the finger, z curl side (hint, bent 6 deg at 02; else palm normal)",
+  "middle_01_l": "y along the finger, z curl side (hint, bent 2 deg at 02; else palm normal)",
+  "middle_02_l": "y along the finger, z curl side (hint, bent 2 deg at 02; else palm normal)",
+  "middle_03_l": "y along the finger, z curl side (hint, bent 2 deg at 02; else palm normal)",
+  "thumb_01_l": "y along the thumb, z across the palm (R1 hint in the hand frame)",
+  "thumb_02_l": "y along the thumb, z across the palm (R1 hint in the hand frame)",
+  "thumb_03_l": "y along the thumb, z across the palm (R1 hint in the hand frame)",
+  "pinky_01_l": "y along the finger, z curl side (hint, bent 3 deg at 02; else palm normal)",
+  "pinky_02_l": "y along the finger, z curl side (hint, bent 3 deg at 02; else palm normal)",
+  "pinky_03_l": "y along the finger, z curl side (hint, bent 3 deg at 02; else palm normal)",
+  "ring_01_l": "y along the finger, z curl side (hint, bent 2 deg at 02; else palm normal)",
+  "ring_02_l": "y along the finger, z curl side (hint, bent 2 deg at 02; else palm normal)",
+  "ring_03_l": "y along the finger, z curl side (hint, bent 2 deg at 02; else palm normal)",
+  "clavicle_r": "clavicle: facing correction only (modelled posture kept; Tripo's points 12 deg back)",
+  "upperarm_r": "y along the bone, z elbow flex side (hint, elbow bent 1.4 deg)",
+  "lowerarm_r": "y along the bone, z elbow flex side (hint, elbow bent 1.4 deg)",
+  "hand_r": "y wrist->middle knuckle, z palm normal (knuckle row x hand line)",
+  "pinky_01_r": "y along the finger, z curl side (hint, bent 2 deg at 02; else palm normal)",
+  "pinky_02_r": "y along the finger, z curl side (hint, bent 2 deg at 02; else palm normal)",
+  "pinky_03_r": "y along the finger, z curl side (hint, bent 2 deg at 02; else palm normal)",
+  "ring_01_r": "y along the finger, z curl side (hint, bent 0 deg at 02; else palm normal)",
+  "ring_02_r": "y along the finger, z curl side (hint, bent 0 deg at 02; else palm normal)",
+  "ring_03_r": "y along the finger, z curl side (hint, bent 0 deg at 02; else palm normal)",
+  "middle_01_r": "y along the finger, z curl side (hint, bent 3 deg at 02; else palm normal)",
+  "middle_02_r": "y along the finger, z curl side (hint, bent 3 deg at 02; else palm normal)",
+  "middle_03_r": "y along the finger, z curl side (hint, bent 3 deg at 02; else palm normal)",
+  "index_01_r": "y along the finger, z curl side (hint, bent 4 deg at 02; else palm normal)",
+  "index_02_r": "y along the finger, z curl side (hint, bent 4 deg at 02; else palm normal)",
+  "index_03_r": "y along the finger, z curl side (hint, bent 4 deg at 02; else palm normal)",
+  "thumb_01_r": "y along the thumb, z across the palm (R1 hint in the hand frame)",
+  "thumb_02_r": "y along the thumb, z across the palm (R1 hint in the hand frame)",
+  "thumb_03_r": "y along the thumb, z across the palm (R1 hint in the hand frame)",
+  "thigh_r": "y along the bone, z knee flex side (back; hint, knee bent 2.1 deg)",
+  "calf_r": "y along the bone, z knee flex side (back; hint, knee bent 2.1 deg)",
+  "foot_r": "sole frame: y ankle->ball heading on the ground, z up (pitch kept)",
+  "ball_r": "sole frame: y ankle->ball heading on the ground, z up (pitch kept)",
+  "thigh_l": "y along the bone, z knee flex side (back; hint, knee bent 2.1 deg)",
+  "calf_l": "y along the bone, z knee flex side (back; hint, knee bent 2.1 deg)",
+  "foot_l": "sole frame: y ankle->ball heading on the ground, z up (pitch kept)",
+  "ball_l": "sole frame: y ankle->ball heading on the ground, z up (pitch kept)",
+  "lowerarm_twist_02_l": "twist: A[parent] then -64.1 deg about the limb (0.83 of the hand_l pre-turn -76.8)",
+  "lowerarm_twist_01_l": "twist: A[parent] then -67.5 deg about the limb (0.88 of the hand_l pre-turn -76.8)",
+  "index_metacarpal_l": "metacarpal: A = A[hand] (palm rigid)",
+  "middle_metacarpal_l": "metacarpal: A = A[hand] (palm rigid)",
+  "pinky_metacarpal_l": "metacarpal: A = A[hand] (palm rigid)",
+  "ring_metacarpal_l": "metacarpal: A = A[hand] (palm rigid)",
+  "upperarm_twist_01_l": "twist: A = A[parent] (+ pre-turn below for forearm / shin)",
+  "upperarm_twist_02_l": "twist: A = A[parent] (+ pre-turn below for forearm / shin)",
+  "lowerarm_twist_02_r": "twist: A[parent] then +63.4 deg about the limb (0.83 of the hand_r pre-turn +76.0)",
+  "lowerarm_twist_01_r": "twist: A[parent] then +66.8 deg about the limb (0.88 of the hand_r pre-turn +76.0)",
+  "pinky_metacarpal_r": "metacarpal: A = A[hand] (palm rigid)",
+  "ring_metacarpal_r": "metacarpal: A = A[hand] (palm rigid)",
+  "middle_metacarpal_r": "metacarpal: A = A[hand] (palm rigid)",
+  "index_metacarpal_r": "metacarpal: A = A[hand] (palm rigid)",
+  "upperarm_twist_01_r": "twist: A = A[parent] (+ pre-turn below for forearm / shin)",
+  "upperarm_twist_02_r": "twist: A = A[parent] (+ pre-turn below for forearm / shin)",
+  "calf_twist_02_r": "twist: A[parent] then +0.0 deg about the limb (0.41 of the foot_r pre-turn +0.1)",
+  "calf_twist_01_r": "twist: A[parent] then +0.0 deg about the limb (0.39 of the foot_r pre-turn +0.1)",
+  "thigh_twist_01_r": "twist: A = A[parent] (+ pre-turn below for forearm / shin)",
+  "thigh_twist_02_r": "twist: A = A[parent] (+ pre-turn below for forearm / shin)",
+  "calf_twist_02_l": "twist: A[parent] then -0.0 deg about the limb (0.41 of the foot_l pre-turn -0.1)",
+  "calf_twist_01_l": "twist: A[parent] then -0.0 deg about the limb (0.39 of the foot_l pre-turn -0.1)",
+  "thigh_twist_01_l": "twist: A = A[parent] (+ pre-turn below for forearm / shin)",
+  "thigh_twist_02_l": "twist: A = A[parent] (+ pre-turn below for forearm / shin)"
+ },
+ "twistPreTurnDeg": {
+  "lowerarm_l": -76.82,
+  "calf_l": -0.09,
+  "lowerarm_r": 76.0,
+  "calf_r": 0.09
+ },
+ "twistBones": {
+  "upperarm_twist_01_{s}": {
+   "parent": "upperarm_{s}",
+   "share": -0.501,
+   "measure": "self",
+   "source": "upperarm_{s}",
+   "r1Share": -0.5
+  },
+  "upperarm_twist_02_{s}": {
+   "parent": "upperarm_{s}",
+   "share": -0.1,
+   "measure": "self",
+   "source": "upperarm_{s}",
+   "r1Share": -0.25
+  },
+  "lowerarm_twist_02_{s}": {
+   "parent": "lowerarm_{s}",
+   "share": 0.834,
+   "measure": "child",
+   "source": "hand_{s}",
+   "r1Share": 0.47
+  },
+  "lowerarm_twist_01_{s}": {
+   "parent": "lowerarm_{s}",
+   "share": 0.879,
+   "measure": "child",
+   "source": "hand_{s}",
+   "r1Share": 0.88
+  },
+  "thigh_twist_01_{s}": {
+   "parent": "thigh_{s}",
+   "share": -0.304,
+   "measure": "self",
+   "source": "thigh_{s}",
+   "r1Share": -0.3
+  },
+  "thigh_twist_02_{s}": {
+   "parent": "thigh_{s}",
+   "share": -0.026,
+   "measure": "self",
+   "source": "thigh_{s}",
+   "r1Share": -0.15
+  },
+  "calf_twist_02_{s}": {
+   "parent": "calf_{s}",
+   "share": 0.411,
+   "measure": "child",
+   "source": "foot_{s}",
+   "r1Share": 0.24
+  },
+  "calf_twist_01_{s}": {
+   "parent": "calf_{s}",
+   "share": 0.393,
+   "measure": "child",
+   "source": "foot_{s}",
+   "r1Share": 0.44
+  }
+ },
+ "bones": {
+  "root": {
+   "parent": null,
+   "head": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "canonicalHead": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "bindWorldRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "A": [
+    0.0,
+    1e-07,
+    0.0,
+    1.0
+   ],
+   "A_deg": 0.0,
+   "R": [
+    0.0,
+    1e-07,
+    0.0,
+    1.0
+   ],
+   "canonicalLocalRotation": [
+    0.0,
+    1e-07,
+    0.0,
+    1.0
+   ],
+   "O_fromR1": [
+    0.0,
+    1e-07,
+    0.0,
+    1.0
+   ],
+   "rule": "copy",
+   "from": "Root"
+  },
+  "pelvis": {
+   "parent": "root",
+   "head": [
+    0.0,
+    0.93568,
+    0.0
+   ],
+   "canonicalHead": [
+    0.0,
+    0.93568,
+    0.0
+   ],
+   "restLocalRotation": [
+    -0.0101326,
+    -0.6969743,
+    0.0098501,
+    0.7169568
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.935685,
+    0.0
+   ],
+   "bindWorldRotation": [
+    -0.0101326,
+    -0.6969743,
+    0.0098501,
+    0.7169568
+   ],
+   "A": [
+    0.0,
+    1e-07,
+    0.0,
+    1.0
+   ],
+   "A_deg": 0.0,
+   "R": [
+    -0.0101326,
+    -0.6969743,
+    0.0098501,
+    0.7169569
+   ],
+   "canonicalLocalRotation": [
+    -0.0101326,
+    -0.6969743,
+    0.0098501,
+    0.7169568
+   ],
+   "O_fromR1": [
+    -0.0101326,
+    -0.6969743,
+    0.0098501,
+    0.7169569
+   ],
+   "rule": "copy",
+   "from": "Hips"
+  },
+  "spine_01": {
+   "parent": "pelvis",
+   "head": [
+    0.0,
+    1.00708,
+    0.0
+   ],
+   "canonicalHead": [
+    0.0,
+    1.00708,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0001996,
+    -0.0141299,
+    -0.0141299,
+    0.9998003
+   ],
+   "restLocalTranslation": [
+    0.002017,
+    0.071365,
+    5.7e-05
+   ],
+   "bindWorldRotation": [
+    -1e-07,
+    -0.7071069,
+    -1e-07,
+    0.7071067
+   ],
+   "A": [
+    0.0,
+    1e-07,
+    0.0,
+    1.0
+   ],
+   "A_deg": 0.0,
+   "R": [
+    -1e-07,
+    -0.7071068,
+    -1e-07,
+    0.7071067
+   ],
+   "canonicalLocalRotation": [
+    0.0001996,
+    -0.0141299,
+    -0.0141299,
+    0.9998003
+   ],
+   "O_fromR1": [
+    -1e-07,
+    -0.7071068,
+    -1e-07,
+    0.7071067
+   ],
+   "rule": "copy",
+   "from": "Spine"
+  },
+  "spine_02": {
+   "parent": "spine_01",
+   "head": [
+    0.0,
+    1.06584,
+    0.0
+   ],
+   "canonicalHead": [
+    0.0,
+    1.06584,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.058766,
+    0.0
+   ],
+   "bindWorldRotation": [
+    -1e-07,
+    -0.7071069,
+    -1e-07,
+    0.7071067
+   ],
+   "A": [
+    0.0,
+    1e-07,
+    0.0,
+    1.0
+   ],
+   "A_deg": 0.0,
+   "R": [
+    -1e-07,
+    -0.7071068,
+    -1e-07,
+    0.7071067
+   ],
+   "canonicalLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "O_fromR1": [
+    -1e-07,
+    -0.7071068,
+    -1e-07,
+    0.7071067
+   ],
+   "rule": "follow"
+  },
+  "spine_03": {
+   "parent": "spine_02",
+   "head": [
+    0.0,
+    1.12845,
+    0.0
+   ],
+   "canonicalHead": [
+    0.0,
+    1.12845,
+    0.0
+   ],
+   "restLocalRotation": [
+    -0.0038611,
+    0.0620175,
+    0.0620171,
+    0.9961389
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.062603,
+    0.0
+   ],
+   "bindWorldRotation": [
+    -0.046583,
+    -0.6605237,
+    0.0411225,
+    0.7482295
+   ],
+   "A": [
+    0.0,
+    1e-07,
+    0.0,
+    1.0
+   ],
+   "A_deg": 0.0,
+   "R": [
+    -0.046583,
+    -0.6605236,
+    0.0411225,
+    0.7482296
+   ],
+   "canonicalLocalRotation": [
+    -0.0038611,
+    0.0620175,
+    0.0620171,
+    0.9961389
+   ],
+   "O_fromR1": [
+    -0.046583,
+    -0.6605236,
+    0.0411225,
+    0.7482296
+   ],
+   "rule": "copy",
+   "from": "Spine1"
+  },
+  "spine_04": {
+   "parent": "spine_03",
+   "head": [
+    0.0,
+    1.16322,
+    -0.00435
+   ],
+   "canonicalHead": [
+    0.0,
+    1.16322,
+    -0.00435
+   ],
+   "restLocalRotation": [
+    -0.0,
+    -1e-07,
+    3e-07,
+    1.0
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.035041,
+    0.0
+   ],
+   "bindWorldRotation": [
+    -0.0465832,
+    -0.6605237,
+    0.0411226,
+    0.7482295
+   ],
+   "A": [
+    0.0,
+    1e-07,
+    0.0,
+    1.0
+   ],
+   "A_deg": 0.0,
+   "R": [
+    -0.0465832,
+    -0.6605237,
+    0.0411226,
+    0.7482295
+   ],
+   "canonicalLocalRotation": [
+    -0.0,
+    -1e-07,
+    3e-07,
+    1.0
+   ],
+   "O_fromR1": [
+    -0.0465832,
+    -0.6605237,
+    0.0411226,
+    0.7482295
+   ],
+   "rule": "follow"
+  },
+  "spine_05": {
+   "parent": "spine_04",
+   "head": [
+    0.0,
+    1.24268,
+    -0.01428
+   ],
+   "canonicalHead": [
+    0.0,
+    1.24268,
+    -0.01428
+   ],
+   "restLocalRotation": [
+    0.0023682,
+    -0.0235205,
+    -0.0234076,
+    0.9994465
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.080078,
+    0.0
+   ],
+   "bindWorldRotation": [
+    -0.028357,
+    -0.6787499,
+    0.0262455,
+    0.7333523
+   ],
+   "A": [
+    0.0,
+    1e-07,
+    0.0,
+    1.0
+   ],
+   "A_deg": 0.0,
+   "R": [
+    -0.028357,
+    -0.6787498,
+    0.0262455,
+    0.7333524
+   ],
+   "canonicalLocalRotation": [
+    0.0023682,
+    -0.0235205,
+    -0.0234076,
+    0.9994465
+   ],
+   "O_fromR1": [
+    -0.028357,
+    -0.6787498,
+    0.0262455,
+    0.7333524
+   ],
+   "rule": "copy",
+   "from": "Spine2"
+  },
+  "neck_01": {
+   "parent": "spine_05",
+   "head": [
+    0.0,
+    1.44258,
+    -0.02856
+   ],
+   "canonicalHead": [
+    0.0,
+    1.44258,
+    -0.02856
+   ],
+   "restLocalRotation": [
+    0.0002223,
+    -0.0740288,
+    -0.0742334,
+    0.9944894
+   ],
+   "restLocalTranslation": [
+    0.001197,
+    0.200409,
+    9.3e-05
+   ],
+   "bindWorldRotation": [
+    0.0242911,
+    -0.731398,
+    -0.0260882,
+    0.6810186
+   ],
+   "A": [
+    0.0,
+    1e-07,
+    0.0,
+    1.0
+   ],
+   "A_deg": 0.0,
+   "R": [
+    0.0242911,
+    -0.7313979,
+    -0.0260882,
+    0.6810187
+   ],
+   "canonicalLocalRotation": [
+    0.0002223,
+    -0.0740288,
+    -0.0742334,
+    0.9944894
+   ],
+   "O_fromR1": [
+    0.0242911,
+    -0.7313979,
+    -0.0260882,
+    0.6810187
+   ],
+   "rule": "copy",
+   "from": "Neck"
+  },
+  "neck_02": {
+   "parent": "neck_01",
+   "head": [
+    0.0,
+    1.49354,
+    -0.02492
+   ],
+   "canonicalHead": [
+    0.0,
+    1.49354,
+    -0.02492
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    -1e-07,
+    1.0
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.051089,
+    0.0
+   ],
+   "bindWorldRotation": [
+    0.0242912,
+    -0.7313979,
+    -0.0260883,
+    0.6810186
+   ],
+   "A": [
+    0.0,
+    1e-07,
+    0.0,
+    1.0
+   ],
+   "A_deg": 0.0,
+   "R": [
+    0.0242912,
+    -0.7313979,
+    -0.0260883,
+    0.6810187
+   ],
+   "canonicalLocalRotation": [
+    0.0,
+    0.0,
+    -1e-07,
+    1.0
+   ],
+   "O_fromR1": [
+    0.0242912,
+    -0.7313979,
+    -0.0260883,
+    0.6810187
+   ],
+   "rule": "follow"
+  },
+  "head": {
+   "parent": "neck_02",
+   "head": [
+    0.0,
+    1.54253,
+    -0.02142
+   ],
+   "canonicalHead": [
+    0.0,
+    1.54253,
+    -0.02142
+   ],
+   "restLocalRotation": [
+    0.0,
+    -0.0,
+    1e-07,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.049116,
+    0.0
+   ],
+   "bindWorldRotation": [
+    0.0242912,
+    -0.731398,
+    -0.0260882,
+    0.6810186
+   ],
+   "A": [
+    0.0,
+    1e-07,
+    0.0,
+    1.0
+   ],
+   "A_deg": 0.0,
+   "R": [
+    0.0242912,
+    -0.7313979,
+    -0.0260882,
+    0.6810187
+   ],
+   "canonicalLocalRotation": [
+    0.0,
+    -0.0,
+    1e-07,
+    1.0
+   ],
+   "O_fromR1": [
+    0.0242912,
+    -0.7313979,
+    -0.0260882,
+    0.6810187
+   ],
+   "rule": "copy",
+   "from": "Head"
+  },
+  "clavicle_l": {
+   "parent": "spine_05",
+   "head": [
+    0.04998,
+    1.3926,
+    -0.02856
+   ],
+   "canonicalHead": [
+    0.04998,
+    1.3926,
+    -0.02856
+   ],
+   "restLocalRotation": [
+    -0.7192642,
+    0.0743504,
+    0.0188654,
+    0.6904891
+   ],
+   "restLocalTranslation": [
+    0.001208,
+    0.150582,
+    -0.050032
+   ],
+   "bindWorldRotation": [
+    -0.5618105,
+    -0.4324869,
+    -0.4583516,
+    0.5359458
+   ],
+   "A": [
+    0.0,
+    1e-07,
+    0.0,
+    1.0
+   ],
+   "A_deg": 0.0,
+   "R": [
+    -0.5618105,
+    -0.4324868,
+    -0.4583516,
+    0.5359458
+   ],
+   "canonicalLocalRotation": [
+    -0.7192642,
+    0.0743504,
+    0.0188654,
+    0.6904891
+   ],
+   "O_fromR1": [
+    -0.0258647,
+    1e-07,
+    0.103459,
+    0.9942974
+   ],
+   "rule": "copy",
+   "from": "LeftShoulder"
+  },
+  "upperarm_l": {
+   "parent": "clavicle_l",
+   "head": [
+    0.18562,
+    1.38546,
+    -0.05711
+   ],
+   "canonicalHead": [
+    0.18562,
+    1.38546,
+    -0.05711
+   ],
+   "restLocalRotation": [
+    0.0258626,
+    -0.0003315,
+    -0.0907062,
+    0.9955418
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.138805,
+    -0.0
+   ],
+   "bindWorldRotation": [
+    -0.5063675,
+    -0.4935503,
+    -0.4935503,
+    0.5063676
+   ],
+   "A": [
+    -0.0090632,
+    -0.0090632,
+    -0.7070487,
+    0.7070487
+   ],
+   "A_deg": 90.01,
+   "R": [
+    -0.7071067,
+    -1e-07,
+    -0.7071068,
+    1e-07
+   ],
+   "canonicalLocalRotation": [
+    -0.6847852,
+    0.0731565,
+    -0.0731566,
+    0.7213636
+   ],
+   "O_fromR1": [
+    1e-07,
+    -0.7071067,
+    1e-07,
+    0.7071068
+   ],
+   "rule": "copy",
+   "from": "LeftArm"
+  },
+  "lowerarm_l": {
+   "parent": "upperarm_l",
+   "head": [
+    0.46406,
+    1.38546,
+    -0.06425
+   ],
+   "canonicalHead": [
+    0.18562,
+    1.10694,
+    -0.05711
+   ],
+   "restLocalRotation": [
+    -0.0114198,
+    0.0001464,
+    0.0013161,
+    0.9999339
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.278527,
+    -0.0
+   ],
+   "bindWorldRotation": [
+    -0.512694,
+    -0.4871408,
+    -0.4985616,
+    0.5012734
+   ],
+   "A": [
+    -0.010106,
+    -0.0098776,
+    -0.698912,
+    0.715068
+   ],
+   "A_deg": 88.7,
+   "R": [
+    -0.7072209,
+    -7e-07,
+    -0.7069926,
+    8e-07
+   ],
+   "canonicalLocalRotation": [
+    9e-07,
+    -0.0001615,
+    1e-07,
+    1.0
+   ],
+   "O_fromR1": [
+    7e-07,
+    -0.7072209,
+    8e-07,
+    0.7069926
+   ],
+   "rule": "copy",
+   "from": "LeftForeArm"
+  },
+  "lowerarm_twist_02_l": {
+   "parent": "lowerarm_l",
+   "head": [
+    0.5438,
+    1.38364,
+    -0.06651
+   ],
+   "canonicalHead": [
+    0.18562,
+    1.02714,
+    -0.05711
+   ],
+   "restLocalRotation": [
+    -1.4e-06,
+    -0.0,
+    -0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.079797,
+    -0.0
+   ],
+   "bindWorldRotation": [
+    -0.5126947,
+    -0.4871401,
+    -0.4985623,
+    0.5012726
+   ],
+   "A": [
+    -0.379282,
+    0.3709106,
+    -0.5871331,
+    0.6114288
+   ],
+   "A_deg": 104.61,
+   "R": [
+    0.9745381,
+    -1e-07,
+    0.2242218,
+    3e-07
+   ],
+   "canonicalLocalRotation": [
+    -1.2e-06,
+    -0.530417,
+    3e-07,
+    0.8477369
+   ],
+   "O_fromR1": [
+    -1e-07,
+    -0.9745381,
+    -3e-07,
+    0.2242218
+   ],
+   "rule": "twist",
+   "share": 0.834,
+   "measure": "child",
+   "source": "hand_l",
+   "how": "local = canonicalLocal * twistY(share * a); a = twist about Y of source.local * source.canonicalLocal^-1"
+  },
+  "lowerarm_twist_01_l": {
+   "parent": "lowerarm_l",
+   "head": [
+    0.62355,
+    1.38182,
+    -0.06876
+   ],
+   "canonicalHead": [
+    0.18562,
+    0.94734,
+    -0.05711
+   ],
+   "restLocalRotation": [
+    -1.4e-06,
+    -0.0,
+    -0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.159594,
+    -1e-06
+   ],
+   "bindWorldRotation": [
+    -0.5126947,
+    -0.4871402,
+    -0.4985623,
+    0.5012726
+   ],
+   "A": [
+    -0.3968187,
+    0.3891839,
+    -0.575426,
+    0.5999631
+   ],
+   "A_deg": 106.27,
+   "R": [
+    0.9808578,
+    -1e-07,
+    0.1947255,
+    3e-07
+   ],
+   "canonicalLocalRotation": [
+    -1.1e-06,
+    -0.5557453,
+    3e-07,
+    0.8313526
+   ],
+   "O_fromR1": [
+    -1e-07,
+    -0.9808578,
+    -3e-07,
+    0.1947255
+   ],
+   "rule": "twist",
+   "share": 0.879,
+   "measure": "child",
+   "source": "hand_l",
+   "how": "local = canonicalLocal * twistY(share * a); a = twist about Y of source.local * source.canonicalLocal^-1"
+  },
+  "hand_l": {
+   "parent": "lowerarm_l",
+   "head": [
+    0.70329,
+    1.38,
+    -0.07102
+   ],
+   "canonicalHead": [
+    0.18562,
+    0.86755,
+    -0.05711
+   ],
+   "restLocalRotation": [
+    -0.040399,
+    0.0008701,
+    -0.0261841,
+    0.9988401
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.239391,
+    -0.0
+   ],
+   "bindWorldRotation": [
+    -0.5191612,
+    -0.4794226,
+    -0.5312348,
+    0.4673491
+   ],
+   "A": [
+    -0.4570543,
+    0.4215729,
+    -0.5781276,
+    0.5283427
+   ],
+   "A_deg": 116.21,
+   "R": [
+    0.9890207,
+    -0.0010605,
+    0.112875,
+    0.0953743
+   ],
+   "canonicalLocalRotation": [
+    -0.0682013,
+    -0.6194028,
+    -0.0666783,
+    0.7792578
+   ],
+   "O_fromR1": [
+    -0.0473311,
+    -0.9931656,
+    -0.0153314,
+    0.1055784
+   ],
+   "rule": "copy",
+   "from": "LeftHand"
+  },
+  "index_metacarpal_l": {
+   "parent": "hand_l",
+   "head": [
+    0.74436,
+    1.37729,
+    -0.05613
+   ],
+   "canonicalHead": [
+    0.19854,
+    0.8268,
+    -0.0477
+   ],
+   "restLocalRotation": [
+    0.0196284,
+    0.0085744,
+    -0.1606866,
+    0.986773
+   ],
+   "restLocalTranslation": [
+    0.013894,
+    0.041474,
+    0.001575
+   ],
+   "bindWorldRotation": [
+    -0.4215292,
+    -0.5629236,
+    -0.5943461,
+    0.3901062
+   ],
+   "A": [
+    -0.4570543,
+    0.4215729,
+    -0.5781276,
+    0.5283427
+   ],
+   "A_deg": 116.21,
+   "R": [
+    0.9770135,
+    0.1609092,
+    0.1045577,
+    0.0928465
+   ],
+   "canonicalLocalRotation": [
+    0.0196284,
+    0.0085744,
+    -0.1606866,
+    0.986773
+   ],
+   "O_fromR1": [
+    0.0087494,
+    -0.9957089,
+    -0.0130143,
+    0.0912018
+   ],
+   "rule": "follow"
+  },
+  "index_01_l": {
+   "parent": "index_metacarpal_l",
+   "head": [
+    0.80321,
+    1.37341,
+    -0.03478
+   ],
+   "canonicalHead": [
+    0.21704,
+    0.76841,
+    -0.03421
+   ],
+   "restLocalRotation": [
+    0.0177544,
+    -0.0032679,
+    0.2000405,
+    0.9796213
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.062724,
+    0.0
+   ],
+   "bindWorldRotation": [
+    -0.5205626,
+    -0.4789562,
+    -0.4928252,
+    0.506694
+   ],
+   "A": [
+    -0.4709863,
+    0.4140966,
+    -0.5347933,
+    0.5662968
+   ],
+   "A_deg": 111.02,
+   "R": [
+    0.9936587,
+    0.0151316,
+    0.1089169,
+    0.0234641
+   ],
+   "canonicalLocalRotation": [
+    0.0533894,
+    0.0001479,
+    0.1527643,
+    0.9868195
+   ],
+   "O_fromR1": [
+    -3e-07,
+    -0.9940802,
+    -2.4e-06,
+    0.1086491
+   ],
+   "rule": "copy",
+   "from": "LeftHandIndex1"
+  },
+  "index_02_l": {
+   "parent": "index_01_l",
+   "head": [
+    0.84274,
+    1.37231,
+    -0.03698
+   ],
+   "canonicalHead": [
+    0.21803,
+    0.72886,
+    -0.03223
+   ],
+   "restLocalRotation": [
+    -0.0078357,
+    0.0009031,
+    -0.0494226,
+    0.9987468
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.039605,
+    0.0
+   ],
+   "bindWorldRotation": [
+    -0.4997642,
+    -0.4997643,
+    -0.5214728,
+    0.4780559
+   ],
+   "A": [
+    -0.4179667,
+    0.4611014,
+    -0.5510037,
+    0.5559534
+   ],
+   "A_deg": 112.45,
+   "R": [
+    -0.9934809,
+    3e-07,
+    -0.1139983,
+    5e-07
+   ],
+   "canonicalLocalRotation": [
+    0.0215867,
+    0.0050686,
+    0.0177081,
+    0.9995973
+   ],
+   "O_fromR1": [
+    -3e-07,
+    -0.9934809,
+    5e-07,
+    0.1139983
+   ],
+   "rule": "copy",
+   "from": "LeftHandIndex2"
+  },
+  "index_03_l": {
+   "parent": "index_02_l",
+   "head": [
+    0.868,
+    1.37121,
+    -0.03588
+   ],
+   "canonicalHead": [
+    0.21803,
+    0.70356,
+    -0.03223
+   ],
+   "restLocalRotation": [
+    -4.4e-06,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.025302,
+    -0.0
+   ],
+   "bindWorldRotation": [
+    -0.4997663,
+    -0.499762,
+    -0.521475,
+    0.4780538
+   ],
+   "A": [
+    -0.4179667,
+    0.4611014,
+    -0.5510037,
+    0.5559534
+   ],
+   "A_deg": 112.45,
+   "R": [
+    0.9934809,
+    -8e-07,
+    0.1139983,
+    3.8e-06
+   ],
+   "canonicalLocalRotation": [
+    -4.4e-06,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "O_fromR1": [
+    -8e-07,
+    -0.9934809,
+    -3.8e-06,
+    0.1139983
+   ],
+   "rule": "copy",
+   "from": "LeftHandIndex3"
+  },
+  "middle_metacarpal_l": {
+   "parent": "hand_l",
+   "head": [
+    0.74096,
+    1.37762,
+    -0.06666
+   ],
+   "canonicalHead": [
+    0.18843,
+    0.8302,
+    -0.05069
+   ],
+   "restLocalRotation": [
+    0.0203686,
+    0.0026014,
+    -0.0453923,
+    0.9987582
+   ],
+   "restLocalTranslation": [
+    0.003449,
+    0.037807,
+    0.001537
+   ],
+   "bindWorldRotation": [
+    -0.4858532,
+    -0.5119979,
+    -0.5433746,
+    0.4544765
+   ],
+   "A": [
+    -0.4570543,
+    0.4215729,
+    -0.5781276,
+    0.5283427
+   ],
+   "A_deg": 116.21,
+   "R": [
+    0.9894896,
+    0.0463819,
+    0.1110001,
+    0.0802373
+   ],
+   "canonicalLocalRotation": [
+    0.0203686,
+    0.0026014,
+    -0.0453923,
+    0.9987582
+   ],
+   "O_fromR1": [
+    0.0,
+    -0.9941184,
+    1.5e-06,
+    0.108299
+   ],
+   "rule": "follow"
+  },
+  "middle_01_l": {
+   "parent": "middle_metacarpal_l",
+   "head": [
+    0.8076,
+    1.37341,
+    -0.05894
+   ],
+   "canonicalHead": [
+    0.19341,
+    0.76414,
+    -0.03932
+   ],
+   "restLocalRotation": [
+    0.0028887,
+    -0.0016413,
+    0.0574979,
+    0.9983401
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.06722,
+    -0.0
+   ],
+   "bindWorldRotation": [
+    -0.5140645,
+    -0.4855281,
+    -0.5140647,
+    0.4855282
+   ],
+   "A": [
+    -0.4406075,
+    0.4406351,
+    -0.5472304,
+    0.5587886
+   ],
+   "A_deg": 112.06,
+   "R": [
+    0.9933914,
+    0.0025558,
+    0.1125071,
+    0.0225642
+   ],
+   "canonicalLocalRotation": [
+    0.0524454,
+    0.0002166,
+    0.050069,
+    0.9973678
+   ],
+   "O_fromR1": [
+    2e-07,
+    -0.9936476,
+    1.2e-06,
+    0.1125361
+   ],
+   "rule": "copy",
+   "from": "LeftHandMiddle1"
+  },
+  "middle_02_l": {
+   "parent": "middle_01_l",
+   "head": [
+    0.84604,
+    1.37121,
+    -0.05894
+   ],
+   "canonicalHead": [
+    0.19341,
+    0.72568,
+    -0.03758
+   ],
+   "restLocalRotation": [
+    -0.0212923,
+    0.0,
+    0.0,
+    0.9997733
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.038494,
+    -0.0
+   ],
+   "bindWorldRotation": [
+    -0.524286,
+    -0.4744724,
+    -0.5242862,
+    0.4744725
+   ],
+   "A": [
+    -0.4179264,
+    0.4618005,
+    -0.5249656,
+    0.5800767
+   ],
+   "A_deg": 109.09,
+   "R": [
+    0.993618,
+    -3e-07,
+    0.1127979,
+    3.2e-06
+   ],
+   "canonicalLocalRotation": [
+    0.0221287,
+    0.0002634,
+    0.0050847,
+    0.9997422
+   ],
+   "O_fromR1": [
+    -3e-07,
+    -0.993618,
+    -3.2e-06,
+    0.1127979
+   ],
+   "rule": "copy",
+   "from": "LeftHandMiddle2"
+  },
+  "middle_03_l": {
+   "parent": "middle_02_l",
+   "head": [
+    0.87898,
+    1.36792,
+    -0.05894
+   ],
+   "canonicalHead": [
+    0.19341,
+    0.69258,
+    -0.03758
+   ],
+   "restLocalRotation": [
+    -0.0,
+    -0.0,
+    -1e-07,
+    1.0
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.033105,
+    0.0
+   ],
+   "bindWorldRotation": [
+    -0.524286,
+    -0.4744724,
+    -0.5242862,
+    0.4744725
+   ],
+   "A": [
+    -0.4179264,
+    0.4618005,
+    -0.5249656,
+    0.5800767
+   ],
+   "A_deg": 109.09,
+   "R": [
+    0.993618,
+    -3e-07,
+    0.1127979,
+    3.2e-06
+   ],
+   "canonicalLocalRotation": [
+    -0.0,
+    -0.0,
+    -1e-07,
+    1.0
+   ],
+   "O_fromR1": [
+    -3e-07,
+    -0.993618,
+    -3.2e-06,
+    0.1127979
+   ],
+   "rule": "copy",
+   "from": "LeftHandMiddle3"
+  },
+  "thumb_01_l": {
+   "parent": "hand_l",
+   "head": [
+    0.73074,
+    1.36902,
+    -0.03808
+   ],
+   "canonicalHead": [
+    0.21457,
+    0.841,
+    -0.03671
+   ],
+   "restLocalRotation": [
+    -0.0413943,
+    0.0168786,
+    -0.3349759,
+    0.9411656
+   ],
+   "restLocalTranslation": [
+    0.032256,
+    0.029226,
+    -0.008039
+   ],
+   "bindWorldRotation": [
+    -0.3384007,
+    -0.5952443,
+    -0.6851387,
+    0.2485037
+   ],
+   "A": [
+    -0.3138565,
+    0.4826407,
+    -0.6760902,
+    0.4598413
+   ],
+   "A_deg": 125.25,
+   "R": [
+    0.9667199,
+    0.1400258,
+    0.1329187,
+    0.1678634
+   ],
+   "canonicalLocalRotation": [
+    -0.0578738,
+    0.0358737,
+    -0.1457841,
+    0.9869705
+   ],
+   "O_fromR1": [
+    -1.3e-06,
+    0.9646773,
+    2.7e-06,
+    0.2634343
+   ],
+   "rule": "copy",
+   "from": "LeftHandThumb1"
+  },
+  "thumb_02_l": {
+   "parent": "thumb_01_l",
+   "head": [
+    0.76478,
+    1.36133,
+    -0.00843
+   ],
+   "canonicalHead": [
+    0.22493,
+    0.79958,
+    -0.02015
+   ],
+   "restLocalRotation": [
+    0.0677749,
+    0.0166627,
+    0.088352,
+    0.9936412
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.045789,
+    0.0
+   ],
+   "bindWorldRotation": [
+    -0.3605814,
+    -0.6038554,
+    -0.6241223,
+    0.3403104
+   ],
+   "A": [
+    -0.3824211,
+    0.4323984,
+    -0.6755919,
+    0.4586517
+   ],
+   "A_deg": 125.4,
+   "R": [
+    0.9733524,
+    0.1248813,
+    0.1293238,
+    0.1423558
+   ],
+   "canonicalLocalRotation": [
+    0.0242625,
+    -0.0033274,
+    0.0183562,
+    0.9995315
+   ],
+   "O_fromR1": [
+    -8e-07,
+    0.9644286,
+    -1.3e-06,
+    0.2643434
+   ],
+   "rule": "copy",
+   "from": "LeftHandThumb2"
+  },
+  "thumb_03_l": {
+   "parent": "thumb_02_l",
+   "head": [
+    0.78894,
+    1.36023,
+    0.00584
+   ],
+   "canonicalHead": [
+    0.23072,
+    0.77352,
+    -0.01146
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.02808,
+    -0.0
+   ],
+   "bindWorldRotation": [
+    -0.3605814,
+    -0.6038554,
+    -0.6241223,
+    0.3403104
+   ],
+   "A": [
+    -0.3824211,
+    0.4323984,
+    -0.6755919,
+    0.4586517
+   ],
+   "A_deg": 125.4,
+   "R": [
+    0.9733524,
+    0.1248813,
+    0.1293238,
+    0.1423557
+   ],
+   "canonicalLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "O_fromR1": [
+    -8e-07,
+    0.9644286,
+    -1.3e-06,
+    0.2643434
+   ],
+   "rule": "copy",
+   "from": "LeftHandThumb3"
+  },
+  "pinky_metacarpal_l": {
+   "parent": "hand_l",
+   "head": [
+    0.74336,
+    1.37307,
+    -0.08487
+   ],
+   "canonicalHead": [
+    0.16961,
+    0.82828,
+    -0.05021
+   ],
+   "restLocalRotation": [
+    -0.0309485,
+    -0.0094862,
+    0.1756347,
+    0.9839231
+   ],
+   "restLocalTranslation": [
+    -0.014823,
+    0.040227,
+    -0.00276
+   ],
+   "bindWorldRotation": [
+    -0.6145211,
+    -0.3685248,
+    -0.4505241,
+    0.5325236
+   ],
+   "A": [
+    -0.4570543,
+    0.4215729,
+    -0.5781276,
+    0.5283427
+   ],
+   "A_deg": 116.21,
+   "R": [
+    0.9710531,
+    -0.1791478,
+    0.1183965,
+    0.1046148
+   ],
+   "canonicalLocalRotation": [
+    -0.0309485,
+    -0.0094862,
+    0.1756347,
+    0.9839231
+   ],
+   "O_fromR1": [
+    -0.0127444,
+    -0.9907059,
+    -0.0153007,
+    0.134556
+   ],
+   "rule": "follow"
+  },
+  "pinky_01_l": {
+   "parent": "pinky_metacarpal_l",
+   "head": [
+    0.79223,
+    1.36462,
+    -0.10176
+   ],
+   "canonicalHead": [
+    0.15009,
+    0.7804,
+    -0.04179
+   ],
+   "restLocalRotation": [
+    0.0819464,
+    -0.002923,
+    -0.1288518,
+    0.9882679
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.052391,
+    -0.0
+   ],
+   "bindWorldRotation": [
+    -0.5175049,
+    -0.4818587,
+    -0.4818596,
+    0.5175058
+   ],
+   "A": [
+    -0.4697177,
+    0.4141599,
+    -0.5419482,
+    0.5604722
+   ],
+   "A_deg": 111.82,
+   "R": [
+    0.9938381,
+    0.0016154,
+    0.1098629,
+    0.01461
+   ],
+   "canonicalLocalRotation": [
+    0.1096561,
+    -0.0081978,
+    -0.169849,
+    0.9793159
+   ],
+   "O_fromR1": [
+    1e-07,
+    -0.9939454,
+    2.1e-06,
+    0.1098748
+   ],
+   "rule": "copy",
+   "from": "LeftHandPinky1"
+  },
+  "pinky_02_l": {
+   "parent": "pinky_01_l",
+   "head": [
+    0.82298,
+    1.36462,
+    -0.10396
+   ],
+   "canonicalHead": [
+    0.15009,
+    0.74959,
+    -0.04088
+   ],
+   "restLocalRotation": [
+    -0.0262392,
+    0.0009361,
+    -0.0093768,
+    0.9996113
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.030823,
+    -0.0
+   ],
+   "bindWorldRotation": [
+    -0.5259133,
+    -0.4733959,
+    -0.4996529,
+    0.4996584
+   ],
+   "A": [
+    -0.4438476,
+    0.4379933,
+    -0.5260829,
+    0.5782715
+   ],
+   "A_deg": 109.34,
+   "R": [
+    0.993783,
+    1e-07,
+    0.1113346,
+    1.7e-06
+   ],
+   "canonicalLocalRotation": [
+    0.0143377,
+    0.0014687,
+    0.0032316,
+    0.9998909
+   ],
+   "O_fromR1": [
+    1e-07,
+    -0.993783,
+    -1.7e-06,
+    0.1113346
+   ],
+   "rule": "copy",
+   "from": "LeftHandPinky2"
+  },
+  "pinky_03_l": {
+   "parent": "pinky_02_l",
+   "head": [
+    0.84384,
+    1.36353,
+    -0.10506
+   ],
+   "canonicalHead": [
+    0.15009,
+    0.72867,
+    -0.04088
+   ],
+   "restLocalRotation": [
+    -5.1e-06,
+    0.0,
+    -6e-07,
+    1.0
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.02092,
+    0.0
+   ],
+   "bindWorldRotation": [
+    -0.5259155,
+    -0.4733937,
+    -0.4996556,
+    0.4996554
+   ],
+   "A": [
+    -0.4438476,
+    0.4379933,
+    -0.5260829,
+    0.5782715
+   ],
+   "A_deg": 109.34,
+   "R": [
+    0.993783,
+    2e-07,
+    0.1113346,
+    6.9e-06
+   ],
+   "canonicalLocalRotation": [
+    -5.1e-06,
+    0.0,
+    -6e-07,
+    1.0
+   ],
+   "O_fromR1": [
+    2e-07,
+    -0.993783,
+    -6.9e-06,
+    0.1113346
+   ],
+   "rule": "copy",
+   "from": "LeftHandPinky3"
+  },
+  "ring_metacarpal_l": {
+   "parent": "hand_l",
+   "head": [
+    0.74162,
+    1.37616,
+    -0.07443
+   ],
+   "canonicalHead": [
+    0.18052,
+    0.8297,
+    -0.05099
+   ],
+   "restLocalRotation": [
+    0.0020994,
+    -0.0028869,
+    0.0561339,
+    0.9984169
+   ],
+   "restLocalTranslation": [
+    -0.004335,
+    0.038429,
+    0.000149
+   ],
+   "bindWorldRotation": [
+    -0.5458036,
+    -0.4519856,
+    -0.5016544,
+    0.4961354
+   ],
+   "A": [
+    -0.4570543,
+    0.4215729,
+    -0.5781276,
+    0.5283427
+   ],
+   "A_deg": 116.21,
+   "R": [
+    0.9879215,
+    -0.0566147,
+    0.1151971,
+    0.0868077
+   ],
+   "canonicalLocalRotation": [
+    0.0020994,
+    -0.0028869,
+    0.0561339,
+    0.9984169
+   ],
+   "O_fromR1": [
+    0.0050459,
+    -0.9925308,
+    -0.0026016,
+    0.1218622
+   ],
+   "rule": "follow"
+  },
+  "ring_01_l": {
+   "parent": "ring_metacarpal_l",
+   "head": [
+    0.80211,
+    1.37011,
+    -0.0798
+   ],
+   "canonicalHead": [
+    0.17248,
+    0.76999,
+    -0.04131
+   ],
+   "restLocalRotation": [
+    0.0335748,
+    -8.9e-05,
+    -0.0280571,
+    0.9990423
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.061029,
+    -0.0
+   ],
+   "bindWorldRotation": [
+    -0.5159864,
+    -0.4837535,
+    -0.4998702,
+    0.4998703
+   ],
+   "A": [
+    -0.4565153,
+    0.4259927,
+    -0.547035,
+    0.5575632
+   ],
+   "A_deg": 112.23,
+   "R": [
+    0.9934646,
+    0.0027178,
+    0.1115085,
+    0.0242175
+   ],
+   "canonicalLocalRotation": [
+    0.0689415,
+    -0.0026755,
+    -0.0520397,
+    0.9962589
+   ],
+   "O_fromR1": [
+    -3e-07,
+    -0.9937598,
+    -1.1e-06,
+    0.1115416
+   ],
+   "rule": "copy",
+   "from": "LeftHandRing1"
+  },
+  "ring_02_l": {
+   "parent": "ring_01_l",
+   "head": [
+    0.83615,
+    1.36902,
+    -0.0809
+   ],
+   "canonicalHead": [
+    0.17248,
+    0.73595,
+    -0.03965
+   ],
+   "restLocalRotation": [
+    -0.0182929,
+    0.0002773,
+    0.001094,
+    0.999832
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.034074,
+    0.0
+   ],
+   "bindWorldRotation": [
+    -0.5254345,
+    -0.4738251,
+    -0.5082318,
+    0.4910284
+   ],
+   "A": [
+    -0.4348795,
+    0.4462017,
+    -0.5258251,
+    0.5790438
+   ],
+   "A_deg": 109.23,
+   "R": [
+    -0.9937108,
+    -8e-07,
+    -0.1119769,
+    6.8e-06
+   ],
+   "canonicalLocalRotation": [
+    0.0237677,
+    0.0004379,
+    0.0054125,
+    0.9997028
+   ],
+   "O_fromR1": [
+    8e-07,
+    -0.9937108,
+    6.8e-06,
+    0.1119769
+   ],
+   "rule": "copy",
+   "from": "LeftHandRing2"
+  },
+  "ring_03_l": {
+   "parent": "ring_02_l",
+   "head": [
+    0.868,
+    1.36682,
+    -0.082
+   ],
+   "canonicalHead": [
+    0.17248,
+    0.70402,
+    -0.03965
+   ],
+   "restLocalRotation": [
+    0.0,
+    -0.0,
+    1e-07,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.031937,
+    -0.0
+   ],
+   "bindWorldRotation": [
+    -0.5254345,
+    -0.4738251,
+    -0.5082317,
+    0.4910284
+   ],
+   "A": [
+    -0.4348795,
+    0.4462017,
+    -0.5258251,
+    0.5790438
+   ],
+   "A_deg": 109.23,
+   "R": [
+    -0.9937108,
+    -7e-07,
+    -0.1119769,
+    6.8e-06
+   ],
+   "canonicalLocalRotation": [
+    0.0,
+    -0.0,
+    1e-07,
+    1.0
+   ],
+   "O_fromR1": [
+    7e-07,
+    -0.9937108,
+    6.8e-06,
+    0.1119769
+   ],
+   "rule": "copy",
+   "from": "LeftHandRing3"
+  },
+  "upperarm_twist_01_l": {
+   "parent": "upperarm_l",
+   "head": [
+    0.27844,
+    1.38547,
+    -0.05949
+   ],
+   "canonicalHead": [
+    0.18562,
+    1.29262,
+    -0.05711
+   ],
+   "restLocalRotation": [
+    -0.0,
+    -0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.092842,
+    0.0
+   ],
+   "bindWorldRotation": [
+    -0.5063675,
+    -0.4935503,
+    -0.4935503,
+    0.5063676
+   ],
+   "A": [
+    -0.0090632,
+    -0.0090632,
+    -0.7070487,
+    0.7070487
+   ],
+   "A_deg": 90.01,
+   "R": [
+    -0.7071067,
+    -1e-07,
+    -0.7071068,
+    1e-07
+   ],
+   "canonicalLocalRotation": [
+    -0.0,
+    -0.0,
+    0.0,
+    1.0
+   ],
+   "O_fromR1": [
+    1e-07,
+    -0.7071067,
+    1e-07,
+    0.7071068
+   ],
+   "rule": "twist",
+   "share": -0.501,
+   "measure": "self",
+   "source": "upperarm_l",
+   "how": "local = canonicalLocal * twistY(share * a); a = twist about Y of source.canonicalLocal^-1 * source.local"
+  },
+  "upperarm_twist_02_l": {
+   "parent": "upperarm_l",
+   "head": [
+    0.37125,
+    1.38547,
+    -0.06187
+   ],
+   "canonicalHead": [
+    0.18562,
+    1.19978,
+    -0.05711
+   ],
+   "restLocalRotation": [
+    -0.0,
+    -0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.185685,
+    0.0
+   ],
+   "bindWorldRotation": [
+    -0.5063675,
+    -0.4935503,
+    -0.4935503,
+    0.5063676
+   ],
+   "A": [
+    -0.0090632,
+    -0.0090632,
+    -0.7070487,
+    0.7070487
+   ],
+   "A_deg": 90.01,
+   "R": [
+    -0.7071067,
+    -1e-07,
+    -0.7071068,
+    1e-07
+   ],
+   "canonicalLocalRotation": [
+    -0.0,
+    -0.0,
+    0.0,
+    1.0
+   ],
+   "O_fromR1": [
+    1e-07,
+    -0.7071067,
+    1e-07,
+    0.7071068
+   ],
+   "rule": "twist",
+   "share": -0.1,
+   "measure": "self",
+   "source": "upperarm_l",
+   "how": "local = canonicalLocal * twistY(share * a); a = twist about Y of source.canonicalLocal^-1 * source.local"
+  },
+  "clavicle_r": {
+   "parent": "spine_05",
+   "head": [
+    -0.04998,
+    1.3926,
+    -0.02856
+   ],
+   "canonicalHead": [
+    -0.04998,
+    1.3926,
+    -0.02856
+   ],
+   "restLocalRotation": [
+    0.2457041,
+    -0.6932132,
+    -0.6762592,
+    0.0419339
+   ],
+   "restLocalTranslation": [
+    -0.00651,
+    0.150582,
+    0.049621
+   ],
+   "bindWorldRotation": [
+    -0.6562032,
+    0.5495602,
+    0.3084066,
+    0.4150498
+   ],
+   "A": [
+    0.0,
+    1e-07,
+    0.0,
+    1.0
+   ],
+   "A_deg": 0.0,
+   "R": [
+    -0.6562031,
+    0.5495602,
+    0.3084067,
+    0.4150498
+   ],
+   "canonicalLocalRotation": [
+    0.2457041,
+    -0.6932132,
+    -0.6762592,
+    0.0419339
+   ],
+   "O_fromR1": [
+    1e-07,
+    0.2411534,
+    -0.106643,
+    0.9646099
+   ],
+   "rule": "copy",
+   "from": "RightShoulder"
+  },
+  "upperarm_r": {
+   "parent": "clavicle_r",
+   "head": [
+    -0.18562,
+    1.38547,
+    -0.05711
+   ],
+   "canonicalHead": [
+    -0.18562,
+    1.38547,
+    -0.05711
+   ],
+   "restLocalRotation": [
+    0.0030908,
+    -0.2411335,
+    0.0942705,
+    0.9658976
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.138805,
+    0.0
+   ],
+   "bindWorldRotation": [
+    -0.5063677,
+    0.4935503,
+    0.4935502,
+    0.5063676
+   ],
+   "A": [
+    -0.0090633,
+    0.0090633,
+    0.7070487,
+    0.7070487
+   ],
+   "A_deg": 90.01,
+   "R": [
+    0.7071069,
+    -1e-07,
+    -0.7071067,
+    0.0
+   ],
+   "canonicalLocalRotation": [
+    -0.6820822,
+    -0.2459291,
+    -0.0951133,
+    0.6820822
+   ],
+   "O_fromR1": [
+    1e-07,
+    0.7071069,
+    0.0,
+    0.7071067
+   ],
+   "rule": "copy",
+   "from": "RightArm"
+  },
+  "lowerarm_r": {
+   "parent": "upperarm_r",
+   "head": [
+    -0.46406,
+    1.38547,
+    -0.06425
+   ],
+   "canonicalHead": [
+    -0.18562,
+    1.10694,
+    -0.05711
+   ],
+   "restLocalRotation": [
+    -0.0094503,
+    0.7372528,
+    -0.0072387,
+    0.6755121
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.278527,
+    -0.0
+   ],
+   "bindWorldRotation": [
+    0.7142868,
+    -0.6983904,
+    0.0389231,
+    0.0230265
+   ],
+   "A": [
+    -0.0076805,
+    0.0075025,
+    0.6987282,
+    0.7153067
+   ],
+   "A_deg": 88.66,
+   "R": [
+    0.9990343,
+    6e-07,
+    0.0439363,
+    1e-07
+   ],
+   "canonicalLocalRotation": [
+    -5e-07,
+    0.7374915,
+    -4e-07,
+    0.6753564
+   ],
+   "O_fromR1": [
+    6e-07,
+    -0.9990343,
+    -1e-07,
+    0.0439363
+   ],
+   "rule": "copy",
+   "from": "RightForeArm"
+  },
+  "lowerarm_twist_02_r": {
+   "parent": "lowerarm_r",
+   "head": [
+    -0.54485,
+    1.38357,
+    -0.06599
+   ],
+   "canonicalHead": [
+    -0.18562,
+    1.02611,
+    -0.05711
+   ],
+   "restLocalRotation": [
+    -0.0,
+    -6.1e-06,
+    -0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.080833,
+    -0.0
+   ],
+   "bindWorldRotation": [
+    0.714287,
+    -0.6983906,
+    0.0389187,
+    0.0230223
+   ],
+   "A": [
+    -0.3736103,
+    -0.3694008,
+    0.5905043,
+    0.6125872
+   ],
+   "A_deg": 104.45,
+   "R": [
+    0.8269877,
+    4e-07,
+    0.56222,
+    4e-07
+   ],
+   "canonicalLocalRotation": [
+    -6e-07,
+    0.5253423,
+    1e-07,
+    0.850891
+   ],
+   "O_fromR1": [
+    4e-07,
+    -0.8269877,
+    -4e-07,
+    0.56222
+   ],
+   "rule": "twist",
+   "share": 0.834,
+   "measure": "child",
+   "source": "hand_r",
+   "how": "local = canonicalLocal * twistY(share * a); a = twist about Y of source.local * source.canonicalLocal^-1"
+  },
+  "lowerarm_twist_01_r": {
+   "parent": "lowerarm_r",
+   "head": [
+    -0.62564,
+    1.38168,
+    -0.06773
+   ],
+   "canonicalHead": [
+    -0.18562,
+    0.94527,
+    -0.05711
+   ],
+   "restLocalRotation": [
+    1e-07,
+    5e-07,
+    -1.4e-06,
+    1.0
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.161667,
+    -0.0
+   ],
+   "bindWorldRotation": [
+    0.7142877,
+    -0.6983895,
+    0.0389234,
+    0.0230268
+   ],
+   "A": [
+    -0.3910648,
+    -0.3875161,
+    0.5790927,
+    0.6012913
+   ],
+   "A_deg": 106.08,
+   "R": [
+    0.8098387,
+    1.6e-06,
+    0.5866525,
+    1.1e-06
+   ],
+   "canonicalLocalRotation": [
+    -1.3e-06,
+    0.5505047,
+    -1.1e-06,
+    0.8348321
+   ],
+   "O_fromR1": [
+    1.6e-06,
+    -0.8098387,
+    -1.1e-06,
+    0.5866525
+   ],
+   "rule": "twist",
+   "share": 0.879,
+   "measure": "child",
+   "source": "hand_r",
+   "how": "local = canonicalLocal * twistY(share * a); a = twist about Y of source.local * source.canonicalLocal^-1"
+  },
+  "hand_r": {
+   "parent": "lowerarm_r",
+   "head": [
+    -0.70644,
+    1.37978,
+    -0.06946
+   ],
+   "canonicalHead": [
+    -0.18562,
+    0.86444,
+    -0.05711
+   ],
+   "restLocalRotation": [
+    0.0153173,
+    0.8029167,
+    -0.0313413,
+    0.5950697
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.2425,
+    0.0
+   ],
+   "bindWorldRotation": [
+    0.4160396,
+    -0.3741197,
+    0.6066505,
+    0.5647307
+   ],
+   "A": [
+    -0.4602817,
+    -0.4102069,
+    0.5788161,
+    0.5337068
+   ],
+   "A_deg": 115.49,
+   "R": [
+    0.0701978,
+    -0.0887139,
+    -0.9935115,
+    0.0117096
+   ],
+   "canonicalLocalRotation": [
+    -0.0155954,
+    -0.9956363,
+    0.0881137,
+    0.0264787
+   ],
+   "O_fromR1": [
+    0.0015024,
+    0.0773736,
+    0.0426009,
+    0.9960905
+   ],
+   "rule": "copy",
+   "from": "RightHand"
+  },
+  "pinky_metacarpal_r": {
+   "parent": "hand_r",
+   "head": [
+    -0.74649,
+    1.3737,
+    -0.08467
+   ],
+   "canonicalHead": [
+    -0.16914,
+    0.82489,
+    -0.05108
+   ],
+   "restLocalRotation": [
+    0.1739181,
+    -0.9629804,
+    0.0749595,
+    0.1918393
+   ],
+   "restLocalTranslation": [
+    -0.015738,
+    0.040165,
+    -0.003359
+   ],
+   "bindWorldRotation": [
+    -0.7341783,
+    0.5412741,
+    0.1768604,
+    0.3697634
+   ],
+   "A": [
+    -0.4602817,
+    -0.4102069,
+    0.5788161,
+    0.5337068
+   ],
+   "A_deg": 115.49,
+   "R": [
+    0.9478788,
+    0.2063465,
+    0.241887,
+    0.0209189
+   ],
+   "canonicalLocalRotation": [
+    0.1739181,
+    -0.9629804,
+    0.0749595,
+    0.1918393
+   ],
+   "O_fromR1": [
+    0.0187124,
+    -0.9715449,
+    0.0017626,
+    0.2361084
+   ],
+   "rule": "follow"
+  },
+  "pinky_01_r": {
+   "parent": "pinky_metacarpal_r",
+   "head": [
+    -0.79533,
+    1.36628,
+    -0.10322
+   ],
+   "canonicalHead": [
+    -0.14903,
+    0.77666,
+    -0.04372
+   ],
+   "restLocalRotation": [
+    -0.1274865,
+    0.3864201,
+    0.1141675,
+    0.9063071
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.052769,
+    -0.0
+   ],
+   "bindWorldRotation": [
+    -0.7190774,
+    0.6947165,
+    -0.0121913,
+    0.0121704
+   ],
+   "A": [
+    -0.4467142,
+    -0.426222,
+    0.545443,
+    0.5668096
+   ],
+   "A_deg": 110.94,
+   "R": [
+    0.7867487,
+    0.0090771,
+    0.6170982,
+    0.0115706
+   ],
+   "canonicalLocalRotation": [
+    -0.11965,
+    0.3924323,
+    0.163849,
+    0.8971255
+   ],
+   "O_fromR1": [
+    4.1e-06,
+    -0.7868338,
+    -3.3e-06,
+    0.6171649
+   ],
+   "rule": "copy",
+   "from": "RightHandPinky1"
+  },
+  "pinky_02_r": {
+   "parent": "pinky_01_r",
+   "head": [
+    -0.82796,
+    1.36515,
+    -0.10434
+   ],
+   "canonicalHead": [
+    -0.14903,
+    0.74401,
+    -0.04276
+   ],
+   "restLocalRotation": [
+    -0.0047382,
+    0.7066146,
+    -0.0196134,
+    0.7073109
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.032669,
+    0.0
+   ],
+   "bindWorldRotation": [
+    0.5136801,
+    -0.4859345,
+    0.5136807,
+    0.4859348
+   ],
+   "A": [
+    -0.4235304,
+    -0.4477282,
+    0.5411746,
+    0.5720939
+   ],
+   "A_deg": 110.21,
+   "R": [
+    0.1210512,
+    -1.69e-05,
+    0.9926463,
+    1.9e-06
+   ],
+   "canonicalLocalRotation": [
+    -0.0076217,
+    0.7062625,
+    0.0125964,
+    0.707797
+   ],
+   "O_fromR1": [
+    -1.69e-05,
+    -0.1210512,
+    -1.9e-06,
+    0.9926463
+   ],
+   "rule": "copy",
+   "from": "RightHandPinky2"
+  },
+  "pinky_03_r": {
+   "parent": "pinky_02_r",
+   "head": [
+    -0.84821,
+    1.36403,
+    -0.10434
+   ],
+   "canonicalHead": [
+    -0.14903,
+    0.72372,
+    -0.04276
+   ],
+   "restLocalRotation": [
+    -2e-07,
+    -1e-07,
+    2e-07,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.020285,
+    1e-06
+   ],
+   "bindWorldRotation": [
+    0.51368,
+    -0.4859347,
+    0.5136806,
+    0.4859347
+   ],
+   "A": [
+    -0.4235304,
+    -0.4477282,
+    0.5411746,
+    0.5720939
+   ],
+   "A_deg": 110.21,
+   "R": [
+    0.1210513,
+    -1.71e-05,
+    0.9926462,
+    1.8e-06
+   ],
+   "canonicalLocalRotation": [
+    -2e-07,
+    -1e-07,
+    2e-07,
+    1.0
+   ],
+   "O_fromR1": [
+    -1.71e-05,
+    -0.1210513,
+    -1.8e-06,
+    0.9926462
+   ],
+   "rule": "copy",
+   "from": "RightHandPinky3"
+  },
+  "ring_metacarpal_r": {
+   "parent": "hand_r",
+   "head": [
+    -0.74484,
+    1.37673,
+    -0.07339
+   ],
+   "canonicalHead": [
+    -0.18082,
+    0.82643,
+    -0.05146
+   ],
+   "restLocalRotation": [
+    0.0374579,
+    -0.8893433,
+    0.0452928,
+    0.4534468
+   ],
+   "restLocalTranslation": [
+    -0.004171,
+    0.038461,
+    -0.001804
+   ],
+   "bindWorldRotation": [
+    -0.7323811,
+    0.6680025,
+    0.0553263,
+    0.1197064
+   ],
+   "A": [
+    -0.4602817,
+    -0.4102069,
+    0.5788161,
+    0.5337068
+   ],
+   "A_deg": 115.49,
+   "R": [
+    0.8553213,
+    0.0910352,
+    0.5090811,
+    0.0312179
+   ],
+   "canonicalLocalRotation": [
+    0.0374579,
+    -0.8893433,
+    0.0452928,
+    0.4534468
+   ],
+   "O_fromR1": [
+    -0.009156,
+    -0.8622996,
+    -0.0018284,
+    0.5063124
+   ],
+   "rule": "follow"
+  },
+  "ring_01_r": {
+   "parent": "ring_metacarpal_r",
+   "head": [
+    -0.80545,
+    1.3719,
+    -0.07959
+   ],
+   "canonicalHead": [
+    -0.17325,
+    0.76644,
+    -0.04253
+   ],
+   "restLocalRotation": [
+    -0.0339724,
+    0.4302246,
+    -0.0015315,
+    0.9020811
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.061116,
+    -0.0
+   ],
+   "bindWorldRotation": [
+    0.6895596,
+    -0.6510919,
+    0.2426692,
+    0.2042022
+   ],
+   "A": [
+    -0.4446285,
+    -0.4284023,
+    0.5399782,
+    0.5720144
+   ],
+   "A_deg": 110.22,
+   "R": [
+    0.5512593,
+    0.0203302,
+    0.8339779,
+    0.0134391
+   ],
+   "canonicalLocalRotation": [
+    -0.0598572,
+    0.4320946,
+    0.0519886,
+    0.8983365
+   ],
+   "O_fromR1": [
+    1.4e-06,
+    -0.5514231,
+    -1.8e-06,
+    0.8342257
+   ],
+   "rule": "copy",
+   "from": "RightHandRing1"
+  },
+  "ring_02_r": {
+   "parent": "ring_01_r",
+   "head": [
+    -0.83808,
+    1.36965,
+    -0.08071
+   ],
+   "canonicalHead": [
+    -0.17325,
+    0.73376,
+    -0.04093
+   ],
+   "restLocalRotation": [
+    0.002538,
+    2.7e-06,
+    -0.0012691,
+    0.999996
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.032727,
+    -0.0
+   ],
+   "bindWorldRotation": [
+    0.6909007,
+    -0.6495977,
+    0.2440635,
+    0.2027609
+   ],
+   "A": [
+    -0.4299571,
+    -0.4416259,
+    0.5274653,
+    0.5847083
+   ],
+   "A_deg": 108.44,
+   "R": [
+    -0.5516524,
+    6.7e-06,
+    -0.8340741,
+    5e-07
+   ],
+   "canonicalLocalRotation": [
+    -0.0095485,
+    -0.0002749,
+    0.0224285,
+    0.9997028
+   ],
+   "O_fromR1": [
+    -6.7e-06,
+    -0.5516524,
+    5e-07,
+    0.8340741
+   ],
+   "rule": "copy",
+   "from": "RightHandRing2"
+  },
+  "ring_03_r": {
+   "parent": "ring_02_r",
+   "head": [
+    -0.86846,
+    1.3674,
+    -0.08184
+   ],
+   "canonicalHead": [
+    -0.17325,
+    0.70327,
+    -0.04093
+   ],
+   "restLocalRotation": [
+    -2.3e-06,
+    0.0,
+    2.8e-06,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.030484,
+    0.0
+   ],
+   "bindWorldRotation": [
+    0.6908985,
+    -0.6496002,
+    0.2440626,
+    0.2027618
+   ],
+   "A": [
+    -0.4299571,
+    -0.4416259,
+    0.5274653,
+    0.5847083
+   ],
+   "A_deg": 108.44,
+   "R": [
+    -0.5516524,
+    1.01e-05,
+    -0.8340741,
+    1.6e-06
+   ],
+   "canonicalLocalRotation": [
+    -2.3e-06,
+    0.0,
+    2.8e-06,
+    1.0
+   ],
+   "O_fromR1": [
+    -1.01e-05,
+    -0.5516524,
+    1.6e-06,
+    0.8340741
+   ],
+   "rule": "copy",
+   "from": "RightHandRing3"
+  },
+  "middle_metacarpal_r": {
+   "parent": "hand_r",
+   "head": [
+    -0.74422,
+    1.37775,
+    -0.0658
+   ],
+   "canonicalHead": [
+    -0.18844,
+    0.82707,
+    -0.05069
+   ],
+   "restLocalRotation": [
+    0.0337151,
+    0.7636442,
+    -0.0260839,
+    0.6442286
+   ],
+   "restLocalTranslation": [
+    0.003236,
+    0.037881,
+    0.000137
+   ],
+   "bindWorldRotation": [
+    -0.1664421,
+    0.2215399,
+    0.7064109,
+    0.651307
+   ],
+   "A": [
+    -0.4602817,
+    -0.4102069,
+    0.5788161,
+    0.5337068
+   ],
+   "A_deg": 115.49,
+   "R": [
+    0.8066215,
+    -0.0798753,
+    -0.5837568,
+    0.0470081
+   ],
+   "canonicalLocalRotation": [
+    0.0337151,
+    0.7636442,
+    -0.0260839,
+    0.6442286
+   ],
+   "O_fromR1": [
+    1e-06,
+    0.8119804,
+    1.4e-06,
+    0.5836846
+   ],
+   "rule": "follow"
+  },
+  "middle_01_r": {
+   "parent": "middle_metacarpal_r",
+   "head": [
+    -0.81108,
+    1.37416,
+    -0.05933
+   ],
+   "canonicalHead": [
+    -0.19341,
+    0.76097,
+    -0.03931
+   ],
+   "restLocalRotation": [
+    -0.040403,
+    -0.8724494,
+    0.0264105,
+    0.4863149
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.067263,
+    0.0
+   ],
+   "bindWorldRotation": [
+    0.5149007,
+    -0.4846395,
+    0.5149026,
+    0.4846412
+   ],
+   "A": [
+    -0.4354661,
+    -0.4365723,
+    0.5496822,
+    0.5635809
+   ],
+   "A_deg": 111.39,
+   "R": [
+    0.1207488,
+    0.0225399,
+    0.9924234,
+    0.0027434
+   ],
+   "canonicalLocalRotation": [
+    -0.0695756,
+    -0.8722766,
+    -0.0204273,
+    0.4836067
+   ],
+   "O_fromR1": [
+    -3.5e-06,
+    -0.12078,
+    -5e-07,
+    0.9926793
+   ],
+   "rule": "copy",
+   "from": "RightHandMiddle1"
+  },
+  "middle_02_r": {
+   "parent": "middle_01_r",
+   "head": [
+    -0.84821,
+    1.3719,
+    -0.05933
+   ],
+   "canonicalHead": [
+    -0.19341,
+    0.7238,
+    -0.03762
+   ],
+   "restLocalRotation": [
+    0.027169,
+    -1e-07,
+    1e-07,
+    0.9996309
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.0372,
+    0.0
+   ],
+   "bindWorldRotation": [
+    0.5278779,
+    -0.4704712,
+    0.5278798,
+    0.4704729
+   ],
+   "A": [
+    -0.4100238,
+    -0.460051,
+    0.5239964,
+    0.5879297
+   ],
+   "A_deg": 107.98,
+   "R": [
+    -0.1211236,
+    -3.9e-06,
+    -0.9926374,
+    4e-07
+   ],
+   "canonicalLocalRotation": [
+    -0.0220378,
+    -0.000346,
+    0.0054532,
+    0.9997422
+   ],
+   "O_fromR1": [
+    3.9e-06,
+    -0.1211236,
+    4e-07,
+    0.9926374
+   ],
+   "rule": "copy",
+   "from": "RightHandMiddle2"
+  },
+  "middle_03_r": {
+   "parent": "middle_02_r",
+   "head": [
+    -0.87747,
+    1.36853,
+    -0.05933
+   ],
+   "canonicalHead": [
+    -0.19341,
+    0.69436,
+    -0.03762
+   ],
+   "restLocalRotation": [
+    -0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.029449,
+    -0.0
+   ],
+   "bindWorldRotation": [
+    0.5278779,
+    -0.4704712,
+    0.5278797,
+    0.4704729
+   ],
+   "A": [
+    -0.4100238,
+    -0.460051,
+    0.5239964,
+    0.5879297
+   ],
+   "A_deg": 107.98,
+   "R": [
+    -0.1211236,
+    -3.9e-06,
+    -0.9926374,
+    4e-07
+   ],
+   "canonicalLocalRotation": [
+    -0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "O_fromR1": [
+    3.9e-06,
+    -0.1211236,
+    4e-07,
+    0.9926374
+   ],
+   "rule": "copy",
+   "from": "RightHandMiddle3"
+  },
+  "index_metacarpal_r": {
+   "parent": "hand_r",
+   "head": [
+    -0.74852,
+    1.37839,
+    -0.05513
+   ],
+   "canonicalHead": [
+    -0.19893,
+    0.82291,
+    -0.04834
+   ],
+   "restLocalRotation": [
+    0.1569921,
+    0.9448595,
+    -0.0098736,
+    0.2872223
+   ],
+   "restLocalTranslation": [
+    0.013448,
+    0.042278,
+    0.003181
+   ],
+   "bindWorldRotation": [
+    -0.3613515,
+    0.5254827,
+    0.6205003,
+    0.4563686
+   ],
+   "A": [
+    -0.4602817,
+    -0.4102069,
+    0.5788161,
+    0.5337068
+   ],
+   "A_deg": 115.49,
+   "R": [
+    0.9616053,
+    -0.169697,
+    -0.2052198,
+    0.0663554
+   ],
+   "canonicalLocalRotation": [
+    0.1569921,
+    0.9448595,
+    -0.0098736,
+    0.2872223
+   ],
+   "O_fromR1": [
+    0.0098579,
+    0.9807072,
+    0.0027933,
+    0.1952139
+   ],
+   "rule": "follow"
+  },
+  "index_01_r": {
+   "parent": "index_metacarpal_r",
+   "head": [
+    -0.80883,
+    1.37641,
+    -0.03458
+   ],
+   "canonicalHead": [
+    -0.218,
+    0.7634,
+    -0.03577
+   ],
+   "restLocalRotation": [
+    0.1310249,
+    0.8682929,
+    -0.1459519,
+    0.4556292
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.063744,
+    -0.0
+   ],
+   "bindWorldRotation": [
+    0.7203179,
+    -0.664248,
+    0.1665001,
+    0.1104287
+   ],
+   "A": [
+    -0.4537505,
+    -0.4213981,
+    0.5185483,
+    0.5896115
+   ],
+   "A_deg": 107.74,
+   "R": [
+    0.6488825,
+    0.0108864,
+    0.7603764,
+    0.0257035
+   ],
+   "canonicalLocalRotation": [
+    0.1451397,
+    0.8694297,
+    -0.0648519,
+    0.4677827
+   ],
+   "O_fromR1": [
+    -3.5e-06,
+    -0.648898,
+    3.2e-06,
+    0.7608754
+   ],
+   "rule": "copy",
+   "from": "RightHandIndex1"
+  },
+  "index_02_r": {
+   "parent": "index_01_r",
+   "head": [
+    -0.84483,
+    1.37303,
+    -0.03683
+   ],
+   "canonicalHead": [
+    -0.2189,
+    0.72722,
+    -0.03396
+   ],
+   "restLocalRotation": [
+    -0.0362919,
+    0.553662,
+    -0.0131757,
+    0.8318459
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.036234,
+    0.0
+   ],
+   "bindWorldRotation": [
+    0.511753,
+    -0.4879636,
+    0.5117533,
+    0.487964
+   ],
+   "A": [
+    -0.4253026,
+    -0.4460331,
+    0.5434515,
+    0.5699409
+   ],
+   "A_deg": 110.51,
+   "R": [
+    -0.1210623,
+    -4.3e-06,
+    -0.9926449,
+    4e-07
+   ],
+   "canonicalLocalRotation": [
+    -0.007691,
+    0.5520571,
+    0.0268299,
+    0.833339
+   ],
+   "O_fromR1": [
+    4.3e-06,
+    -0.1210623,
+    4e-07,
+    0.9926449
+   ],
+   "rule": "copy",
+   "from": "RightHandIndex2"
+  },
+  "index_03_r": {
+   "parent": "index_02_r",
+   "head": [
+    -0.86846,
+    1.3719,
+    -0.03683
+   ],
+   "canonicalHead": [
+    -0.2189,
+    0.70357,
+    -0.03396
+   ],
+   "restLocalRotation": [
+    -1e-07,
+    -5e-07,
+    1e-07,
+    1.0
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.023656,
+    -0.0
+   ],
+   "bindWorldRotation": [
+    0.5117532,
+    -0.487964,
+    0.511753,
+    0.4879638
+   ],
+   "A": [
+    -0.4253026,
+    -0.4460331,
+    0.5434515,
+    0.5699409
+   ],
+   "A_deg": 110.51,
+   "R": [
+    -0.1210628,
+    -4.2e-06,
+    -0.9926449,
+    5e-07
+   ],
+   "canonicalLocalRotation": [
+    -1e-07,
+    -5e-07,
+    1e-07,
+    1.0
+   ],
+   "O_fromR1": [
+    4.2e-06,
+    -0.1210628,
+    5e-07,
+    0.9926449
+   ],
+   "rule": "copy",
+   "from": "RightHandIndex3"
+  },
+  "thumb_01_r": {
+   "parent": "hand_r",
+   "head": [
+    -0.73457,
+    1.36853,
+    -0.03458
+   ],
+   "canonicalHead": [
+    -0.21659,
+    0.83807,
+    -0.03521
+   ],
+   "restLocalRotation": [
+    0.3190335,
+    0.8677376,
+    0.0249171,
+    0.3803
+   ],
+   "restLocalTranslation": [
+    0.028589,
+    0.029514,
+    0.021123
+   ],
+   "bindWorldRotation": [
+    -0.1973476,
+    0.5309357,
+    0.7251506,
+    0.3915582
+   ],
+   "A": [
+    -0.3317849,
+    -0.4591023,
+    0.6811995,
+    0.4638007
+   ],
+   "A_deg": 124.73,
+   "R": [
+    0.9160345,
+    -0.1726441,
+    -0.3362955,
+    0.1340904
+   ],
+   "canonicalLocalRotation": [
+    0.1430033,
+    0.8963576,
+    0.0601367,
+    0.415303
+   ],
+   "O_fromR1": [
+    -3.6e-06,
+    -0.9986807,
+    -3.5e-06,
+    0.0513507
+   ],
+   "rule": "copy",
+   "from": "RightHandThumb1"
+  },
+  "thumb_02_r": {
+   "parent": "thumb_01_r",
+   "head": [
+    -0.76157,
+    1.36403,
+    -0.0132
+   ],
+   "canonicalHead": [
+    -0.22445,
+    0.80665,
+    -0.02264
+   ],
+   "restLocalRotation": [
+    -0.0176057,
+    -0.0032755,
+    -0.0780118,
+    0.9967916
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.034735,
+    0.0
+   ],
+   "bindWorldRotation": [
+    -0.2426521,
+    0.4997874,
+    0.7022717,
+    0.4451369
+   ],
+   "A": [
+    -0.3813233,
+    -0.4456174,
+    0.6515612,
+    0.4811296
+   ],
+   "A_deg": 122.48,
+   "R": [
+    0.9250748,
+    -0.1517916,
+    -0.3292071,
+    0.1132193
+   ],
+   "canonicalLocalRotation": [
+    0.014542,
+    0.0087263,
+    -0.0267306,
+    0.9994988
+   ],
+   "O_fromR1": [
+    1.3e-06,
+    -0.9983348,
+    7e-06,
+    0.0576854
+   ],
+   "rule": "copy",
+   "from": "RightHandThumb2"
+  },
+  "thumb_03_r": {
+   "parent": "thumb_02_r",
+   "head": [
+    -0.7897,
+    1.36065,
+    0.00255
+   ],
+   "canonicalHead": [
+    -0.23113,
+    0.77656,
+    -0.01261
+   ],
+   "restLocalRotation": [
+    3e-07,
+    0.0,
+    1.1e-06,
+    1.0
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.032416,
+    -0.0
+   ],
+   "bindWorldRotation": [
+    -0.2426514,
+    0.4997879,
+    0.7022721,
+    0.4451363
+   ],
+   "A": [
+    -0.3813233,
+    -0.4456174,
+    0.6515612,
+    0.4811296
+   ],
+   "A_deg": 122.48,
+   "R": [
+    0.9250747,
+    -0.1517927,
+    -0.3292069,
+    0.1132194
+   ],
+   "canonicalLocalRotation": [
+    3e-07,
+    0.0,
+    1.1e-06,
+    1.0
+   ],
+   "O_fromR1": [
+    3e-07,
+    -0.9983348,
+    7.4e-06,
+    0.0576854
+   ],
+   "rule": "copy",
+   "from": "RightHandThumb3"
+  },
+  "upperarm_twist_01_r": {
+   "parent": "upperarm_r",
+   "head": [
+    -0.27844,
+    1.38547,
+    -0.05949
+   ],
+   "canonicalHead": [
+    -0.18562,
+    1.29262,
+    -0.05711
+   ],
+   "restLocalRotation": [
+    0.0,
+    -1e-07,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.092842,
+    0.0
+   ],
+   "bindWorldRotation": [
+    -0.5063676,
+    0.4935502,
+    0.4935503,
+    0.5063676
+   ],
+   "A": [
+    -0.0090633,
+    0.0090633,
+    0.7070487,
+    0.7070487
+   ],
+   "A_deg": 90.01,
+   "R": [
+    0.7071068,
+    -1e-07,
+    -0.7071068,
+    0.0
+   ],
+   "canonicalLocalRotation": [
+    0.0,
+    -1e-07,
+    0.0,
+    1.0
+   ],
+   "O_fromR1": [
+    1e-07,
+    0.7071068,
+    0.0,
+    0.7071068
+   ],
+   "rule": "twist",
+   "share": -0.501,
+   "measure": "self",
+   "source": "upperarm_r",
+   "how": "local = canonicalLocal * twistY(share * a); a = twist about Y of source.canonicalLocal^-1 * source.local"
+  },
+  "upperarm_twist_02_r": {
+   "parent": "upperarm_r",
+   "head": [
+    -0.37125,
+    1.38547,
+    -0.06187
+   ],
+   "canonicalHead": [
+    -0.18562,
+    1.19978,
+    -0.05711
+   ],
+   "restLocalRotation": [
+    0.0,
+    -1e-07,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.185685,
+    0.0
+   ],
+   "bindWorldRotation": [
+    -0.5063676,
+    0.4935502,
+    0.4935503,
+    0.5063676
+   ],
+   "A": [
+    -0.0090633,
+    0.0090633,
+    0.7070487,
+    0.7070487
+   ],
+   "A_deg": 90.01,
+   "R": [
+    0.7071068,
+    -1e-07,
+    -0.7071068,
+    0.0
+   ],
+   "canonicalLocalRotation": [
+    0.0,
+    -1e-07,
+    0.0,
+    1.0
+   ],
+   "O_fromR1": [
+    1e-07,
+    0.7071068,
+    0.0,
+    0.7071068
+   ],
+   "rule": "twist",
+   "share": -0.1,
+   "measure": "self",
+   "source": "upperarm_r",
+   "how": "local = canonicalLocal * twistY(share * a); a = twist about Y of source.canonicalLocal^-1 * source.local"
+  },
+  "thigh_r": {
+   "parent": "pelvis",
+   "head": [
+    -0.09281,
+    0.89999,
+    -0.00714
+   ],
+   "canonicalHead": [
+    -0.09281,
+    0.89999,
+    -0.00714
+   ],
+   "restLocalRotation": [
+    0.9989766,
+    -0.0406106,
+    -0.0123978,
+    0.0155856
+   ],
+   "restLocalTranslation": [
+    -0.010765,
+    -0.035481,
+    0.092545
+   ],
+   "bindWorldRotation": [
+    -0.7251061,
+    0.0302644,
+    -0.6879374,
+    0.006886
+   ],
+   "A": [
+    -0.0258176,
+    0.0004451,
+    0.0172276,
+    0.9995181
+   ],
+   "A_deg": 3.56,
+   "R": [
+    -0.725762,
+    2e-07,
+    -0.6879459,
+    2e-07
+   ],
+   "canonicalLocalRotation": [
+    -0.9998206,
+    0.0141198,
+    0.0126099,
+    0.0005775
+   ],
+   "O_fromR1": [
+    2e-07,
+    0.6879459,
+    2e-07,
+    0.725762
+   ],
+   "rule": "copy",
+   "from": "RightUpLeg"
+  },
+  "calf_r": {
+   "parent": "thigh_r",
+   "head": [
+    -0.10709,
+    0.4859,
+    -0.02856
+   ],
+   "canonicalHead": [
+    -0.09281,
+    0.48511,
+    -0.00714
+   ],
+   "restLocalRotation": [
+    0.0007472,
+    -0.0193348,
+    0.0186662,
+    0.9996385
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.414883,
+    -0.0
+   ],
+   "bindWorldRotation": [
+    -0.737575,
+    0.0431412,
+    -0.673563,
+    0.0208517
+   ],
+   "A": [
+    -0.0444749,
+    0.000794,
+    0.0178308,
+    0.998851
+   ],
+   "A_deg": 5.49,
+   "R": [
+    -0.738959,
+    0.0,
+    -0.6737504,
+    0.0
+   ],
+   "canonicalLocalRotation": [
+    -1e-07,
+    -0.0193814,
+    -2e-07,
+    0.9998122
+   ],
+   "O_fromR1": [
+    0.0,
+    0.6737504,
+    0.0,
+    0.738959
+   ],
+   "rule": "copy",
+   "from": "RightLeg"
+  },
+  "foot_r": {
+   "parent": "calf_r",
+   "head": [
+    -0.12137,
+    0.0861,
+    -0.06425
+   ],
+   "canonicalHead": [
+    -0.09281,
+    0.08346,
+    -0.00714
+   ],
+   "restLocalRotation": [
+    0.2465397,
+    0.4537473,
+    -0.461641,
+    0.7212622
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.401649,
+    -0.0
+   ],
+   "bindWorldRotation": [
+    0.2411326,
+    0.4659774,
+    0.8407502,
+    0.1336384
+   ],
+   "A": [
+    0.0,
+    -4.6e-06,
+    0.0,
+    1.0
+   ],
+   "A_deg": 0.0,
+   "R": [
+    0.2411287,
+    0.4659768,
+    0.8407513,
+    0.1336406
+   ],
+   "canonicalLocalRotation": [
+    0.2151971,
+    0.4588202,
+    -0.4343781,
+    0.7446407
+   ],
+   "O_fromR1": [
+    -0.0540454,
+    -0.2752499,
+    0.0155022,
+    0.9597272
+   ],
+   "rule": "copy",
+   "from": "RightFoot"
+  },
+  "ball_r": {
+   "parent": "foot_r",
+   "head": [
+    -0.12137,
+    0.01471,
+    0.04997
+   ],
+   "canonicalHead": [
+    -0.09281,
+    0.01206,
+    0.10709
+   ],
+   "restLocalRotation": [
+    -0.0,
+    -7.2e-06,
+    1e-07,
+    1.0
+   ],
+   "restLocalTranslation": [
+    1e-06,
+    0.134703,
+    0.0
+   ],
+   "bindWorldRotation": [
+    0.2411387,
+    0.4659764,
+    0.8407485,
+    0.1336417
+   ],
+   "A": [
+    0.0,
+    -4.6e-06,
+    0.0,
+    1.0
+   ],
+   "A_deg": 0.0,
+   "R": [
+    0.2411348,
+    0.4659757,
+    0.8407496,
+    0.1336439
+   ],
+   "canonicalLocalRotation": [
+    -0.0,
+    -7.2e-06,
+    1e-07,
+    1.0
+   ],
+   "O_fromR1": [
+    -0.2650052,
+    -0.2650085,
+    0.0760075,
+    0.9239944
+   ],
+   "rule": "copy",
+   "from": "RightToeBase"
+  },
+  "calf_twist_02_r": {
+   "parent": "calf_r",
+   "head": [
+    -0.11185,
+    0.35264,
+    -0.04046
+   ],
+   "canonicalHead": [
+    -0.09281,
+    0.35122,
+    -0.00714
+   ],
+   "restLocalRotation": [
+    1e-07,
+    7e-07,
+    -0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.133883,
+    -0.0
+   ],
+   "bindWorldRotation": [
+    -0.7375746,
+    0.0431412,
+    -0.6735635,
+    0.0208517
+   ],
+   "A": [
+    -0.0444807,
+    0.0004658,
+    0.0178161,
+    0.9988513
+   ],
+   "A_deg": 5.49,
+   "R": [
+    -0.7387371,
+    -0.0,
+    -0.6739937,
+    1e-07
+   ],
+   "canonicalLocalRotation": [
+    1e-07,
+    0.0003293,
+    -0.0,
+    0.9999999
+   ],
+   "O_fromR1": [
+    1e-07,
+    0.6739937,
+    -0.0,
+    0.7387371
+   ],
+   "rule": "twist",
+   "share": 0.411,
+   "measure": "child",
+   "source": "foot_r",
+   "how": "local = canonicalLocal * twistY(share * a); a = twist about Y of source.local * source.canonicalLocal^-1"
+  },
+  "calf_twist_01_r": {
+   "parent": "calf_r",
+   "head": [
+    -0.11661,
+    0.21937,
+    -0.05236
+   ],
+   "canonicalHead": [
+    -0.09281,
+    0.21734,
+    -0.00714
+   ],
+   "restLocalRotation": [
+    -0.0,
+    8e-07,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.267766,
+    -0.0
+   ],
+   "bindWorldRotation": [
+    -0.7375745,
+    0.0431413,
+    -0.6735636,
+    0.0208516
+   ],
+   "A": [
+    -0.0444805,
+    0.0004801,
+    0.0178168,
+    0.9988512
+   ],
+   "A_deg": 5.49,
+   "R": [
+    -0.7387468,
+    1e-07,
+    -0.6739831,
+    0.0
+   ],
+   "canonicalLocalRotation": [
+    -0.0,
+    0.000315,
+    0.0,
+    1.0
+   ],
+   "O_fromR1": [
+    0.0,
+    0.6739831,
+    1e-07,
+    0.7387468
+   ],
+   "rule": "twist",
+   "share": 0.393,
+   "measure": "child",
+   "source": "foot_r",
+   "how": "local = canonicalLocal * twistY(share * a); a = twist about Y of source.local * source.canonicalLocal^-1"
+  },
+  "thigh_twist_01_r": {
+   "parent": "thigh_r",
+   "head": [
+    -0.09757,
+    0.76196,
+    -0.01428
+   ],
+   "canonicalHead": [
+    -0.09281,
+    0.76169,
+    -0.00714
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.138294,
+    -0.0
+   ],
+   "bindWorldRotation": [
+    -0.7251061,
+    0.0302644,
+    -0.6879374,
+    0.006886
+   ],
+   "A": [
+    -0.0258176,
+    0.0004451,
+    0.0172276,
+    0.9995181
+   ],
+   "A_deg": 3.56,
+   "R": [
+    -0.725762,
+    2e-07,
+    -0.6879459,
+    2e-07
+   ],
+   "canonicalLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "O_fromR1": [
+    2e-07,
+    0.6879459,
+    2e-07,
+    0.725762
+   ],
+   "rule": "twist",
+   "share": -0.304,
+   "measure": "self",
+   "source": "thigh_r",
+   "how": "local = canonicalLocal * twistY(share * a); a = twist about Y of source.canonicalLocal^-1 * source.local"
+  },
+  "thigh_twist_02_r": {
+   "parent": "thigh_r",
+   "head": [
+    -0.10233,
+    0.62393,
+    -0.02142
+   ],
+   "canonicalHead": [
+    -0.09281,
+    0.6234,
+    -0.00714
+   ],
+   "restLocalRotation": [
+    -0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.276589,
+    -0.0
+   ],
+   "bindWorldRotation": [
+    -0.7251061,
+    0.0302644,
+    -0.6879374,
+    0.006886
+   ],
+   "A": [
+    -0.0258176,
+    0.0004451,
+    0.0172276,
+    0.9995181
+   ],
+   "A_deg": 3.56,
+   "R": [
+    -0.725762,
+    2e-07,
+    -0.6879459,
+    2e-07
+   ],
+   "canonicalLocalRotation": [
+    -0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "O_fromR1": [
+    2e-07,
+    0.6879459,
+    2e-07,
+    0.725762
+   ],
+   "rule": "twist",
+   "share": -0.026,
+   "measure": "self",
+   "source": "thigh_r",
+   "how": "local = canonicalLocal * twistY(share * a); a = twist about Y of source.canonicalLocal^-1 * source.local"
+  },
+  "thigh_l": {
+   "parent": "pelvis",
+   "head": [
+    0.09281,
+    0.89999,
+    -0.00714
+   ],
+   "canonicalHead": [
+    0.09281,
+    0.89999,
+    -0.00714
+   ],
+   "restLocalRotation": [
+    -0.998993,
+    0.0392363,
+    0.0109916,
+    0.0187785
+   ],
+   "restLocalTranslation": [
+    -0.005519,
+    -0.035481,
+    -0.093005
+   ],
+   "bindWorldRotation": [
+    -0.7244725,
+    0.0053137,
+    -0.6886046,
+    0.0305794
+   ],
+   "A": [
+    -0.0258175,
+    -0.0004449,
+    -0.0172273,
+    0.9995181
+   ],
+   "A_deg": 3.56,
+   "R": [
+    -0.724515,
+    3e-07,
+    -0.6892591,
+    1e-07
+   ],
+   "canonicalLocalRotation": [
+    -0.9998418,
+    0.0141208,
+    0.0107993,
+    0.0005518
+   ],
+   "O_fromR1": [
+    1e-07,
+    0.6892591,
+    3e-07,
+    0.724515
+   ],
+   "rule": "copy",
+   "from": "LeftUpLeg"
+  },
+  "calf_l": {
+   "parent": "thigh_l",
+   "head": [
+    0.10709,
+    0.4859,
+    -0.02856
+   ],
+   "canonicalHead": [
+    0.09281,
+    0.48511,
+    -0.00714
+   ],
+   "restLocalRotation": [
+    0.0018782,
+    -0.0180277,
+    0.0185865,
+    0.999663
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.414883,
+    0.0
+   ],
+   "bindWorldRotation": [
+    -0.7364861,
+    0.0169328,
+    -0.6747535,
+    0.0448244
+   ],
+   "A": [
+    -0.0444749,
+    -0.0007939,
+    -0.0178305,
+    0.9988511
+   ],
+   "A_deg": 5.49,
+   "R": [
+    -0.7367959,
+    0.0,
+    -0.6761152,
+    0.0
+   ],
+   "canonicalLocalRotation": [
+    1e-07,
+    -0.0179876,
+    -2e-07,
+    0.9998382
+   ],
+   "O_fromR1": [
+    0.0,
+    0.6761152,
+    0.0,
+    0.7367959
+   ],
+   "rule": "copy",
+   "from": "LeftLeg"
+  },
+  "foot_l": {
+   "parent": "calf_l",
+   "head": [
+    0.12137,
+    0.0861,
+    -0.06425
+   ],
+   "canonicalHead": [
+    0.09281,
+    0.08346,
+    -0.00714
+   ],
+   "restLocalRotation": [
+    0.2194209,
+    0.437887,
+    -0.4751312,
+    0.7309991
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.401649,
+    0.0
+   ],
+   "bindWorldRotation": [
+    0.2411147,
+    0.4659767,
+    0.8407548,
+    0.1336441
+   ],
+   "A": [
+    0.0,
+    6.2e-06,
+    0.0,
+    1.0
+   ],
+   "A_deg": 0.0,
+   "R": [
+    0.24112,
+    0.4659776,
+    0.8407533,
+    0.1336412
+   ],
+   "canonicalLocalRotation": [
+    0.2165883,
+    0.4564386,
+    -0.4336872,
+    0.7461023
+   ],
+   "O_fromR1": [
+    -0.0540458,
+    -0.2752429,
+    0.015497,
+    0.9597292
+   ],
+   "rule": "copy",
+   "from": "LeftFoot"
+  },
+  "ball_l": {
+   "parent": "foot_l",
+   "head": [
+    0.12137,
+    0.01471,
+    0.04997
+   ],
+   "canonicalHead": [
+    0.09281,
+    0.01206,
+    0.10709
+   ],
+   "restLocalRotation": [
+    -0.0,
+    8.4e-06,
+    -0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.134703,
+    1e-06
+   ],
+   "bindWorldRotation": [
+    0.2411076,
+    0.4659779,
+    0.8407568,
+    0.1336402
+   ],
+   "A": [
+    0.0,
+    6.2e-06,
+    0.0,
+    1.0
+   ],
+   "A_deg": 0.0,
+   "R": [
+    0.2411129,
+    0.4659787,
+    0.8407553,
+    0.1336373
+   ],
+   "canonicalLocalRotation": [
+    -0.0,
+    8.4e-06,
+    -0.0,
+    1.0
+   ],
+   "O_fromR1": [
+    -0.2650071,
+    -0.2649884,
+    0.0759967,
+    0.9240005
+   ],
+   "rule": "copy",
+   "from": "LeftToeBase"
+  },
+  "calf_twist_02_l": {
+   "parent": "calf_l",
+   "head": [
+    0.11185,
+    0.35264,
+    -0.04046
+   ],
+   "canonicalHead": [
+    0.09281,
+    0.35122,
+    -0.00714
+   ],
+   "restLocalRotation": [
+    -0.0,
+    6e-07,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.133883,
+    0.0
+   ],
+   "bindWorldRotation": [
+    -0.7364857,
+    0.0169328,
+    -0.674754,
+    0.0448244
+   ],
+   "A": [
+    -0.0444807,
+    -0.000465,
+    -0.0178158,
+    0.9988513
+   ],
+   "A_deg": 5.49,
+   "R": [
+    -0.737018,
+    1e-07,
+    -0.6758731,
+    0.0
+   ],
+   "canonicalLocalRotation": [
+    -0.0,
+    -0.0003286,
+    0.0,
+    0.9999999
+   ],
+   "O_fromR1": [
+    0.0,
+    0.6758731,
+    1e-07,
+    0.737018
+   ],
+   "rule": "twist",
+   "share": 0.411,
+   "measure": "child",
+   "source": "foot_l",
+   "how": "local = canonicalLocal * twistY(share * a); a = twist about Y of source.local * source.canonicalLocal^-1"
+  },
+  "calf_twist_01_l": {
+   "parent": "calf_l",
+   "head": [
+    0.11661,
+    0.21937,
+    -0.05236
+   ],
+   "canonicalHead": [
+    0.09281,
+    0.21734,
+    -0.00714
+   ],
+   "restLocalRotation": [
+    -0.0,
+    6e-07,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.267766,
+    0.0
+   ],
+   "bindWorldRotation": [
+    -0.7364857,
+    0.0169328,
+    -0.674754,
+    0.0448244
+   ],
+   "A": [
+    -0.0444805,
+    -0.0004794,
+    -0.0178165,
+    0.9988513
+   ],
+   "A_deg": 5.49,
+   "R": [
+    -0.7370083,
+    1e-07,
+    -0.6758837,
+    0.0
+   ],
+   "canonicalLocalRotation": [
+    -0.0,
+    -0.0003142,
+    0.0,
+    1.0
+   ],
+   "O_fromR1": [
+    0.0,
+    0.6758837,
+    1e-07,
+    0.7370083
+   ],
+   "rule": "twist",
+   "share": 0.393,
+   "measure": "child",
+   "source": "foot_l",
+   "how": "local = canonicalLocal * twistY(share * a); a = twist about Y of source.local * source.canonicalLocal^-1"
+  },
+  "thigh_twist_01_l": {
+   "parent": "thigh_l",
+   "head": [
+    0.09757,
+    0.76196,
+    -0.01428
+   ],
+   "canonicalHead": [
+    0.09281,
+    0.76169,
+    -0.00714
+   ],
+   "restLocalRotation": [
+    -1e-07,
+    1e-07,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.138294,
+    0.0
+   ],
+   "bindWorldRotation": [
+    -0.7244724,
+    0.0053138,
+    -0.6886046,
+    0.0305793
+   ],
+   "A": [
+    -0.0258175,
+    -0.0004449,
+    -0.0172273,
+    0.9995181
+   ],
+   "A_deg": 3.56,
+   "R": [
+    -0.7245149,
+    3e-07,
+    -0.6892591,
+    1e-07
+   ],
+   "canonicalLocalRotation": [
+    -1e-07,
+    1e-07,
+    0.0,
+    1.0
+   ],
+   "O_fromR1": [
+    1e-07,
+    0.6892591,
+    3e-07,
+    0.7245149
+   ],
+   "rule": "twist",
+   "share": -0.304,
+   "measure": "self",
+   "source": "thigh_l",
+   "how": "local = canonicalLocal * twistY(share * a); a = twist about Y of source.canonicalLocal^-1 * source.local"
+  },
+  "thigh_twist_02_l": {
+   "parent": "thigh_l",
+   "head": [
+    0.10233,
+    0.62393,
+    -0.02142
+   ],
+   "canonicalHead": [
+    0.09281,
+    0.6234,
+    -0.00714
+   ],
+   "restLocalRotation": [
+    -0.0,
+    2e-07,
+    -0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.276589,
+    0.0
+   ],
+   "bindWorldRotation": [
+    -0.7244724,
+    0.0053138,
+    -0.6886047,
+    0.0305793
+   ],
+   "A": [
+    -0.0258175,
+    -0.0004449,
+    -0.0172273,
+    0.9995181
+   ],
+   "A_deg": 3.56,
+   "R": [
+    -0.7245148,
+    3e-07,
+    -0.6892592,
+    1e-07
+   ],
+   "canonicalLocalRotation": [
+    -0.0,
+    2e-07,
+    -0.0,
+    1.0
+   ],
+   "O_fromR1": [
+    1e-07,
+    0.6892592,
+    3e-07,
+    0.7245148
+   ],
+   "rule": "twist",
+   "share": -0.026,
+   "measure": "self",
+   "source": "thigh_l",
+   "how": "local = canonicalLocal * twistY(share * a); a = twist about Y of source.canonicalLocal^-1 * source.local"
+  },
+  "ik_foot_root": {
+   "parent": "root",
+   "head": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "canonicalHead": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "bindWorldRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "A": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "A_deg": 0.0,
+   "R": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "canonicalLocalRotation": [
+    0.0,
+    -1e-07,
+    0.0,
+    1.0
+   ],
+   "O_fromR1": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rule": "ik",
+   "target": null
+  },
+  "ik_foot_l": {
+   "parent": "ik_foot_root",
+   "head": [
+    0.12137,
+    0.0861,
+    -0.06425
+   ],
+   "canonicalHead": [
+    0.12137,
+    0.0861,
+    -0.06425
+   ],
+   "restLocalRotation": [
+    0.2411147,
+    0.4659767,
+    0.8407548,
+    0.1336441
+   ],
+   "restLocalTranslation": [
+    0.121368,
+    0.0861,
+    -0.064255
+   ],
+   "bindWorldRotation": [
+    0.2411147,
+    0.4659767,
+    0.8407548,
+    0.1336441
+   ],
+   "A": [
+    -0.0,
+    6.2e-06,
+    0.0,
+    1.0
+   ],
+   "A_deg": 0.0,
+   "R": [
+    0.24112,
+    0.4659776,
+    0.8407533,
+    0.1336412
+   ],
+   "canonicalLocalRotation": [
+    0.24112,
+    0.4659776,
+    0.8407533,
+    0.1336412
+   ],
+   "O_fromR1": [
+    -0.0540458,
+    -0.2752429,
+    0.015497,
+    0.9597292
+   ],
+   "rule": "ik",
+   "target": "foot_l"
+  },
+  "ik_foot_r": {
+   "parent": "ik_foot_root",
+   "head": [
+    -0.12137,
+    0.0861,
+    -0.06425
+   ],
+   "canonicalHead": [
+    -0.12137,
+    0.0861,
+    -0.06425
+   ],
+   "restLocalRotation": [
+    0.2411326,
+    0.4659774,
+    0.8407502,
+    0.1336384
+   ],
+   "restLocalTranslation": [
+    -0.121369,
+    0.0861,
+    -0.064255
+   ],
+   "bindWorldRotation": [
+    0.2411326,
+    0.4659774,
+    0.8407502,
+    0.1336384
+   ],
+   "A": [
+    0.0,
+    -4.6e-06,
+    -0.0,
+    1.0
+   ],
+   "A_deg": 0.0,
+   "R": [
+    0.2411287,
+    0.4659768,
+    0.8407513,
+    0.1336406
+   ],
+   "canonicalLocalRotation": [
+    0.2411287,
+    0.4659768,
+    0.8407513,
+    0.1336406
+   ],
+   "O_fromR1": [
+    -0.0540454,
+    -0.2752499,
+    0.0155022,
+    0.9597272
+   ],
+   "rule": "ik",
+   "target": "foot_r"
+  },
+  "ik_hand_root": {
+   "parent": "root",
+   "head": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "canonicalHead": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "bindWorldRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "A": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "A_deg": 0.0,
+   "R": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "canonicalLocalRotation": [
+    0.0,
+    -1e-07,
+    0.0,
+    1.0
+   ],
+   "O_fromR1": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rule": "ik",
+   "target": null
+  },
+  "ik_hand_gun": {
+   "parent": "ik_hand_root",
+   "head": [
+    -0.70644,
+    1.37978,
+    -0.06946
+   ],
+   "canonicalHead": [
+    -0.70644,
+    1.37978,
+    -0.06946
+   ],
+   "restLocalRotation": [
+    0.4160396,
+    -0.3741197,
+    0.6066505,
+    0.5647307
+   ],
+   "restLocalTranslation": [
+    -0.706436,
+    1.379781,
+    -0.069461
+   ],
+   "bindWorldRotation": [
+    0.4160396,
+    -0.3741197,
+    0.6066505,
+    0.5647307
+   ],
+   "A": [
+    -0.4602817,
+    -0.4102069,
+    0.5788161,
+    0.5337068
+   ],
+   "A_deg": 115.49,
+   "R": [
+    0.0701978,
+    -0.0887139,
+    -0.9935115,
+    0.0117096
+   ],
+   "canonicalLocalRotation": [
+    0.0701978,
+    -0.0887139,
+    -0.9935115,
+    0.0117096
+   ],
+   "O_fromR1": [
+    0.0015024,
+    0.0773736,
+    0.0426009,
+    0.9960905
+   ],
+   "rule": "ik",
+   "target": "hand_r"
+  },
+  "ik_hand_l": {
+   "parent": "ik_hand_gun",
+   "head": [
+    0.70329,
+    1.38,
+    -0.07102
+   ],
+   "canonicalHead": [
+    -0.71427,
+    2.78306,
+    -0.20393
+   ],
+   "restLocalRotation": [
+    0.9772093,
+    0.0019655,
+    0.189835,
+    0.0949777
+   ],
+   "restLocalTranslation": [
+    -0.023893,
+    -1.404816,
+    0.115136
+   ],
+   "bindWorldRotation": [
+    -0.5191612,
+    -0.4794226,
+    -0.5312348,
+    0.4673491
+   ],
+   "A": [
+    -0.4570543,
+    0.4215729,
+    -0.5781276,
+    0.5283427
+   ],
+   "A_deg": 116.21,
+   "R": [
+    0.9890207,
+    -0.0010605,
+    0.112875,
+    0.0953743
+   ],
+   "canonicalLocalRotation": [
+    -0.0159531,
+    -0.9989755,
+    -0.0084117,
+    0.0415047
+   ],
+   "O_fromR1": [
+    -0.0473311,
+    -0.9931656,
+    -0.0153314,
+    0.1055784
+   ],
+   "rule": "ik",
+   "target": "hand_l"
+  },
+  "ik_hand_r": {
+   "parent": "ik_hand_gun",
+   "head": [
+    -0.70644,
+    1.37978,
+    -0.06946
+   ],
+   "canonicalHead": [
+    -0.70644,
+    1.37978,
+    -0.06946
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "bindWorldRotation": [
+    0.4160396,
+    -0.3741197,
+    0.6066505,
+    0.5647307
+   ],
+   "A": [
+    -0.4602817,
+    -0.4102069,
+    0.5788161,
+    0.5337068
+   ],
+   "A_deg": 115.49,
+   "R": [
+    0.0701978,
+    -0.0887139,
+    -0.9935115,
+    0.0117096
+   ],
+   "canonicalLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "O_fromR1": [
+    0.0015024,
+    0.0773736,
+    0.0426009,
+    0.9960905
+   ],
+   "rule": "ik",
+   "target": "hand_r"
+  }
+ },
+ "old": {
+  "Root": {
+   "rotation": "root"
+  },
+  "Hips": {
+   "rotation": "pelvis"
+  },
+  "Spine": {
+   "rotation": "spine_01"
+  },
+  "Spine1": {
+   "rotation": "spine_03"
+  },
+  "Spine2": {
+   "rotation": "spine_05"
+  },
+  "Neck": {
+   "rotation": "neck_01"
+  },
+  "Head": {
+   "rotation": "head"
+  },
+  "LeftShoulder": {
+   "rotation": "clavicle_l"
+  },
+  "LeftArm": {
+   "rotation": "upperarm_l"
+  },
+  "LeftForeArm": {
+   "rotation": "lowerarm_l"
+  },
+  "LeftHand": {
+   "rotation": "hand_l"
+  },
+  "LeftHandIndex1": {
+   "rotation": "index_01_l"
+  },
+  "LeftHandIndex2": {
+   "rotation": "index_02_l"
+  },
+  "LeftHandIndex3": {
+   "rotation": "index_03_l"
+  },
+  "LeftHandMiddle1": {
+   "rotation": "middle_01_l"
+  },
+  "LeftHandMiddle2": {
+   "rotation": "middle_02_l"
+  },
+  "LeftHandMiddle3": {
+   "rotation": "middle_03_l"
+  },
+  "LeftHandThumb1": {
+   "rotation": "thumb_01_l"
+  },
+  "LeftHandThumb2": {
+   "rotation": "thumb_02_l"
+  },
+  "LeftHandThumb3": {
+   "rotation": "thumb_03_l"
+  },
+  "LeftHandPinky1": {
+   "rotation": "pinky_01_l"
+  },
+  "LeftHandPinky2": {
+   "rotation": "pinky_02_l"
+  },
+  "LeftHandPinky3": {
+   "rotation": "pinky_03_l"
+  },
+  "LeftHandRing1": {
+   "rotation": "ring_01_l"
+  },
+  "LeftHandRing2": {
+   "rotation": "ring_02_l"
+  },
+  "LeftHandRing3": {
+   "rotation": "ring_03_l"
+  },
+  "RightShoulder": {
+   "rotation": "clavicle_r"
+  },
+  "RightArm": {
+   "rotation": "upperarm_r"
+  },
+  "RightForeArm": {
+   "rotation": "lowerarm_r"
+  },
+  "RightHand": {
+   "rotation": "hand_r"
+  },
+  "RightHandPinky1": {
+   "rotation": "pinky_01_r"
+  },
+  "RightHandPinky2": {
+   "rotation": "pinky_02_r"
+  },
+  "RightHandPinky3": {
+   "rotation": "pinky_03_r"
+  },
+  "RightHandRing1": {
+   "rotation": "ring_01_r"
+  },
+  "RightHandRing2": {
+   "rotation": "ring_02_r"
+  },
+  "RightHandRing3": {
+   "rotation": "ring_03_r"
+  },
+  "RightHandMiddle1": {
+   "rotation": "middle_01_r"
+  },
+  "RightHandMiddle2": {
+   "rotation": "middle_02_r"
+  },
+  "RightHandMiddle3": {
+   "rotation": "middle_03_r"
+  },
+  "RightHandIndex1": {
+   "rotation": "index_01_r"
+  },
+  "RightHandIndex2": {
+   "rotation": "index_02_r"
+  },
+  "RightHandIndex3": {
+   "rotation": "index_03_r"
+  },
+  "RightHandThumb1": {
+   "rotation": "thumb_01_r"
+  },
+  "RightHandThumb2": {
+   "rotation": "thumb_02_r"
+  },
+  "RightHandThumb3": {
+   "rotation": "thumb_03_r"
+  },
+  "RightUpLeg": {
+   "rotation": "thigh_r"
+  },
+  "RightLeg": {
+   "rotation": "calf_r"
+  },
+  "RightFoot": {
+   "rotation": "foot_r"
+  },
+  "RightToeBase": {
+   "rotation": "ball_r"
+  },
+  "LeftUpLeg": {
+   "rotation": "thigh_l"
+  },
+  "LeftLeg": {
+   "rotation": "calf_l"
+  },
+  "LeftFoot": {
+   "rotation": "foot_l"
+  },
+  "LeftToeBase": {
+   "rotation": "ball_l"
+  }
+ },
+ "translation": {
+  "Hips": "pelvis: canonicalHead + (clipHips - oldRestHips) * (this pelvis height / 0.92) is the simple rule; the pipeline re-solves legs"
+ },
+ "referencePoses": {
+  "bind_tpose": {
+   "note": "the bind (T-pose) as local rotations",
+   "local": {
+    "root": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ],
+    "pelvis": [
+     -0.0101326,
+     -0.6969743,
+     0.0098501,
+     0.7169568
+    ],
+    "spine_01": [
+     0.0001996,
+     -0.0141299,
+     -0.0141299,
+     0.9998003
+    ],
+    "spine_02": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ],
+    "spine_03": [
+     -0.0038611,
+     0.0620175,
+     0.0620171,
+     0.9961389
+    ],
+    "spine_04": [
+     -0.0,
+     -1e-07,
+     3e-07,
+     1.0
+    ],
+    "spine_05": [
+     0.0023682,
+     -0.0235205,
+     -0.0234076,
+     0.9994465
+    ],
+    "neck_01": [
+     0.0002223,
+     -0.0740288,
+     -0.0742334,
+     0.9944894
+    ],
+    "neck_02": [
+     0.0,
+     0.0,
+     -1e-07,
+     1.0
+    ],
+    "head": [
+     0.0,
+     -0.0,
+     1e-07,
+     1.0
+    ],
+    "clavicle_l": [
+     -0.7192642,
+     0.0743504,
+     0.0188654,
+     0.6904891
+    ],
+    "upperarm_l": [
+     0.0258626,
+     -0.0003315,
+     -0.0907062,
+     0.9955418
+    ],
+    "lowerarm_l": [
+     -0.0114198,
+     0.0001464,
+     0.0013161,
+     0.9999339
+    ],
+    "lowerarm_twist_02_l": [
+     -1.4e-06,
+     -0.0,
+     -0.0,
+     1.0
+    ],
+    "lowerarm_twist_01_l": [
+     -1.4e-06,
+     -0.0,
+     -0.0,
+     1.0
+    ],
+    "hand_l": [
+     -0.040399,
+     0.0008701,
+     -0.0261841,
+     0.9988401
+    ],
+    "index_metacarpal_l": [
+     0.0196284,
+     0.0085744,
+     -0.1606866,
+     0.986773
+    ],
+    "index_01_l": [
+     0.0177544,
+     -0.0032679,
+     0.2000405,
+     0.9796213
+    ],
+    "index_02_l": [
+     -0.0078357,
+     0.0009031,
+     -0.0494226,
+     0.9987468
+    ],
+    "index_03_l": [
+     -4.4e-06,
+     0.0,
+     0.0,
+     1.0
+    ],
+    "middle_metacarpal_l": [
+     0.0203686,
+     0.0026014,
+     -0.0453923,
+     0.9987582
+    ],
+    "middle_01_l": [
+     0.0028887,
+     -0.0016413,
+     0.0574979,
+     0.9983401
+    ],
+    "middle_02_l": [
+     -0.0212923,
+     0.0,
+     0.0,
+     0.9997733
+    ],
+    "middle_03_l": [
+     -0.0,
+     -0.0,
+     -1e-07,
+     1.0
+    ],
+    "thumb_01_l": [
+     -0.0413943,
+     0.0168786,
+     -0.3349759,
+     0.9411656
+    ],
+    "thumb_02_l": [
+     0.0677749,
+     0.0166627,
+     0.088352,
+     0.9936412
+    ],
+    "thumb_03_l": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ],
+    "pinky_metacarpal_l": [
+     -0.0309485,
+     -0.0094862,
+     0.1756347,
+     0.9839231
+    ],
+    "pinky_01_l": [
+     0.0819464,
+     -0.002923,
+     -0.1288518,
+     0.9882679
+    ],
+    "pinky_02_l": [
+     -0.0262392,
+     0.0009361,
+     -0.0093768,
+     0.9996113
+    ],
+    "pinky_03_l": [
+     -5.1e-06,
+     0.0,
+     -6e-07,
+     1.0
+    ],
+    "ring_metacarpal_l": [
+     0.0020994,
+     -0.0028869,
+     0.0561339,
+     0.9984169
+    ],
+    "ring_01_l": [
+     0.0335748,
+     -8.9e-05,
+     -0.0280571,
+     0.9990423
+    ],
+    "ring_02_l": [
+     -0.0182929,
+     0.0002773,
+     0.001094,
+     0.999832
+    ],
+    "ring_03_l": [
+     0.0,
+     -0.0,
+     1e-07,
+     1.0
+    ],
+    "upperarm_twist_01_l": [
+     -0.0,
+     -0.0,
+     0.0,
+     1.0
+    ],
+    "upperarm_twist_02_l": [
+     -0.0,
+     -0.0,
+     0.0,
+     1.0
+    ],
+    "clavicle_r": [
+     0.2457041,
+     -0.6932132,
+     -0.6762592,
+     0.0419339
+    ],
+    "upperarm_r": [
+     0.0030908,
+     -0.2411335,
+     0.0942705,
+     0.9658976
+    ],
+    "lowerarm_r": [
+     -0.0094503,
+     0.7372528,
+     -0.0072387,
+     0.6755121
+    ],
+    "lowerarm_twist_02_r": [
+     -0.0,
+     -6.1e-06,
+     -0.0,
+     1.0
+    ],
+    "lowerarm_twist_01_r": [
+     1e-07,
+     5e-07,
+     -1.4e-06,
+     1.0
+    ],
+    "hand_r": [
+     0.0153173,
+     0.8029167,
+     -0.0313413,
+     0.5950697
+    ],
+    "pinky_metacarpal_r": [
+     0.1739181,
+     -0.9629804,
+     0.0749595,
+     0.1918393
+    ],
+    "pinky_01_r": [
+     -0.1274865,
+     0.3864201,
+     0.1141675,
+     0.9063071
+    ],
+    "pinky_02_r": [
+     -0.0047382,
+     0.7066146,
+     -0.0196134,
+     0.7073109
+    ],
+    "pinky_03_r": [
+     -2e-07,
+     -1e-07,
+     2e-07,
+     1.0
+    ],
+    "ring_metacarpal_r": [
+     0.0374579,
+     -0.8893433,
+     0.0452928,
+     0.4534468
+    ],
+    "ring_01_r": [
+     -0.0339724,
+     0.4302246,
+     -0.0015315,
+     0.9020811
+    ],
+    "ring_02_r": [
+     0.002538,
+     2.7e-06,
+     -0.0012691,
+     0.999996
+    ],
+    "ring_03_r": [
+     -2.3e-06,
+     0.0,
+     2.8e-06,
+     1.0
+    ],
+    "middle_metacarpal_r": [
+     0.0337151,
+     0.7636442,
+     -0.0260839,
+     0.6442286
+    ],
+    "middle_01_r": [
+     -0.040403,
+     -0.8724494,
+     0.0264105,
+     0.4863149
+    ],
+    "middle_02_r": [
+     0.027169,
+     -1e-07,
+     1e-07,
+     0.9996309
+    ],
+    "middle_03_r": [
+     -0.0,
+     0.0,
+     0.0,
+     1.0
+    ],
+    "index_metacarpal_r": [
+     0.1569921,
+     0.9448595,
+     -0.0098736,
+     0.2872223
+    ],
+    "index_01_r": [
+     0.1310249,
+     0.8682929,
+     -0.1459519,
+     0.4556292
+    ],
+    "index_02_r": [
+     -0.0362919,
+     0.553662,
+     -0.0131757,
+     0.8318459
+    ],
+    "index_03_r": [
+     -1e-07,
+     -5e-07,
+     1e-07,
+     1.0
+    ],
+    "thumb_01_r": [
+     0.3190335,
+     0.8677376,
+     0.0249171,
+     0.3803
+    ],
+    "thumb_02_r": [
+     -0.0176057,
+     -0.0032755,
+     -0.0780118,
+     0.9967916
+    ],
+    "thumb_03_r": [
+     3e-07,
+     0.0,
+     1.1e-06,
+     1.0
+    ],
+    "upperarm_twist_01_r": [
+     0.0,
+     -1e-07,
+     0.0,
+     1.0
+    ],
+    "upperarm_twist_02_r": [
+     0.0,
+     -1e-07,
+     0.0,
+     1.0
+    ],
+    "thigh_r": [
+     0.9989766,
+     -0.0406106,
+     -0.0123978,
+     0.0155856
+    ],
+    "calf_r": [
+     0.0007472,
+     -0.0193348,
+     0.0186662,
+     0.9996385
+    ],
+    "foot_r": [
+     0.2465397,
+     0.4537473,
+     -0.461641,
+     0.7212622
+    ],
+    "ball_r": [
+     -0.0,
+     -7.2e-06,
+     1e-07,
+     1.0
+    ],
+    "calf_twist_02_r": [
+     1e-07,
+     7e-07,
+     -0.0,
+     1.0
+    ],
+    "calf_twist_01_r": [
+     -0.0,
+     8e-07,
+     0.0,
+     1.0
+    ],
+    "thigh_twist_01_r": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ],
+    "thigh_twist_02_r": [
+     -0.0,
+     0.0,
+     0.0,
+     1.0
+    ],
+    "thigh_l": [
+     -0.998993,
+     0.0392363,
+     0.0109916,
+     0.0187785
+    ],
+    "calf_l": [
+     0.0018782,
+     -0.0180277,
+     0.0185865,
+     0.999663
+    ],
+    "foot_l": [
+     0.2194209,
+     0.437887,
+     -0.4751312,
+     0.7309991
+    ],
+    "ball_l": [
+     -0.0,
+     8.4e-06,
+     -0.0,
+     1.0
+    ],
+    "calf_twist_02_l": [
+     -0.0,
+     6e-07,
+     0.0,
+     1.0
+    ],
+    "calf_twist_01_l": [
+     -0.0,
+     6e-07,
+     0.0,
+     1.0
+    ],
+    "thigh_twist_01_l": [
+     -1e-07,
+     1e-07,
+     0.0,
+     1.0
+    ],
+    "thigh_twist_02_l": [
+     -0.0,
+     2e-07,
+     -0.0,
+     1.0
+    ],
+    "ik_foot_root": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ],
+    "ik_foot_l": [
+     0.2411147,
+     0.4659767,
+     0.8407548,
+     0.1336441
+    ],
+    "ik_foot_r": [
+     0.2411326,
+     0.4659774,
+     0.8407502,
+     0.1336384
+    ],
+    "ik_hand_root": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ],
+    "ik_hand_gun": [
+     0.4160396,
+     -0.3741197,
+     0.6066505,
+     0.5647307
+    ],
+    "ik_hand_l": [
+     0.9772093,
+     0.0019655,
+     0.189835,
+     0.0949777
+    ],
+    "ik_hand_r": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "canonical": {
+   "note": "the canonical reference pose (arms down, palms forward): local = R[parent]^T R[b]; translations = bind locals",
+   "local": {
+    "root": [
+     0.0,
+     1e-07,
+     0.0,
+     1.0
+    ],
+    "pelvis": [
+     -0.0101326,
+     -0.6969743,
+     0.0098501,
+     0.7169568
+    ],
+    "spine_01": [
+     0.0001996,
+     -0.0141299,
+     -0.0141299,
+     0.9998003
+    ],
+    "spine_02": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ],
+    "spine_03": [
+     -0.0038611,
+     0.0620175,
+     0.0620171,
+     0.9961389
+    ],
+    "spine_04": [
+     -0.0,
+     -1e-07,
+     3e-07,
+     1.0
+    ],
+    "spine_05": [
+     0.0023682,
+     -0.0235205,
+     -0.0234076,
+     0.9994465
+    ],
+    "neck_01": [
+     0.0002223,
+     -0.0740288,
+     -0.0742334,
+     0.9944894
+    ],
+    "neck_02": [
+     0.0,
+     0.0,
+     -1e-07,
+     1.0
+    ],
+    "head": [
+     0.0,
+     -0.0,
+     1e-07,
+     1.0
+    ],
+    "clavicle_l": [
+     -0.7192642,
+     0.0743504,
+     0.0188654,
+     0.6904891
+    ],
+    "upperarm_l": [
+     -0.6847852,
+     0.0731565,
+     -0.0731566,
+     0.7213636
+    ],
+    "lowerarm_l": [
+     9e-07,
+     -0.0001615,
+     1e-07,
+     1.0
+    ],
+    "lowerarm_twist_02_l": [
+     -1.2e-06,
+     -0.530417,
+     3e-07,
+     0.8477369
+    ],
+    "lowerarm_twist_01_l": [
+     -1.1e-06,
+     -0.5557453,
+     3e-07,
+     0.8313526
+    ],
+    "hand_l": [
+     -0.0682013,
+     -0.6194028,
+     -0.0666783,
+     0.7792578
+    ],
+    "index_metacarpal_l": [
+     0.0196284,
+     0.0085744,
+     -0.1606866,
+     0.986773
+    ],
+    "index_01_l": [
+     0.0533894,
+     0.0001479,
+     0.1527643,
+     0.9868195
+    ],
+    "index_02_l": [
+     0.0215867,
+     0.0050686,
+     0.0177081,
+     0.9995973
+    ],
+    "index_03_l": [
+     -4.4e-06,
+     0.0,
+     0.0,
+     1.0
+    ],
+    "middle_metacarpal_l": [
+     0.0203686,
+     0.0026014,
+     -0.0453923,
+     0.9987582
+    ],
+    "middle_01_l": [
+     0.0524454,
+     0.0002166,
+     0.050069,
+     0.9973678
+    ],
+    "middle_02_l": [
+     0.0221287,
+     0.0002634,
+     0.0050847,
+     0.9997422
+    ],
+    "middle_03_l": [
+     -0.0,
+     -0.0,
+     -1e-07,
+     1.0
+    ],
+    "thumb_01_l": [
+     -0.0578738,
+     0.0358737,
+     -0.1457841,
+     0.9869705
+    ],
+    "thumb_02_l": [
+     0.0242625,
+     -0.0033274,
+     0.0183562,
+     0.9995315
+    ],
+    "thumb_03_l": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ],
+    "pinky_metacarpal_l": [
+     -0.0309485,
+     -0.0094862,
+     0.1756347,
+     0.9839231
+    ],
+    "pinky_01_l": [
+     0.1096561,
+     -0.0081978,
+     -0.169849,
+     0.9793159
+    ],
+    "pinky_02_l": [
+     0.0143377,
+     0.0014687,
+     0.0032316,
+     0.9998909
+    ],
+    "pinky_03_l": [
+     -5.1e-06,
+     0.0,
+     -6e-07,
+     1.0
+    ],
+    "ring_metacarpal_l": [
+     0.0020994,
+     -0.0028869,
+     0.0561339,
+     0.9984169
+    ],
+    "ring_01_l": [
+     0.0689415,
+     -0.0026755,
+     -0.0520397,
+     0.9962589
+    ],
+    "ring_02_l": [
+     0.0237677,
+     0.0004379,
+     0.0054125,
+     0.9997028
+    ],
+    "ring_03_l": [
+     0.0,
+     -0.0,
+     1e-07,
+     1.0
+    ],
+    "upperarm_twist_01_l": [
+     -0.0,
+     -0.0,
+     0.0,
+     1.0
+    ],
+    "upperarm_twist_02_l": [
+     -0.0,
+     -0.0,
+     0.0,
+     1.0
+    ],
+    "clavicle_r": [
+     0.2457041,
+     -0.6932132,
+     -0.6762592,
+     0.0419339
+    ],
+    "upperarm_r": [
+     -0.6820822,
+     -0.2459291,
+     -0.0951133,
+     0.6820822
+    ],
+    "lowerarm_r": [
+     -5e-07,
+     0.7374915,
+     -4e-07,
+     0.6753564
+    ],
+    "lowerarm_twist_02_r": [
+     -6e-07,
+     0.5253423,
+     1e-07,
+     0.850891
+    ],
+    "lowerarm_twist_01_r": [
+     -1.3e-06,
+     0.5505047,
+     -1.1e-06,
+     0.8348321
+    ],
+    "hand_r": [
+     -0.0155954,
+     -0.9956363,
+     0.0881137,
+     0.0264787
+    ],
+    "pinky_metacarpal_r": [
+     0.1739181,
+     -0.9629804,
+     0.0749595,
+     0.1918393
+    ],
+    "pinky_01_r": [
+     -0.11965,
+     0.3924323,
+     0.163849,
+     0.8971255
+    ],
+    "pinky_02_r": [
+     -0.0076217,
+     0.7062625,
+     0.0125964,
+     0.707797
+    ],
+    "pinky_03_r": [
+     -2e-07,
+     -1e-07,
+     2e-07,
+     1.0
+    ],
+    "ring_metacarpal_r": [
+     0.0374579,
+     -0.8893433,
+     0.0452928,
+     0.4534468
+    ],
+    "ring_01_r": [
+     -0.0598572,
+     0.4320946,
+     0.0519886,
+     0.8983365
+    ],
+    "ring_02_r": [
+     -0.0095485,
+     -0.0002749,
+     0.0224285,
+     0.9997028
+    ],
+    "ring_03_r": [
+     -2.3e-06,
+     0.0,
+     2.8e-06,
+     1.0
+    ],
+    "middle_metacarpal_r": [
+     0.0337151,
+     0.7636442,
+     -0.0260839,
+     0.6442286
+    ],
+    "middle_01_r": [
+     -0.0695756,
+     -0.8722766,
+     -0.0204273,
+     0.4836067
+    ],
+    "middle_02_r": [
+     -0.0220378,
+     -0.000346,
+     0.0054532,
+     0.9997422
+    ],
+    "middle_03_r": [
+     -0.0,
+     0.0,
+     0.0,
+     1.0
+    ],
+    "index_metacarpal_r": [
+     0.1569921,
+     0.9448595,
+     -0.0098736,
+     0.2872223
+    ],
+    "index_01_r": [
+     0.1451397,
+     0.8694297,
+     -0.0648519,
+     0.4677827
+    ],
+    "index_02_r": [
+     -0.007691,
+     0.5520571,
+     0.0268299,
+     0.833339
+    ],
+    "index_03_r": [
+     -1e-07,
+     -5e-07,
+     1e-07,
+     1.0
+    ],
+    "thumb_01_r": [
+     0.1430033,
+     0.8963576,
+     0.0601367,
+     0.415303
+    ],
+    "thumb_02_r": [
+     0.014542,
+     0.0087263,
+     -0.0267306,
+     0.9994988
+    ],
+    "thumb_03_r": [
+     3e-07,
+     0.0,
+     1.1e-06,
+     1.0
+    ],
+    "upperarm_twist_01_r": [
+     0.0,
+     -1e-07,
+     0.0,
+     1.0
+    ],
+    "upperarm_twist_02_r": [
+     0.0,
+     -1e-07,
+     0.0,
+     1.0
+    ],
+    "thigh_r": [
+     -0.9998206,
+     0.0141198,
+     0.0126099,
+     0.0005775
+    ],
+    "calf_r": [
+     -1e-07,
+     -0.0193814,
+     -2e-07,
+     0.9998122
+    ],
+    "foot_r": [
+     0.2151971,
+     0.4588202,
+     -0.4343781,
+     0.7446407
+    ],
+    "ball_r": [
+     -0.0,
+     -7.2e-06,
+     1e-07,
+     1.0
+    ],
+    "calf_twist_02_r": [
+     1e-07,
+     0.0003293,
+     -0.0,
+     0.9999999
+    ],
+    "calf_twist_01_r": [
+     -0.0,
+     0.000315,
+     0.0,
+     1.0
+    ],
+    "thigh_twist_01_r": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ],
+    "thigh_twist_02_r": [
+     -0.0,
+     0.0,
+     0.0,
+     1.0
+    ],
+    "thigh_l": [
+     -0.9998418,
+     0.0141208,
+     0.0107993,
+     0.0005518
+    ],
+    "calf_l": [
+     1e-07,
+     -0.0179876,
+     -2e-07,
+     0.9998382
+    ],
+    "foot_l": [
+     0.2165883,
+     0.4564386,
+     -0.4336872,
+     0.7461023
+    ],
+    "ball_l": [
+     -0.0,
+     8.4e-06,
+     -0.0,
+     1.0
+    ],
+    "calf_twist_02_l": [
+     -0.0,
+     -0.0003286,
+     0.0,
+     0.9999999
+    ],
+    "calf_twist_01_l": [
+     -0.0,
+     -0.0003142,
+     0.0,
+     1.0
+    ],
+    "thigh_twist_01_l": [
+     -1e-07,
+     1e-07,
+     0.0,
+     1.0
+    ],
+    "thigh_twist_02_l": [
+     -0.0,
+     2e-07,
+     -0.0,
+     1.0
+    ],
+    "ik_foot_root": [
+     0.0,
+     -1e-07,
+     0.0,
+     1.0
+    ],
+    "ik_foot_l": [
+     0.24112,
+     0.4659776,
+     0.8407533,
+     0.1336412
+    ],
+    "ik_foot_r": [
+     0.2411287,
+     0.4659768,
+     0.8407513,
+     0.1336406
+    ],
+    "ik_hand_root": [
+     0.0,
+     -1e-07,
+     0.0,
+     1.0
+    ],
+    "ik_hand_gun": [
+     0.0701978,
+     -0.0887139,
+     -0.9935115,
+     0.0117096
+    ],
+    "ik_hand_l": [
+     -0.0159531,
+     -0.9989755,
+     -0.0084117,
+     0.0415047
+    ],
+    "ik_hand_r": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   }
+  }
+ },
+ "canonicalAnatomy": {
+  "note": "target anatomical frames (columns X, Y, Z as quaternion) measured on the reference body; A[b] = C[b] * G[b]^T",
+  "reference": "public/characters/civilian-m-01-player-ue5.glb",
+  "frames": {
+   "clavicle_l": [
+    -0.5,
+    -0.5,
+    -0.5,
+    0.5
+   ],
+   "upperarm_l": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "lowerarm_l": [
+    -0.0,
+    -0.0,
+    1.0,
+    0.0
+   ],
+   "hand_l": [
+    0.0378444,
+    -0.083436,
+    -0.9949765,
+    0.0403481
+   ],
+   "index_01_l": [
+    0.0395616,
+    -0.0244571,
+    -0.998827,
+    0.013464
+   ],
+   "index_02_l": [
+    -0.0416128,
+    0.0,
+    0.9991338,
+    -0.0
+   ],
+   "index_03_l": [
+    -0.0416128,
+    0.0,
+    0.9991338,
+    -0.0
+   ],
+   "middle_01_l": [
+    0.0413349,
+    -0.0226903,
+    -0.9988872,
+    0.0009389
+   ],
+   "middle_02_l": [
+    -0.0416128,
+    0.0,
+    0.9991338,
+    -0.0
+   ],
+   "middle_03_l": [
+    -0.0416128,
+    0.0,
+    0.9991338,
+    -0.0
+   ],
+   "ring_01_l": [
+    0.0413173,
+    -0.0243477,
+    -0.9988489,
+    0.0010071
+   ],
+   "ring_02_l": [
+    -0.0416128,
+    0.0,
+    0.9991338,
+    -0.0
+   ],
+   "ring_03_l": [
+    -0.0416128,
+    0.0,
+    0.9991338,
+    -0.0
+   ],
+   "pinky_01_l": [
+    0.0414253,
+    -0.0146885,
+    -0.9990334,
+    0.0006091
+   ],
+   "pinky_02_l": [
+    -0.0416128,
+    0.0,
+    0.9991338,
+    -0.0
+   ],
+   "pinky_03_l": [
+    -0.0416128,
+    0.0,
+    0.9991338,
+    -0.0
+   ],
+   "thumb_01_l": [
+    0.3828907,
+    -0.1250437,
+    -0.897558,
+    0.1792998
+   ],
+   "thumb_02_l": [
+    0.3820231,
+    -0.1042816,
+    -0.9045429,
+    0.1580689
+   ],
+   "thumb_03_l": [
+    0.3820231,
+    -0.1042816,
+    -0.9045429,
+    0.1580689
+   ],
+   "thigh_l": [
+    1.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "calf_l": [
+    -1.0,
+    -0.0,
+    -0.0,
+    0.0
+   ],
+   "foot_l": [
+    0.0,
+    0.7071068,
+    0.7071068,
+    0.0
+   ],
+   "ball_l": [
+    0.0,
+    0.7071068,
+    0.7071068,
+    0.0
+   ],
+   "clavicle_r": [
+    -0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "upperarm_r": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "lowerarm_r": [
+    -0.0,
+    0.0,
+    -1.0,
+    0.0
+   ],
+   "hand_r": [
+    0.0378444,
+    0.083436,
+    0.9949765,
+    0.0403481
+   ],
+   "index_01_r": [
+    0.0395616,
+    0.0244571,
+    0.998827,
+    0.013464
+   ],
+   "index_02_r": [
+    0.0416128,
+    0.0,
+    0.9991338,
+    0.0
+   ],
+   "index_03_r": [
+    0.0416128,
+    0.0,
+    0.9991338,
+    0.0
+   ],
+   "middle_01_r": [
+    0.0413349,
+    0.0226903,
+    0.9988872,
+    0.0009389
+   ],
+   "middle_02_r": [
+    0.0416128,
+    0.0,
+    0.9991338,
+    0.0
+   ],
+   "middle_03_r": [
+    0.0416128,
+    0.0,
+    0.9991338,
+    0.0
+   ],
+   "ring_01_r": [
+    0.0413173,
+    0.0243477,
+    0.9988489,
+    0.0010071
+   ],
+   "ring_02_r": [
+    0.0416128,
+    0.0,
+    0.9991338,
+    0.0
+   ],
+   "ring_03_r": [
+    0.0416128,
+    0.0,
+    0.9991338,
+    0.0
+   ],
+   "pinky_01_r": [
+    0.0414253,
+    0.0146885,
+    0.9990334,
+    0.0006091
+   ],
+   "pinky_02_r": [
+    0.0416128,
+    0.0,
+    0.9991338,
+    0.0
+   ],
+   "pinky_03_r": [
+    0.0416128,
+    0.0,
+    0.9991338,
+    0.0
+   ],
+   "thumb_01_r": [
+    0.3828907,
+    0.1250437,
+    0.897558,
+    0.1792998
+   ],
+   "thumb_02_r": [
+    0.3820231,
+    0.1042816,
+    0.9045429,
+    0.1580689
+   ],
+   "thumb_03_r": [
+    0.3820231,
+    0.1042816,
+    0.9045429,
+    0.1580689
+   ],
+   "thigh_r": [
+    1.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "calf_r": [
+    -1.0,
+    -0.0,
+    -0.0,
+    0.0
+   ],
+   "foot_r": [
+    0.0,
+    0.7071068,
+    0.7071068,
+    0.0
+   ],
+   "ball_r": [
+    0.0,
+    0.7071068,
+    0.7071068,
+    0.0
+   ]
+  }
+ }
+}

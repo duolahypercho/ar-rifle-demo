@@ -1,0 +1,3822 @@
+{
+ "bodies": {
+  "tripo-player-ue5": {
+   "version": 7400,
+   "unitScaleFactor": 1.0,
+   "upAxis": 2,
+   "upSign": 1,
+   "frontAxis": 1,
+   "frontSign": -1,
+   "coordAxis": 0,
+   "coordSign": 1,
+   "timeMode": 6,
+   "fps": 30.0,
+   "bytes": 11521164,
+   "limbNodes": 89,
+   "rootBones": [
+    "root"
+   ],
+   "armatureBone": false,
+   "nonBoneModels": [
+    [
+     "Armature",
+     "Null",
+     null
+    ],
+    [
+     "SK_tripo-player-ue5",
+     "Mesh",
+     null
+    ]
+   ],
+   "bonesMatchGlb": true,
+   "parentsMatchGlb": true,
+   "extraBones": [
+    "Gun",
+    "GunIn"
+   ],
+   "heightUnits": 175.00005855867244,
+   "soleZ": 2.4764838144619716e-06,
+   "vertices": 11990,
+   "blendShapes": 0,
+   "embedded": [
+    [
+     "human_figure_3d_model_basecolor.jpg",
+     "tripo-player-ue5.fbm/human_figure_3d_model_basecolor.jpg",
+     7119216
+    ],
+    [
+     "human_figure_3d_model_normal.png",
+     "tripo-player-ue5.fbm/human_figure_3d_model_normal.png",
+     3436531
+    ]
+   ]
+  },
+  "civilian-m-01-player-ue5": {
+   "version": 7400,
+   "unitScaleFactor": 1.0,
+   "upAxis": 2,
+   "upSign": 1,
+   "frontAxis": 1,
+   "frontSign": -1,
+   "coordAxis": 0,
+   "coordSign": 1,
+   "timeMode": 6,
+   "fps": 30.0,
+   "bytes": 8023996,
+   "limbNodes": 92,
+   "rootBones": [
+    "root"
+   ],
+   "armatureBone": false,
+   "nonBoneModels": [
+    [
+     "Armature",
+     "Null",
+     null
+    ],
+    [
+     "SK_civilian-m-01-player-ue5",
+     "Mesh",
+     null
+    ]
+   ],
+   "bonesMatchGlb": true,
+   "parentsMatchGlb": true,
+   "extraBones": [
+    "Gun",
+    "GunIn"
+   ],
+   "heightUnits": 175.66617161035538,
+   "soleZ": -0.6661716103553772,
+   "vertices": 14316,
+   "blendShapes": 16,
+   "embedded": [
+    [
+     "basecolor-2048.png",
+     "civilian-m-01-player-ue5.fbm/basecolor-2048.png",
+     3291963
+    ],
+    [
+     "normal-2048.png",
+     "civilian-m-01-player-ue5.fbm/normal-2048.png",
+     2793460
+    ]
+   ]
+  },
+  "civilian-police-m-hero-ue5": {
+   "version": 7400,
+   "unitScaleFactor": 1.0,
+   "upAxis": 2,
+   "upSign": 1,
+   "frontAxis": 1,
+   "frontSign": -1,
+   "coordAxis": 0,
+   "coordSign": 1,
+   "timeMode": 6,
+   "fps": 30.0,
+   "bytes": 2400652,
+   "limbNodes": 92,
+   "rootBones": [
+    "root"
+   ],
+   "armatureBone": false,
+   "nonBoneModels": [
+    [
+     "Armature",
+     "Null",
+     null
+    ],
+    [
+     "SK_civilian-police-m-hero-ue5",
+     "Mesh",
+     null
+    ]
+   ],
+   "bonesMatchGlb": true,
+   "parentsMatchGlb": true,
+   "extraBones": [
+    "Gun",
+    "GunIn"
+   ],
+   "heightUnits": 175.52887606620789,
+   "soleZ": -0.5288760662078857,
+   "vertices": 7203,
+   "blendShapes": 16,
+   "embedded": [
+    [
+     "hero-basecolor-1024.png",
+     "civilian-police-m-hero-ue5.fbm/hero-basecolor-1024.png",
+     799327
+    ],
+    [
+     "hero-normal-1024.png",
+     "civilian-police-m-hero-ue5.fbm/hero-normal-1024.png",
+     592442
+    ]
+   ]
+  },
+  "civilian-f-02-hero-ue5": {
+   "version": 7400,
+   "unitScaleFactor": 1.0,
+   "upAxis": 2,
+   "upSign": 1,
+   "frontAxis": 1,
+   "frontSign": -1,
+   "coordAxis": 0,
+   "coordSign": 1,
+   "timeMode": 6,
+   "fps": 30.0,
+   "bytes": 2586412,
+   "limbNodes": 92,
+   "rootBones": [
+    "root"
+   ],
+   "armatureBone": false,
+   "nonBoneModels": [
+    [
+     "Armature",
+     "Null",
+     null
+    ],
+    [
+     "SK_civilian-f-02-hero-ue5",
+     "Mesh",
+     null
+    ]
+   ],
+   "bonesMatchGlb": true,
+   "parentsMatchGlb": true,
+   "extraBones": [
+    "Gun",
+    "GunIn"
+   ],
+   "heightUnits": 175.58060312271118,
+   "soleZ": -0.5806031227111816,
+   "vertices": 7609,
+   "blendShapes": 16,
+   "embedded": [
+    [
+     "hero-basecolor-1024.png",
+     "civilian-f-02-hero-ue5.fbm/hero-basecolor-1024.png",
+     889687
+    ],
+    [
+     "hero-normal-1024.png",
+     "civilian-f-02-hero-ue5.fbm/hero-normal-1024.png",
+     592650
+    ]
+   ]
+  },
+  "civilian-m-03-hero-ue5": {
+   "version": 7400,
+   "unitScaleFactor": 1.0,
+   "upAxis": 2,
+   "upSign": 1,
+   "frontAxis": 1,
+   "frontSign": -1,
+   "coordAxis": 0,
+   "coordSign": 1,
+   "timeMode": 6,
+   "fps": 30.0,
+   "bytes": 2513116,
+   "limbNodes": 92,
+   "rootBones": [
+    "root"
+   ],
+   "armatureBone": false,
+   "nonBoneModels": [
+    [
+     "Armature",
+     "Null",
+     null
+    ],
+    [
+     "SK_civilian-m-03-hero-ue5",
+     "Mesh",
+     null
+    ]
+   ],
+   "bonesMatchGlb": true,
+   "parentsMatchGlb": true,
+   "extraBones": [
+    "Gun",
+    "GunIn"
+   ],
+   "heightUnits": 175.6514492034912,
+   "soleZ": -0.6514492034912109,
+   "vertices": 7132,
+   "blendShapes": 16,
+   "embedded": [
+    [
+     "hero-basecolor-1024.png",
+     "civilian-m-03-hero-ue5.fbm/hero-basecolor-1024.png",
+     925340
+    ],
+    [
+     "hero-normal-1024.png",
+     "civilian-m-03-hero-ue5.fbm/hero-normal-1024.png",
+     519595
+    ]
+   ]
+  }
+ },
+ "animations": {
+  "tripo": {
+   "swap-shotgun-rifle": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "swap-shotgun-rifle"
+    ],
+    "frames": 41,
+    "glbKeys": 41,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 802012
+   },
+   "reload-shotgun-start": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "reload-shotgun-start"
+    ],
+    "frames": 13,
+    "glbKeys": 13,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 636348
+   },
+   "reload-shotgun-shell": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "reload-shotgun-shell"
+    ],
+    "frames": 19,
+    "glbKeys": 19,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 671180
+   },
+   "reload-shotgun-end": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "reload-shotgun-end"
+    ],
+    "frames": 14,
+    "glbKeys": 14,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 646060
+   },
+   "reload-shotgun-end-pump": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "reload-shotgun-end-pump"
+    ],
+    "frames": 30,
+    "glbKeys": 30,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 761916
+   },
+   "shotgun-pump": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "shotgun-pump"
+    ],
+    "frames": 19,
+    "glbKeys": 19,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 671132
+   },
+   "shotgun-aim-level": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "shotgun-aim-level"
+    ],
+    "frames": 2,
+    "glbKeys": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 529404
+   },
+   "shotgun-aim-up": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "shotgun-aim-up"
+    ],
+    "frames": 2,
+    "glbKeys": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 529388
+   },
+   "shotgun-aim-down": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "shotgun-aim-down"
+    ],
+    "frames": 2,
+    "glbKeys": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 529404
+   },
+   "rifle-idle": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-idle"
+    ],
+    "frames": 241,
+    "glbKeys": 241,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 1868892
+   },
+   "rifle-hold-low": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-hold-low"
+    ],
+    "frames": 2,
+    "glbKeys": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 529388
+   },
+   "rifle-hold-high": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-hold-high"
+    ],
+    "frames": 2,
+    "glbKeys": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 529404
+   },
+   "rifle-walk-f": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-f"
+    ],
+    "frames": 63,
+    "glbKeys": 63,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 923260
+   },
+   "rifle-walk-fl": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-fl"
+    ],
+    "frames": 47,
+    "glbKeys": 47,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 834444
+   },
+   "rifle-walk-l": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-l"
+    ],
+    "frames": 37,
+    "glbKeys": 37,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 770156
+   },
+   "rifle-walk-bl": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-bl"
+    ],
+    "frames": 52,
+    "glbKeys": 52,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 866268
+   },
+   "rifle-walk-b": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-b"
+    ],
+    "frames": 67,
+    "glbKeys": 67,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 944988
+   },
+   "rifle-walk-br": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-br"
+    ],
+    "frames": 52,
+    "glbKeys": 52,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 866732
+   },
+   "rifle-walk-r": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-r"
+    ],
+    "frames": 37,
+    "glbKeys": 37,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 770012
+   },
+   "rifle-walk-fr": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-fr"
+    ],
+    "frames": 47,
+    "glbKeys": 47,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 834268
+   },
+   "rifle-jog-f": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-f"
+    ],
+    "frames": 57,
+    "glbKeys": 57,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 892972
+   },
+   "rifle-jog-fl": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-fl"
+    ],
+    "frames": 49,
+    "glbKeys": 49,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 847964
+   },
+   "rifle-jog-l": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-l"
+    ],
+    "frames": 31,
+    "glbKeys": 31,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 769948
+   },
+   "rifle-jog-bl": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-bl"
+    ],
+    "frames": 47,
+    "glbKeys": 47,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 834860
+   },
+   "rifle-jog-b": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-b"
+    ],
+    "frames": 47,
+    "glbKeys": 47,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 834908
+   },
+   "rifle-jog-br": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-br"
+    ],
+    "frames": 47,
+    "glbKeys": 47,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 835004
+   },
+   "rifle-jog-r": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-r"
+    ],
+    "frames": 31,
+    "glbKeys": 31,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 769948
+   },
+   "rifle-jog-fr": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-fr"
+    ],
+    "frames": 49,
+    "glbKeys": 49,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 848204
+   },
+   "rifle-sprint": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-sprint"
+    ],
+    "frames": 53,
+    "glbKeys": 53,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 872092
+   },
+   "rifle-pivot-l45": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-pivot-l45"
+    ],
+    "frames": 20,
+    "glbKeys": 20,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 679244,
+    "rootTravelCm": 5.525921642585968,
+    "rootTravelErrCm": 3.9291381881412235e-07
+   },
+   "rifle-pivot-l90": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-pivot-l90"
+    ],
+    "frames": 25,
+    "glbKeys": 25,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 720556,
+    "rootTravelCm": 10.210350140910936,
+    "rootTravelErrCm": 9.76562500198952e-07
+   },
+   "rifle-pivot-l135": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-pivot-l135"
+    ],
+    "frames": 32,
+    "glbKeys": 32,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 778876,
+    "rootTravelCm": 13.340404791459667,
+    "rootTravelErrCm": 1.4038085947021273e-06
+   },
+   "rifle-pivot-l180": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-pivot-l180"
+    ],
+    "frames": 37,
+    "glbKeys": 37,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 771148,
+    "rootTravelCm": 14.439615645854289,
+    "rootTravelErrCm": 8.617500419916269e-07
+   },
+   "rifle-pivot-r45": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-pivot-r45"
+    ],
+    "frames": 20,
+    "glbKeys": 20,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 679244,
+    "rootTravelCm": 7.093905905775746,
+    "rootTravelErrCm": 4.043579098222949e-07
+   },
+   "rifle-pivot-r90": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-pivot-r90"
+    ],
+    "frames": 25,
+    "glbKeys": 25,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 720556,
+    "rootTravelCm": 13.108060497266559,
+    "rootTravelErrCm": 9.384155266189964e-07
+   },
+   "rifle-pivot-r135": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-pivot-r135"
+    ],
+    "frames": 32,
+    "glbKeys": 32,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 778876,
+    "rootTravelCm": 17.126800080575475,
+    "rootTravelErrCm": 1.6326904290764332e-06
+   },
+   "rifle-pivot-r180": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-pivot-r180"
+    ],
+    "frames": 37,
+    "glbKeys": 37,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 770972,
+    "rootTravelCm": 18.53759693164138,
+    "rootTravelErrCm": 8.544921872299938e-07
+   },
+   "rifle-walk-start": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-start"
+    ],
+    "frames": 25,
+    "glbKeys": 25,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 720556,
+    "rootTravelCm": 86.033,
+    "rootTravelErrCm": 7.232666014544975e-06
+   },
+   "rifle-jog-start": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-start"
+    ],
+    "frames": 29,
+    "glbKeys": 29,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 753772,
+    "rootTravelCm": 216.03500000000003,
+    "rootTravelErrCm": 8.544921882958079e-06
+   },
+   "rifle-walk-stop-0": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-stop-0"
+    ],
+    "frames": 27,
+    "glbKeys": 27,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 737580,
+    "rootTravelCm": 32.625,
+    "rootTravelErrCm": 3.1738281265347723e-06
+   },
+   "rifle-walk-stop-1": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-stop-1"
+    ],
+    "frames": 27,
+    "glbKeys": 27,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 737580,
+    "rootTravelCm": 32.625,
+    "rootTravelErrCm": 3.1738281265347723e-06
+   },
+   "rifle-walk-stop-2": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-stop-2"
+    ],
+    "frames": 27,
+    "glbKeys": 27,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 737580,
+    "rootTravelCm": 32.625,
+    "rootTravelErrCm": 3.1738281265347723e-06
+   },
+   "rifle-walk-stop-3": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-stop-3"
+    ],
+    "frames": 31,
+    "glbKeys": 31,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 769980,
+    "rootTravelCm": 32.625,
+    "rootTravelErrCm": 3.1738281265347723e-06
+   },
+   "rifle-walk-stop-4": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-stop-4"
+    ],
+    "frames": 28,
+    "glbKeys": 28,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 745676,
+    "rootTravelCm": 32.625,
+    "rootTravelErrCm": 3.1738281265347723e-06
+   },
+   "rifle-walk-stop-5": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-stop-5"
+    ],
+    "frames": 27,
+    "glbKeys": 27,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 737580,
+    "rootTravelCm": 32.625,
+    "rootTravelErrCm": 3.1738281265347723e-06
+   },
+   "rifle-walk-stop-6": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-stop-6"
+    ],
+    "frames": 27,
+    "glbKeys": 27,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 737580,
+    "rootTravelCm": 32.625,
+    "rootTravelErrCm": 3.1738281265347723e-06
+   },
+   "rifle-walk-stop-7": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-stop-7"
+    ],
+    "frames": 30,
+    "glbKeys": 30,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 761884,
+    "rootTravelCm": 32.625,
+    "rootTravelErrCm": 3.1738281265347723e-06
+   },
+   "rifle-jog-stop-0": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-stop-0"
+    ],
+    "frames": 27,
+    "glbKeys": 27,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 737580,
+    "rootTravelCm": 99.0,
+    "rootTravelErrCm": 6.164550782727929e-06
+   },
+   "rifle-jog-stop-1": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-stop-1"
+    ],
+    "frames": 32,
+    "glbKeys": 32,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 778876,
+    "rootTravelCm": 99.0,
+    "rootTravelErrCm": 6.164550782727929e-06
+   },
+   "rifle-jog-stop-2": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-stop-2"
+    ],
+    "frames": 30,
+    "glbKeys": 30,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 761868,
+    "rootTravelCm": 99.0,
+    "rootTravelErrCm": 6.164550782727929e-06
+   },
+   "rifle-jog-stop-3": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-stop-3"
+    ],
+    "frames": 29,
+    "glbKeys": 29,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 753772,
+    "rootTravelCm": 99.0,
+    "rootTravelErrCm": 6.164550782727929e-06
+   },
+   "rifle-jog-stop-4": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-stop-4"
+    ],
+    "frames": 27,
+    "glbKeys": 27,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 737580,
+    "rootTravelCm": 99.0,
+    "rootTravelErrCm": 6.164550782727929e-06
+   },
+   "rifle-jog-stop-5": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-stop-5"
+    ],
+    "frames": 27,
+    "glbKeys": 27,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 737580,
+    "rootTravelCm": 99.0,
+    "rootTravelErrCm": 6.164550782727929e-06
+   },
+   "rifle-jog-stop-6": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-stop-6"
+    ],
+    "frames": 30,
+    "glbKeys": 30,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 761868,
+    "rootTravelCm": 99.0,
+    "rootTravelErrCm": 6.164550782727929e-06
+   },
+   "rifle-jog-stop-7": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-stop-7"
+    ],
+    "frames": 29,
+    "glbKeys": 29,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 753772,
+    "rootTravelCm": 99.0,
+    "rootTravelErrCm": 6.164550782727929e-06
+   },
+   "rifle-run-turn-l": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-run-turn-l"
+    ],
+    "frames": 27,
+    "glbKeys": 27,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 737580,
+    "rootTravelCm": 46.69946466502587,
+    "rootTravelErrCm": 8.331298829489242e-06
+   },
+   "rifle-run-turn-r": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-run-turn-r"
+    ],
+    "frames": 27,
+    "glbKeys": 27,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 737580,
+    "rootTravelCm": 46.69946466502587,
+    "rootTravelErrCm": 8.331298829489242e-06
+   },
+   "rifle-crouch-idle": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-crouch-idle"
+    ],
+    "frames": 271,
+    "glbKeys": 271,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 2027996
+   },
+   "rifle-crouch-walk-f": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-crouch-walk-f"
+    ],
+    "frames": 70,
+    "glbKeys": 70,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 970956
+   },
+   "rifle-crouch-walk-fl": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-crouch-walk-fl"
+    ],
+    "frames": 57,
+    "glbKeys": 57,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 891324
+   },
+   "rifle-crouch-walk-l": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-crouch-walk-l"
+    ],
+    "frames": 46,
+    "glbKeys": 46,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 827948
+   },
+   "rifle-crouch-walk-bl": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-crouch-walk-bl"
+    ],
+    "frames": 61,
+    "glbKeys": 61,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 913308
+   },
+   "rifle-crouch-walk-b": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-crouch-walk-b"
+    ],
+    "frames": 76,
+    "glbKeys": 76,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 1002860
+   },
+   "rifle-crouch-walk-br": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-crouch-walk-br"
+    ],
+    "frames": 61,
+    "glbKeys": 61,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 913660
+   },
+   "rifle-crouch-walk-r": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-crouch-walk-r"
+    ],
+    "frames": 46,
+    "glbKeys": 46,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 827996
+   },
+   "rifle-crouch-walk-fr": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-crouch-walk-fr"
+    ],
+    "frames": 57,
+    "glbKeys": 57,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 891052
+   },
+   "rifle-crouch-down": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-crouch-down"
+    ],
+    "frames": 14,
+    "glbKeys": 14,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 646044
+   },
+   "rifle-crouch-up": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-crouch-up"
+    ],
+    "frames": 14,
+    "glbKeys": 14,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 646044
+   },
+   "swap-rifle-shotgun": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "swap-rifle-shotgun"
+    ],
+    "frames": 41,
+    "glbKeys": 41,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 802172
+   },
+   "reload-rifle-tac": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "reload-rifle-tac"
+    ],
+    "frames": 70,
+    "glbKeys": 70,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 976556
+   },
+   "reload-rifle-empty": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "reload-rifle-empty"
+    ],
+    "frames": 89,
+    "glbKeys": 89,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 1078412
+   },
+   "rifle-aim-level": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-aim-level"
+    ],
+    "frames": 2,
+    "glbKeys": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 529404
+   },
+   "rifle-aim-up": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-aim-up"
+    ],
+    "frames": 2,
+    "glbKeys": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 529372
+   },
+   "rifle-aim-down": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-aim-down"
+    ],
+    "frames": 2,
+    "glbKeys": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 529388
+   },
+   "hit-light-f": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "hit-light-f"
+    ],
+    "frames": 13,
+    "glbKeys": 13,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 636300
+   },
+   "hit-light-b": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "hit-light-b"
+    ],
+    "frames": 13,
+    "glbKeys": 13,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 636300
+   },
+   "hit-light-l": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "hit-light-l"
+    ],
+    "frames": 13,
+    "glbKeys": 13,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 636300
+   },
+   "hit-light-r": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "hit-light-r"
+    ],
+    "frames": 13,
+    "glbKeys": 13,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 636300
+   },
+   "hit-heavy-f": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "hit-heavy-f"
+    ],
+    "frames": 28,
+    "glbKeys": 28,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 745644
+   },
+   "hit-heavy-b": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "hit-heavy-b"
+    ],
+    "frames": 28,
+    "glbKeys": 28,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 745644
+   }
+  },
+  "earthonline": {
+   "swap-shotgun-rifle": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "swap-shotgun-rifle"
+    ],
+    "frames": 41,
+    "glbKeys": 41,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 827820
+   },
+   "reload-shotgun-start": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "reload-shotgun-start"
+    ],
+    "frames": 13,
+    "glbKeys": 13,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 657132
+   },
+   "reload-shotgun-shell": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "reload-shotgun-shell"
+    ],
+    "frames": 19,
+    "glbKeys": 19,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 693132
+   },
+   "reload-shotgun-end": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "reload-shotgun-end"
+    ],
+    "frames": 14,
+    "glbKeys": 14,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 667164
+   },
+   "reload-shotgun-end-pump": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "reload-shotgun-end-pump"
+    ],
+    "frames": 30,
+    "glbKeys": 30,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 786892
+   },
+   "shotgun-pump": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "shotgun-pump"
+    ],
+    "frames": 19,
+    "glbKeys": 19,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 693084
+   },
+   "shotgun-aim-level": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "shotgun-aim-level"
+    ],
+    "frames": 2,
+    "glbKeys": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 546636
+   },
+   "shotgun-aim-up": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "shotgun-aim-up"
+    ],
+    "frames": 2,
+    "glbKeys": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 546620
+   },
+   "shotgun-aim-down": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "shotgun-aim-down"
+    ],
+    "frames": 2,
+    "glbKeys": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 546636
+   },
+   "rifle-idle": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-idle"
+    ],
+    "frames": 241,
+    "glbKeys": 241,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 1948508
+   },
+   "rifle-hold-low": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-hold-low"
+    ],
+    "frames": 2,
+    "glbKeys": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 546620
+   },
+   "rifle-hold-high": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-hold-high"
+    ],
+    "frames": 2,
+    "glbKeys": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 546620
+   },
+   "rifle-walk-f": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-f"
+    ],
+    "frames": 63,
+    "glbKeys": 63,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 956732
+   },
+   "rifle-walk-fl": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-fl"
+    ],
+    "frames": 47,
+    "glbKeys": 47,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 863868
+   },
+   "rifle-walk-l": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-l"
+    ],
+    "frames": 37,
+    "glbKeys": 37,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 796508
+   },
+   "rifle-walk-bl": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-bl"
+    ],
+    "frames": 52,
+    "glbKeys": 52,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 896876
+   },
+   "rifle-walk-b": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-b"
+    ],
+    "frames": 67,
+    "glbKeys": 67,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 978972
+   },
+   "rifle-walk-br": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-br"
+    ],
+    "frames": 52,
+    "glbKeys": 52,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 896828
+   },
+   "rifle-walk-r": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-r"
+    ],
+    "frames": 37,
+    "glbKeys": 37,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 796924
+   },
+   "rifle-walk-fr": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-fr"
+    ],
+    "frames": 47,
+    "glbKeys": 47,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 863612
+   },
+   "rifle-jog-f": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-f"
+    ],
+    "frames": 57,
+    "glbKeys": 57,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 925244
+   },
+   "rifle-jog-fl": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-fl"
+    ],
+    "frames": 49,
+    "glbKeys": 49,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 877948
+   },
+   "rifle-jog-l": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-l"
+    ],
+    "frames": 31,
+    "glbKeys": 31,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 795196
+   },
+   "rifle-jog-bl": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-bl"
+    ],
+    "frames": 47,
+    "glbKeys": 47,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 864140
+   },
+   "rifle-jog-b": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-b"
+    ],
+    "frames": 47,
+    "glbKeys": 47,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 864012
+   },
+   "rifle-jog-br": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-br"
+    ],
+    "frames": 47,
+    "glbKeys": 47,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 863852
+   },
+   "rifle-jog-r": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-r"
+    ],
+    "frames": 31,
+    "glbKeys": 31,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 795196
+   },
+   "rifle-jog-fr": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-fr"
+    ],
+    "frames": 49,
+    "glbKeys": 49,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 878092
+   },
+   "rifle-sprint": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-sprint"
+    ],
+    "frames": 53,
+    "glbKeys": 53,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 903356
+   },
+   "rifle-pivot-l45": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-pivot-l45"
+    ],
+    "frames": 20,
+    "glbKeys": 20,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 701468,
+    "rootTravelCm": 5.429530090164341,
+    "rootTravelErrCm": 4.5013427740769885e-07
+   },
+   "rifle-pivot-l90": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-pivot-l90"
+    ],
+    "frames": 25,
+    "glbKeys": 25,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 744156,
+    "rootTravelCm": 10.031948963187562,
+    "rootTravelErrCm": 5.493164074721335e-07
+   },
+   "rifle-pivot-l135": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-pivot-l135"
+    ],
+    "frames": 32,
+    "glbKeys": 32,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 804428,
+    "rootTravelCm": 13.107455779059489,
+    "rootTravelErrCm": 7.934570316336931e-07
+   },
+   "rifle-pivot-l180": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-pivot-l180"
+    ],
+    "frames": 37,
+    "glbKeys": 37,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 797884,
+    "rootTravelCm": 14.187318280774559,
+    "rootTravelErrCm": 7.705688469528127e-07
+   },
+   "rifle-pivot-r45": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-pivot-r45"
+    ],
+    "frames": 20,
+    "glbKeys": 20,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 701468,
+    "rootTravelCm": 6.661630806341642,
+    "rootTravelErrCm": 4.196166987213701e-07
+   },
+   "rifle-pivot-r90": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-pivot-r90"
+    ],
+    "frames": 25,
+    "glbKeys": 25,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 744156,
+    "rootTravelCm": 12.310158406779339,
+    "rootTravelErrCm": 1.3809204091330685e-06
+   },
+   "rifle-pivot-r135": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-pivot-r135"
+    ],
+    "frames": 32,
+    "glbKeys": 32,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 804428,
+    "rootTravelCm": 16.083455008175328,
+    "rootTravelErrCm": 1.281738281733169e-06
+   },
+   "rifle-pivot-r180": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-pivot-r180"
+    ],
+    "frames": 37,
+    "glbKeys": 37,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 798124,
+    "rootTravelCm": 17.40919297382851,
+    "rootTravelErrCm": 9.307861343899049e-07
+   },
+   "rifle-walk-start": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-start"
+    ],
+    "frames": 25,
+    "glbKeys": 25,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 744156,
+    "rootTravelCm": 86.033,
+    "rootTravelErrCm": 7.232666014544975e-06
+   },
+   "rifle-jog-start": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-start"
+    ],
+    "frames": 29,
+    "glbKeys": 29,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 778476,
+    "rootTravelCm": 216.03500000000003,
+    "rootTravelErrCm": 8.544921882958079e-06
+   },
+   "rifle-walk-stop-0": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-stop-0"
+    ],
+    "frames": 27,
+    "glbKeys": 27,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 761740,
+    "rootTravelCm": 32.625,
+    "rootTravelErrCm": 3.1738281265347723e-06
+   },
+   "rifle-walk-stop-1": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-stop-1"
+    ],
+    "frames": 27,
+    "glbKeys": 27,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 761740,
+    "rootTravelCm": 32.625,
+    "rootTravelErrCm": 3.1738281265347723e-06
+   },
+   "rifle-walk-stop-2": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-stop-2"
+    ],
+    "frames": 27,
+    "glbKeys": 27,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 761740,
+    "rootTravelCm": 32.625,
+    "rootTravelErrCm": 3.1738281265347723e-06
+   },
+   "rifle-walk-stop-3": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-stop-3"
+    ],
+    "frames": 31,
+    "glbKeys": 31,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 795228,
+    "rootTravelCm": 32.625,
+    "rootTravelErrCm": 3.1738281265347723e-06
+   },
+   "rifle-walk-stop-4": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-stop-4"
+    ],
+    "frames": 28,
+    "glbKeys": 28,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 770124,
+    "rootTravelCm": 32.625,
+    "rootTravelErrCm": 3.1738281265347723e-06
+   },
+   "rifle-walk-stop-5": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-stop-5"
+    ],
+    "frames": 27,
+    "glbKeys": 27,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 761740,
+    "rootTravelCm": 32.625,
+    "rootTravelErrCm": 3.1738281265347723e-06
+   },
+   "rifle-walk-stop-6": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-stop-6"
+    ],
+    "frames": 27,
+    "glbKeys": 27,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 761740,
+    "rootTravelCm": 32.625,
+    "rootTravelErrCm": 3.1738281265347723e-06
+   },
+   "rifle-walk-stop-7": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-walk-stop-7"
+    ],
+    "frames": 30,
+    "glbKeys": 30,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 786860,
+    "rootTravelCm": 32.625,
+    "rootTravelErrCm": 3.1738281265347723e-06
+   },
+   "rifle-jog-stop-0": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-stop-0"
+    ],
+    "frames": 27,
+    "glbKeys": 27,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 761740,
+    "rootTravelCm": 99.0,
+    "rootTravelErrCm": 6.164550782727929e-06
+   },
+   "rifle-jog-stop-1": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-stop-1"
+    ],
+    "frames": 32,
+    "glbKeys": 32,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 804428,
+    "rootTravelCm": 99.0,
+    "rootTravelErrCm": 6.164550782727929e-06
+   },
+   "rifle-jog-stop-2": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-stop-2"
+    ],
+    "frames": 30,
+    "glbKeys": 30,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 786844,
+    "rootTravelCm": 99.0,
+    "rootTravelErrCm": 6.164550782727929e-06
+   },
+   "rifle-jog-stop-3": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-stop-3"
+    ],
+    "frames": 29,
+    "glbKeys": 29,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 778476,
+    "rootTravelCm": 99.0,
+    "rootTravelErrCm": 6.164550782727929e-06
+   },
+   "rifle-jog-stop-4": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-stop-4"
+    ],
+    "frames": 27,
+    "glbKeys": 27,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 761740,
+    "rootTravelCm": 99.0,
+    "rootTravelErrCm": 6.164550782727929e-06
+   },
+   "rifle-jog-stop-5": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-stop-5"
+    ],
+    "frames": 32,
+    "glbKeys": 32,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 804428,
+    "rootTravelCm": 99.0,
+    "rootTravelErrCm": 6.164550782727929e-06
+   },
+   "rifle-jog-stop-6": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-stop-6"
+    ],
+    "frames": 30,
+    "glbKeys": 30,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 786844,
+    "rootTravelCm": 99.0,
+    "rootTravelErrCm": 6.164550782727929e-06
+   },
+   "rifle-jog-stop-7": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-jog-stop-7"
+    ],
+    "frames": 29,
+    "glbKeys": 29,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 778476,
+    "rootTravelCm": 99.0,
+    "rootTravelErrCm": 6.164550782727929e-06
+   },
+   "rifle-run-turn-l": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-run-turn-l"
+    ],
+    "frames": 27,
+    "glbKeys": 27,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 761740,
+    "rootTravelCm": 46.69946466502587,
+    "rootTravelErrCm": 8.331298829489242e-06
+   },
+   "rifle-run-turn-r": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-run-turn-r"
+    ],
+    "frames": 27,
+    "glbKeys": 27,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 761740,
+    "rootTravelCm": 46.69946466502587,
+    "rootTravelErrCm": 8.331298829489242e-06
+   },
+   "rifle-crouch-idle": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-crouch-idle"
+    ],
+    "frames": 271,
+    "glbKeys": 271,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 2117788
+   },
+   "rifle-crouch-walk-f": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-crouch-walk-f"
+    ],
+    "frames": 70,
+    "glbKeys": 70,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 1007164
+   },
+   "rifle-crouch-walk-fl": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-crouch-walk-fl"
+    ],
+    "frames": 57,
+    "glbKeys": 57,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 923548
+   },
+   "rifle-crouch-walk-l": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-crouch-walk-l"
+    ],
+    "frames": 46,
+    "glbKeys": 46,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 857516
+   },
+   "rifle-crouch-walk-bl": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-crouch-walk-bl"
+    ],
+    "frames": 61,
+    "glbKeys": 61,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 946588
+   },
+   "rifle-crouch-walk-b": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-crouch-walk-b"
+    ],
+    "frames": 76,
+    "glbKeys": 76,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 1040588
+   },
+   "rifle-crouch-walk-br": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-crouch-walk-br"
+    ],
+    "frames": 61,
+    "glbKeys": 61,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 946684
+   },
+   "rifle-crouch-walk-r": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-crouch-walk-r"
+    ],
+    "frames": 46,
+    "glbKeys": 46,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 857468
+   },
+   "rifle-crouch-walk-fr": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-crouch-walk-fr"
+    ],
+    "frames": 57,
+    "glbKeys": 57,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 923564
+   },
+   "rifle-crouch-down": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-crouch-down"
+    ],
+    "frames": 14,
+    "glbKeys": 14,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 667164
+   },
+   "rifle-crouch-up": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-crouch-up"
+    ],
+    "frames": 14,
+    "glbKeys": 14,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 667148
+   },
+   "swap-rifle-shotgun": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "swap-rifle-shotgun"
+    ],
+    "frames": 41,
+    "glbKeys": 41,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 827852
+   },
+   "reload-rifle-tac": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "reload-rifle-tac"
+    ],
+    "frames": 70,
+    "glbKeys": 70,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 1009708
+   },
+   "reload-rifle-empty": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "reload-rifle-empty"
+    ],
+    "frames": 89,
+    "glbKeys": 89,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 1115692
+   },
+   "rifle-aim-level": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-aim-level"
+    ],
+    "frames": 2,
+    "glbKeys": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 546620
+   },
+   "rifle-aim-up": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-aim-up"
+    ],
+    "frames": 2,
+    "glbKeys": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 546604
+   },
+   "rifle-aim-down": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "rifle-aim-down"
+    ],
+    "frames": 2,
+    "glbKeys": 2,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 546620
+   },
+   "hit-light-f": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "hit-light-f"
+    ],
+    "frames": 13,
+    "glbKeys": 13,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 657084
+   },
+   "hit-light-b": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "hit-light-b"
+    ],
+    "frames": 13,
+    "glbKeys": 13,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 657084
+   },
+   "hit-light-l": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "hit-light-l"
+    ],
+    "frames": 13,
+    "glbKeys": 13,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 657084
+   },
+   "hit-light-r": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "hit-light-r"
+    ],
+    "frames": 13,
+    "glbKeys": 13,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 657084
+   },
+   "hit-heavy-f": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "hit-heavy-f"
+    ],
+    "frames": 28,
+    "glbKeys": 28,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 770076
+   },
+   "hit-heavy-b": {
+    "fps": 30.0,
+    "unit": 1.0,
+    "up": 2,
+    "takes": [
+     "hit-heavy-b"
+    ],
+    "frames": 28,
+    "glbKeys": 28,
+    "rootBones": [
+     "root"
+    ],
+    "armatureBone": false,
+    "nonBoneModels": [
+     "Armature"
+    ],
+    "bonesMatch": true,
+    "parentsMatch": true,
+    "bytes": 770076
+   }
+  }
+ },
+ "retarget": {
+  "tripo": {
+   "version": 7400,
+   "unitScaleFactor": 1.0,
+   "upAxis": 2,
+   "upSign": 1,
+   "frontAxis": 1,
+   "frontSign": -1,
+   "coordAxis": 0,
+   "coordSign": 1,
+   "timeMode": 6,
+   "fps": 30.0,
+   "rootBones": [
+    "root"
+   ],
+   "bonesMatch": true,
+   "parentsMatch": true,
+   "takes": [
+    "tripo_apose"
+   ]
+  },
+  "earthonline": {
+   "version": 7400,
+   "unitScaleFactor": 1.0,
+   "upAxis": 2,
+   "upSign": 1,
+   "frontAxis": 1,
+   "frontSign": -1,
+   "coordAxis": 0,
+   "coordSign": 1,
+   "timeMode": 6,
+   "fps": 30.0,
+   "rootBones": [
+    "root"
+   ],
+   "bonesMatch": true,
+   "parentsMatch": true,
+   "takes": [
+    "earthonline_apose"
+   ]
+  }
+ },
+ "weapons": {
+  "ar_rifle": {
+   "version": 7400,
+   "unitScaleFactor": 1.0,
+   "upAxis": 2,
+   "upSign": 1,
+   "frontAxis": 1,
+   "frontSign": -1,
+   "coordAxis": 0,
+   "coordSign": 1,
+   "timeMode": 6,
+   "fps": 30.0,
+   "models": [
+    [
+     "SOCKET_eject_point",
+     "Null",
+     "ar_rifle_receiver"
+    ],
+    [
+     "SOCKET_grip_main",
+     "Null",
+     "ar_rifle_receiver"
+    ],
+    [
+     "SOCKET_grip_support",
+     "Null",
+     "ar_rifle_receiver"
+    ],
+    [
+     "SOCKET_muzzle_point",
+     "Null",
+     "ar_rifle_receiver"
+    ],
+    [
+     "ar_rifle_barrel",
+     "Mesh",
+     null
+    ],
+    [
+     "ar_rifle_charging_handle",
+     "Mesh",
+     null
+    ],
+    [
+     "ar_rifle_ejection_cover",
+     "Mesh",
+     null
+    ],
+    [
+     "ar_rifle_front_sight",
+     "Mesh",
+     null
+    ],
+    [
+     "ar_rifle_handguard",
+     "Mesh",
+     null
+    ],
+    [
+     "ar_rifle_magazine",
+     "Mesh",
+     null
+    ],
+    [
+     "ar_rifle_pistol_grip",
+     "Mesh",
+     null
+    ],
+    [
+     "ar_rifle_rear_sight",
+     "Mesh",
+     null
+    ],
+    [
+     "ar_rifle_receiver",
+     "Mesh",
+     null
+    ],
+    [
+     "ar_rifle_stock",
+     "Mesh",
+     null
+    ],
+    [
+     "ar_rifle_trigger",
+     "Mesh",
+     null
+    ]
+   ],
+   "boundsCm": [
+    [
+     -3.21,
+     -21.14,
+     -80.02
+    ],
+    [
+     3.21,
+     12.46,
+     0.0
+    ]
+   ],
+   "embedded": 6,
+   "bytes": 13791196
+  },
+  "pump_shotgun": {
+   "version": 7400,
+   "unitScaleFactor": 1.0,
+   "upAxis": 2,
+   "upSign": 1,
+   "frontAxis": 1,
+   "frontSign": -1,
+   "coordAxis": 0,
+   "coordSign": 1,
+   "timeMode": 6,
+   "fps": 30.0,
+   "models": [
+    [
+     "SOCKET_eject_point",
+     "Null",
+     "pump_shotgun_receiver"
+    ],
+    [
+     "SOCKET_grip_main",
+     "Null",
+     "pump_shotgun_receiver"
+    ],
+    [
+     "SOCKET_grip_support",
+     "Null",
+     "pump_shotgun_receiver"
+    ],
+    [
+     "SOCKET_muzzle_point",
+     "Null",
+     "pump_shotgun_receiver"
+    ],
+    [
+     "pump_shotgun_barrel",
+     "Mesh",
+     null
+    ],
+    [
+     "pump_shotgun_barrel_band",
+     "Mesh",
+     null
+    ],
+    [
+     "pump_shotgun_butt_pad",
+     "Mesh",
+     null
+    ],
+    [
+     "pump_shotgun_magazine_tube",
+     "Mesh",
+     null
+    ],
+    [
+     "pump_shotgun_pump",
+     "Mesh",
+     null
+    ],
+    [
+     "pump_shotgun_receiver",
+     "Mesh",
+     null
+    ],
+    [
+     "pump_shotgun_stock",
+     "Mesh",
+     null
+    ],
+    [
+     "pump_shotgun_trigger",
+     "Mesh",
+     null
+    ],
+    [
+     "pump_shotgun_trigger_guard",
+     "Mesh",
+     null
+    ]
+   ],
+   "boundsCm": [
+    [
+     -3.15,
+     -8.91,
+     -100.0
+    ],
+    [
+     3.15,
+     11.81,
+     0.0
+    ]
+   ],
+   "embedded": 6,
+   "bytes": 18392284
+  }
+ }
+}

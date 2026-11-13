@@ -1,0 +1,14 @@
+{
+ "boneRestErrCm": [
+  2.2082821374169725e-05,
+  1.3418153196165239e-05
+ ],
+ "clips": {
+  "swap-rifle-shotgun": {
+   "frames": 41,
+   "bytes": 802172,
+   "s": 0.39
+  }
+ },
+ "seconds": 0.5
+}

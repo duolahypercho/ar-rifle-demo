@@ -1,0 +1,593 @@
+{
+  "asset": "supercar",
+  "description": "Unbranded two-seat mid-engine supercar concept for an open-world driving game. Asset package only: runtime driving physics and game integration are separate work.",
+  "units": "metres (1 Blender unit = 1 m)",
+  "axes": {
+    "blender": {
+      "forward": "+Y",
+      "up": "+Z",
+      "right": "+X",
+      "left": "-X (seated driver's left)"
+    },
+    "gltf": {
+      "forward": "-Z",
+      "up": "+Y",
+      "right": "+X",
+      "note": "exported with the standard Blender Z-up to glTF Y-up conversion: (x, y, z) -> (x, z, -y)"
+    },
+    "vehicle_root": "ground level, midway between the front and rear axle centres",
+    "wheel_spin_axis": "local X of wheel_FL/FR/RL/RR (forward rolling = negative rotation)",
+    "steering_axis": "local Z of steering_FL / steering_FR (positive = steer left)",
+    "door_hinge_axis": "local X of door_L / door_R (negative rotation opens; hinge canted 13 deg, stored as the node rest rotation)",
+    "steering_wheel_axis": "local Z of steering_wheel, along the column (positive = turn left)",
+    "camera_cockpit": "glTF camera convention: looks along local -Z, +Y up",
+    "exhaust_L/R": "local +Z points along the exhaust flow (rearwards)"
+  },
+  "dimensions_m": {
+    "overall_length": 4.8,
+    "body_width_excluding_mirrors": 2.03,
+    "overall_width_including_mirrors": 2.26,
+    "overall_height": 1.14,
+    "wheelbase": 2.7,
+    "front_overhang": 1.05,
+    "rear_overhang": 1.05,
+    "front_track": 1.72,
+    "rear_track": 1.7,
+    "ground_clearance": 0.12,
+    "front_tire_outside_diameter": 0.69,
+    "rear_tire_outside_diameter": 0.72,
+    "front_tire_width": 0.255,
+    "rear_tire_width": 0.315
+  },
+  "measured": {
+    "overall_length": 4.8,
+    "overall_width_including_mirrors": 2.26,
+    "body_width_excluding_mirrors": 2.0299,
+    "overall_height": 1.1399,
+    "wheelbase": 2.7,
+    "front_overhang": 1.05,
+    "rear_overhang": 1.05,
+    "front_track": 1.72,
+    "rear_track": 1.7,
+    "ground_clearance": 0.12,
+    "front_tire_outside_diameter": 0.69,
+    "rear_tire_outside_diameter": 0.72,
+    "lowest_point_z": 0.0,
+    "door_swing_triangle_overlaps": {
+      "R_0deg": 0,
+      "R_0.5deg": 0,
+      "R_1deg": 0,
+      "R_1.5deg": 0,
+      "R_2deg": 0,
+      "R_3deg": 0,
+      "R_4deg": 0,
+      "R_6deg": 0,
+      "R_9deg": 0,
+      "R_13deg": 0,
+      "R_18deg": 0,
+      "R_24deg": 0,
+      "R_30deg": 0,
+      "R_36deg": 0,
+      "R_42deg": 0,
+      "R_48deg": 0,
+      "R_55deg": 0,
+      "L_0deg": 0,
+      "L_0.5deg": 0,
+      "L_1deg": 0,
+      "L_1.5deg": 0,
+      "L_2deg": 0,
+      "L_3deg": 0,
+      "L_4deg": 0,
+      "L_6deg": 0,
+      "L_9deg": 0,
+      "L_13deg": 0,
+      "L_18deg": 0,
+      "L_24deg": 0,
+      "L_30deg": 0,
+      "L_36deg": 0,
+      "L_42deg": 0,
+      "L_48deg": 0,
+      "L_55deg": 0
+    }
+  },
+  "files": {
+    "supercar.glb": "32.9 MB",
+    "supercar_lod1.glb": "31.9 MB",
+    "supercar_lod2.glb": "30.0 MB",
+    "supercar_collision.glb": "0.0 MB"
+  },
+  "triangles": {
+    "lod0": 102582,
+    "lod1": 73950,
+    "lod2": 24459
+  },
+  "lod_note": "LOD files carry the same hierarchy with node names suffixed _LOD1 / _LOD2 and share the LOD0 textures.",
+  "materials": {
+    "body_paint": {
+      "role": "painted exterior panels",
+      "adjustable": "baseColorFactor (runtime paint colour)",
+      "textures": [
+        "body_normal",
+        "body_orm"
+      ],
+      "clearcoat": {
+        "factor": 1.0,
+        "roughness": 0.04
+      },
+      "note": "no base colour texture; texture detail is colour neutral"
+    },
+    "carbon_fiber": {
+      "role": "satin carbon: splitter, diffuser, skirts, mirrors, engine cover, sills, seat shells",
+      "textures": [
+        "trim_basecolor",
+        "trim_normal",
+        "trim_orm"
+      ]
+    },
+    "black_trim": {
+      "role": "black plastic, gloss lens housings, grilles, seals, wheel-well liners, underbody",
+      "textures": [
+        "trim_basecolor",
+        "trim_normal",
+        "trim_orm"
+      ]
+    },
+    "metal": {
+      "role": "exposed metal: exhaust tips, brake discs, mirror glass, pedals, wheel bolts",
+      "textures": [
+        "trim_basecolor",
+        "trim_normal",
+        "trim_orm"
+      ]
+    },
+    "glass": {
+      "role": "lightly tinted glass (windows, light covers)",
+      "alphaMode": "BLEND",
+      "doubleSided": true
+    },
+    "tire_rubber": {
+      "role": "tires",
+      "textures": [
+        "wheel_normal",
+        "wheel_orm"
+      ]
+    },
+    "wheel_finish": {
+      "role": "rims",
+      "adjustable": "baseColorFactor",
+      "textures": [
+        "wheel_normal",
+        "wheel_orm"
+      ]
+    },
+    "caliper_paint": {
+      "role": "brake calipers",
+      "adjustable": "baseColorFactor",
+      "textures": [
+        "wheel_normal",
+        "wheel_orm"
+      ]
+    },
+    "interior_leather": {
+      "role": "leather",
+      "textures": [
+        "interior_normal",
+        "interior_orm"
+      ]
+    },
+    "interior_microfiber": {
+      "role": "microfiber / headliner / carpet",
+      "textures": [
+        "interior_normal",
+        "interior_orm"
+      ]
+    },
+    "interior_stitching": {
+      "role": "stitch ribbons",
+      "adjustable": "baseColorFactor",
+      "textures": [
+        "stitch_basecolor (alpha mask, tiles along U)"
+      ],
+      "alphaMode": "MASK"
+    },
+    "light_headlight": {
+      "role": "headlights + daytime running blades",
+      "adjustable": "emissive strength"
+    },
+    "light_tail": {
+      "role": "rear running lights",
+      "adjustable": "emissive strength"
+    },
+    "light_brake": {
+      "role": "brake lights",
+      "adjustable": "emissive strength"
+    },
+    "light_indicator": {
+      "role": "indicators (separate meshes per corner)",
+      "adjustable": "emissive strength"
+    },
+    "display": {
+      "role": "instrument and centre displays",
+      "textures": [
+        "display_emissive"
+      ]
+    }
+  },
+  "orm_packing": "R = ambient occlusion, G = roughness, B = metallic (glTF convention)",
+  "texture_notes": "body / trim / wheel sets are PNG; the 4096 interior set is stored as high-quality JPEG (4:4:4, q93) to keep the GLB small. Lossless bake passes are kept in textures/_bake_passes.",
+  "textures": {
+    "BAKE_body_AO": {
+      "file": "textures/bake_body_AO.png",
+      "width": 4096,
+      "height": 4096
+    },
+    "BAKE_interior_AO": {
+      "file": "textures/bake_interior_AO.png",
+      "width": 4096,
+      "height": 4096
+    },
+    "BAKE_interior_NORMAL": {
+      "file": "textures/bake_interior_NORMAL.png",
+      "width": 4096,
+      "height": 4096
+    },
+    "BAKE_interior_ROUGH": {
+      "file": "textures/bake_interior_ROUGH.png",
+      "width": 4096,
+      "height": 4096
+    },
+    "BAKE_trim_AO": {
+      "file": "textures/bake_trim_AO.png",
+      "width": 2048,
+      "height": 2048
+    },
+    "BAKE_trim_COL": {
+      "file": "textures/bake_trim_COL.png",
+      "width": 2048,
+      "height": 2048
+    },
+    "BAKE_trim_METAL": {
+      "file": "textures/bake_trim_METAL.png",
+      "width": 2048,
+      "height": 2048
+    },
+    "BAKE_trim_NORMAL": {
+      "file": "textures/bake_trim_NORMAL.png",
+      "width": 2048,
+      "height": 2048
+    },
+    "BAKE_trim_ROUGH": {
+      "file": "textures/bake_trim_ROUGH.png",
+      "width": 2048,
+      "height": 2048
+    },
+    "BAKE_wheel_AO": {
+      "file": "textures/bake_wheel_AO.png",
+      "width": 2048,
+      "height": 2048
+    },
+    "BAKE_wheel_METAL": {
+      "file": "textures/bake_wheel_METAL.png",
+      "width": 2048,
+      "height": 2048
+    },
+    "BAKE_wheel_NORMAL": {
+      "file": "textures/bake_wheel_NORMAL.png",
+      "width": 2048,
+      "height": 2048
+    },
+    "BAKE_wheel_ROUGH": {
+      "file": "textures/bake_wheel_ROUGH.png",
+      "width": 2048,
+      "height": 2048
+    },
+    "body_normal": {
+      "file": "textures/body_normal.png",
+      "width": 4096,
+      "height": 4096
+    },
+    "body_orm": {
+      "file": "textures/body_orm.png",
+      "width": 4096,
+      "height": 4096
+    },
+    "display_emissive": {
+      "file": "textures/display_emissive.png",
+      "width": 1024,
+      "height": 512
+    },
+    "interior_normal": {
+      "file": "textures/interior_normal.jpg",
+      "width": 4096,
+      "height": 4096
+    },
+    "interior_orm": {
+      "file": "textures/interior_orm.jpg",
+      "width": 4096,
+      "height": 4096
+    },
+    "stitch_basecolor": {
+      "file": "textures/stitch_basecolor.png",
+      "width": 64,
+      "height": 32
+    },
+    "T_brush_h": {
+      "file": "textures/tile_brush_h.png",
+      "width": 256,
+      "height": 256
+    },
+    "T_carbon_col": {
+      "file": "textures/tile_carbon_col.png",
+      "width": 256,
+      "height": 256
+    },
+    "T_carbon_h": {
+      "file": "textures/tile_carbon_h.png",
+      "width": 256,
+      "height": 256
+    },
+    "T_hex_col": {
+      "file": "textures/tile_hex_col.png",
+      "width": 64,
+      "height": 111
+    },
+    "T_hex_h": {
+      "file": "textures/tile_hex_h.png",
+      "width": 64,
+      "height": 111
+    },
+    "T_leather_h": {
+      "file": "textures/tile_leather_h.png",
+      "width": 512,
+      "height": 512
+    },
+    "T_micro_h": {
+      "file": "textures/tile_micro_h.png",
+      "width": 256,
+      "height": 256
+    },
+    "trim_basecolor": {
+      "file": "textures/trim_basecolor.png",
+      "width": 2048,
+      "height": 2048
+    },
+    "trim_normal": {
+      "file": "textures/trim_normal.png",
+      "width": 2048,
+      "height": 2048
+    },
+    "trim_orm": {
+      "file": "textures/trim_orm.png",
+      "width": 2048,
+      "height": 2048
+    },
+    "wheel_normal": {
+      "file": "textures/wheel_normal.png",
+      "width": 2048,
+      "height": 2048
+    },
+    "wheel_orm": {
+      "file": "textures/wheel_orm.png",
+      "width": 2048,
+      "height": 2048
+    }
+  },
+  "paint_presets": {
+    "yellow": {
+      "base_color_linear": [
+        0.905,
+        0.495,
+        0.006,
+        1.0
+      ],
+      "srgb_hex": "#F4BB12"
+    },
+    "red": {
+      "base_color_linear": [
+        0.56,
+        0.004,
+        0.004,
+        1.0
+      ],
+      "srgb_hex": "#C50D0D"
+    },
+    "blue": {
+      "base_color_linear": [
+        0.004,
+        0.035,
+        0.45,
+        1.0
+      ],
+      "srgb_hex": "#0D35B3"
+    },
+    "white": {
+      "base_color_linear": [
+        0.85,
+        0.85,
+        0.83,
+        1.0
+      ],
+      "srgb_hex": "#EDEDEB"
+    },
+    "black": {
+      "base_color_linear": [
+        0.01,
+        0.01,
+        0.011,
+        1.0
+      ],
+      "srgb_hex": "#19191B"
+    },
+    "silver": {
+      "base_color_linear": [
+        0.52,
+        0.53,
+        0.54,
+        1.0
+      ],
+      "srgb_hex": "#BFC0C2"
+    },
+    "green": {
+      "base_color_linear": [
+        0.006,
+        0.21,
+        0.03,
+        1.0
+      ],
+      "srgb_hex": "#127E30"
+    }
+  },
+  "default_colors_linear": {
+    "body_paint": [
+      0.905,
+      0.495,
+      0.006,
+      1.0
+    ],
+    "wheel_finish": [
+      0.016,
+      0.016,
+      0.018,
+      1.0
+    ],
+    "caliper_paint": [
+      0.9,
+      0.52,
+      0.01,
+      1.0
+    ],
+    "interior_stitching": [
+      0.9,
+      0.55,
+      0.02,
+      1.0
+    ]
+  },
+  "animations": {
+    "doors_open": "door_L + door_R rotate about their canted hinge axes to 55 deg (40 frames @ 24 fps)",
+    "doors_close": "reverse of doors_open",
+    "steering_demo": "steering_FL/FR +-28 deg, steering_wheel +-420 deg, all four wheels one forward turn (120 frames)"
+  },
+  "helper_nodes": [
+    "seat_driver_point",
+    "seat_passenger_point",
+    "entry_driver_point",
+    "entry_passenger_point",
+    "camera_cockpit",
+    "camera_chase_target",
+    "exhaust_L",
+    "exhaust_R"
+  ],
+  "wheel_hierarchy": "vehicle_root > suspension_XX > [steering_XX (front only)] > wheel_XX > tire_XX, rim_XX, brake_disc_XX ; caliper_XX hangs off steering_XX (front) or suspension_XX (rear)",
+  "collision_proxies": [
+    "collision_chassis",
+    "collision_cabin",
+    "collision_wheel_FL",
+    "collision_wheel_FR",
+    "collision_wheel_RL",
+    "collision_wheel_RR"
+  ],
+  "concept_specs": {
+    "note": "Design / game-tuning targets taken from the concept sheet, not verified vehicle performance.",
+    "layout": "mid-engine / AWD",
+    "engine": "6.5 L naturally aspirated V12",
+    "transmission": "7-speed dual-clutch",
+    "power_target_hp": 750,
+    "torque_target_nm": 720,
+    "curb_mass_target_kg": 1650,
+    "zero_to_100_kmh_target_s": 2.9,
+    "top_speed_target_kmh": 350,
+    "seating": 2,
+    "structure": "carbon-fiber tub / aluminum subframes",
+    "brakes": "carbon-ceramic discs"
+  },
+  "verification": {
+    "clean_scene_reimport": {
+      "supercar.glb": {
+        "triangles": 102582,
+        "materials": 16,
+        "embedded_images": 11,
+        "animations": [
+          "doors_close",
+          "doors_open",
+          "steering_demo"
+        ],
+        "length": 4.8,
+        "body_width": 2.0299,
+        "width_with_mirrors": 2.2604,
+        "height": 1.1399,
+        "lowest_point_z": 0.0
+      },
+      "supercar_lod1.glb": {
+        "triangles": 73950,
+        "materials": 16,
+        "embedded_images": 11,
+        "animations": [
+          "doors_close",
+          "doors_open",
+          "steering_demo"
+        ],
+        "length": 4.8,
+        "body_width": 2.0299,
+        "width_with_mirrors": 2.2604,
+        "height": 1.1399,
+        "lowest_point_z": 0.0
+      },
+      "supercar_lod2.glb": {
+        "triangles": 24459,
+        "materials": 16,
+        "embedded_images": 11,
+        "animations": [
+          "doors_close",
+          "doors_open",
+          "steering_demo"
+        ],
+        "length": 4.7991,
+        "body_width": 2.0298,
+        "width_with_mirrors": 2.2604,
+        "height": 1.1398,
+        "lowest_point_z": 0.0
+      },
+      "supercar_collision.glb": {
+        "triangles": 360,
+        "materials": 0,
+        "embedded_images": 0,
+        "animations": [],
+        "length": 4.7959,
+        "body_width": 2.0241,
+        "width_with_mirrors": 2.0241,
+        "height": 1.1381,
+        "lowest_point_z": 0.0086
+      }
+    },
+    "paint_isolation_test": {
+      "method": "flat-shaded render with glass hidden, yellow compared with white / black / red / blue",
+      "paint_pixels": 194250,
+      "paint_pixels_unchanged": 0,
+      "changed_pixels_outside_paint": 0
+    },
+    "front_wheel_vs_body_overlaps_by_steer_deg": {
+      "0": 0,
+      "10": 0,
+      "20": 0,
+      "28": 0,
+      "-10": 0,
+      "-20": 0,
+      "-28": 0
+    },
+    "rotating_parts_vs_caliper_overlaps": 0,
+    "hidden_seam_flange_overlaps": {
+      "hood ~ body_shell": 282,
+      "hood ~ front_bumper": 194,
+      "front_bumper ~ body_shell": 334,
+      "rear_bumper ~ body_shell": 468,
+      "engine_cover ~ body_shell": 322,
+      "engine_cover ~ rear_bumper": 136,
+      "rear_glass ~ engine_cover": 24,
+      "door_glass_L+door_glass_R ~ door_L+door_R": 20,
+      "steering_wheel ~ interior": 26,
+      "rear_diffuser ~ rear_bumper": 197
+    },
+    "hidden_seam_flange_note": "non-zero pairs are panel-edge flanges crossing each other underneath the panel gaps, the glass edges against their frames, the diffuser tucked under the bumper edge, and the steering wheel hub on its column; none are visible surfaces"
+  }
+}

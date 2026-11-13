@@ -1,0 +1,23 @@
+# Dependencies and build output
+node_modules
+dist
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# Blender working files: built and saved again by blender/build_rifle_motion.py and
+# blender/build_vehicle_motion.py (two of them are over 100 MB), and Blender's own backup copies
+/blender/*.blend
+*.blend1
+
+# Review renders (contact sheets, close-ups, staged candidate packs): rewritten by every clip pass
+/blender/review/
+/blender/bodies/*/review/
+
+# Third-party motion capture (Adobe Mixamo clips retargeted in EarthOnline): used under the Mixamo
+# terms inside a game, not for separate redistribution. The game no longer loads it.
+/public/characters/earthonline-humanoid-motion-pack-v1.glb

@@ -1,0 +1,3484 @@
+{
+ "skeleton": "earthonline-ue5-v1",
+ "from": "earthonline-humanoid-v1",
+ "bones": {
+  "root": {
+   "parent": null,
+   "head": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "tail": [
+    0.0,
+    0.15,
+    0.0
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "Root",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "pelvis": {
+   "parent": "root",
+   "head": [
+    0.0,
+    0.92,
+    0.0
+   ],
+   "tail": [
+    0.0,
+    1.06,
+    0.0
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.92,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "Hips",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "spine_01": {
+   "parent": "pelvis",
+   "head": [
+    0.0,
+    1.06,
+    0.0
+   ],
+   "tail": [
+    0.0,
+    1.1,
+    0.0
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.14,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "Spine",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "spine_02": {
+   "parent": "spine_01",
+   "head": [
+    0.0,
+    1.1,
+    0.0
+   ],
+   "tail": [
+    0.0,
+    1.14,
+    0.0
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.04,
+    0.0
+   ],
+   "rule": "follow",
+   "how": "local = restLocal (moves with its parent) in the exact mapping; free to bend in new clips"
+  },
+  "spine_03": {
+   "parent": "spine_02",
+   "head": [
+    0.0,
+    1.14,
+    0.0
+   ],
+   "tail": [
+    0.0,
+    1.18,
+    0.0
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.04,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "Spine1",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "spine_04": {
+   "parent": "spine_03",
+   "head": [
+    0.0,
+    1.18,
+    0.0
+   ],
+   "tail": [
+    0.0,
+    1.22,
+    0.0
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.04,
+    0.0
+   ],
+   "rule": "follow",
+   "how": "local = restLocal (moves with its parent) in the exact mapping; free to bend in new clips"
+  },
+  "spine_05": {
+   "parent": "spine_04",
+   "head": [
+    0.0,
+    1.22,
+    0.0
+   ],
+   "tail": [
+    0.0,
+    1.42,
+    0.0
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.04,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "Spine2",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "neck_01": {
+   "parent": "spine_05",
+   "head": [
+    0.0,
+    1.42,
+    0.0
+   ],
+   "tail": [
+    0.0,
+    1.465,
+    0.0
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.2,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "Neck",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "neck_02": {
+   "parent": "neck_01",
+   "head": [
+    0.0,
+    1.465,
+    0.0
+   ],
+   "tail": [
+    0.0,
+    1.51,
+    0.0
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.045,
+    0.0
+   ],
+   "rule": "follow",
+   "how": "local = restLocal (moves with its parent) in the exact mapping; free to bend in new clips"
+  },
+  "head": {
+   "parent": "neck_02",
+   "head": [
+    0.0,
+    1.51,
+    0.0
+   ],
+   "tail": [
+    0.0,
+    1.71,
+    0.0
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.045,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "Head",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "jaw": {
+   "parent": "head",
+   "head": [
+    0.0,
+    1.605,
+    0.005
+   ],
+   "tail": [
+    -0.00261,
+    1.53003,
+    0.09143
+   ],
+   "restWorldRotation": [
+    0.9095867,
+    -0.0062674,
+    0.0137289,
+    0.4152401
+   ],
+   "restLocalRotation": [
+    0.9095867,
+    -0.0062674,
+    0.0137289,
+    0.4152401
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.095,
+    0.005
+   ],
+   "rule": "copy",
+   "from": "Jaw",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "eye_l": {
+   "parent": "head",
+   "head": [
+    0.02719,
+    1.61473,
+    0.10888
+   ],
+   "tail": [
+    0.02719,
+    1.61473,
+    0.13888
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.7071068,
+    0.7071068,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.7071068,
+    0.7071068,
+    0.0
+   ],
+   "restLocalTranslation": [
+    0.02719,
+    0.104733,
+    0.108878
+   ],
+   "rule": "copy",
+   "from": "LeftEye",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "eye_r": {
+   "parent": "head",
+   "head": [
+    -0.03208,
+    1.61474,
+    0.10886
+   ],
+   "tail": [
+    -0.03208,
+    1.61474,
+    0.13886
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.7071068,
+    0.7071068,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.7071068,
+    0.7071068,
+    0.0
+   ],
+   "restLocalTranslation": [
+    -0.032075,
+    0.10474,
+    0.108856
+   ],
+   "rule": "copy",
+   "from": "RightEye",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "clavicle_l": {
+   "parent": "spine_05",
+   "head": [
+    0.045,
+    1.365,
+    0.0
+   ],
+   "tail": [
+    0.185,
+    1.365,
+    0.0
+   ],
+   "restWorldRotation": [
+    -0.5,
+    -0.5,
+    -0.5,
+    0.5
+   ],
+   "restLocalRotation": [
+    -0.5,
+    -0.5,
+    -0.5,
+    0.5
+   ],
+   "restLocalTranslation": [
+    0.045,
+    0.145,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "LeftShoulder",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "upperarm_l": {
+   "parent": "clavicle_l",
+   "head": [
+    0.185,
+    1.365,
+    0.0
+   ],
+   "tail": [
+    0.185,
+    1.095,
+    0.0
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    -0.5,
+    0.5,
+    -0.5,
+    0.5
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.14,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "LeftArm",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "lowerarm_l": {
+   "parent": "upperarm_l",
+   "head": [
+    0.185,
+    1.095,
+    0.0
+   ],
+   "tail": [
+    0.185,
+    0.845,
+    0.0
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.27,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "LeftForeArm",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "hand_l": {
+   "parent": "lowerarm_l",
+   "head": [
+    0.185,
+    0.845,
+    0.0
+   ],
+   "tail": [
+    0.192,
+    0.752,
+    0.016
+   ],
+   "restWorldRotation": [
+    0.0031865,
+    -0.0847899,
+    -0.9956909,
+    0.0374193
+   ],
+   "restLocalRotation": [
+    0.0847899,
+    0.0031865,
+    0.0374193,
+    0.9956909
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.25,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "LeftHand",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "thumb_01_l": {
+   "parent": "hand_l",
+   "head": [
+    0.205,
+    0.815,
+    0.022
+   ],
+   "tail": [
+    0.215,
+    0.775,
+    0.038
+   ],
+   "restWorldRotation": [
+    0.3828907,
+    -0.1250437,
+    -0.897558,
+    0.1792998
+   ],
+   "restLocalRotation": [
+    0.0621573,
+    0.3889045,
+    0.1128744,
+    0.9122221
+   ],
+   "restLocalTranslation": [
+    -0.017692,
+    0.034684,
+    0.016371
+   ],
+   "rule": "copy",
+   "from": "LeftHandThumb1",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "thumb_02_l": {
+   "parent": "thumb_01_l",
+   "head": [
+    0.215,
+    0.775,
+    0.038
+   ],
+   "tail": [
+    0.221,
+    0.748,
+    0.047
+   ],
+   "restWorldRotation": [
+    0.3820231,
+    -0.1042816,
+    -0.9045429,
+    0.1580689
+   ],
+   "restLocalRotation": [
+    -0.0115351,
+    -0.0023854,
+    -0.0281495,
+    0.9995343
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.044227,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "LeftHandThumb2",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "thumb_03_l": {
+   "parent": "thumb_02_l",
+   "head": [
+    0.221,
+    0.748,
+    0.047
+   ],
+   "tail": [
+    0.2264,
+    0.7237,
+    0.0551
+   ],
+   "restWorldRotation": [
+    0.3820231,
+    -0.1042816,
+    -0.9045429,
+    0.1580689
+   ],
+   "restLocalRotation": [
+    -0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.029086,
+    -0.0
+   ],
+   "rule": "copy",
+   "from": "LeftHandThumb3",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "index_metacarpal_l": {
+   "parent": "hand_l",
+   "head": [
+    0.19175,
+    0.8225,
+    0.0045
+   ],
+   "tail": [
+    0.212,
+    0.755,
+    0.018
+   ],
+   "restWorldRotation": [
+    0.0137219,
+    -0.0934933,
+    -0.9849732,
+    0.1445634
+   ],
+   "restLocalRotation": [
+    0.0096275,
+    0.0192832,
+    0.1062178,
+    0.9941093
+   ],
+   "restLocalTranslation": [
+    -0.005042,
+    0.023374,
+    0.000556
+   ],
+   "rule": "follow",
+   "how": "local = restLocal (moves with its parent) in the exact mapping; free to bend in new clips"
+  },
+  "index_01_l": {
+   "parent": "index_metacarpal_l",
+   "head": [
+    0.212,
+    0.755,
+    0.018
+   ],
+   "tail": [
+    0.213,
+    0.715,
+    0.02
+   ],
+   "restWorldRotation": [
+    0.000312,
+    -0.0249669,
+    -0.9996102,
+    0.0124932
+   ],
+   "restLocalRotation": [
+    -0.0689915,
+    -0.0158505,
+    -0.1318881,
+    0.9887338
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.071753,
+    -0.0
+   ],
+   "rule": "copy",
+   "from": "LeftHandIndex1",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "index_02_l": {
+   "parent": "index_01_l",
+   "head": [
+    0.213,
+    0.715,
+    0.02
+   ],
+   "tail": [
+    0.213,
+    0.69,
+    0.02
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    -0.0249669,
+    -0.000312,
+    -0.0124932,
+    0.9996102
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.040062,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "LeftHandIndex2",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "index_03_l": {
+   "parent": "index_02_l",
+   "head": [
+    0.213,
+    0.69,
+    0.02
+   ],
+   "tail": [
+    0.213,
+    0.67,
+    0.02
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.025,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "LeftHandIndex3",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "middle_metacarpal_l": {
+   "parent": "hand_l",
+   "head": [
+    0.18675,
+    0.82175,
+    0.004
+   ],
+   "tail": [
+    0.192,
+    0.752,
+    0.016
+   ],
+   "restWorldRotation": [
+    0.0031865,
+    -0.0847899,
+    -0.9956909,
+    0.0374193
+   ],
+   "restLocalRotation": [
+    0.0,
+    -0.0,
+    -0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.023656,
+    -0.0
+   ],
+   "rule": "follow",
+   "how": "local = restLocal (moves with its parent) in the exact mapping; free to bend in new clips"
+  },
+  "middle_01_l": {
+   "parent": "middle_metacarpal_l",
+   "head": [
+    0.192,
+    0.752,
+    0.016
+   ],
+   "tail": [
+    0.192,
+    0.708,
+    0.018
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0227097,
+    0.9997421,
+    0.0
+   ],
+   "restLocalRotation": [
+    -0.0621562,
+    -0.0040355,
+    -0.0373373,
+    0.9973596
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.070969,
+    -0.0
+   ],
+   "rule": "copy",
+   "from": "LeftHandMiddle1",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "middle_02_l": {
+   "parent": "middle_01_l",
+   "head": [
+    0.192,
+    0.708,
+    0.018
+   ],
+   "tail": [
+    0.192,
+    0.681,
+    0.018
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    -0.0227097,
+    0.0,
+    0.0,
+    0.9997421
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.044045,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "LeftHandMiddle2",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "middle_03_l": {
+   "parent": "middle_02_l",
+   "head": [
+    0.192,
+    0.681,
+    0.018
+   ],
+   "tail": [
+    0.192,
+    0.6594,
+    0.018
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.027,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "LeftHandMiddle3",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "ring_metacarpal_l": {
+   "parent": "hand_l",
+   "head": [
+    0.18175,
+    0.8225,
+    0.0035
+   ],
+   "tail": [
+    0.172,
+    0.755,
+    0.014
+   ],
+   "restWorldRotation": [
+    0.0054684,
+    0.0761087,
+    0.9945208,
+    0.0714557
+   ],
+   "restLocalRotation": [
+    -0.0085215,
+    -0.0175205,
+    -0.1076559,
+    0.9939973
+   ],
+   "restLocalTranslation": [
+    0.00493,
+    0.022465,
+    -0.000303
+   ],
+   "rule": "follow",
+   "how": "local = restLocal (moves with its parent) in the exact mapping; free to bend in new clips"
+  },
+  "ring_01_l": {
+   "parent": "ring_metacarpal_l",
+   "head": [
+    0.172,
+    0.755,
+    0.014
+   ],
+   "tail": [
+    0.172,
+    0.714,
+    0.016
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0243685,
+    0.999703,
+    0.0
+   ],
+   "restLocalRotation": [
+    -0.0518511,
+    0.007208,
+    0.0713012,
+    0.9960801
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.069004,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "LeftHandRing1",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "ring_02_l": {
+   "parent": "ring_01_l",
+   "head": [
+    0.172,
+    0.714,
+    0.016
+   ],
+   "tail": [
+    0.172,
+    0.689,
+    0.016
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    -0.0243685,
+    0.0,
+    0.0,
+    0.999703
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.041049,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "LeftHandRing2",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "ring_03_l": {
+   "parent": "ring_02_l",
+   "head": [
+    0.172,
+    0.689,
+    0.016
+   ],
+   "tail": [
+    0.172,
+    0.669,
+    0.016
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.025,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "LeftHandRing3",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "pinky_metacarpal_l": {
+   "parent": "hand_l",
+   "head": [
+    0.17725,
+    0.82425,
+    0.003
+   ],
+   "tail": [
+    0.154,
+    0.762,
+    0.012
+   ],
+   "restWorldRotation": [
+    0.0119571,
+    0.0661882,
+    0.9818428,
+    0.1773723
+   ],
+   "restLocalRotation": [
+    -0.0172296,
+    -0.0325503,
+    -0.2121231,
+    0.9765487
+   ],
+   "restLocalTranslation": [
+    0.009286,
+    0.020327,
+    -0.000444
+   ],
+   "rule": "follow",
+   "how": "local = restLocal (moves with its parent) in the exact mapping; free to bend in new clips"
+  },
+  "pinky_01_l": {
+   "parent": "pinky_metacarpal_l",
+   "head": [
+    0.154,
+    0.762,
+    0.012
+   ],
+   "tail": [
+    0.154,
+    0.728,
+    0.013
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0147011,
+    0.9998919,
+    0.0
+   ],
+   "restLocalRotation": [
+    -0.0517468,
+    0.0145633,
+    0.1771773,
+    0.9827097
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.067057,
+    -0.0
+   ],
+   "rule": "copy",
+   "from": "LeftHandPinky1",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "pinky_02_l": {
+   "parent": "pinky_01_l",
+   "head": [
+    0.154,
+    0.728,
+    0.013
+   ],
+   "tail": [
+    0.154,
+    0.707,
+    0.013
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    -0.0147011,
+    0.0,
+    0.0,
+    0.9998919
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.034015,
+    -0.0
+   ],
+   "rule": "copy",
+   "from": "LeftHandPinky2",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "pinky_03_l": {
+   "parent": "pinky_02_l",
+   "head": [
+    0.154,
+    0.707,
+    0.013
+   ],
+   "tail": [
+    0.154,
+    0.6902,
+    0.013
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.021,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "LeftHandPinky3",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "clavicle_r": {
+   "parent": "spine_05",
+   "head": [
+    -0.045,
+    1.365,
+    0.0
+   ],
+   "tail": [
+    -0.185,
+    1.365,
+    0.0
+   ],
+   "restWorldRotation": [
+    -0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "restLocalRotation": [
+    -0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "restLocalTranslation": [
+    -0.045,
+    0.145,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "RightShoulder",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "upperarm_r": {
+   "parent": "clavicle_r",
+   "head": [
+    -0.185,
+    1.365,
+    0.0
+   ],
+   "tail": [
+    -0.185,
+    1.095,
+    0.0
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    -0.5,
+    -0.5,
+    0.5,
+    0.5
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.14,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "RightArm",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "lowerarm_r": {
+   "parent": "upperarm_r",
+   "head": [
+    -0.185,
+    1.095,
+    0.0
+   ],
+   "tail": [
+    -0.185,
+    0.845,
+    0.0
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.27,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "RightForeArm",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "hand_r": {
+   "parent": "lowerarm_r",
+   "head": [
+    -0.185,
+    0.845,
+    0.0
+   ],
+   "tail": [
+    -0.192,
+    0.752,
+    0.016
+   ],
+   "restWorldRotation": [
+    0.0031865,
+    0.0847899,
+    0.9956909,
+    0.0374193
+   ],
+   "restLocalRotation": [
+    0.0847899,
+    -0.0031865,
+    -0.0374193,
+    0.9956909
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.25,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "RightHand",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "thumb_01_r": {
+   "parent": "hand_r",
+   "head": [
+    -0.205,
+    0.815,
+    0.022
+   ],
+   "tail": [
+    -0.215,
+    0.775,
+    0.038
+   ],
+   "restWorldRotation": [
+    0.3828907,
+    0.1250437,
+    0.897558,
+    0.1792998
+   ],
+   "restLocalRotation": [
+    0.0621573,
+    -0.3889045,
+    -0.1128744,
+    0.9122221
+   ],
+   "restLocalTranslation": [
+    0.017692,
+    0.034684,
+    0.016371
+   ],
+   "rule": "copy",
+   "from": "RightHandThumb1",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "thumb_02_r": {
+   "parent": "thumb_01_r",
+   "head": [
+    -0.215,
+    0.775,
+    0.038
+   ],
+   "tail": [
+    -0.221,
+    0.748,
+    0.047
+   ],
+   "restWorldRotation": [
+    0.3820231,
+    0.1042816,
+    0.9045429,
+    0.1580689
+   ],
+   "restLocalRotation": [
+    -0.0115351,
+    0.0023854,
+    0.0281495,
+    0.9995343
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.044227,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "RightHandThumb2",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "thumb_03_r": {
+   "parent": "thumb_02_r",
+   "head": [
+    -0.221,
+    0.748,
+    0.047
+   ],
+   "tail": [
+    -0.2264,
+    0.7237,
+    0.0551
+   ],
+   "restWorldRotation": [
+    0.3820231,
+    0.1042816,
+    0.9045429,
+    0.1580689
+   ],
+   "restLocalRotation": [
+    -0.0,
+    -0.0,
+    -0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.029086,
+    -0.0
+   ],
+   "rule": "copy",
+   "from": "RightHandThumb3",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "index_metacarpal_r": {
+   "parent": "hand_r",
+   "head": [
+    -0.19175,
+    0.8225,
+    0.0045
+   ],
+   "tail": [
+    -0.212,
+    0.755,
+    0.018
+   ],
+   "restWorldRotation": [
+    0.0137219,
+    0.0934933,
+    0.9849732,
+    0.1445634
+   ],
+   "restLocalRotation": [
+    0.0096275,
+    -0.0192832,
+    -0.1062178,
+    0.9941093
+   ],
+   "restLocalTranslation": [
+    0.005042,
+    0.023374,
+    0.000556
+   ],
+   "rule": "follow",
+   "how": "local = restLocal (moves with its parent) in the exact mapping; free to bend in new clips"
+  },
+  "index_01_r": {
+   "parent": "index_metacarpal_r",
+   "head": [
+    -0.212,
+    0.755,
+    0.018
+   ],
+   "tail": [
+    -0.213,
+    0.715,
+    0.02
+   ],
+   "restWorldRotation": [
+    0.000312,
+    0.0249669,
+    0.9996102,
+    0.0124932
+   ],
+   "restLocalRotation": [
+    -0.0689915,
+    0.0158505,
+    0.1318881,
+    0.9887338
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.071753,
+    -0.0
+   ],
+   "rule": "copy",
+   "from": "RightHandIndex1",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "index_02_r": {
+   "parent": "index_01_r",
+   "head": [
+    -0.213,
+    0.715,
+    0.02
+   ],
+   "tail": [
+    -0.213,
+    0.69,
+    0.02
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    -0.0249669,
+    0.000312,
+    0.0124932,
+    0.9996102
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.040062,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "RightHandIndex2",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "index_03_r": {
+   "parent": "index_02_r",
+   "head": [
+    -0.213,
+    0.69,
+    0.02
+   ],
+   "tail": [
+    -0.213,
+    0.67,
+    0.02
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.025,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "RightHandIndex3",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "middle_metacarpal_r": {
+   "parent": "hand_r",
+   "head": [
+    -0.18675,
+    0.82175,
+    0.004
+   ],
+   "tail": [
+    -0.192,
+    0.752,
+    0.016
+   ],
+   "restWorldRotation": [
+    0.0031865,
+    0.0847899,
+    0.9956909,
+    0.0374193
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.023656,
+    -0.0
+   ],
+   "rule": "follow",
+   "how": "local = restLocal (moves with its parent) in the exact mapping; free to bend in new clips"
+  },
+  "middle_01_r": {
+   "parent": "middle_metacarpal_r",
+   "head": [
+    -0.192,
+    0.752,
+    0.016
+   ],
+   "tail": [
+    -0.192,
+    0.708,
+    0.018
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0227097,
+    0.9997421,
+    0.0
+   ],
+   "restLocalRotation": [
+    -0.0621562,
+    0.0040355,
+    0.0373373,
+    0.9973596
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.070969,
+    -0.0
+   ],
+   "rule": "copy",
+   "from": "RightHandMiddle1",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "middle_02_r": {
+   "parent": "middle_01_r",
+   "head": [
+    -0.192,
+    0.708,
+    0.018
+   ],
+   "tail": [
+    -0.192,
+    0.681,
+    0.018
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    -0.0227097,
+    0.0,
+    0.0,
+    0.9997421
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.044045,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "RightHandMiddle2",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "middle_03_r": {
+   "parent": "middle_02_r",
+   "head": [
+    -0.192,
+    0.681,
+    0.018
+   ],
+   "tail": [
+    -0.192,
+    0.6594,
+    0.018
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.027,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "RightHandMiddle3",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "ring_metacarpal_r": {
+   "parent": "hand_r",
+   "head": [
+    -0.18175,
+    0.8225,
+    0.0035
+   ],
+   "tail": [
+    -0.172,
+    0.755,
+    0.014
+   ],
+   "restWorldRotation": [
+    0.0054684,
+    -0.0761087,
+    -0.9945208,
+    0.0714557
+   ],
+   "restLocalRotation": [
+    -0.0085215,
+    0.0175205,
+    0.1076559,
+    0.9939973
+   ],
+   "restLocalTranslation": [
+    -0.00493,
+    0.022465,
+    -0.000303
+   ],
+   "rule": "follow",
+   "how": "local = restLocal (moves with its parent) in the exact mapping; free to bend in new clips"
+  },
+  "ring_01_r": {
+   "parent": "ring_metacarpal_r",
+   "head": [
+    -0.172,
+    0.755,
+    0.014
+   ],
+   "tail": [
+    -0.172,
+    0.714,
+    0.016
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0243685,
+    0.999703,
+    0.0
+   ],
+   "restLocalRotation": [
+    -0.0518511,
+    -0.007208,
+    -0.0713012,
+    0.9960801
+   ],
+   "restLocalTranslation": [
+    -0.0,
+    0.069004,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "RightHandRing1",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "ring_02_r": {
+   "parent": "ring_01_r",
+   "head": [
+    -0.172,
+    0.714,
+    0.016
+   ],
+   "tail": [
+    -0.172,
+    0.689,
+    0.016
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    -0.0243685,
+    0.0,
+    0.0,
+    0.999703
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.041049,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "RightHandRing2",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "ring_03_r": {
+   "parent": "ring_02_r",
+   "head": [
+    -0.172,
+    0.689,
+    0.016
+   ],
+   "tail": [
+    -0.172,
+    0.669,
+    0.016
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.025,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "RightHandRing3",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "pinky_metacarpal_r": {
+   "parent": "hand_r",
+   "head": [
+    -0.17725,
+    0.82425,
+    0.003
+   ],
+   "tail": [
+    -0.154,
+    0.762,
+    0.012
+   ],
+   "restWorldRotation": [
+    0.0119571,
+    -0.0661882,
+    -0.9818428,
+    0.1773723
+   ],
+   "restLocalRotation": [
+    -0.0172296,
+    0.0325503,
+    0.2121231,
+    0.9765487
+   ],
+   "restLocalTranslation": [
+    -0.009286,
+    0.020327,
+    -0.000444
+   ],
+   "rule": "follow",
+   "how": "local = restLocal (moves with its parent) in the exact mapping; free to bend in new clips"
+  },
+  "pinky_01_r": {
+   "parent": "pinky_metacarpal_r",
+   "head": [
+    -0.154,
+    0.762,
+    0.012
+   ],
+   "tail": [
+    -0.154,
+    0.728,
+    0.013
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0147011,
+    0.9998919,
+    0.0
+   ],
+   "restLocalRotation": [
+    -0.0517468,
+    -0.0145633,
+    -0.1771773,
+    0.9827097
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.067057,
+    -0.0
+   ],
+   "rule": "copy",
+   "from": "RightHandPinky1",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "pinky_02_r": {
+   "parent": "pinky_01_r",
+   "head": [
+    -0.154,
+    0.728,
+    0.013
+   ],
+   "tail": [
+    -0.154,
+    0.707,
+    0.013
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    -0.0147011,
+    0.0,
+    0.0,
+    0.9998919
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.034015,
+    -0.0
+   ],
+   "rule": "copy",
+   "from": "RightHandPinky2",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "pinky_03_r": {
+   "parent": "pinky_02_r",
+   "head": [
+    -0.154,
+    0.707,
+    0.013
+   ],
+   "tail": [
+    -0.154,
+    0.6902,
+    0.013
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.021,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "RightHandPinky3",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "thigh_l": {
+   "parent": "pelvis",
+   "head": [
+    0.084,
+    0.86,
+    0.0
+   ],
+   "tail": [
+    0.084,
+    0.48,
+    0.0
+   ],
+   "restWorldRotation": [
+    1.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    1.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "restLocalTranslation": [
+    0.084,
+    -0.06,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "LeftUpLeg",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "calf_l": {
+   "parent": "thigh_l",
+   "head": [
+    0.084,
+    0.48,
+    0.0
+   ],
+   "tail": [
+    0.084,
+    0.08,
+    0.0
+   ],
+   "restWorldRotation": [
+    1.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.38,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "LeftLeg",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "foot_l": {
+   "parent": "calf_l",
+   "head": [
+    0.084,
+    0.08,
+    0.0
+   ],
+   "tail": [
+    0.084,
+    0.025,
+    0.115
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.5331719,
+    0.8460069,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.8460069,
+    -0.5331719,
+    0.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.4,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "LeftFoot",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "ball_l": {
+   "parent": "foot_l",
+   "head": [
+    0.084,
+    0.025,
+    0.115
+   ],
+   "tail": [
+    0.084,
+    0.025,
+    0.185
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.7071068,
+    0.7071068,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.2212078,
+    0.0,
+    0.0,
+    0.9752267
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.127475,
+    -0.0
+   ],
+   "rule": "copy",
+   "from": "LeftToeBase",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "thigh_r": {
+   "parent": "pelvis",
+   "head": [
+    -0.084,
+    0.86,
+    0.0
+   ],
+   "tail": [
+    -0.084,
+    0.48,
+    0.0
+   ],
+   "restWorldRotation": [
+    1.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    1.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "restLocalTranslation": [
+    -0.084,
+    -0.06,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "RightUpLeg",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "calf_r": {
+   "parent": "thigh_r",
+   "head": [
+    -0.084,
+    0.48,
+    0.0
+   ],
+   "tail": [
+    -0.084,
+    0.08,
+    0.0
+   ],
+   "restWorldRotation": [
+    1.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.38,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "RightLeg",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "foot_r": {
+   "parent": "calf_r",
+   "head": [
+    -0.084,
+    0.08,
+    0.0
+   ],
+   "tail": [
+    -0.084,
+    0.025,
+    0.115
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.5331719,
+    0.8460069,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.8460069,
+    -0.5331719,
+    0.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.4,
+    0.0
+   ],
+   "rule": "copy",
+   "from": "RightFoot",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "ball_r": {
+   "parent": "foot_r",
+   "head": [
+    -0.084,
+    0.025,
+    0.115
+   ],
+   "tail": [
+    -0.084,
+    0.025,
+    0.185
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.7071068,
+    0.7071068,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.2212078,
+    0.0,
+    0.0,
+    0.9752267
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.127475,
+    -0.0
+   ],
+   "rule": "copy",
+   "from": "RightToeBase",
+   "how": "world = oldWorld[from] * restWorld (old rests are identity)"
+  },
+  "upperarm_twist_01_l": {
+   "parent": "upperarm_l",
+   "head": [
+    0.185,
+    1.338,
+    0.0
+   ],
+   "tail": [
+    0.185,
+    1.284,
+    0.0
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.027,
+    0.0
+   ],
+   "rule": "twist",
+   "share": -0.5,
+   "measure": "self",
+   "source": "upperarm_l",
+   "how": "local = restLocal * twistY(share * a), a = twist about Y of source.restLocal^-1 * source.local (the bone's own pose turn)"
+  },
+  "upperarm_twist_02_l": {
+   "parent": "upperarm_l",
+   "head": [
+    0.185,
+    1.23,
+    0.0
+   ],
+   "tail": [
+    0.185,
+    1.176,
+    0.0
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.135,
+    0.0
+   ],
+   "rule": "twist",
+   "share": -0.25,
+   "measure": "self",
+   "source": "upperarm_l",
+   "how": "local = restLocal * twistY(share * a), a = twist about Y of source.restLocal^-1 * source.local (the bone's own pose turn)"
+  },
+  "lowerarm_twist_02_l": {
+   "parent": "lowerarm_l",
+   "head": [
+    0.185,
+    0.9575,
+    0.0
+   ],
+   "tail": [
+    0.185,
+    0.9075,
+    0.0
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.1375,
+    0.0
+   ],
+   "rule": "twist",
+   "share": 0.47,
+   "measure": "child",
+   "source": "hand_l",
+   "how": "local = restLocal * twistY(share * a), a = twist about Y of source.local * source.restLocal^-1 (the child's turn in the parent's frame)"
+  },
+  "lowerarm_twist_01_l": {
+   "parent": "lowerarm_l",
+   "head": [
+    0.185,
+    0.87,
+    0.0
+   ],
+   "tail": [
+    0.185,
+    0.82,
+    0.0
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.225,
+    0.0
+   ],
+   "rule": "twist",
+   "share": 0.88,
+   "measure": "child",
+   "source": "hand_l",
+   "how": "local = restLocal * twistY(share * a), a = twist about Y of source.local * source.restLocal^-1 (the child's turn in the parent's frame)"
+  },
+  "thigh_twist_01_l": {
+   "parent": "thigh_l",
+   "head": [
+    0.084,
+    0.822,
+    0.0
+   ],
+   "tail": [
+    0.084,
+    0.746,
+    0.0
+   ],
+   "restWorldRotation": [
+    1.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.038,
+    0.0
+   ],
+   "rule": "twist",
+   "share": -0.3,
+   "measure": "self",
+   "source": "thigh_l",
+   "how": "local = restLocal * twistY(share * a), a = twist about Y of source.restLocal^-1 * source.local (the bone's own pose turn)"
+  },
+  "thigh_twist_02_l": {
+   "parent": "thigh_l",
+   "head": [
+    0.084,
+    0.67,
+    0.0
+   ],
+   "tail": [
+    0.084,
+    0.594,
+    0.0
+   ],
+   "restWorldRotation": [
+    1.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.19,
+    0.0
+   ],
+   "rule": "twist",
+   "share": -0.15,
+   "measure": "self",
+   "source": "thigh_l",
+   "how": "local = restLocal * twistY(share * a), a = twist about Y of source.restLocal^-1 * source.local (the bone's own pose turn)"
+  },
+  "calf_twist_02_l": {
+   "parent": "calf_l",
+   "head": [
+    0.084,
+    0.26,
+    0.0
+   ],
+   "tail": [
+    0.084,
+    0.18,
+    0.0
+   ],
+   "restWorldRotation": [
+    1.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.22,
+    0.0
+   ],
+   "rule": "twist",
+   "share": 0.24,
+   "measure": "child",
+   "source": "foot_l",
+   "how": "local = restLocal * twistY(share * a), a = twist about Y of source.local * source.restLocal^-1 (the child's turn in the parent's frame)"
+  },
+  "calf_twist_01_l": {
+   "parent": "calf_l",
+   "head": [
+    0.084,
+    0.12,
+    0.0
+   ],
+   "tail": [
+    0.084,
+    0.04,
+    0.0
+   ],
+   "restWorldRotation": [
+    1.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.36,
+    0.0
+   ],
+   "rule": "twist",
+   "share": 0.44,
+   "measure": "child",
+   "source": "foot_l",
+   "how": "local = restLocal * twistY(share * a), a = twist about Y of source.local * source.restLocal^-1 (the child's turn in the parent's frame)"
+  },
+  "upperarm_twist_01_r": {
+   "parent": "upperarm_r",
+   "head": [
+    -0.185,
+    1.338,
+    0.0
+   ],
+   "tail": [
+    -0.185,
+    1.284,
+    0.0
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.027,
+    0.0
+   ],
+   "rule": "twist",
+   "share": -0.5,
+   "measure": "self",
+   "source": "upperarm_r",
+   "how": "local = restLocal * twistY(share * a), a = twist about Y of source.restLocal^-1 * source.local (the bone's own pose turn)"
+  },
+  "upperarm_twist_02_r": {
+   "parent": "upperarm_r",
+   "head": [
+    -0.185,
+    1.23,
+    0.0
+   ],
+   "tail": [
+    -0.185,
+    1.176,
+    0.0
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.135,
+    0.0
+   ],
+   "rule": "twist",
+   "share": -0.25,
+   "measure": "self",
+   "source": "upperarm_r",
+   "how": "local = restLocal * twistY(share * a), a = twist about Y of source.restLocal^-1 * source.local (the bone's own pose turn)"
+  },
+  "lowerarm_twist_02_r": {
+   "parent": "lowerarm_r",
+   "head": [
+    -0.185,
+    0.9575,
+    0.0
+   ],
+   "tail": [
+    -0.185,
+    0.9075,
+    0.0
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.1375,
+    0.0
+   ],
+   "rule": "twist",
+   "share": 0.47,
+   "measure": "child",
+   "source": "hand_r",
+   "how": "local = restLocal * twistY(share * a), a = twist about Y of source.local * source.restLocal^-1 (the child's turn in the parent's frame)"
+  },
+  "lowerarm_twist_01_r": {
+   "parent": "lowerarm_r",
+   "head": [
+    -0.185,
+    0.87,
+    0.0
+   ],
+   "tail": [
+    -0.185,
+    0.82,
+    0.0
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.225,
+    0.0
+   ],
+   "rule": "twist",
+   "share": 0.88,
+   "measure": "child",
+   "source": "hand_r",
+   "how": "local = restLocal * twistY(share * a), a = twist about Y of source.local * source.restLocal^-1 (the child's turn in the parent's frame)"
+  },
+  "thigh_twist_01_r": {
+   "parent": "thigh_r",
+   "head": [
+    -0.084,
+    0.822,
+    0.0
+   ],
+   "tail": [
+    -0.084,
+    0.746,
+    0.0
+   ],
+   "restWorldRotation": [
+    1.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.038,
+    0.0
+   ],
+   "rule": "twist",
+   "share": -0.3,
+   "measure": "self",
+   "source": "thigh_r",
+   "how": "local = restLocal * twistY(share * a), a = twist about Y of source.restLocal^-1 * source.local (the bone's own pose turn)"
+  },
+  "thigh_twist_02_r": {
+   "parent": "thigh_r",
+   "head": [
+    -0.084,
+    0.67,
+    0.0
+   ],
+   "tail": [
+    -0.084,
+    0.594,
+    0.0
+   ],
+   "restWorldRotation": [
+    1.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.19,
+    0.0
+   ],
+   "rule": "twist",
+   "share": -0.15,
+   "measure": "self",
+   "source": "thigh_r",
+   "how": "local = restLocal * twistY(share * a), a = twist about Y of source.restLocal^-1 * source.local (the bone's own pose turn)"
+  },
+  "calf_twist_02_r": {
+   "parent": "calf_r",
+   "head": [
+    -0.084,
+    0.26,
+    0.0
+   ],
+   "tail": [
+    -0.084,
+    0.18,
+    0.0
+   ],
+   "restWorldRotation": [
+    1.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.22,
+    0.0
+   ],
+   "rule": "twist",
+   "share": 0.24,
+   "measure": "child",
+   "source": "foot_r",
+   "how": "local = restLocal * twistY(share * a), a = twist about Y of source.local * source.restLocal^-1 (the child's turn in the parent's frame)"
+  },
+  "calf_twist_01_r": {
+   "parent": "calf_r",
+   "head": [
+    -0.084,
+    0.12,
+    0.0
+   ],
+   "tail": [
+    -0.084,
+    0.04,
+    0.0
+   ],
+   "restWorldRotation": [
+    1.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.36,
+    0.0
+   ],
+   "rule": "twist",
+   "share": 0.44,
+   "measure": "child",
+   "source": "foot_r",
+   "how": "local = restLocal * twistY(share * a), a = twist about Y of source.local * source.restLocal^-1 (the child's turn in the parent's frame)"
+  },
+  "ik_foot_root": {
+   "parent": "root",
+   "head": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "tail": [
+    0.0,
+    0.15,
+    0.0
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rule": "ik",
+   "target": null,
+   "how": "stays at rest"
+  },
+  "ik_foot_l": {
+   "parent": "ik_foot_root",
+   "head": [
+    0.084,
+    0.08,
+    0.0
+   ],
+   "tail": [
+    0.084,
+    0.025,
+    0.115
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.5331719,
+    0.8460069,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.5331719,
+    0.8460069,
+    0.0
+   ],
+   "restLocalTranslation": [
+    0.084,
+    0.08,
+    0.0
+   ],
+   "rule": "ik",
+   "target": "foot_l",
+   "how": "world transform = target world transform (translation keyed too)"
+  },
+  "ik_foot_r": {
+   "parent": "ik_foot_root",
+   "head": [
+    -0.084,
+    0.08,
+    0.0
+   ],
+   "tail": [
+    -0.084,
+    0.025,
+    0.115
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.5331719,
+    0.8460069,
+    0.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.5331719,
+    0.8460069,
+    0.0
+   ],
+   "restLocalTranslation": [
+    -0.084,
+    0.08,
+    0.0
+   ],
+   "rule": "ik",
+   "target": "foot_r",
+   "how": "world transform = target world transform (translation keyed too)"
+  },
+  "ik_hand_root": {
+   "parent": "root",
+   "head": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "tail": [
+    0.0,
+    0.15,
+    0.0
+   ],
+   "restWorldRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rule": "ik",
+   "target": null,
+   "how": "stays at rest"
+  },
+  "ik_hand_gun": {
+   "parent": "ik_hand_root",
+   "head": [
+    -0.185,
+    0.845,
+    0.0
+   ],
+   "tail": [
+    -0.192,
+    0.752,
+    0.016
+   ],
+   "restWorldRotation": [
+    0.0031865,
+    0.0847899,
+    0.9956909,
+    0.0374193
+   ],
+   "restLocalRotation": [
+    0.0031865,
+    0.0847899,
+    0.9956909,
+    0.0374193
+   ],
+   "restLocalTranslation": [
+    -0.185,
+    0.845,
+    0.0
+   ],
+   "rule": "ik",
+   "target": "hand_r",
+   "how": "world transform = target world transform (translation keyed too)"
+  },
+  "ik_hand_l": {
+   "parent": "ik_hand_gun",
+   "head": [
+    0.185,
+    0.845,
+    0.0
+   ],
+   "tail": [
+    0.192,
+    0.752,
+    0.016
+   ],
+   "restWorldRotation": [
+    0.0031865,
+    -0.0847899,
+    -0.9956909,
+    0.0374193
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0126911,
+    0.0739758,
+    0.9971793
+   ],
+   "restLocalTranslation": [
+    -0.368956,
+    -0.027371,
+    0.004696
+   ],
+   "rule": "ik",
+   "target": "hand_l",
+   "how": "world transform = target world transform (translation keyed too)"
+  },
+  "ik_hand_r": {
+   "parent": "ik_hand_gun",
+   "head": [
+    -0.185,
+    0.845,
+    0.0
+   ],
+   "tail": [
+    -0.192,
+    0.752,
+    0.016
+   ],
+   "restWorldRotation": [
+    0.0031865,
+    0.0847899,
+    0.9956909,
+    0.0374193
+   ],
+   "restLocalRotation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "restLocalTranslation": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rule": "ik",
+   "target": "hand_r",
+   "how": "world transform = target world transform (translation keyed too)"
+  }
+ },
+ "old": {
+  "Root": {
+   "rotation": "root"
+  },
+  "Hips": {
+   "rotation": "pelvis"
+  },
+  "Spine": {
+   "rotation": "spine_01",
+   "weightsSplitByHeight": [
+    "spine_01",
+    "spine_02"
+   ]
+  },
+  "Spine1": {
+   "rotation": "spine_03",
+   "weightsSplitByHeight": [
+    "spine_03",
+    "spine_04"
+   ]
+  },
+  "Spine2": {
+   "rotation": "spine_05"
+  },
+  "Neck": {
+   "rotation": "neck_01",
+   "weightsSplitByHeight": [
+    "neck_01",
+    "neck_02"
+   ]
+  },
+  "Head": {
+   "rotation": "head"
+  },
+  "Jaw": {
+   "rotation": "jaw"
+  },
+  "LeftEye": {
+   "rotation": "eye_l",
+   "note": "the new eye bone sits at the eyeball centre (sphere fit), not at the old joint"
+  },
+  "RightEye": {
+   "rotation": "eye_r",
+   "note": "the new eye bone sits at the eyeball centre (sphere fit), not at the old joint"
+  },
+  "LeftShoulder": {
+   "rotation": "clavicle_l"
+  },
+  "LeftArm": {
+   "rotation": "upperarm_l",
+   "weightsSplitAlongLimb": [
+    [
+     0.1,
+     "upperarm_twist_01_l"
+    ],
+    [
+     0.5,
+     "upperarm_twist_02_l"
+    ],
+    [
+     1.0,
+     "upperarm_l"
+    ]
+   ]
+  },
+  "LeftForeArm": {
+   "rotation": "lowerarm_l",
+   "weightsSplitAlongLimb": [
+    [
+     0.15,
+     "lowerarm_l"
+    ],
+    [
+     0.55,
+     "lowerarm_twist_02_l"
+    ],
+    [
+     0.9,
+     "lowerarm_twist_01_l"
+    ]
+   ]
+  },
+  "LeftHand": {
+   "rotation": "hand_l",
+   "weightsSplit": "up to 0.4 of palm vertices onto the metacarpals near the knuckles"
+  },
+  "LeftHandThumb1": {
+   "rotation": "thumb_01_l"
+  },
+  "LeftHandThumb2": {
+   "rotation": "thumb_02_l"
+  },
+  "LeftHandThumb3": {
+   "rotation": "thumb_03_l"
+  },
+  "LeftHandIndex1": {
+   "rotation": "index_01_l"
+  },
+  "LeftHandIndex2": {
+   "rotation": "index_02_l"
+  },
+  "LeftHandIndex3": {
+   "rotation": "index_03_l"
+  },
+  "LeftHandMiddle1": {
+   "rotation": "middle_01_l"
+  },
+  "LeftHandMiddle2": {
+   "rotation": "middle_02_l"
+  },
+  "LeftHandMiddle3": {
+   "rotation": "middle_03_l"
+  },
+  "LeftHandRing1": {
+   "rotation": "ring_01_l"
+  },
+  "LeftHandRing2": {
+   "rotation": "ring_02_l"
+  },
+  "LeftHandRing3": {
+   "rotation": "ring_03_l"
+  },
+  "LeftHandPinky1": {
+   "rotation": "pinky_01_l"
+  },
+  "LeftHandPinky2": {
+   "rotation": "pinky_02_l"
+  },
+  "LeftHandPinky3": {
+   "rotation": "pinky_03_l"
+  },
+  "RightShoulder": {
+   "rotation": "clavicle_r"
+  },
+  "RightArm": {
+   "rotation": "upperarm_r",
+   "weightsSplitAlongLimb": [
+    [
+     0.1,
+     "upperarm_twist_01_r"
+    ],
+    [
+     0.5,
+     "upperarm_twist_02_r"
+    ],
+    [
+     1.0,
+     "upperarm_r"
+    ]
+   ]
+  },
+  "RightForeArm": {
+   "rotation": "lowerarm_r",
+   "weightsSplitAlongLimb": [
+    [
+     0.15,
+     "lowerarm_r"
+    ],
+    [
+     0.55,
+     "lowerarm_twist_02_r"
+    ],
+    [
+     0.9,
+     "lowerarm_twist_01_r"
+    ]
+   ]
+  },
+  "RightHand": {
+   "rotation": "hand_r",
+   "weightsSplit": "up to 0.4 of palm vertices onto the metacarpals near the knuckles"
+  },
+  "RightHandThumb1": {
+   "rotation": "thumb_01_r"
+  },
+  "RightHandThumb2": {
+   "rotation": "thumb_02_r"
+  },
+  "RightHandThumb3": {
+   "rotation": "thumb_03_r"
+  },
+  "RightHandIndex1": {
+   "rotation": "index_01_r"
+  },
+  "RightHandIndex2": {
+   "rotation": "index_02_r"
+  },
+  "RightHandIndex3": {
+   "rotation": "index_03_r"
+  },
+  "RightHandMiddle1": {
+   "rotation": "middle_01_r"
+  },
+  "RightHandMiddle2": {
+   "rotation": "middle_02_r"
+  },
+  "RightHandMiddle3": {
+   "rotation": "middle_03_r"
+  },
+  "RightHandRing1": {
+   "rotation": "ring_01_r"
+  },
+  "RightHandRing2": {
+   "rotation": "ring_02_r"
+  },
+  "RightHandRing3": {
+   "rotation": "ring_03_r"
+  },
+  "RightHandPinky1": {
+   "rotation": "pinky_01_r"
+  },
+  "RightHandPinky2": {
+   "rotation": "pinky_02_r"
+  },
+  "RightHandPinky3": {
+   "rotation": "pinky_03_r"
+  },
+  "LeftUpLeg": {
+   "rotation": "thigh_l",
+   "weightsSplitAlongLimb": [
+    [
+     0.1,
+     "thigh_twist_01_l"
+    ],
+    [
+     0.5,
+     "thigh_twist_02_l"
+    ],
+    [
+     1.0,
+     "thigh_l"
+    ]
+   ]
+  },
+  "LeftLeg": {
+   "rotation": "calf_l",
+   "weightsSplitAlongLimb": [
+    [
+     0.15,
+     "calf_l"
+    ],
+    [
+     0.55,
+     "calf_twist_02_l"
+    ],
+    [
+     0.9,
+     "calf_twist_01_l"
+    ]
+   ]
+  },
+  "LeftFoot": {
+   "rotation": "foot_l"
+  },
+  "LeftToeBase": {
+   "rotation": "ball_l"
+  },
+  "RightUpLeg": {
+   "rotation": "thigh_r",
+   "weightsSplitAlongLimb": [
+    [
+     0.1,
+     "thigh_twist_01_r"
+    ],
+    [
+     0.5,
+     "thigh_twist_02_r"
+    ],
+    [
+     1.0,
+     "thigh_r"
+    ]
+   ]
+  },
+  "RightLeg": {
+   "rotation": "calf_r",
+   "weightsSplitAlongLimb": [
+    [
+     0.15,
+     "calf_r"
+    ],
+    [
+     0.55,
+     "calf_twist_02_r"
+    ],
+    [
+     0.9,
+     "calf_twist_01_r"
+    ]
+   ]
+  },
+  "RightFoot": {
+   "rotation": "foot_r"
+  },
+  "RightToeBase": {
+   "rotation": "ball_r"
+  }
+ },
+ "translation": {
+  "Hips": "pelvis (local to root; root rests at the origin with an identity rotation, so the value is unchanged)"
+ },
+ "twistBones": {
+  "upperarm_twist_01_{s}": {
+   "parent": "upperarm_{s}",
+   "at": 0.1,
+   "share": -0.5,
+   "measure": "self",
+   "source": "upperarm_{s}"
+  },
+  "upperarm_twist_02_{s}": {
+   "parent": "upperarm_{s}",
+   "at": 0.5,
+   "share": -0.25,
+   "measure": "self",
+   "source": "upperarm_{s}"
+  },
+  "lowerarm_twist_02_{s}": {
+   "parent": "lowerarm_{s}",
+   "at": 0.55,
+   "share": 0.47,
+   "measure": "child",
+   "source": "hand_{s}"
+  },
+  "lowerarm_twist_01_{s}": {
+   "parent": "lowerarm_{s}",
+   "at": 0.9,
+   "share": 0.88,
+   "measure": "child",
+   "source": "hand_{s}"
+  },
+  "thigh_twist_01_{s}": {
+   "parent": "thigh_{s}",
+   "at": 0.1,
+   "share": -0.3,
+   "measure": "self",
+   "source": "thigh_{s}"
+  },
+  "thigh_twist_02_{s}": {
+   "parent": "thigh_{s}",
+   "at": 0.5,
+   "share": -0.15,
+   "measure": "self",
+   "source": "thigh_{s}"
+  },
+  "calf_twist_02_{s}": {
+   "parent": "calf_{s}",
+   "at": 0.55,
+   "share": 0.24,
+   "measure": "child",
+   "source": "foot_{s}"
+  },
+  "calf_twist_01_{s}": {
+   "parent": "calf_{s}",
+   "at": 0.9,
+   "share": 0.44,
+   "measure": "child",
+   "source": "foot_{s}"
+  }
+ },
+ "retargetPoses": {
+  "ue5_apose": {
+   "note": "UE5 Mannequin-like A-pose as local rotations on this skeleton (bind stays I-pose): arms 45 deg below horizontal, elbows 15, palms down and in (upper arm 40 in, hand 50 in, twist bones their shares), legs 4 apart",
+   "local": {
+    "upperarm_l": [
+     -0.161729,
+     0.8373192,
+     -0.346829,
+     0.3904484
+    ],
+    "lowerarm_l": [
+     0.1305262,
+     0.0,
+     0.0,
+     0.9914449
+    ],
+    "hand_l": [
+     0.0926598,
+     0.4236851,
+     -0.0019203,
+     0.9010557
+    ],
+    "upperarm_r": [
+     -0.161729,
+     -0.8373192,
+     0.346829,
+     0.3904484
+    ],
+    "lowerarm_r": [
+     0.1305262,
+     -0.0,
+     -0.0,
+     0.9914449
+    ],
+    "hand_r": [
+     0.0926598,
+     -0.4236851,
+     0.0019203,
+     0.9010557
+    ],
+    "thigh_l": [
+     0.9993908,
+     0.0348995,
+     0.0,
+     0.0
+    ],
+    "thigh_r": [
+     0.9993908,
+     -0.0348995,
+     0.0,
+     0.0
+    ],
+    "upperarm_twist_01_l": [
+     0.0,
+     -0.1736482,
+     -0.0,
+     0.9848078
+    ],
+    "upperarm_twist_02_l": [
+     0.0,
+     -0.0871557,
+     -0.0,
+     0.9961947
+    ],
+    "lowerarm_twist_02_l": [
+     -0.0,
+     0.2036418,
+     0.0,
+     0.9790455
+    ],
+    "lowerarm_twist_01_l": [
+     -0.0,
+     0.3746066,
+     0.0,
+     0.9271839
+    ],
+    "upperarm_twist_01_r": [
+     0.0,
+     0.1736482,
+     0.0,
+     0.9848078
+    ],
+    "upperarm_twist_02_r": [
+     0.0,
+     0.0871557,
+     0.0,
+     0.9961947
+    ],
+    "lowerarm_twist_02_r": [
+     -0.0,
+     -0.2036418,
+     -0.0,
+     0.9790455
+    ],
+    "lowerarm_twist_01_r": [
+     -0.0,
+     -0.3746066,
+     -0.0,
+     0.9271839
+    ],
+    "ik_foot_l": [
+     0.0186074,
+     -0.5328471,
+     -0.8454916,
+     0.0295252
+    ],
+    "ik_foot_r": [
+     0.0186074,
+     0.5328471,
+     0.8454916,
+     0.0295252
+    ],
+    "ik_hand_gun": [
+     0.7256799,
+     -0.0677546,
+     0.6404739,
+     0.2420561
+    ],
+    "ik_hand_l": [
+     -0.0,
+     -0.8967573,
+     -0.4083976,
+     0.1704049
+    ]
+   }
+  }
+ },
+ "frames": "Bones run along local +Y; Z points to the side the child swings into on flexion; X = Y x Z. Flexion is +X for spine, neck, head, elbows, knees, fingers, thumb, wrist (palm-ward), ankle (toes up), ball (toes up), jaw (open); eyes: +X looks up. Mirrored sides: X same world direction, Y and Z reflected."
+}

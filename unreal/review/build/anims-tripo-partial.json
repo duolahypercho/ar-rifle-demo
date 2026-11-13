@@ -1,0 +1,19 @@
+{
+ "boneRestErrCm": [
+  2.2082821374169725e-05,
+  1.3418153196165239e-05
+ ],
+ "clips": {
+  "rifle-walk-f": {
+   "frames": 63,
+   "bytes": 923260,
+   "s": 0.67
+  },
+  "rifle-pivot-l180": {
+   "frames": 37,
+   "bytes": 771148,
+   "s": 0.36
+  }
+ },
+ "seconds": 1.1
+}

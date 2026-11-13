@@ -1,0 +1,115 @@
+{
+ "objects": [
+  [
+   "Armature",
+   "ARMATURE"
+  ],
+  [
+   "SK_civilian-m-03-hero-ue5",
+   "MESH"
+  ]
+ ],
+ "armatureObjectScale": [
+  0.009999999776482582,
+  0.009999999776482582,
+  0.009999999776482582
+ ],
+ "bones": 92,
+ "boneNamesEqual": true,
+ "parentsEqual": true,
+ "extraBones": [
+  "Gun",
+  "GunIn"
+ ],
+ "restPosMm": 0.0004890059514196338,
+ "restDeg": 0.00022579295678868278,
+ "vertices": [
+  7132,
+  7132
+ ],
+ "restVertexMm": 0.0006142781623764766,
+ "heightM": 1.7565144227812446,
+ "shapeKeys": [
+  "jawOpen",
+  "mouthSmileLeft",
+  "mouthSmileRight",
+  "mouthFrownLeft",
+  "mouthFrownRight",
+  "browInnerUp",
+  "browDownLeft",
+  "browDownRight",
+  "eyeBlinkLeft",
+  "eyeBlinkRight",
+  "eyeWideLeft",
+  "eyeWideRight",
+  "cheekPuff",
+  "viseme_aa",
+  "viseme_PP",
+  "viseme_O"
+ ],
+ "materials": [
+  "EO Original Civilian PBR Atlas.001"
+ ],
+ "images": [
+  [
+   "hero-basecolor-1024.png",
+   [
+    1024,
+    1024
+   ]
+  ],
+  [
+   "hero-basecolor-1024.png.001",
+   [
+    1024,
+    1024
+   ]
+  ],
+  [
+   "hero-basecolor-1024.png.002",
+   [
+    1024,
+    1024
+   ]
+  ],
+  [
+   "hero-normal-1024.png",
+   [
+    1024,
+    1024
+   ]
+  ]
+ ],
+ "morphTargetMm": 0.000404738828085178,
+ "skin": {
+  "rifle-aim-level": [
+   {
+    "frame": 0,
+    "worstVertexMm": 0.0012551543676787983,
+    "meanVertexMm": 0.0002602589783714223
+   },
+   {
+    "frame": 1,
+    "worstVertexMm": 0.0012551543676787983,
+    "meanVertexMm": 0.0002602589783714223
+   }
+  ],
+  "swap-rifle-shotgun": [
+   {
+    "frame": 0,
+    "worstVertexMm": 0.000860140890983304,
+    "meanVertexMm": 0.00024834952507305836
+   },
+   {
+    "frame": 20,
+    "worstVertexMm": 0.002957859851941222,
+    "meanVertexMm": 0.00045224927902405153
+   },
+   {
+    "frame": 40,
+    "worstVertexMm": 0.0011268245330880746,
+    "meanVertexMm": 0.00024585876133020846
+   }
+  ]
+ }
+}

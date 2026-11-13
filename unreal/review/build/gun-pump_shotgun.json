@@ -1,0 +1,39 @@
+{
+ "buttGltfM": [
+  0.0,
+  -0.014486,
+  0.3324
+ ],
+ "normalErr": 0.00044161446735296265,
+ "parts": [
+  "pump_shotgun_barrel",
+  "pump_shotgun_barrel_band",
+  "pump_shotgun_butt_pad",
+  "pump_shotgun_magazine_tube",
+  "pump_shotgun_pump",
+  "pump_shotgun_receiver",
+  "pump_shotgun_stock",
+  "pump_shotgun_trigger",
+  "pump_shotgun_trigger_guard"
+ ],
+ "sockets": [
+  "SOCKET_eject_point",
+  "SOCKET_grip_main",
+  "SOCKET_grip_support",
+  "SOCKET_muzzle_point"
+ ],
+ "boundsCm": [
+  [
+   -3.1500000953674316,
+   -8.90999984741211,
+   -100.0
+  ],
+  [
+   3.1500000953674316,
+   11.8100004196167,
+   0.0
+  ]
+ ],
+ "bytes": 18392284,
+ "seconds": 1.7
+}

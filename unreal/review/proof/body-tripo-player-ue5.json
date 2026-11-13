@@ -1,0 +1,83 @@
+{
+ "objects": [
+  [
+   "Armature",
+   "ARMATURE"
+  ],
+  [
+   "SK_tripo-player-ue5",
+   "MESH"
+  ]
+ ],
+ "armatureObjectScale": [
+  0.009999999776482582,
+  0.009999999776482582,
+  0.009999999776482582
+ ],
+ "bones": 89,
+ "boneNamesEqual": true,
+ "parentsEqual": true,
+ "extraBones": [
+  "Gun",
+  "GunIn"
+ ],
+ "restPosMm": 0.0012782139404702738,
+ "restDeg": 0.0030217974379398997,
+ "vertices": [
+  11990,
+  11990
+ ],
+ "restVertexMm": 0.0011085102524917077,
+ "heightM": 1.7500007235428376,
+ "shapeKeys": [],
+ "materials": [
+  "tripo_mat_3acbb7f8-b190-4192-8e7a-3a38ba80bc03"
+ ],
+ "images": [
+  [
+   "human_figure_3d_model_basecolor.jpg",
+   [
+    8192,
+    8192
+   ]
+  ],
+  [
+   "human_figure_3d_model_normal.png",
+   [
+    4096,
+    4096
+   ]
+  ]
+ ],
+ "skin": {
+  "rifle-aim-level": [
+   {
+    "frame": 0,
+    "worstVertexMm": 0.005253805684174373,
+    "meanVertexMm": 0.0008675148167075836
+   },
+   {
+    "frame": 1,
+    "worstVertexMm": 0.005253805684174373,
+    "meanVertexMm": 0.0008675148167075836
+   }
+  ],
+  "swap-rifle-shotgun": [
+   {
+    "frame": 0,
+    "worstVertexMm": 0.005214565136432162,
+    "meanVertexMm": 0.0010081764086657054
+   },
+   {
+    "frame": 20,
+    "worstVertexMm": 0.004994264220670672,
+    "meanVertexMm": 0.0009399291495833698
+   },
+   {
+    "frame": 40,
+    "worstVertexMm": 0.005018398884344349,
+    "meanVertexMm": 0.0009230630152095947
+   }
+  ]
+ }
+}

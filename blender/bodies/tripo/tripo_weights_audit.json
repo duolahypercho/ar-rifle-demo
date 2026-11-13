@@ -1,0 +1,1117 @@
+{
+ "before": {
+  "bones": {
+   "root": {
+    "vertices": 0,
+    "totalWeight": 0.0,
+    "dominantVertices": 0
+   },
+   "pelvis": {
+    "vertices": 2185,
+    "totalWeight": 484.98,
+    "dominantVertices": 475
+   },
+   "spine_01": {
+    "vertices": 1397,
+    "totalWeight": 310.7,
+    "dominantVertices": 283
+   },
+   "spine_02": {
+    "vertices": 1799,
+    "totalWeight": 366.46,
+    "dominantVertices": 362
+   },
+   "spine_03": {
+    "vertices": 898,
+    "totalWeight": 152.22,
+    "dominantVertices": 31
+   },
+   "spine_04": {
+    "vertices": 1876,
+    "totalWeight": 429.58,
+    "dominantVertices": 504
+   },
+   "spine_05": {
+    "vertices": 1698,
+    "totalWeight": 373.2,
+    "dominantVertices": 322
+   },
+   "neck_01": {
+    "vertices": 1191,
+    "totalWeight": 174.67,
+    "dominantVertices": 136
+   },
+   "neck_02": {
+    "vertices": 1699,
+    "totalWeight": 135.76,
+    "dominantVertices": 38
+   },
+   "head": {
+    "vertices": 1962,
+    "totalWeight": 1667.45,
+    "dominantVertices": 1760
+   },
+   "clavicle_l": {
+    "vertices": 1355,
+    "totalWeight": 488.38,
+    "dominantVertices": 580
+   },
+   "upperarm_l": {
+    "vertices": 936,
+    "totalWeight": 340.79,
+    "dominantVertices": 374
+   },
+   "lowerarm_l": {
+    "vertices": 188,
+    "totalWeight": 57.11,
+    "dominantVertices": 70
+   },
+   "lowerarm_twist_02_l": {
+    "vertices": 91,
+    "totalWeight": 20.4,
+    "dominantVertices": 2
+   },
+   "lowerarm_twist_01_l": {
+    "vertices": 120,
+    "totalWeight": 53.09,
+    "dominantVertices": 55
+   },
+   "hand_l": {
+    "vertices": 44,
+    "totalWeight": 7.35,
+    "dominantVertices": 6
+   },
+   "index_metacarpal_l": {
+    "vertices": 67,
+    "totalWeight": 20.91,
+    "dominantVertices": 22
+   },
+   "index_01_l": {
+    "vertices": 57,
+    "totalWeight": 19.45,
+    "dominantVertices": 18
+   },
+   "index_02_l": {
+    "vertices": 43,
+    "totalWeight": 14.44,
+    "dominantVertices": 15
+   },
+   "index_03_l": {
+    "vertices": 29,
+    "totalWeight": 14.57,
+    "dominantVertices": 14
+   },
+   "middle_metacarpal_l": {
+    "vertices": 61,
+    "totalWeight": 11.96,
+    "dominantVertices": 12
+   },
+   "middle_01_l": {
+    "vertices": 57,
+    "totalWeight": 17.42,
+    "dominantVertices": 18
+   },
+   "middle_02_l": {
+    "vertices": 61,
+    "totalWeight": 19.86,
+    "dominantVertices": 21
+   },
+   "middle_03_l": {
+    "vertices": 21,
+    "totalWeight": 10.39,
+    "dominantVertices": 10
+   },
+   "thumb_01_l": {
+    "vertices": 94,
+    "totalWeight": 43.32,
+    "dominantVertices": 44
+   },
+   "thumb_02_l": {
+    "vertices": 35,
+    "totalWeight": 9.27,
+    "dominantVertices": 9
+   },
+   "thumb_03_l": {
+    "vertices": 23,
+    "totalWeight": 14.13,
+    "dominantVertices": 14
+   },
+   "pinky_metacarpal_l": {
+    "vertices": 61,
+    "totalWeight": 24.98,
+    "dominantVertices": 27
+   },
+   "pinky_01_l": {
+    "vertices": 53,
+    "totalWeight": 17.91,
+    "dominantVertices": 16
+   },
+   "pinky_02_l": {
+    "vertices": 12,
+    "totalWeight": 4.16,
+    "dominantVertices": 3
+   },
+   "pinky_03_l": {
+    "vertices": 14,
+    "totalWeight": 10.6,
+    "dominantVertices": 11
+   },
+   "ring_metacarpal_l": {
+    "vertices": 36,
+    "totalWeight": 5.94,
+    "dominantVertices": 6
+   },
+   "ring_01_l": {
+    "vertices": 46,
+    "totalWeight": 15.65,
+    "dominantVertices": 16
+   },
+   "ring_02_l": {
+    "vertices": 57,
+    "totalWeight": 16.11,
+    "dominantVertices": 16
+   },
+   "ring_03_l": {
+    "vertices": 28,
+    "totalWeight": 14.32,
+    "dominantVertices": 14
+   },
+   "upperarm_twist_01_l": {
+    "vertices": 426,
+    "totalWeight": 106.27,
+    "dominantVertices": 1
+   },
+   "upperarm_twist_02_l": {
+    "vertices": 297,
+    "totalWeight": 135.95,
+    "dominantVertices": 151
+   },
+   "clavicle_r": {
+    "vertices": 1609,
+    "totalWeight": 563.72,
+    "dominantVertices": 650
+   },
+   "upperarm_r": {
+    "vertices": 1155,
+    "totalWeight": 430.58,
+    "dominantVertices": 519
+   },
+   "lowerarm_r": {
+    "vertices": 270,
+    "totalWeight": 85.85,
+    "dominantVertices": 97
+   },
+   "lowerarm_twist_02_r": {
+    "vertices": 120,
+    "totalWeight": 29.45,
+    "dominantVertices": 7
+   },
+   "lowerarm_twist_01_r": {
+    "vertices": 117,
+    "totalWeight": 50.79,
+    "dominantVertices": 51
+   },
+   "hand_r": {
+    "vertices": 44,
+    "totalWeight": 8.02,
+    "dominantVertices": 8
+   },
+   "pinky_metacarpal_r": {
+    "vertices": 69,
+    "totalWeight": 24.42,
+    "dominantVertices": 24
+   },
+   "pinky_01_r": {
+    "vertices": 50,
+    "totalWeight": 17.73,
+    "dominantVertices": 19
+   },
+   "pinky_02_r": {
+    "vertices": 28,
+    "totalWeight": 7.93,
+    "dominantVertices": 8
+   },
+   "pinky_03_r": {
+    "vertices": 18,
+    "totalWeight": 11.96,
+    "dominantVertices": 12
+   },
+   "ring_metacarpal_r": {
+    "vertices": 34,
+    "totalWeight": 6.89,
+    "dominantVertices": 7
+   },
+   "ring_01_r": {
+    "vertices": 47,
+    "totalWeight": 14.27,
+    "dominantVertices": 14
+   },
+   "ring_02_r": {
+    "vertices": 46,
+    "totalWeight": 18.38,
+    "dominantVertices": 19
+   },
+   "ring_03_r": {
+    "vertices": 34,
+    "totalWeight": 19.65,
+    "dominantVertices": 19
+   },
+   "middle_metacarpal_r": {
+    "vertices": 43,
+    "totalWeight": 7.06,
+    "dominantVertices": 7
+   },
+   "middle_01_r": {
+    "vertices": 53,
+    "totalWeight": 13.81,
+    "dominantVertices": 13
+   },
+   "middle_02_r": {
+    "vertices": 48,
+    "totalWeight": 12.34,
+    "dominantVertices": 13
+   },
+   "middle_03_r": {
+    "vertices": 45,
+    "totalWeight": 20.91,
+    "dominantVertices": 22
+   },
+   "index_metacarpal_r": {
+    "vertices": 48,
+    "totalWeight": 15.41,
+    "dominantVertices": 15
+   },
+   "index_01_r": {
+    "vertices": 33,
+    "totalWeight": 9.89,
+    "dominantVertices": 10
+   },
+   "index_02_r": {
+    "vertices": 34,
+    "totalWeight": 12.62,
+    "dominantVertices": 12
+   },
+   "index_03_r": {
+    "vertices": 30,
+    "totalWeight": 10.85,
+    "dominantVertices": 10
+   },
+   "thumb_01_r": {
+    "vertices": 79,
+    "totalWeight": 30.15,
+    "dominantVertices": 33
+   },
+   "thumb_02_r": {
+    "vertices": 51,
+    "totalWeight": 18.52,
+    "dominantVertices": 17
+   },
+   "thumb_03_r": {
+    "vertices": 27,
+    "totalWeight": 18.02,
+    "dominantVertices": 18
+   },
+   "upperarm_twist_01_r": {
+    "vertices": 582,
+    "totalWeight": 145.73,
+    "dominantVertices": 0
+   },
+   "upperarm_twist_02_r": {
+    "vertices": 409,
+    "totalWeight": 180.24,
+    "dominantVertices": 201
+   },
+   "thigh_r": {
+    "vertices": 2544,
+    "totalWeight": 1079.8,
+    "dominantVertices": 1477
+   },
+   "calf_r": {
+    "vertices": 447,
+    "totalWeight": 156.74,
+    "dominantVertices": 228
+   },
+   "foot_r": {
+    "vertices": 372,
+    "totalWeight": 151.42,
+    "dominantVertices": 146
+   },
+   "ball_r": {
+    "vertices": 204,
+    "totalWeight": 96.05,
+    "dominantVertices": 105
+   },
+   "calf_twist_02_r": {
+    "vertices": 275,
+    "totalWeight": 49.69,
+    "dominantVertices": 3
+   },
+   "calf_twist_01_r": {
+    "vertices": 482,
+    "totalWeight": 188.04,
+    "dominantVertices": 187
+   },
+   "thigh_twist_01_r": {
+    "vertices": 1208,
+    "totalWeight": 315.26,
+    "dominantVertices": 0
+   },
+   "thigh_twist_02_r": {
+    "vertices": 821,
+    "totalWeight": 260.54,
+    "dominantVertices": 230
+   },
+   "thigh_l": {
+    "vertices": 2447,
+    "totalWeight": 1070.69,
+    "dominantVertices": 1398
+   },
+   "calf_l": {
+    "vertices": 481,
+    "totalWeight": 180.52,
+    "dominantVertices": 242
+   },
+   "foot_l": {
+    "vertices": 361,
+    "totalWeight": 147.45,
+    "dominantVertices": 145
+   },
+   "ball_l": {
+    "vertices": 190,
+    "totalWeight": 94.05,
+    "dominantVertices": 96
+   },
+   "calf_twist_02_l": {
+    "vertices": 262,
+    "totalWeight": 54.68,
+    "dominantVertices": 3
+   },
+   "calf_twist_01_l": {
+    "vertices": 405,
+    "totalWeight": 179.76,
+    "dominantVertices": 182
+   },
+   "thigh_twist_01_l": {
+    "vertices": 1184,
+    "totalWeight": 289.05,
+    "dominantVertices": 0
+   },
+   "thigh_twist_02_l": {
+    "vertices": 774,
+    "totalWeight": 281.33,
+    "dominantVertices": 267
+   },
+   "ik_foot_root": {
+    "vertices": 0,
+    "totalWeight": 0.0,
+    "dominantVertices": 0
+   },
+   "ik_foot_l": {
+    "vertices": 0,
+    "totalWeight": 0.0,
+    "dominantVertices": 0
+   },
+   "ik_foot_r": {
+    "vertices": 0,
+    "totalWeight": 0.0,
+    "dominantVertices": 0
+   },
+   "ik_hand_root": {
+    "vertices": 0,
+    "totalWeight": 0.0,
+    "dominantVertices": 0
+   },
+   "ik_hand_gun": {
+    "vertices": 0,
+    "totalWeight": 0.0,
+    "dominantVertices": 0
+   },
+   "ik_hand_l": {
+    "vertices": 0,
+    "totalWeight": 0.0,
+    "dominantVertices": 0
+   },
+   "ik_hand_r": {
+    "vertices": 0,
+    "totalWeight": 0.0,
+    "dominantVertices": 0
+   }
+  },
+  "influencesPerVertex": [
+   0,
+   634,
+   3183,
+   3095,
+   5078
+  ],
+  "weightSum": [
+   0.9999999050050974,
+   1.0000000521540642
+  ],
+  "limbWeightCentroids_t": {
+   "upperarm_l": {
+    "upperarm_l": 0.197,
+    "upperarm_twist_01_l": 0.428,
+    "upperarm_twist_02_l": 0.901
+   },
+   "lowerarm_l": {
+    "lowerarm_l": 0.241,
+    "lowerarm_twist_02_l": 0.486,
+    "lowerarm_twist_01_l": 0.935
+   },
+   "thigh_l": {
+    "thigh_l": 0.136,
+    "thigh_twist_01_l": 0.462,
+    "thigh_twist_02_l": 0.933
+   },
+   "calf_l": {
+    "calf_l": 0.246,
+    "calf_twist_02_l": 0.456,
+    "calf_twist_01_l": 0.937
+   },
+   "upperarm_r": {
+    "upperarm_r": 0.211,
+    "upperarm_twist_01_r": 0.422,
+    "upperarm_twist_02_r": 0.918
+   },
+   "lowerarm_r": {
+    "lowerarm_r": 0.239,
+    "lowerarm_twist_02_r": 0.505,
+    "lowerarm_twist_01_r": 0.932
+   },
+   "thigh_r": {
+    "thigh_r": 0.141,
+    "thigh_twist_01_r": 0.477,
+    "thigh_twist_02_r": 0.926
+   },
+   "calf_r": {
+    "calf_r": 0.267,
+    "calf_twist_02_r": 0.485,
+    "calf_twist_01_r": 0.954
+   }
+  }
+ },
+ "after": {
+  "bones": {
+   "root": {
+    "vertices": 0,
+    "totalWeight": 0.0,
+    "dominantVertices": 0
+   },
+   "pelvis": {
+    "vertices": 2185,
+    "totalWeight": 484.98,
+    "dominantVertices": 475
+   },
+   "spine_01": {
+    "vertices": 1397,
+    "totalWeight": 310.7,
+    "dominantVertices": 283
+   },
+   "spine_02": {
+    "vertices": 1799,
+    "totalWeight": 366.46,
+    "dominantVertices": 362
+   },
+   "spine_03": {
+    "vertices": 898,
+    "totalWeight": 152.22,
+    "dominantVertices": 31
+   },
+   "spine_04": {
+    "vertices": 1876,
+    "totalWeight": 429.58,
+    "dominantVertices": 501
+   },
+   "spine_05": {
+    "vertices": 1698,
+    "totalWeight": 373.2,
+    "dominantVertices": 310
+   },
+   "neck_01": {
+    "vertices": 1191,
+    "totalWeight": 174.67,
+    "dominantVertices": 136
+   },
+   "neck_02": {
+    "vertices": 1699,
+    "totalWeight": 135.76,
+    "dominantVertices": 38
+   },
+   "head": {
+    "vertices": 1962,
+    "totalWeight": 1667.45,
+    "dominantVertices": 1760
+   },
+   "clavicle_l": {
+    "vertices": 1355,
+    "totalWeight": 500.56,
+    "dominantVertices": 588
+   },
+   "upperarm_l": {
+    "vertices": 261,
+    "totalWeight": 108.04,
+    "dominantVertices": 121
+   },
+   "lowerarm_l": {
+    "vertices": 189,
+    "totalWeight": 81.54,
+    "dominantVertices": 94
+   },
+   "lowerarm_twist_02_l": {
+    "vertices": 91,
+    "totalWeight": 23.75,
+    "dominantVertices": 8
+   },
+   "lowerarm_twist_01_l": {
+    "vertices": 115,
+    "totalWeight": 52.82,
+    "dominantVertices": 55
+   },
+   "hand_l": {
+    "vertices": 44,
+    "totalWeight": 7.35,
+    "dominantVertices": 6
+   },
+   "index_metacarpal_l": {
+    "vertices": 67,
+    "totalWeight": 20.91,
+    "dominantVertices": 22
+   },
+   "index_01_l": {
+    "vertices": 57,
+    "totalWeight": 19.45,
+    "dominantVertices": 18
+   },
+   "index_02_l": {
+    "vertices": 43,
+    "totalWeight": 14.44,
+    "dominantVertices": 15
+   },
+   "index_03_l": {
+    "vertices": 29,
+    "totalWeight": 14.57,
+    "dominantVertices": 14
+   },
+   "middle_metacarpal_l": {
+    "vertices": 61,
+    "totalWeight": 11.96,
+    "dominantVertices": 12
+   },
+   "middle_01_l": {
+    "vertices": 57,
+    "totalWeight": 17.42,
+    "dominantVertices": 18
+   },
+   "middle_02_l": {
+    "vertices": 61,
+    "totalWeight": 19.86,
+    "dominantVertices": 21
+   },
+   "middle_03_l": {
+    "vertices": 21,
+    "totalWeight": 10.39,
+    "dominantVertices": 10
+   },
+   "thumb_01_l": {
+    "vertices": 94,
+    "totalWeight": 43.32,
+    "dominantVertices": 44
+   },
+   "thumb_02_l": {
+    "vertices": 35,
+    "totalWeight": 9.27,
+    "dominantVertices": 9
+   },
+   "thumb_03_l": {
+    "vertices": 23,
+    "totalWeight": 14.13,
+    "dominantVertices": 14
+   },
+   "pinky_metacarpal_l": {
+    "vertices": 61,
+    "totalWeight": 25.19,
+    "dominantVertices": 27
+   },
+   "pinky_01_l": {
+    "vertices": 53,
+    "totalWeight": 17.94,
+    "dominantVertices": 16
+   },
+   "pinky_02_l": {
+    "vertices": 12,
+    "totalWeight": 4.16,
+    "dominantVertices": 3
+   },
+   "pinky_03_l": {
+    "vertices": 14,
+    "totalWeight": 10.6,
+    "dominantVertices": 11
+   },
+   "ring_metacarpal_l": {
+    "vertices": 36,
+    "totalWeight": 5.97,
+    "dominantVertices": 6
+   },
+   "ring_01_l": {
+    "vertices": 46,
+    "totalWeight": 15.65,
+    "dominantVertices": 16
+   },
+   "ring_02_l": {
+    "vertices": 57,
+    "totalWeight": 16.11,
+    "dominantVertices": 16
+   },
+   "ring_03_l": {
+    "vertices": 28,
+    "totalWeight": 14.32,
+    "dominantVertices": 14
+   },
+   "upperarm_twist_01_l": {
+    "vertices": 921,
+    "totalWeight": 328.68,
+    "dominantVertices": 373
+   },
+   "upperarm_twist_02_l": {
+    "vertices": 426,
+    "totalWeight": 106.32,
+    "dominantVertices": 2
+   },
+   "clavicle_r": {
+    "vertices": 1609,
+    "totalWeight": 576.86,
+    "dominantVertices": 655
+   },
+   "upperarm_r": {
+    "vertices": 362,
+    "totalWeight": 138.76,
+    "dominantVertices": 153
+   },
+   "lowerarm_r": {
+    "vertices": 279,
+    "totalWeight": 122.34,
+    "dominantVertices": 138
+   },
+   "lowerarm_twist_02_r": {
+    "vertices": 120,
+    "totalWeight": 34.21,
+    "dominantVertices": 14
+   },
+   "lowerarm_twist_01_r": {
+    "vertices": 112,
+    "totalWeight": 49.92,
+    "dominantVertices": 50
+   },
+   "hand_r": {
+    "vertices": 44,
+    "totalWeight": 8.02,
+    "dominantVertices": 8
+   },
+   "pinky_metacarpal_r": {
+    "vertices": 69,
+    "totalWeight": 24.44,
+    "dominantVertices": 24
+   },
+   "pinky_01_r": {
+    "vertices": 50,
+    "totalWeight": 17.73,
+    "dominantVertices": 19
+   },
+   "pinky_02_r": {
+    "vertices": 28,
+    "totalWeight": 7.93,
+    "dominantVertices": 8
+   },
+   "pinky_03_r": {
+    "vertices": 18,
+    "totalWeight": 11.96,
+    "dominantVertices": 12
+   },
+   "ring_metacarpal_r": {
+    "vertices": 34,
+    "totalWeight": 7.24,
+    "dominantVertices": 8
+   },
+   "ring_01_r": {
+    "vertices": 47,
+    "totalWeight": 14.31,
+    "dominantVertices": 14
+   },
+   "ring_02_r": {
+    "vertices": 46,
+    "totalWeight": 18.38,
+    "dominantVertices": 19
+   },
+   "ring_03_r": {
+    "vertices": 34,
+    "totalWeight": 19.65,
+    "dominantVertices": 19
+   },
+   "middle_metacarpal_r": {
+    "vertices": 43,
+    "totalWeight": 7.36,
+    "dominantVertices": 7
+   },
+   "middle_01_r": {
+    "vertices": 53,
+    "totalWeight": 13.84,
+    "dominantVertices": 13
+   },
+   "middle_02_r": {
+    "vertices": 48,
+    "totalWeight": 12.34,
+    "dominantVertices": 13
+   },
+   "middle_03_r": {
+    "vertices": 45,
+    "totalWeight": 20.91,
+    "dominantVertices": 22
+   },
+   "index_metacarpal_r": {
+    "vertices": 48,
+    "totalWeight": 15.54,
+    "dominantVertices": 15
+   },
+   "index_01_r": {
+    "vertices": 33,
+    "totalWeight": 9.89,
+    "dominantVertices": 10
+   },
+   "index_02_r": {
+    "vertices": 34,
+    "totalWeight": 12.62,
+    "dominantVertices": 12
+   },
+   "index_03_r": {
+    "vertices": 30,
+    "totalWeight": 10.85,
+    "dominantVertices": 10
+   },
+   "thumb_01_r": {
+    "vertices": 79,
+    "totalWeight": 30.15,
+    "dominantVertices": 33
+   },
+   "thumb_02_r": {
+    "vertices": 51,
+    "totalWeight": 18.52,
+    "dominantVertices": 17
+   },
+   "thumb_03_r": {
+    "vertices": 27,
+    "totalWeight": 18.02,
+    "dominantVertices": 18
+   },
+   "upperarm_twist_01_r": {
+    "vertices": 1136,
+    "totalWeight": 417.56,
+    "dominantVertices": 521
+   },
+   "upperarm_twist_02_r": {
+    "vertices": 582,
+    "totalWeight": 145.85,
+    "dominantVertices": 0
+   },
+   "thigh_r": {
+    "vertices": 704,
+    "totalWeight": 248.02,
+    "dominantVertices": 228
+   },
+   "calf_r": {
+    "vertices": 447,
+    "totalWeight": 163.55,
+    "dominantVertices": 218
+   },
+   "foot_r": {
+    "vertices": 372,
+    "totalWeight": 151.42,
+    "dominantVertices": 146
+   },
+   "ball_r": {
+    "vertices": 204,
+    "totalWeight": 96.05,
+    "dominantVertices": 105
+   },
+   "calf_twist_02_r": {
+    "vertices": 275,
+    "totalWeight": 53.41,
+    "dominantVertices": 15
+   },
+   "calf_twist_01_r": {
+    "vertices": 482,
+    "totalWeight": 190.03,
+    "dominantVertices": 187
+   },
+   "thigh_twist_01_r": {
+    "vertices": 2544,
+    "totalWeight": 1079.8,
+    "dominantVertices": 1474
+   },
+   "thigh_twist_02_r": {
+    "vertices": 1208,
+    "totalWeight": 315.26,
+    "dominantVertices": 0
+   },
+   "thigh_l": {
+    "vertices": 682,
+    "totalWeight": 273.55,
+    "dominantVertices": 263
+   },
+   "calf_l": {
+    "vertices": 481,
+    "totalWeight": 185.37,
+    "dominantVertices": 241
+   },
+   "foot_l": {
+    "vertices": 361,
+    "totalWeight": 147.45,
+    "dominantVertices": 145
+   },
+   "ball_l": {
+    "vertices": 190,
+    "totalWeight": 94.05,
+    "dominantVertices": 96
+   },
+   "calf_twist_02_l": {
+    "vertices": 262,
+    "totalWeight": 57.28,
+    "dominantVertices": 8
+   },
+   "calf_twist_01_l": {
+    "vertices": 405,
+    "totalWeight": 180.1,
+    "dominantVertices": 182
+   },
+   "thigh_twist_01_l": {
+    "vertices": 2447,
+    "totalWeight": 1070.69,
+    "dominantVertices": 1397
+   },
+   "thigh_twist_02_l": {
+    "vertices": 1184,
+    "totalWeight": 289.05,
+    "dominantVertices": 4
+   },
+   "ik_foot_root": {
+    "vertices": 0,
+    "totalWeight": 0.0,
+    "dominantVertices": 0
+   },
+   "ik_foot_l": {
+    "vertices": 0,
+    "totalWeight": 0.0,
+    "dominantVertices": 0
+   },
+   "ik_foot_r": {
+    "vertices": 0,
+    "totalWeight": 0.0,
+    "dominantVertices": 0
+   },
+   "ik_hand_root": {
+    "vertices": 0,
+    "totalWeight": 0.0,
+    "dominantVertices": 0
+   },
+   "ik_hand_gun": {
+    "vertices": 0,
+    "totalWeight": 0.0,
+    "dominantVertices": 0
+   },
+   "ik_hand_l": {
+    "vertices": 0,
+    "totalWeight": 0.0,
+    "dominantVertices": 0
+   },
+   "ik_hand_r": {
+    "vertices": 0,
+    "totalWeight": 0.0,
+    "dominantVertices": 0
+   }
+  },
+  "influencesPerVertex": [
+   0,
+   619,
+   3311,
+   3210,
+   4850
+  ],
+  "weightSum": [
+   0.9999999999999998,
+   1.0000000000000002
+  ],
+  "limbWeightCentroids_t": {
+   "upperarm_l": {
+    "upperarm_l": 0.84,
+    "upperarm_twist_01_l": 0.213,
+    "upperarm_twist_02_l": 0.429
+   },
+   "lowerarm_l": {
+    "lowerarm_l": 0.21,
+    "lowerarm_twist_02_l": 0.462,
+    "lowerarm_twist_01_l": 0.933
+   },
+   "thigh_l": {
+    "thigh_l": 0.921,
+    "thigh_twist_01_l": 0.136,
+    "thigh_twist_02_l": 0.462
+   },
+   "calf_l": {
+    "calf_l": 0.249,
+    "calf_twist_02_l": 0.452,
+    "calf_twist_01_l": 0.936
+   },
+   "upperarm_r": {
+    "upperarm_r": 0.85,
+    "upperarm_twist_01_r": 0.225,
+    "upperarm_twist_02_r": 0.423
+   },
+   "lowerarm_r": {
+    "lowerarm_r": 0.212,
+    "lowerarm_twist_02_r": 0.48,
+    "lowerarm_twist_01_r": 0.924
+   },
+   "thigh_r": {
+    "thigh_r": 0.901,
+    "thigh_twist_01_r": 0.141,
+    "thigh_twist_02_r": 0.477
+   },
+   "calf_r": {
+    "calf_r": 0.273,
+    "calf_twist_02_r": 0.481,
+    "calf_twist_01_r": 0.95
+   }
+  }
+ },
+ "fixes": [
+  {
+   "fix": "relabel upper-arm and thigh twist weights",
+   "why": "delivered order is bone (shoulder/hip end) -> twist_01 -> twist_02 (elbow/knee end), reverse of UE5/R1",
+   "moves": [
+    "upperarm_l: upperarm -> twist_01, twist_01 -> twist_02, twist_02 -> upperarm",
+    "thigh_l: thigh -> twist_01, twist_01 -> twist_02, twist_02 -> thigh",
+    "upperarm_r: upperarm -> twist_01, twist_01 -> twist_02, twist_02 -> upperarm",
+    "thigh_r: thigh -> twist_01, twist_01 -> twist_02, twist_02 -> thigh"
+   ]
+  },
+  {
+   "fix": "removed limb weights past the far joint (t > 1.3 along the limb) and renormalised",
+   "found": [
+    {
+     "chain": "upperarm_l",
+     "influences": 13,
+     "maxWeight": 0.49,
+     "maxT": 1.48
+    },
+    {
+     "chain": "lowerarm_l",
+     "influences": 5,
+     "maxWeight": 0.075,
+     "maxT": 1.34
+    },
+    {
+     "chain": "thigh_l",
+     "influences": 92,
+     "maxWeight": 0.886,
+     "maxT": 1.72
+    },
+    {
+     "chain": "upperarm_r",
+     "influences": 21,
+     "maxWeight": 0.69,
+     "maxT": 1.44
+    },
+    {
+     "chain": "lowerarm_r",
+     "influences": 5,
+     "maxWeight": 0.525,
+     "maxT": 1.42
+    },
+    {
+     "chain": "thigh_r",
+     "influences": 117,
+     "maxWeight": 0.714,
+     "maxT": 1.84
+    }
+   ]
+  },
+  {
+   "fix": "shoulder repair: upper-arm weight on torso skin inboard of the shoulder joint handed to the clavicle (smoothstep 10 cm .. 1 cm inboard)",
+   "moved": {
+    "l": {
+     "vertices": 353,
+     "weightMoved": 12.17,
+     "maxMoved": 0.105
+    },
+    "r": {
+     "vertices": 375,
+     "weightMoved": 13.14,
+     "maxMoved": 0.113
+    }
+   }
+  },
+  {
+   "fix": "joint repair (pass F1): elbow / knee upper-vs-lower chain split set by position along the limb (smoothstep +-5 cm round the joint), ragged weights on the inner elbow removed",
+   "moved": {
+    "elbow_l": {
+     "vertices": 143,
+     "weightMoved": 28.59,
+     "maxMoved": 0.938
+    },
+    "elbow_r": {
+     "vertices": 204,
+     "weightMoved": 41.52,
+     "maxMoved": 0.933
+    }
+   }
+  }
+ ],
+ "shares": {
+  "upperarm_twist_01": -0.501,
+  "upperarm_twist_02": -0.1,
+  "lowerarm_twist_02": 0.834,
+  "lowerarm_twist_01": 0.879,
+  "thigh_twist_01": -0.304,
+  "thigh_twist_02": -0.026,
+  "calf_twist_02": 0.411,
+  "calf_twist_01": 0.393
+ },
+ "strayCheckBefore": [
+  {
+   "chain": "upperarm_l",
+   "influences": 13,
+   "maxWeight": 0.49,
+   "maxT": 1.48
+  },
+  {
+   "chain": "lowerarm_l",
+   "influences": 5,
+   "maxWeight": 0.075,
+   "maxT": 1.34
+  },
+  {
+   "chain": "thigh_l",
+   "influences": 92,
+   "maxWeight": 0.886,
+   "maxT": 1.72
+  },
+  {
+   "chain": "upperarm_r",
+   "influences": 21,
+   "maxWeight": 0.69,
+   "maxT": 1.44
+  },
+  {
+   "chain": "lowerarm_r",
+   "influences": 5,
+   "maxWeight": 0.525,
+   "maxT": 1.42
+  },
+  {
+   "chain": "thigh_r",
+   "influences": 117,
+   "maxWeight": 0.714,
+   "maxT": 1.84
+  }
+ ]
+}
